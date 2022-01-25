@@ -1,0 +1,13 @@
+{
+    "_id": {
+        "$oid": "61ea7da7e032a1bb1a09d85d"
+    },
+    "title": "Blog title test",
+    "text": "<h1>This is the first header.</h1><p><strong>orem Ipsum</strong> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#x27;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p><p></p><h3>This is another header</h3><h3>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using &#x27;Content here, content here&#x27;, making it look like readable English. </h3><h3></h3><ul><li>This is a list item</li><li>Another list item </li></ul>",
+    "image": "DataUrlGoesHere",
+    "creator": "Admin",
+    "cta": "https://www.kimbocorp.com",
+    "creationDate": "Fri Jan 21 2022 10:32:23 GMT+0100 (West Africa Standard Time)",
+    "tags": ["Security", "Business", "TestTag"],
+    "__v": 0
+}
