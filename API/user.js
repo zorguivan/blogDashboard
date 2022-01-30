@@ -2,7 +2,6 @@ const express = require('express')
 const router = express.Router()
 const bcrypt = require('bcryptjs')
 const Users = require('../models/Users')
-const secret = "3asba";
 
 router.get('/checkStatus/:id',  (req, res) => {
     let {id} = req.params;
@@ -19,7 +18,7 @@ router.get('/checkStatus/:id',  (req, res) => {
         }
     })
 });
-Users.findOne({}).then(res => console.log(res));
+
 
 router.get('/user/info/:id', (req, res) => {
     let {id} = req.params;

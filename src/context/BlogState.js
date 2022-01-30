@@ -112,6 +112,22 @@ export const BlogProvider = ({ children }) => {
             })
         }
 
+        const removeBlog = (_id) => {
+            axios.delete(`/api/blog/${_id}`)
+                .then(res => {
+                    dispatch({
+                        type: 'BLOGDELETE_SUCCESS',
+                        payload: _id
+                    });
+                        getBlogs();
+                }).catch(err => {
+                    dispatch({
+                    type: 'BLOGDELETE_FAIL',
+                    payload: err,
+                });
+            });
+        }
+
         return ( <BlogContext.Provider value={{
                     blogs: state,
                     getBlogs,
@@ -119,6 +135,7 @@ export const BlogProvider = ({ children }) => {
                     uploadFile,
                     addBlog,
                     saveBlog,
+                    removeBlog,
                     clearError
                 }}> { children } 
                 </BlogContext.Provider>)

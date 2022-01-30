@@ -29,12 +29,12 @@ router.get('/blogs/:id', (req, res) => {
 });
 
 router.post('/blog', (req, res) => {
-    const { title, text, image, creator, cta } = req.body;
+    const { title, text, description, image, visibility, creator, creatorId, cta, ctaText } = req.body;
     let creationDate = new Date(); 
     let tags = [];
     req.body.tags.forEach((tag) => tags.push(tag.text));
     console.log(tags)    
-    const obj = new Blogs({ title, text, image, creator, tags, cta, creationDate });
+    const obj = new Blogs({ title, text, description, image, visibility, creator, creatorId, tags, cta, ctaText, creationDate });
 
     obj.save(function (err) {
         if (err) {
@@ -47,17 +47,38 @@ router.post('/blog', (req, res) => {
     });
 });
 
+router.delete('/blog/:id', (req, res) => {
+    Blogs.findById(req.params.id)
+        .then(zone => {
+            if (!zone) {
+                return res.json({ msg: 'Blog not found' })
+            } else {
+                Blogs.findByIdAndDelete(req.params.id, (err, data) => {
+                    res.json({ msg: "Blog has been Deleted" })
+                })
+            }
+        })
+        .catch(err => console.log(err.message))
+})
+
 
 router.put('/blog/:id', (req, res) => { 
-    const { title, text, image, creator, cta } = req.body;
+    const { title, text, description, visibility, image, creator, creatorId, cta, ctaText } = req.body;
     let blogFields = {
         title: title,
+        description: description,
+        visibility: visibility,
         text: text,
         image: image,
         creator: creator,
-        cta: cta
+        creatorId: creatorId,
+        cta: cta,
+        ctaText: ctaText
     }
-    console.log(req.params.id)
+    let tags = [];
+    req.body.tags.forEach((tag) => tags.push(tag.text));
+    blogFields.tags = tags;
+    console.log(blogFields)
     Blogs.findById(req.params.id)
         .then(blog => {
             if (!blog) {
