@@ -5,18 +5,15 @@ import {
   Row,
   Card,
   Form,
-  Modal, 
-  Button, 
+  Modal,
+  Button,
   ModalHeader,
-  ModalBody, 
-  ModalFooter
+  ModalBody,
+  ModalFooter,
+  Input
 } from "reactstrap"
 
-import { Editor } from 'react-draft-wysiwyg';
-import { EditorState, ContentState, convertFromHTML  } from 'draft-js';
-import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
-import { convertToHTML } from 'draft-convert';
-import DOMPurify from 'dompurify';
+import TextEditor from "./TextEditor.js";
 
 import { WithContext as ReactTags } from 'react-tag-input';
 
@@ -30,31 +27,34 @@ import { BlogContext } from '../context/BlogState';
 const Home = (props) => {
   const userData = useContext(AuthContext);
   const {addBlog, getBlog, saveBlog, removeBlog} = useContext(BlogContext);
-  const [editorState, setEditorState] = useState(EditorState.createEmpty());
-  const [editorReference, setReference] = useState(EditorState.createEmpty());
-  const [convertedContent, setConvertedContent] = useState();
+  const [textData, setTextData] = useState("");
+
+  const handleTextChange = (newData) => {
+      setTextData(newData);
+  };
+
+  const extraProps = {
+    disabled : false,
+  }
+
+  useEffect(() => {
+    console.log(textData);
+  }, [textData]);
+
   const [tags, setTags] = useState([])
   const [blog, setBlog] = useState({
     visibility: true
   })
   const [userFile, setUserFile] = useState({})
   const [blogImage, setBlogImage] = useState({})
-  const [selectedFiles , setSelectedFiles] = useState([])
+  const [selectedFiles , setSelectedFiles] = useState([]);
   const [show, setShow] = useState(false);
 
   const history = useHistory();
 
-  
-  const onEditorStateChange = (editorState) => {
-    setEditorState(editorState);
-    convertContentToHTML();
-  }
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const convertContentToHTML = () => {
-    let currentContentAsHTML = convertToHTML(editorState.getCurrentContent());
-    setConvertedContent(currentContentAsHTML);
-  }
+
 
 
   let { blogId } = useParams();
@@ -70,13 +70,9 @@ const Home = (props) => {
                 description: res[0].description,
                 visibility: res[0].visibility
             });
-            const blocksFromHTML = convertFromHTML(res[0].text);
-            const state = ContentState.createFromBlockArray(
-                blocksFromHTML.contentBlocks,
-                blocksFromHTML.entityMap,
-            );
-            setEditorState(EditorState.createWithContent(state));
-            convertContentToHTML();
+
+            setTextData(res[0].text);
+
             setSelectedFiles([{name: "Blog-"+res[0]._id, type: "image/jpeg", preview: res[0].image}])
             let tagsHolder = [];
             if(res[0].tags && res[0].tags.length > 0){
@@ -91,24 +87,12 @@ const Home = (props) => {
       });
   }, [blogId]);
 
-  const setEditorReference = (ref) => {
-    if(ref){
-      setReference(ref)
-      // ref.focus()
-    }
-  }
-  
   useEffect(() => {
     if(!localStorage.getItem('user')){
       history.push('/login');
     }
   }, [localStorage.getItem('user')]);
 
-  const createMarkup = (html) => {
-    return  {
-      __html: DOMPurify.sanitize(html)
-    }
-  }
 
   const KeyCodes = {
     comma: 188,
@@ -118,12 +102,9 @@ const Home = (props) => {
   const delimiters = [...KeyCodes.enter, KeyCodes.comma]
 
 
-
   function handleAcceptedFiles(files) {
     files.map(file => {
-
       const reader = new FileReader();
-
       reader.readAsDataURL(file);
             reader.onloadend = () => {
                 if(file.type == 'application/pdf' || file.type == 'image/png' || file.type == 'image/jpeg') {
@@ -159,13 +140,12 @@ const Home = (props) => {
     setTags(newTags);
   }
 
-
   const updateField = e => {
     if(e.target.name == 'visibility'){
       setBlog({
         ...blog,
         [e.target.name]: e.target.checked
-    });
+      });
     } else { 
       setBlog({
         ...blog,
@@ -182,7 +162,7 @@ const Home = (props) => {
       cta: blog.cta,
       ctaText: blog.ctaText,
       visibility: blog.visibility,
-      text: convertedContent,
+      text: textData,
       image: userFile.url,
       creator: localStorage.getItem('name'),
       creatorId: localStorage.getItem('user'),
@@ -203,7 +183,7 @@ const Home = (props) => {
         cta: blog.cta,
         ctaText: blog.ctaText,
         visibility: blog.visibility,
-        text: convertToHTML(editorState.getCurrentContent()),
+        text: textData,
         image: userFile.url,
         creator: localStorage.getItem('name'),
         creatorId: localStorage.getItem('user'),
@@ -213,7 +193,6 @@ const Home = (props) => {
     if(obj.image == undefined) { 
       obj.image = selectedFiles[0].preview
     }
-
     saveBlog(obj)
     reset();
   }
@@ -223,11 +202,13 @@ const Home = (props) => {
   }
 
 
+  
 
   const blogDelete = (id) => {
     removeBlog(id)
     history.push('/blogs')
   }
+
   return (
     <div className="App">
       <header className="header_new py-2 position-relative">
@@ -340,18 +321,15 @@ const Home = (props) => {
               </div>
             </Form>
           </div>
-
+            
           <div className="jumbotron tagsContainer">
             <h4 className="">Content</h4>
-            <Editor
-            editorState={editorState}
-            toolbarClassName="toolbar-class"
-            wrapperClassName="wrapper-class"
-            editorClassName="editor-class"
-            onEditorStateChange={onEditorStateChange}
-            editorRef={setEditorReference}
-            id="testIdForEditor"
-          />
+            <TextEditor 
+              data={textData} 
+              onEditorReady={ () => console.log("Editor is ready")} // can write some function here if you need :)
+              onChangeData={handleTextChange}
+              {...extraProps}
+            />
         </div>
 
         {/* <div className="preview" dangerouslySetInnerHTML={createMarkup(convertedContent)}></div> */}

@@ -27,6 +27,13 @@ h2 {
   color: #cccccc;
 }
 
+.ck-content h2{
+  color: black;
+}
+
+.ck-content{
+  height: 250px;
+}
 
 
 /* STRUCTURE */
@@ -41,10 +48,12 @@ h2 {
   padding: 100px;
 
 }
+
 .imgContainer { 
   background: #395F8C;
   text-align: center;
 }
+
 #formContent {
   -webkit-border-radius: 10px 10px 10px 10px;
   border-radius: 10px 10px 10px 10px;
