@@ -37,7 +37,7 @@ const Blogs = (props) => {
       >
         <div className="container d-flex mobile-grid gap-2">
           <a href="/" className="navbar-brand text-center"
-            ><img src="./Images/logo.svg" className="nav-logo" alt="Logo" /></a
+            ><img src="./images/logo.svg" className="nav-logo" alt="Logo" /></a
           ><button
             className="navbar-toggler order-first order-md-0"
             type="button"
@@ -104,7 +104,7 @@ const Blogs = (props) => {
       <div
         className="container d-flex justify-content-between align-items-center flex-column flex-xl-row"
       >
-        <figure><img src="./Images/logo.svg" alt="logo" className="footer-logo"/></figure>
+        <figure><img src="./images/logo.svg" alt="logo" className="footer-logo"/></figure>
         
       </div>
     </footer>
