@@ -6,13 +6,18 @@ import { BlogContext } from '../context/BlogState';
 
 const Blogs = (props) => {
   const {getBlogs, ...blogsState} = useContext(BlogContext);
+  const [loadingStatus, setloadingStatus] = useState(false);
+
   const history = useHistory();
 
   useEffect(() => {
     if(!localStorage.getItem('user')){
       history.push('/login');
     } else { 
-        getBlogs()
+        setloadingStatus(true)
+        getBlogs().then((blogs) => {
+          setloadingStatus(false)
+        })
     }
   }, [localStorage.getItem('user')]);
 
@@ -63,6 +68,10 @@ const Blogs = (props) => {
       <div className="container blogscontainer">
 
 
+      {loadingStatus && <div class="spinner-border text-primary" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>  || 
+
       <Table>
         <thead>
           <tr>
@@ -84,7 +93,7 @@ const Blogs = (props) => {
           
         </tbody>
       </Table>
-
+    }
       </div>
 
 

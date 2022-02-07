@@ -364,7 +364,7 @@ const Home = (props) => {
         <div
           className="blog__buttons-wrapper my-5 d-flex flex-wrap align-items-center justify-content-center gap-3"
         >
-          {blogId && <button className="delete-button" onClick={handleShow}  >
+          {blogId && <button className="delete-button" onClick={handleShow}>
             Delete
           </button> }
 
