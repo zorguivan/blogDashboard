@@ -49,6 +49,10 @@ h2 {
 
 }
 
+.loaderContainer{
+  text-align: center;
+}
+
 .imgContainer { 
   background: #395F8C;
   text-align: center;
