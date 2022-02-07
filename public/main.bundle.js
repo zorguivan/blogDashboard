@@ -2904,6 +2904,7 @@ const Home = props => {
     removeBlog
   } = (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(_context_BlogState__WEBPACK_IMPORTED_MODULE_3__.BlogContext);
   const [textData, setTextData] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("");
+  const [loadingStatus, setloadingStatus] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
 
   const handleTextChange = newData => {
     setTextData(newData);
@@ -3035,6 +3036,7 @@ const Home = props => {
   };
 
   const uploadBlog = () => {
+    setloadingStatus(true);
     let obj = {
       title: blog.title,
       description: blog.description,
@@ -3057,6 +3059,7 @@ const Home = props => {
   };
 
   const updateBlog = () => {
+    setloadingStatus(true);
     let obj = {
       title: blog.title,
       description: blog.description,
@@ -3085,8 +3088,10 @@ const Home = props => {
   };
 
   const blogDelete = id => {
-    removeBlog(id);
-    history.push('/blogs');
+    setloadingStatus(true);
+    removeBlog(id).then(r => {
+      history.push('/blogs');
+    });
   };
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -3271,7 +3276,12 @@ const Home = props => {
   }, blogId && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
     className: "delete-button",
     onClick: handleShow
-  }, "Delete"), !blogId && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+  }, "Delete"), loadingStatus && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    class: "spinner-border text-primary",
+    role: "status"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
+    class: "sr-only"
+  }, "Loading...")) || !blogId && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
     type: "button",
     className: "publish-button",
     onClick: () => uploadBlog()
@@ -3729,7 +3739,7 @@ const BlogProvider = ({
         'Content-Type': 'application/json'
       }
     };
-    const data = axios__WEBPACK_IMPORTED_MODULE_2___default().put('/api/blog/' + formData._id, formData, config).then(res => {
+    const data = await axios__WEBPACK_IMPORTED_MODULE_2___default().put('/api/blog/' + formData._id, formData, config).then(res => {
       dispatch({
         type: 'BLOGSAVE_SUCCESS',
         payload: res.data
@@ -3750,7 +3760,7 @@ const BlogProvider = ({
         'Content-Type': 'application/json'
       }
     };
-    const data = axios__WEBPACK_IMPORTED_MODULE_2___default().post('/api/blog', formData, config).then(res => {
+    const data = await axios__WEBPACK_IMPORTED_MODULE_2___default().post('/api/blog', formData, config).then(res => {
       dispatch({
         type: 'BLOGSAVE_SUCCESS',
         payload: res.data
@@ -3771,8 +3781,8 @@ const BlogProvider = ({
     });
   }
 
-  const removeBlog = _id => {
-    axios__WEBPACK_IMPORTED_MODULE_2___default()["delete"](`/api/blog/${_id}`).then(res => {
+  async function removeBlog(_id) {
+    const data = await axios__WEBPACK_IMPORTED_MODULE_2___default()["delete"](`/api/blog/${_id}`).then(res => {
       dispatch({
         type: 'BLOGDELETE_SUCCESS',
         payload: _id
@@ -3784,7 +3794,8 @@ const BlogProvider = ({
         payload: err
       });
     });
-  };
+    return data;
+  }
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(BlogContext.Provider, {
     value: {

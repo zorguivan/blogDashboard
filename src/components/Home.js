@@ -28,6 +28,7 @@ const Home = (props) => {
   const userData = useContext(AuthContext);
   const {addBlog, getBlog, saveBlog, removeBlog} = useContext(BlogContext);
   const [textData, setTextData] = useState("");
+  const [loadingStatus, setloadingStatus] = useState(false);
 
   const handleTextChange = (newData) => {
       setTextData(newData);
@@ -156,6 +157,7 @@ const Home = (props) => {
 };
 
   const uploadBlog = () => {
+    setloadingStatus(true)
     let obj = {
       title: blog.title,
       description: blog.description,
@@ -178,6 +180,7 @@ const Home = (props) => {
   }
 
   const updateBlog = () => {
+    setloadingStatus(true)
     let obj = {
         title: blog.title,
         description: blog.description,
@@ -207,8 +210,10 @@ const Home = (props) => {
   
 
   const blogDelete = (id) => {
-    removeBlog(id)
-    history.push('/blogs')
+    setloadingStatus(true)
+    removeBlog(id).then((r) => {
+      history.push('/blogs')
+    })
   }
 
   return (
@@ -362,13 +367,14 @@ const Home = (props) => {
           {blogId && <button className="delete-button" onClick={handleShow}  >
             Delete
           </button> }
-          
-          {!blogId && <button type="button" className="publish-button"  onClick={() => uploadBlog()}>
+
+          {loadingStatus && <div class="spinner-border text-primary" role="status">
+            <span class="sr-only">Loading...</span>
+          </div> || !blogId && <button type="button" className="publish-button"  onClick={() => uploadBlog()}>
                 Publish
           </button> || <button type="button" className="publish-button" onClick={() => updateBlog()} >
                 Update
           </button>}
-
           
 
         </div>

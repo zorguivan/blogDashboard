@@ -69,7 +69,7 @@ export const BlogProvider = ({ children }) => {
                     'Content-Type': 'application/json'
                 }
             }
-            const data = axios.put('/api/blog/' + formData._id, formData, config)
+            const data = await axios.put('/api/blog/' + formData._id, formData, config)
                 .then(res => {
                     dispatch({
                         type: 'BLOGSAVE_SUCCESS',
@@ -92,7 +92,7 @@ export const BlogProvider = ({ children }) => {
                         'Content-Type': 'application/json'
                     }
                 }
-                const data =  axios.post('/api/blog', formData, config)
+                const data = await axios.post('/api/blog', formData, config)
                     .then(res => {
                         dispatch({
                             type: 'BLOGSAVE_SUCCESS',
@@ -115,8 +115,8 @@ export const BlogProvider = ({ children }) => {
             })
         }
 
-        const removeBlog = (_id) => {
-            axios.delete(`/api/blog/${_id}`)
+        async function removeBlog (_id) {
+            const data = await axios.delete(`/api/blog/${_id}`)
                 .then(res => {
                     dispatch({
                         type: 'BLOGDELETE_SUCCESS',
@@ -129,6 +129,8 @@ export const BlogProvider = ({ children }) => {
                     payload: err,
                 });
             });
+            return data;
+
         }
 
         return ( <BlogContext.Provider value={{
