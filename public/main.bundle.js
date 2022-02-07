@@ -2704,9 +2704,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((state, action) => {
-  console.log(action.type);
-  console.log(action.payload);
-
   switch (action.type) {
     case 'BLOGUPDATE_SUCCESS':
     case 'BLOGSAVE_SUCCESS':
@@ -3050,8 +3047,9 @@ const Home = props => {
       creatorId: localStorage.getItem('user'),
       tags: tags
     };
-    addBlog(obj);
-    reset();
+    addBlog(obj).then(r => {
+      reset();
+    });
   };
 
   const reset = () => {
@@ -3077,8 +3075,9 @@ const Home = props => {
       obj.image = selectedFiles[0].preview;
     }
 
-    saveBlog(obj);
-    reset();
+    saveBlog(obj).then(r => {
+      reset();
+    });
   };
 
   const logout = () => {
@@ -3724,13 +3723,13 @@ const BlogProvider = ({
     return data;
   }
 
-  const saveBlog = formData => {
+  async function saveBlog(formData) {
     const config = {
       headers: {
         'Content-Type': 'application/json'
       }
     };
-    axios__WEBPACK_IMPORTED_MODULE_2___default().put('/api/blog/' + formData._id, formData, config).then(res => {
+    const data = axios__WEBPACK_IMPORTED_MODULE_2___default().put('/api/blog/' + formData._id, formData, config).then(res => {
       dispatch({
         type: 'BLOGSAVE_SUCCESS',
         payload: res.data
@@ -3742,15 +3741,16 @@ const BlogProvider = ({
         payload: err
       });
     });
-  };
+    return data;
+  }
 
-  const addBlog = formData => {
+  async function addBlog(formData) {
     const config = {
       headers: {
         'Content-Type': 'application/json'
       }
     };
-    axios__WEBPACK_IMPORTED_MODULE_2___default().post('/api/blog', formData, config).then(res => {
+    const data = axios__WEBPACK_IMPORTED_MODULE_2___default().post('/api/blog', formData, config).then(res => {
       dispatch({
         type: 'BLOGSAVE_SUCCESS',
         payload: res.data
@@ -3762,7 +3762,8 @@ const BlogProvider = ({
         payload: err
       });
     });
-  };
+    return data;
+  }
 
   function clearError() {
     dispatch({

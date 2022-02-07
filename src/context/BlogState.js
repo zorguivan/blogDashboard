@@ -63,13 +63,13 @@ export const BlogProvider = ({ children }) => {
 
         }
 
-        const saveBlog =  (formData) => {
+        async function saveBlog (formData){
             const config = {
                 headers: {
                     'Content-Type': 'application/json'
                 }
             }
-            axios.put('/api/blog/' + formData._id, formData, config)
+            const data = axios.put('/api/blog/' + formData._id, formData, config)
                 .then(res => {
                     dispatch({
                         type: 'BLOGSAVE_SUCCESS',
@@ -82,15 +82,17 @@ export const BlogProvider = ({ children }) => {
                         payload: err,
                     });
                 });
+                return data;
+
         }
 
-        const addBlog = (formData) => {
+        async function addBlog (formData) {
                 const config = {
                     headers: {
                         'Content-Type': 'application/json'
                     }
                 }
-                axios.post('/api/blog', formData, config)
+                const data =  axios.post('/api/blog', formData, config)
                     .then(res => {
                         dispatch({
                             type: 'BLOGSAVE_SUCCESS',
@@ -103,6 +105,7 @@ export const BlogProvider = ({ children }) => {
                             payload: err,
                         });
                     });
+                return data;
             }
 
             

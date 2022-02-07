@@ -168,8 +168,9 @@ const Home = (props) => {
       creatorId: localStorage.getItem('user'),
       tags: tags,
     }
-    addBlog(obj)
-    reset();
+    addBlog(obj).then((r) => {
+      reset();
+    })
   }
 
   const reset = () => {
@@ -193,8 +194,9 @@ const Home = (props) => {
     if(obj.image == undefined) { 
       obj.image = selectedFiles[0].preview
     }
-    saveBlog(obj)
-    reset();
+    saveBlog(obj).then((r)=>{
+      reset();
+    })
   }
 
   const logout = () => {

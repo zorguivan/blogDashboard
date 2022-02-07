@@ -1,6 +1,4 @@
 export default (state, action) => {
-    console.log(action.type);
-    console.log(action.payload);
     switch (action.type) {
         case 'BLOGUPDATE_SUCCESS':
         case 'BLOGSAVE_SUCCESS':    
