@@ -176,7 +176,7 @@ const Home = (props) => {
       _id: blogId
     }
     addBlog(obj).then((r) => {
-      //reset();
+      reset();
     })
   }
 
@@ -202,7 +202,7 @@ const Home = (props) => {
     }
     console.log(blogImage)
     saveBlog(obj).then((r) => {
-      //reset();
+      reset();
     })
   }
 

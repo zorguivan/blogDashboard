@@ -24,7 +24,7 @@ app.get('/*', function(req, res) {
   res.sendFile('index.html', { root: path.join(__dirname, '/public') });
 });
 
-const port = 5010;
+const port = 5009;
 app.listen(port, () => {
   console.log("*** Server Online @ localhost:" + port + " ***");
 });
