@@ -55,7 +55,7 @@ router.post('/blog', (req, res) => {
 router.delete('/blog/:id', (req, res) => {
     Blogs.findById(req.params.id)
         .then(zone => {
-            var imageLink = zone.image.replace("http://167.172.90.103:5009/","uploads/")
+            var imageLink = zone.image.replace("http://localhost:5009/","uploads/")
             try {
                 fs.unlinkSync(imageLink)
               } catch(err) {
@@ -150,22 +150,24 @@ router.put('/blog/:id',upload.single('image'), (req, res) => {
         ctaText: req.body.ctaText,
         visibility: req.body.visibility,
         text: req.body.text,
-        //image: url + '/' + req.file.filename,
         tags: tags,
     }
-
     if (req.file && req.file.filename){
-        blogFields.image = url + '/' + req.file.filename
-    }image: url + '/' + req.file.filename,
+        blogFields.image = url + '/' + req.file.filename;
+    }
+
     Blogs.findById(req.params.id)
         .then(blog => {
-            var imageLink = blog.image.replace("http://167.172.90.103:5009/","uploads/")
-            try {
-                fs.unlinkSync(imageLink)
-                //file removed
-              } catch(err) {
-                console.error(err)
-              }
+            if(req.file){
+                var imageLink = blog.image.replace("http://localhost:5009/","uploads/")
+                try {
+                    fs.unlinkSync(imageLink)
+                    
+                  } catch(err) {
+                    console.error(err)
+                  }
+            }
+           
             if (!blog) {
                 return res.json({ msg: 'Blog not found' })
             } else if (blog.id !== req.params.id) {

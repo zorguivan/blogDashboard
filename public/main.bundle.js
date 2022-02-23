@@ -352,94 +352,120 @@ rawAsap.makeRequestCallFromTimer = makeRequestCallFromTimer; // ASAP was origina
 
 /***/ }),
 
-/***/ "./node_modules/@react-dnd/invariant/dist/cjs/index.js":
-/*!*************************************************************!*\
-  !*** ./node_modules/@react-dnd/invariant/dist/cjs/index.js ***!
-  \*************************************************************/
-/***/ ((__unused_webpack_module, exports) => {
+/***/ "./node_modules/@react-dnd/invariant/dist/invariant.esm.js":
+/*!*****************************************************************!*\
+  !*** ./node_modules/@react-dnd/invariant/dist/invariant.esm.js ***!
+  \*****************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "invariant": () => (/* binding */ invariant)
+/* harmony export */ });
+/**
+ * Use invariant() to assert state which your program assumes to be true.
+ *
+ * Provide sprintf-style format (only %s is supported) and arguments
+ * to provide information about what broke and what you were
+ * expecting.
+ *
+ * The invariant message will be stripped in production, but the invariant
+ * will remain to ensure logic does not differ in production.
+ */
+function invariant(condition, format) {
+  for (var _len = arguments.length, args = new Array(_len > 2 ? _len - 2 : 0), _key = 2; _key < _len; _key++) {
+    args[_key - 2] = arguments[_key];
+  }
 
-Object.defineProperty(exports, "__esModule", ({
-    value: true
-}));
-exports.invariant = invariant;
-function invariant(condition, format, ...args) {
-    if (isProduction()) {
-        if (format === undefined) {
-            throw new Error('invariant requires an error message argument');
-        }
+  if (true) {
+    if (format === undefined) {
+      throw new Error('invariant requires an error message argument');
     }
-    if (!condition) {
-        let error;
-        if (format === undefined) {
-            error = new Error('Minified exception occurred; use the non-minified dev environment ' + 'for the full error message and additional helpful warnings.');
-        } else {
-            let argIndex = 0;
-            error = new Error(format.replace(/%s/g, function() {
-                return args[argIndex++];
-            }));
-            error.name = 'Invariant Violation';
-        }
-        error.framesToPop = 1 // we don't care about invariant's own frame
-        ;
-        throw error;
+  }
+
+  if (!condition) {
+    var error;
+
+    if (format === undefined) {
+      error = new Error('Minified exception occurred; use the non-minified dev environment ' + 'for the full error message and additional helpful warnings.');
+    } else {
+      var argIndex = 0;
+      error = new Error(format.replace(/%s/g, function () {
+        return args[argIndex++];
+      }));
+      error.name = 'Invariant Violation';
     }
-}
-function isProduction() {
-    return typeof process !== 'undefined' && "development" === 'production';
+
+    error.framesToPop = 1; // we don't care about invariant's own frame
+
+    throw error;
+  }
 }
 
-//# sourceMappingURL=index.js.map
+
+//# sourceMappingURL=invariant.esm.js.map
+
 
 /***/ }),
 
-/***/ "./node_modules/@react-dnd/shallowequal/dist/cjs/index.js":
-/*!****************************************************************!*\
-  !*** ./node_modules/@react-dnd/shallowequal/dist/cjs/index.js ***!
-  \****************************************************************/
-/***/ ((__unused_webpack_module, exports) => {
+/***/ "./node_modules/@react-dnd/shallowequal/dist/shallowequal.esm.js":
+/*!***********************************************************************!*\
+  !*** ./node_modules/@react-dnd/shallowequal/dist/shallowequal.esm.js ***!
+  \***********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-
-Object.defineProperty(exports, "__esModule", ({
-    value: true
-}));
-exports.shallowEqual = shallowEqual;
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "shallowEqual": () => (/* binding */ shallowEqual)
+/* harmony export */ });
 function shallowEqual(objA, objB, compare, compareContext) {
-    let compareResult = compare ? compare.call(compareContext, objA, objB) : void 0;
-    if (compareResult !== void 0) {
-        return !!compareResult;
-    }
-    if (objA === objB) {
-        return true;
-    }
-    if (typeof objA !== 'object' || !objA || typeof objB !== 'object' || !objB) {
-        return false;
-    }
-    const keysA = Object.keys(objA);
-    const keysB = Object.keys(objB);
-    if (keysA.length !== keysB.length) {
-        return false;
-    }
-    const bHasOwnProperty = Object.prototype.hasOwnProperty.bind(objB);
-    // Test for A's keys different from B.
-    for(let idx = 0; idx < keysA.length; idx++){
-        const key = keysA[idx];
-        if (!bHasOwnProperty(key)) {
-            return false;
-        }
-        const valueA = objA[key];
-        const valueB = objB[key];
-        compareResult = compare ? compare.call(compareContext, valueA, valueB, key) : void 0;
-        if (compareResult === false || compareResult === void 0 && valueA !== valueB) {
-            return false;
-        }
-    }
+  var compareResult = compare ? compare.call(compareContext, objA, objB) : void 0;
+
+  if (compareResult !== void 0) {
+    return !!compareResult;
+  }
+
+  if (objA === objB) {
     return true;
+  }
+
+  if (typeof objA !== 'object' || !objA || typeof objB !== 'object' || !objB) {
+    return false;
+  }
+
+  var keysA = Object.keys(objA);
+  var keysB = Object.keys(objB);
+
+  if (keysA.length !== keysB.length) {
+    return false;
+  }
+
+  var bHasOwnProperty = Object.prototype.hasOwnProperty.bind(objB); // Test for A's keys different from B.
+
+  for (var idx = 0; idx < keysA.length; idx++) {
+    var key = keysA[idx];
+
+    if (!bHasOwnProperty(key)) {
+      return false;
+    }
+
+    var valueA = objA[key];
+    var valueB = objB[key];
+    compareResult = compare ? compare.call(compareContext, valueA, valueB, key) : void 0;
+
+    if (compareResult === false || compareResult === void 0 && valueA !== valueB) {
+      return false;
+    }
+  }
+
+  return true;
 }
 
-//# sourceMappingURL=index.js.map
+
+//# sourceMappingURL=shallowequal.esm.js.map
+
 
 /***/ }),
 
@@ -3933,7 +3959,7 @@ ___CSS_LOADER_EXPORT___.push([module.id, "@import url(https://fonts.googleapis.c
 ___CSS_LOADER_EXPORT___.push([module.id, "@import url(https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap);"]);
 ___CSS_LOADER_EXPORT___.push([module.id, "@import url(https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap);"]);
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n/* BASIC */\n\nhtml {\n  background-color: white;\n}\n\nbody {\n  font-family: \"Poppins\", sans-serif;\n  height: 100vh;\n}\n\na {\n  color: #92badd;\n  display:inline-block;\n  text-decoration: none;\n  font-weight: 400;\n}\n\nh2 {\n  text-align: center;\n  font-size: 16px;\n  font-weight: 600;\n  text-transform: uppercase;\n  display:inline-block;\n  margin: 40px 8px 10px 8px; \n  color: #cccccc;\n}\n\n.ck-content h2{\n  color: black;\n}\n\n.ck-content{\n  height: 250px;\n}\n\n\n/* STRUCTURE */\n\n.wrapper {\n  display: flex;\n  align-items: center;\n  flex-direction: column; \n  justify-content: center;\n  width: 100%;\n  min-height: 100%;\n  margin-top: 100px;\n}\n\n.loaderContainer{\n  text-align: center;\n}\n\n.imgContainer { \n  background: #395F8C;\n  text-align: center;\n}\n\n#formContent {\n  border-radius: 10px 10px 10px 10px;\n  background: #395F8C;\n  padding: 30px;\n  width: 90%;\n  max-width: 450px;\n  position: relative;\n  padding: 0px;\n  box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);\n  text-align: center;\n  padding-top: 30px;\n}\n\n#formFooter {\n  background-color: #f6f6f6;\n  border-top: 1px solid #dce8f1;\n  padding: 25px;\n  text-align: center;\n  border-radius: 0 0 10px 10px;\n}\n\n\n\n/* TABS */\n\nh2.inactive {\n  color: #cccccc;\n}\n\nh2.active {\n  color: #0d0d0d;\n  border-bottom: 2px solid #5fbae9;\n}\n\n\n\n/* FORM TYPOGRAPHY*/\n\ninput[type=button], input[type=submit], input[type=reset]  {\n  background-color: #56baed;\n  border: none;\n  color: white;\n  padding: 15px 80px;\n  text-align: center;\n  text-decoration: none;\n  display: inline-block;\n  text-transform: uppercase;\n  font-size: 13px;\n  box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);\n  border-radius: 5px 5px 5px 5px;\n  margin: 5px 20px 40px 20px;\n  transition: all 0.3s ease-in-out;\n}\n\ninput[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover  {\n  background-color: #39ace7;\n}\n\ninput[type=button]:active, input[type=submit]:active, input[type=reset]:active  {\n  transform: scale(0.95);\n}\n\ninput[type=email], input[type=password] {\n  background-color: #f6f6f6;\n  border: none;\n  color: #0d0d0d;\n  padding: 15px 32px;\n  text-align: center;\n  text-decoration: none;\n  display: inline-block;\n  font-size: 16px;\n  margin: 5px;\n  width: 85%;\n  border: 2px solid #f6f6f6;\n  transition: all 0.5s ease-in-out;\n  border-radius: 5px 5px 5px 5px;\n}\n\ninput[type=text]:focus {\n  background-color: #fff;\n  border-bottom: 2px solid #5fbae9;\n}\n\ninput[type=text]:placeholder {\n  color: #cccccc;\n}\n\n\n\n/* ANIMATIONS */\n\n/* Simple CSS3 Fade-in-down Animation */\n.fadeInDown {\n  -webkit-animation-name: fadeInDown;\n  animation-name: fadeInDown;\n  -webkit-animation-duration: 1s;\n  animation-duration: 1s;\n  -webkit-animation-fill-mode: both;\n  animation-fill-mode: both;\n}\n\n@-webkit-keyframes fadeInDown {\n  0% {\n    opacity: 0;\n    transform: translate3d(0, -100%, 0);\n  }\n  100% {\n    opacity: 1;\n    transform: none;\n  }\n}\n\n@keyframes fadeInDown {\n  0% {\n    opacity: 0;\n    transform: translate3d(0, -100%, 0);\n  }\n  100% {\n    opacity: 1;\n    transform: none;\n  }\n}\n\n/* Simple CSS3 Fade-in Animation */\n@-webkit-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }\n@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }\n\n.fadeIn {\n  opacity:0;\n  -webkit-animation:fadeIn ease-in 1;\n  animation:fadeIn ease-in 1;\n\n  -webkit-animation-fill-mode:forwards;\n  animation-fill-mode:forwards;\n\n  -webkit-animation-duration:1s;\n  animation-duration:1s;\n}\n\n.fadeIn.first {\n  -webkit-animation-delay: 0.4s;\n  animation-delay: 0.4s;\n}\n\n.fadeIn.second {\n  -webkit-animation-delay: 0.6s;\n  animation-delay: 0.6s;\n}\n\n.fadeIn.third {\n  -webkit-animation-delay: 0.8s;\n  animation-delay: 0.8s;\n}\n\n.fadeIn.fourth {\n  -webkit-animation-delay: 1s;\n  animation-delay: 1s;\n}\n\n/* Simple CSS3 Fade-in Animation */\n.underlineHover:after {\n  display: block;\n  left: 0;\n  bottom: -10px;\n  width: 0;\n  height: 2px;\n  background-color: #56baed;\n  content: \"\";\n  transition: width 0.2s;\n}\n\n.underlineHover:hover {\n  color: #0d0d0d;\n}\n\n.underlineHover:hover:after{\n  width: 100%;\n}\n\n\n\n/* OTHERS */\n\n*:focus {\n    outline: none;\n} \n\n#icon {\n  width:60%;\n}\n\n\n\n\n.App-header {\n  background-color: #395F8C;\n  min-height: 5vh;\n  width: 100vw;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  font-size: calc(10px + 2vmin);\n  color: white;\n  margin-bottom: 5vh;\n  text-align: center;\n}\n\n.wrapper-class {\n  padding: 1rem;\n  border: 1px solid #ccc;\n}\n.editor-class {\n  background-color:rgb(227, 225, 255);\n  padding: 1rem;\n  border: 1px solid #ccc;\n}\n.toolbar-class {\n  border: 1px solid #ccc;\n}\n\n.preview {\n  padding: 1rem;\n  margin-top: 1rem;\n}\n\n.tagsContainer{\n  margin: 30px 0px;\n}\n\n.tag{\n  margin: 8px;\n  height: 40px;\n  display: inline;\n  display: initial;\n}\n.removeTag{\n  margin-left: 5px;\n  padding: 10px;\n}\n.tagInput{\n  margin: 10px;\n}\n.dz-message {\n  border: 1px dashed blue;\n  padding: 40px ;\n  text-align: center;\n  border-radius: 5px;\n}\n\n.blog-form .h1,\n.blog-form .h2,\n.blog-form .h3,\n.blog-form .h4,\n.blog-form .h5,\n.blog-form .h6 {\n  font-family: \"Ubuntu\", sans-serif;\n  color: #373737;\n}\n\n.header_new {\n  background: #acbbcd;\n}\n\n.blog-form p {\n  color: #5b5b5b;\n  font-family: \"Poppins\", sans-serif;\n}\n\n.font-poppins {\n  font-family: \"Poppins\", sans-serif;\n}\n\n.font-ubuntu {\n  font-family: \"Ubuntu\", sans-serif;\n}\n\nbody {\n  background: #fff !important;\n  font-family: \"Ubuntu\", sans-serif;\n}\n\n.blog-title-input,\n.blog-tags-input,\n.blog-cta-link-input {\n  border: 1px solid #6c6c6c;\n  border-radius: 2px;\n}\n\n.blog-title-input::-moz-placeholder, .blog-tags-input::-moz-placeholder, .blog-cta-link-input::-moz-placeholder {\n  color: #444444;\n}\n\n.blog-title-input:-ms-input-placeholder, .blog-tags-input:-ms-input-placeholder, .blog-cta-link-input:-ms-input-placeholder {\n  color: #444444;\n}\n\n.blog-title-input::placeholder,\n.blog-tags-input::placeholder,\n.blog-cta-link-input::placeholder {\n  color: #444444;\n}\n\n.blog-title-input:focus,\n.blog-tags-input:focus,\n.blog-cta-link-input:focus {\n  outline: none;\n}\n\n.blog-added-tag {\n  background: #395f8c;\n  color: #fff;\n  border-radius: 3px;\n  margin: 5px;\n  padding: 0px 3px;\n}\n\n.blog-added-tag i {\n  font-weight: 100;\n  margin-left: 7px;\n  cursor: pointer;\n}\n\n.blog-cover-image__wrapper {\n  height: 270px;\n  overflow: hidden;\n}\n\n.blog-cover-image__wrapper img,\n.blog-image__wrapper img {\n  width: 100%;\n  height: 100%;\n  -o-object-fit: cover;\n     object-fit: cover;\n  border-radius: 4px;\n}\n\n.blog-image__wrapper {\n  height: 400px;\n  overflow: hidden;\n}\n\n.upload-image-input__wrapper {\n  position: absolute;\n  top: 45%;\n  left: 50%;\n  transform: translate(-45%, -50%);\n}\n\n.upload-image-btn {\n  border: 1px solid #fff;\n  border-radius: 4px;\n  font-weight: 500;\n  font-size: 20px;\n  margin-right: 20px;\n  cursor: pointer;\n  transition: background 0.3s ease;\n}\n\n.upload-image-btn:hover {\n  background: rgba(37, 37, 37, 0.2);\n}\n\n.blog-image__upload-type {\n  color: #8c8a8a !important;\n  font-weight: 300;\n  text-align: right;\n  font-family: \"Ubuntu\", sans-serif;\n}\n\n.reset-button,\n.draft-button,\n.publish-button,\n.delete-button{\n  background: #e3e1e1;\n  color: #444444;\n  font-weight: 500;\n  padding: 8px 20px;\n  min-width: 120px;\n  border: none;\n  border-radius: 4px;\n  font-size: 18px;\n}\n\n.publish-button {\n  background: #395f8c;\n  color: #fff;\n}\n.delete-button {\n  background: #680f13;\n  color: #fff;\n}\n\n/* PREVIEW POPUP CSS */\n.preview-popup__wrapper {\n  background: rgba(78,78,78,0.50196);\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  z-index: 999999;\n  overflow-y: scroll;\n  padding: 80px 20px;\n}\n\n.blog-form-preview__wrapper {\n  background: #fff;\n  padding: 0;\n  border-radius: 4px;\n  overflow: hidden;\n}\n\n.blog-form-preview {\n  padding: 30px;\n}\n\n.preview-title__wrapper {\n  background: #395f8c;\n}\n\n.preview-title {\n  font-weight: 400;\n}\n\n/* Header CSS */\n.header-chat-btn a {\n  text-decoration: none;\n  color: #fff;\n  background-color: #802217;\n  padding: 15px 33px;\n  border-radius: 50px;\n  font-family: \"Ubuntu\";\n  font-size: 16px;\n  line-height: 20px;\n  font-weight: 500;\n  white-space: nowrap;\n}\n\n.navbar-nav .nav-item .nav-link {\n  font-weight: 500;\n  font-size: 18px;\n}\n\n.nav-logo {\n  width: 200px;\n}\n\n/* Footer CSS */\n.footer {\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n  position: relative;\n  padding: 50px 0;\n}\n.footer--border {\n  height: 1px;\n  width: 100%;\n  background: #9d9d9d;\n}\n.footer .cookies--text {\n  font-size: 14px;\n  font-weight: 500;\n  color: #231f20;\n  font-family: \"ubuntu\", sans-serif;\n}\n.footer .cookies--page {\n  color: #4ead8f;\n}\n.footer .cookies__container {\n  position: relative;\n}\n.footer .cookies__container .close--btn {\n  position: absolute;\n  right: 0;\n  top: 7%;\n  background: transparent;\n  border: none;\n  cursor: pointer;\n}\n\n.footer .cookies__container .close--btn img {\n  width: 18px;\n}\n\n.footer .cookies__container .accept--btn {\n  font-family: \"ubuntu\", sans-serif;\n  background: #395f8c;\n  border: none;\n  color: #fff;\n  padding: 15px 30px;\n  transition: background 0.3s;\n}\n.footer .cookies__container .accept--btn:hover {\n  background: #263f5e;\n}\n\n.footer--links {\n  margin: 10px 0 20px;\n}\n\n.footer--links .link {\n  color: #3d3d3d;\n  font-family: \"ubuntu\", sans-serif;\n  font-weight: 400;\n  text-decoration: none;\n}\n\na.bottom-to-top-btn {\n  width: 90px;\n  height: 90px;\n  border-radius: 100%;\n  background: #395f8c;\n  display: flex;\n  flex-direction: column;\n  text-decoration: none;\n  align-items: center;\n  justify-content: center;\n  margin: 0 auto;\n  font-size: 22px;\n  line-height: 30px;\n  color: #fff;\n  font-family: \"ubuntu\", sans-serif;\n  font-weight: normal;\n  position: absolute;\n  top: -40px;\n  left: 0;\n  right: 0;\n  transition: 1s;\n}\n\n@media screen and (max-width: 475px) {\n  .navbar .mobile-grid {\n    display: grid !important;\n    grid-template-columns: 60px 1.5fr 1fr;\n    align-items: center;\n    justify-items: center;\n    place-items: center;\n  }\n\n  .nav-link {\n    white-space: nowrap;\n  }\n\n  .socials-container {\n    grid-column: 1/-1;\n    align-items: center;\n    margin: auto;\n    text-align: center;\n    justify-content: center;\n  }\n\n  .nav-logo {\n    min-width: 100px;\n    width: 100%;\n  }\n\n  a.bottom-to-top-btn {\n    width: 70px;\n    height: 70px;\n    font-size: 18px;\n    line-height: 24px;\n  }\n\n  .footer-logo {\n      min-width: 200px;\n      width: 100%;\n  }\n}\n\n\n.removeTag{ \n  background: transparent;\n  padding: 0px;\n  border: 0px;\n  color: white;\n  margin: 0px 9px;\n}\n\n\n.footer-main{\n  margin-top: 200px;\n  background: #acbbcd;\n}\n\n.blogscontainer{\n  margin-top: 200px;\n}\n\n.coverContainer{\n  margin: auto;\n}\n\n.avatar-sm{\n  width: 100%;\n}", "",{"version":3,"sources":["webpack://./src/styling/style.css"],"names":[],"mappings":";AACA,UAAU;;AAEV;EACE,uBAAuB;AACzB;;AAEA;EACE,kCAAkC;EAClC,aAAa;AACf;;AAEA;EACE,cAAc;EACd,oBAAoB;EACpB,qBAAqB;EACrB,gBAAgB;AAClB;;AAEA;EACE,kBAAkB;EAClB,eAAe;EACf,gBAAgB;EAChB,yBAAyB;EACzB,oBAAoB;EACpB,yBAAyB;EACzB,cAAc;AAChB;;AAEA;EACE,YAAY;AACd;;AAEA;EACE,aAAa;AACf;;;AAGA,cAAc;;AAEd;EACE,aAAa;EACb,mBAAmB;EACnB,sBAAsB;EACtB,uBAAuB;EACvB,WAAW;EACX,gBAAgB;EAChB,iBAAiB;AACnB;;AAEA;EACE,kBAAkB;AACpB;;AAEA;EACE,mBAAmB;EACnB,kBAAkB;AACpB;;AAEA;EAEE,kCAAkC;EAClC,mBAAmB;EACnB,aAAa;EACb,UAAU;EACV,gBAAgB;EAChB,kBAAkB;EAClB,YAAY;EAEZ,yCAAyC;EACzC,kBAAkB;EAClB,iBAAiB;AACnB;;AAEA;EACE,yBAAyB;EACzB,6BAA6B;EAC7B,aAAa;EACb,kBAAkB;EAElB,4BAA4B;AAC9B;;;;AAIA,SAAS;;AAET;EACE,cAAc;AAChB;;AAEA;EACE,cAAc;EACd,gCAAgC;AAClC;;;;AAIA,mBAAmB;;AAEnB;EACE,yBAAyB;EACzB,YAAY;EACZ,YAAY;EACZ,kBAAkB;EAClB,kBAAkB;EAClB,qBAAqB;EACrB,qBAAqB;EACrB,yBAAyB;EACzB,eAAe;EAEf,8CAA8C;EAE9C,8BAA8B;EAC9B,0BAA0B;EAK1B,gCAAgC;AAClC;;AAEA;EACE,yBAAyB;AAC3B;;AAEA;EAKE,sBAAsB;AACxB;;AAEA;EACE,yBAAyB;EACzB,YAAY;EACZ,cAAc;EACd,kBAAkB;EAClB,kBAAkB;EAClB,qBAAqB;EACrB,qBAAqB;EACrB,eAAe;EACf,WAAW;EACX,UAAU;EACV,yBAAyB;EAKzB,gCAAgC;EAEhC,8BAA8B;AAChC;;AAEA;EACE,sBAAsB;EACtB,gCAAgC;AAClC;;AAEA;EACE,cAAc;AAChB;;;;AAIA,eAAe;;AAEf,uCAAuC;AACvC;EACE,kCAAkC;EAClC,0BAA0B;EAC1B,8BAA8B;EAC9B,sBAAsB;EACtB,iCAAiC;EACjC,yBAAyB;AAC3B;;AAEA;EACE;IACE,UAAU;IAEV,mCAAmC;EACrC;EACA;IACE,UAAU;IAEV,eAAe;EACjB;AACF;;AAEA;EACE;IACE,UAAU;IAEV,mCAAmC;EACrC;EACA;IACE,UAAU;IAEV,eAAe;EACjB;AACF;;AAEA,kCAAkC;AAClC,4BAA4B,OAAO,SAAS,EAAE,EAAE,KAAK,SAAS,EAAE,EAAE;AAElE,oBAAoB,OAAO,SAAS,EAAE,EAAE,KAAK,SAAS,EAAE,EAAE;;AAE1D;EACE,SAAS;EACT,kCAAkC;EAElC,0BAA0B;;EAE1B,oCAAoC;EAEpC,4BAA4B;;EAE5B,6BAA6B;EAE7B,qBAAqB;AACvB;;AAEA;EACE,6BAA6B;EAE7B,qBAAqB;AACvB;;AAEA;EACE,6BAA6B;EAE7B,qBAAqB;AACvB;;AAEA;EACE,6BAA6B;EAE7B,qBAAqB;AACvB;;AAEA;EACE,2BAA2B;EAE3B,mBAAmB;AACrB;;AAEA,kCAAkC;AAClC;EACE,cAAc;EACd,OAAO;EACP,aAAa;EACb,QAAQ;EACR,WAAW;EACX,yBAAyB;EACzB,WAAW;EACX,sBAAsB;AACxB;;AAEA;EACE,cAAc;AAChB;;AAEA;EACE,WAAW;AACb;;;;AAIA,WAAW;;AAEX;IACI,aAAa;AACjB;;AAEA;EACE,SAAS;AACX;;;;;AAKA;EACE,yBAAyB;EACzB,eAAe;EACf,YAAY;EACZ,aAAa;EACb,sBAAsB;EACtB,mBAAmB;EACnB,uBAAuB;EACvB,6BAA6B;EAC7B,YAAY;EACZ,kBAAkB;EAClB,kBAAkB;AACpB;;AAEA;EACE,aAAa;EACb,sBAAsB;AACxB;AACA;EACE,mCAAmC;EACnC,aAAa;EACb,sBAAsB;AACxB;AACA;EACE,sBAAsB;AACxB;;AAEA;EACE,aAAa;EACb,gBAAgB;AAClB;;AAEA;EACE,gBAAgB;AAClB;;AAEA;EACE,WAAW;EACX,YAAY;EACZ,eAAgB;EAAhB,gBAAgB;AAClB;AACA;EACE,gBAAgB;EAChB,aAAa;AACf;AACA;EACE,YAAY;AACd;AACA;EACE,uBAAuB;EACvB,cAAc;EACd,kBAAkB;EAClB,kBAAkB;AACpB;;AAqBA;;;;;;EAME,iCAAiC;EACjC,cAAc;AAChB;;AAEA;EACE,mBAAmB;AACrB;;AAEA;EACE,cAAc;EACd,kCAAkC;AACpC;;AAEA;EACE,kCAAkC;AACpC;;AAEA;EACE,iCAAiC;AACnC;;AAEA;EACE,2BAA2B;EAC3B,iCAAiC;AACnC;;AAEA;;;EAGE,yBAAyB;EACzB,kBAAkB;AACpB;;AAEA;EAGE,cAAc;AAChB;;AAJA;EAGE,cAAc;AAChB;;AAJA;;;EAGE,cAAc;AAChB;;AAEA;;;EAGE,aAAa;AACf;;AAEA;EACE,mBAAmB;EACnB,WAAW;EACX,kBAAkB;EAClB,WAAW;EACX,gBAAgB;AAClB;;AAEA;EACE,gBAAgB;EAChB,gBAAgB;EAChB,eAAe;AACjB;;AAEA;EACE,aAAa;EACb,gBAAgB;AAClB;;AAEA;;EAEE,WAAW;EACX,YAAY;EACZ,oBAAiB;KAAjB,iBAAiB;EACjB,kBAAkB;AACpB;;AAEA;EACE,aAAa;EACb,gBAAgB;AAClB;;AAEA;EACE,kBAAkB;EAClB,QAAQ;EACR,SAAS;EACT,gCAAgC;AAClC;;AAEA;EACE,sBAAsB;EACtB,kBAAkB;EAClB,gBAAgB;EAChB,eAAe;EACf,kBAAkB;EAClB,eAAe;EACf,gCAAgC;AAClC;;AAEA;EACE,iCAAiC;AACnC;;AAEA;EACE,yBAAyB;EACzB,gBAAgB;EAChB,iBAAiB;EACjB,iCAAiC;AACnC;;AAEA;;;;EAIE,mBAAmB;EACnB,cAAc;EACd,gBAAgB;EAChB,iBAAiB;EACjB,gBAAgB;EAChB,YAAY;EACZ,kBAAkB;EAClB,eAAe;AACjB;;AAEA;EACE,mBAAmB;EACnB,WAAW;AACb;AACA;EACE,mBAAmB;EACnB,WAAW;AACb;;AAEA,sBAAsB;AACtB;EACE,kCAAqB;EACrB,eAAe;EACf,MAAM;EACN,OAAO;EACP,WAAW;EACX,YAAY;EACZ,eAAe;EACf,kBAAkB;EAClB,kBAAkB;AACpB;;AAEA;EACE,gBAAgB;EAChB,UAAU;EACV,kBAAkB;EAClB,gBAAgB;AAClB;;AAEA;EACE,aAAa;AACf;;AAEA;EACE,mBAAmB;AACrB;;AAEA;EACE,gBAAgB;AAClB;;AAEA,eAAe;AACf;EACE,qBAAqB;EACrB,WAAW;EACX,yBAAyB;EACzB,kBAAkB;EAClB,mBAAmB;EACnB,qBAAqB;EACrB,eAAe;EACf,iBAAiB;EACjB,gBAAgB;EAChB,mBAAmB;AACrB;;AAEA;EACE,gBAAgB;EAChB,eAAe;AACjB;;AAEA;EACE,YAAY;AACd;;AAEA,eAAe;AACf;EACE,aAAa;EACb,sBAAsB;EACtB,uBAAuB;EACvB,mBAAmB;EACnB,kBAAkB;EAClB,eAAe;AACjB;AACA;EACE,WAAW;EACX,WAAW;EACX,mBAAmB;AACrB;AACA;EACE,eAAe;EACf,gBAAgB;EAChB,cAAc;EACd,iCAAiC;AACnC;AACA;EACE,cAAc;AAChB;AACA;EACE,kBAAkB;AACpB;AACA;EACE,kBAAkB;EAClB,QAAQ;EACR,OAAO;EACP,uBAAuB;EACvB,YAAY;EACZ,eAAe;AACjB;;AAEA;EACE,WAAW;AACb;;AAEA;EACE,iCAAiC;EACjC,mBAAmB;EACnB,YAAY;EACZ,WAAW;EACX,kBAAkB;EAClB,2BAA2B;AAC7B;AACA;EACE,mBAAmB;AACrB;;AAEA;EACE,mBAAmB;AACrB;;AAEA;EACE,cAAc;EACd,iCAAiC;EACjC,gBAAgB;EAChB,qBAAqB;AACvB;;AAEA;EACE,WAAW;EACX,YAAY;EACZ,mBAAmB;EACnB,mBAAmB;EACnB,aAAa;EACb,sBAAsB;EACtB,qBAAqB;EACrB,mBAAmB;EACnB,uBAAuB;EACvB,cAAc;EACd,eAAe;EACf,iBAAiB;EACjB,WAAW;EACX,iCAAiC;EACjC,mBAAmB;EACnB,kBAAkB;EAClB,UAAU;EACV,OAAO;EACP,QAAQ;EACR,cAAc;AAChB;;AAEA;EACE;IACE,wBAAwB;IACxB,qCAAqC;IACrC,mBAAmB;IAAnB,qBAAmB;IAAnB,mBAAmB;EACrB;;EAEA;IACE,mBAAmB;EACrB;;EAEA;IACE,iBAAiB;IACjB,mBAAmB;IACnB,YAAY;IACZ,kBAAkB;IAClB,uBAAuB;EACzB;;EAEA;IACE,gBAAgB;IAChB,WAAW;EACb;;EAEA;IACE,WAAW;IACX,YAAY;IACZ,eAAe;IACf,iBAAiB;EACnB;;EAEA;MACI,gBAAgB;MAChB,WAAW;EACf;AACF;;;AAGA;EACE,uBAAuB;EACvB,YAAY;EACZ,WAAW;EACX,YAAY;EACZ,eAAe;AACjB;;;AAGA;EACE,iBAAiB;EACjB,mBAAmB;AACrB;;AAEA;EACE,iBAAiB;AACnB;;AAEA;EACE,YAAY;AACd;;AAEA;EACE,WAAW;AACb","sourcesContent":["\n/* BASIC */\n\nhtml {\n  background-color: white;\n}\n\nbody {\n  font-family: \"Poppins\", sans-serif;\n  height: 100vh;\n}\n\na {\n  color: #92badd;\n  display:inline-block;\n  text-decoration: none;\n  font-weight: 400;\n}\n\nh2 {\n  text-align: center;\n  font-size: 16px;\n  font-weight: 600;\n  text-transform: uppercase;\n  display:inline-block;\n  margin: 40px 8px 10px 8px; \n  color: #cccccc;\n}\n\n.ck-content h2{\n  color: black;\n}\n\n.ck-content{\n  height: 250px;\n}\n\n\n/* STRUCTURE */\n\n.wrapper {\n  display: flex;\n  align-items: center;\n  flex-direction: column; \n  justify-content: center;\n  width: 100%;\n  min-height: 100%;\n  margin-top: 100px;\n}\n\n.loaderContainer{\n  text-align: center;\n}\n\n.imgContainer { \n  background: #395F8C;\n  text-align: center;\n}\n\n#formContent {\n  -webkit-border-radius: 10px 10px 10px 10px;\n  border-radius: 10px 10px 10px 10px;\n  background: #395F8C;\n  padding: 30px;\n  width: 90%;\n  max-width: 450px;\n  position: relative;\n  padding: 0px;\n  -webkit-box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);\n  box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);\n  text-align: center;\n  padding-top: 30px;\n}\n\n#formFooter {\n  background-color: #f6f6f6;\n  border-top: 1px solid #dce8f1;\n  padding: 25px;\n  text-align: center;\n  -webkit-border-radius: 0 0 10px 10px;\n  border-radius: 0 0 10px 10px;\n}\n\n\n\n/* TABS */\n\nh2.inactive {\n  color: #cccccc;\n}\n\nh2.active {\n  color: #0d0d0d;\n  border-bottom: 2px solid #5fbae9;\n}\n\n\n\n/* FORM TYPOGRAPHY*/\n\ninput[type=button], input[type=submit], input[type=reset]  {\n  background-color: #56baed;\n  border: none;\n  color: white;\n  padding: 15px 80px;\n  text-align: center;\n  text-decoration: none;\n  display: inline-block;\n  text-transform: uppercase;\n  font-size: 13px;\n  -webkit-box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);\n  box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);\n  -webkit-border-radius: 5px 5px 5px 5px;\n  border-radius: 5px 5px 5px 5px;\n  margin: 5px 20px 40px 20px;\n  -webkit-transition: all 0.3s ease-in-out;\n  -moz-transition: all 0.3s ease-in-out;\n  -ms-transition: all 0.3s ease-in-out;\n  -o-transition: all 0.3s ease-in-out;\n  transition: all 0.3s ease-in-out;\n}\n\ninput[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover  {\n  background-color: #39ace7;\n}\n\ninput[type=button]:active, input[type=submit]:active, input[type=reset]:active  {\n  -moz-transform: scale(0.95);\n  -webkit-transform: scale(0.95);\n  -o-transform: scale(0.95);\n  -ms-transform: scale(0.95);\n  transform: scale(0.95);\n}\n\ninput[type=email], input[type=password] {\n  background-color: #f6f6f6;\n  border: none;\n  color: #0d0d0d;\n  padding: 15px 32px;\n  text-align: center;\n  text-decoration: none;\n  display: inline-block;\n  font-size: 16px;\n  margin: 5px;\n  width: 85%;\n  border: 2px solid #f6f6f6;\n  -webkit-transition: all 0.5s ease-in-out;\n  -moz-transition: all 0.5s ease-in-out;\n  -ms-transition: all 0.5s ease-in-out;\n  -o-transition: all 0.5s ease-in-out;\n  transition: all 0.5s ease-in-out;\n  -webkit-border-radius: 5px 5px 5px 5px;\n  border-radius: 5px 5px 5px 5px;\n}\n\ninput[type=text]:focus {\n  background-color: #fff;\n  border-bottom: 2px solid #5fbae9;\n}\n\ninput[type=text]:placeholder {\n  color: #cccccc;\n}\n\n\n\n/* ANIMATIONS */\n\n/* Simple CSS3 Fade-in-down Animation */\n.fadeInDown {\n  -webkit-animation-name: fadeInDown;\n  animation-name: fadeInDown;\n  -webkit-animation-duration: 1s;\n  animation-duration: 1s;\n  -webkit-animation-fill-mode: both;\n  animation-fill-mode: both;\n}\n\n@-webkit-keyframes fadeInDown {\n  0% {\n    opacity: 0;\n    -webkit-transform: translate3d(0, -100%, 0);\n    transform: translate3d(0, -100%, 0);\n  }\n  100% {\n    opacity: 1;\n    -webkit-transform: none;\n    transform: none;\n  }\n}\n\n@keyframes fadeInDown {\n  0% {\n    opacity: 0;\n    -webkit-transform: translate3d(0, -100%, 0);\n    transform: translate3d(0, -100%, 0);\n  }\n  100% {\n    opacity: 1;\n    -webkit-transform: none;\n    transform: none;\n  }\n}\n\n/* Simple CSS3 Fade-in Animation */\n@-webkit-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }\n@-moz-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }\n@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }\n\n.fadeIn {\n  opacity:0;\n  -webkit-animation:fadeIn ease-in 1;\n  -moz-animation:fadeIn ease-in 1;\n  animation:fadeIn ease-in 1;\n\n  -webkit-animation-fill-mode:forwards;\n  -moz-animation-fill-mode:forwards;\n  animation-fill-mode:forwards;\n\n  -webkit-animation-duration:1s;\n  -moz-animation-duration:1s;\n  animation-duration:1s;\n}\n\n.fadeIn.first {\n  -webkit-animation-delay: 0.4s;\n  -moz-animation-delay: 0.4s;\n  animation-delay: 0.4s;\n}\n\n.fadeIn.second {\n  -webkit-animation-delay: 0.6s;\n  -moz-animation-delay: 0.6s;\n  animation-delay: 0.6s;\n}\n\n.fadeIn.third {\n  -webkit-animation-delay: 0.8s;\n  -moz-animation-delay: 0.8s;\n  animation-delay: 0.8s;\n}\n\n.fadeIn.fourth {\n  -webkit-animation-delay: 1s;\n  -moz-animation-delay: 1s;\n  animation-delay: 1s;\n}\n\n/* Simple CSS3 Fade-in Animation */\n.underlineHover:after {\n  display: block;\n  left: 0;\n  bottom: -10px;\n  width: 0;\n  height: 2px;\n  background-color: #56baed;\n  content: \"\";\n  transition: width 0.2s;\n}\n\n.underlineHover:hover {\n  color: #0d0d0d;\n}\n\n.underlineHover:hover:after{\n  width: 100%;\n}\n\n\n\n/* OTHERS */\n\n*:focus {\n    outline: none;\n} \n\n#icon {\n  width:60%;\n}\n\n\n\n\n.App-header {\n  background-color: #395F8C;\n  min-height: 5vh;\n  width: 100vw;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  font-size: calc(10px + 2vmin);\n  color: white;\n  margin-bottom: 5vh;\n  text-align: center;\n}\n\n.wrapper-class {\n  padding: 1rem;\n  border: 1px solid #ccc;\n}\n.editor-class {\n  background-color:rgb(227, 225, 255);\n  padding: 1rem;\n  border: 1px solid #ccc;\n}\n.toolbar-class {\n  border: 1px solid #ccc;\n}\n\n.preview {\n  padding: 1rem;\n  margin-top: 1rem;\n}\n\n.tagsContainer{\n  margin: 30px 0px;\n}\n\n.tag{\n  margin: 8px;\n  height: 40px;\n  display: initial;\n}\n.removeTag{\n  margin-left: 5px;\n  padding: 10px;\n}\n.tagInput{\n  margin: 10px;\n}\n.dz-message {\n  border: 1px dashed blue;\n  padding: 40px ;\n  text-align: center;\n  border-radius: 5px;\n}\n\n\n\n\n\n\n\n\n\n\n\n\n@import url(\"https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap\");\n@import url(\"https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Ubuntu:wght@300;400;500;700&display=swap\");\n@import url(\"https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap\");\n@import url(\"https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap\");\n@import url(\"https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap\");\n@import url(\"https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap\");\n@import url(\"https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap\");\n\n.blog-form .h1,\n.blog-form .h2,\n.blog-form .h3,\n.blog-form .h4,\n.blog-form .h5,\n.blog-form .h6 {\n  font-family: \"Ubuntu\", sans-serif;\n  color: #373737;\n}\n\n.header_new {\n  background: #acbbcd;\n}\n\n.blog-form p {\n  color: #5b5b5b;\n  font-family: \"Poppins\", sans-serif;\n}\n\n.font-poppins {\n  font-family: \"Poppins\", sans-serif;\n}\n\n.font-ubuntu {\n  font-family: \"Ubuntu\", sans-serif;\n}\n\nbody {\n  background: #fff !important;\n  font-family: \"Ubuntu\", sans-serif;\n}\n\n.blog-title-input,\n.blog-tags-input,\n.blog-cta-link-input {\n  border: 1px solid #6c6c6c;\n  border-radius: 2px;\n}\n\n.blog-title-input::placeholder,\n.blog-tags-input::placeholder,\n.blog-cta-link-input::placeholder {\n  color: #444444;\n}\n\n.blog-title-input:focus,\n.blog-tags-input:focus,\n.blog-cta-link-input:focus {\n  outline: none;\n}\n\n.blog-added-tag {\n  background: #395f8c;\n  color: #fff;\n  border-radius: 3px;\n  margin: 5px;\n  padding: 0px 3px;\n}\n\n.blog-added-tag i {\n  font-weight: 100;\n  margin-left: 7px;\n  cursor: pointer;\n}\n\n.blog-cover-image__wrapper {\n  height: 270px;\n  overflow: hidden;\n}\n\n.blog-cover-image__wrapper img,\n.blog-image__wrapper img {\n  width: 100%;\n  height: 100%;\n  object-fit: cover;\n  border-radius: 4px;\n}\n\n.blog-image__wrapper {\n  height: 400px;\n  overflow: hidden;\n}\n\n.upload-image-input__wrapper {\n  position: absolute;\n  top: 45%;\n  left: 50%;\n  transform: translate(-45%, -50%);\n}\n\n.upload-image-btn {\n  border: 1px solid #fff;\n  border-radius: 4px;\n  font-weight: 500;\n  font-size: 20px;\n  margin-right: 20px;\n  cursor: pointer;\n  transition: background 0.3s ease;\n}\n\n.upload-image-btn:hover {\n  background: rgba(37, 37, 37, 0.2);\n}\n\n.blog-image__upload-type {\n  color: #8c8a8a !important;\n  font-weight: 300;\n  text-align: right;\n  font-family: \"Ubuntu\", sans-serif;\n}\n\n.reset-button,\n.draft-button,\n.publish-button,\n.delete-button{\n  background: #e3e1e1;\n  color: #444444;\n  font-weight: 500;\n  padding: 8px 20px;\n  min-width: 120px;\n  border: none;\n  border-radius: 4px;\n  font-size: 18px;\n}\n\n.publish-button {\n  background: #395f8c;\n  color: #fff;\n}\n.delete-button {\n  background: #680f13;\n  color: #fff;\n}\n\n/* PREVIEW POPUP CSS */\n.preview-popup__wrapper {\n  background: #4e4e4e80;\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  z-index: 999999;\n  overflow-y: scroll;\n  padding: 80px 20px;\n}\n\n.blog-form-preview__wrapper {\n  background: #fff;\n  padding: 0;\n  border-radius: 4px;\n  overflow: hidden;\n}\n\n.blog-form-preview {\n  padding: 30px;\n}\n\n.preview-title__wrapper {\n  background: #395f8c;\n}\n\n.preview-title {\n  font-weight: 400;\n}\n\n/* Header CSS */\n.header-chat-btn a {\n  text-decoration: none;\n  color: #fff;\n  background-color: #802217;\n  padding: 15px 33px;\n  border-radius: 50px;\n  font-family: \"Ubuntu\";\n  font-size: 16px;\n  line-height: 20px;\n  font-weight: 500;\n  white-space: nowrap;\n}\n\n.navbar-nav .nav-item .nav-link {\n  font-weight: 500;\n  font-size: 18px;\n}\n\n.nav-logo {\n  width: 200px;\n}\n\n/* Footer CSS */\n.footer {\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n  position: relative;\n  padding: 50px 0;\n}\n.footer--border {\n  height: 1px;\n  width: 100%;\n  background: #9d9d9d;\n}\n.footer .cookies--text {\n  font-size: 14px;\n  font-weight: 500;\n  color: #231f20;\n  font-family: \"ubuntu\", sans-serif;\n}\n.footer .cookies--page {\n  color: #4ead8f;\n}\n.footer .cookies__container {\n  position: relative;\n}\n.footer .cookies__container .close--btn {\n  position: absolute;\n  right: 0;\n  top: 7%;\n  background: transparent;\n  border: none;\n  cursor: pointer;\n}\n\n.footer .cookies__container .close--btn img {\n  width: 18px;\n}\n\n.footer .cookies__container .accept--btn {\n  font-family: \"ubuntu\", sans-serif;\n  background: #395f8c;\n  border: none;\n  color: #fff;\n  padding: 15px 30px;\n  transition: background 0.3s;\n}\n.footer .cookies__container .accept--btn:hover {\n  background: #263f5e;\n}\n\n.footer--links {\n  margin: 10px 0 20px;\n}\n\n.footer--links .link {\n  color: #3d3d3d;\n  font-family: \"ubuntu\", sans-serif;\n  font-weight: 400;\n  text-decoration: none;\n}\n\na.bottom-to-top-btn {\n  width: 90px;\n  height: 90px;\n  border-radius: 100%;\n  background: #395f8c;\n  display: flex;\n  flex-direction: column;\n  text-decoration: none;\n  align-items: center;\n  justify-content: center;\n  margin: 0 auto;\n  font-size: 22px;\n  line-height: 30px;\n  color: #fff;\n  font-family: \"ubuntu\", sans-serif;\n  font-weight: normal;\n  position: absolute;\n  top: -40px;\n  left: 0;\n  right: 0;\n  transition: 1s;\n}\n\n@media screen and (max-width: 475px) {\n  .navbar .mobile-grid {\n    display: grid !important;\n    grid-template-columns: 60px 1.5fr 1fr;\n    place-items: center;\n  }\n\n  .nav-link {\n    white-space: nowrap;\n  }\n\n  .socials-container {\n    grid-column: 1/-1;\n    align-items: center;\n    margin: auto;\n    text-align: center;\n    justify-content: center;\n  }\n\n  .nav-logo {\n    min-width: 100px;\n    width: 100%;\n  }\n\n  a.bottom-to-top-btn {\n    width: 70px;\n    height: 70px;\n    font-size: 18px;\n    line-height: 24px;\n  }\n\n  .footer-logo {\n      min-width: 200px;\n      width: 100%;\n  }\n}\n\n\n.removeTag{ \n  background: transparent;\n  padding: 0px;\n  border: 0px;\n  color: white;\n  margin: 0px 9px;\n}\n\n\n.footer-main{\n  margin-top: 200px;\n  background: #acbbcd;\n}\n\n.blogscontainer{\n  margin-top: 200px;\n}\n\n.coverContainer{\n  margin: auto;\n}\n\n.avatar-sm{\n  width: 100%;\n}"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, "\r\n/* BASIC */\r\n\r\nhtml {\r\n  background-color: white;\r\n}\r\n\r\nbody {\r\n  font-family: \"Poppins\", sans-serif;\r\n  height: 100vh;\r\n}\r\n\r\na {\r\n  color: #92badd;\r\n  display:inline-block;\r\n  text-decoration: none;\r\n  font-weight: 400;\r\n}\r\n\r\nh2 {\r\n  text-align: center;\r\n  font-size: 16px;\r\n  font-weight: 600;\r\n  text-transform: uppercase;\r\n  display:inline-block;\r\n  margin: 40px 8px 10px 8px; \r\n  color: #cccccc;\r\n}\r\n\r\n.ck-content h2{\r\n  color: black;\r\n}\r\n\r\n.ck-content{\r\n  height: 250px;\r\n}\r\n\r\n\r\n/* STRUCTURE */\r\n\r\n.wrapper {\r\n  display: flex;\r\n  align-items: center;\r\n  flex-direction: column; \r\n  justify-content: center;\r\n  width: 100%;\r\n  min-height: 100%;\r\n  margin-top: 100px;\r\n}\r\n\r\n.loaderContainer{\r\n  text-align: center;\r\n}\r\n\r\n.imgContainer { \r\n  background: #395F8C;\r\n  text-align: center;\r\n}\r\n\r\n#formContent {\r\n  border-radius: 10px 10px 10px 10px;\r\n  background: #395F8C;\r\n  padding: 30px;\r\n  width: 90%;\r\n  max-width: 450px;\r\n  position: relative;\r\n  padding: 0px;\r\n  box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);\r\n  text-align: center;\r\n  padding-top: 30px;\r\n}\r\n\r\n#formFooter {\r\n  background-color: #f6f6f6;\r\n  border-top: 1px solid #dce8f1;\r\n  padding: 25px;\r\n  text-align: center;\r\n  border-radius: 0 0 10px 10px;\r\n}\r\n\r\n\r\n\r\n/* TABS */\r\n\r\nh2.inactive {\r\n  color: #cccccc;\r\n}\r\n\r\nh2.active {\r\n  color: #0d0d0d;\r\n  border-bottom: 2px solid #5fbae9;\r\n}\r\n\r\n\r\n\r\n/* FORM TYPOGRAPHY*/\r\n\r\ninput[type=button], input[type=submit], input[type=reset]  {\r\n  background-color: #56baed;\r\n  border: none;\r\n  color: white;\r\n  padding: 15px 80px;\r\n  text-align: center;\r\n  text-decoration: none;\r\n  display: inline-block;\r\n  text-transform: uppercase;\r\n  font-size: 13px;\r\n  box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);\r\n  border-radius: 5px 5px 5px 5px;\r\n  margin: 5px 20px 40px 20px;\r\n  transition: all 0.3s ease-in-out;\r\n}\r\n\r\ninput[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover  {\r\n  background-color: #39ace7;\r\n}\r\n\r\ninput[type=button]:active, input[type=submit]:active, input[type=reset]:active  {\r\n  transform: scale(0.95);\r\n}\r\n\r\ninput[type=email], input[type=password] {\r\n  background-color: #f6f6f6;\r\n  border: none;\r\n  color: #0d0d0d;\r\n  padding: 15px 32px;\r\n  text-align: center;\r\n  text-decoration: none;\r\n  display: inline-block;\r\n  font-size: 16px;\r\n  margin: 5px;\r\n  width: 85%;\r\n  border: 2px solid #f6f6f6;\r\n  transition: all 0.5s ease-in-out;\r\n  border-radius: 5px 5px 5px 5px;\r\n}\r\n\r\ninput[type=text]:focus {\r\n  background-color: #fff;\r\n  border-bottom: 2px solid #5fbae9;\r\n}\r\n\r\ninput[type=text]:placeholder {\r\n  color: #cccccc;\r\n}\r\n\r\n\r\n\r\n/* ANIMATIONS */\r\n\r\n/* Simple CSS3 Fade-in-down Animation */\r\n.fadeInDown {\r\n  -webkit-animation-name: fadeInDown;\r\n  animation-name: fadeInDown;\r\n  -webkit-animation-duration: 1s;\r\n  animation-duration: 1s;\r\n  -webkit-animation-fill-mode: both;\r\n  animation-fill-mode: both;\r\n}\r\n\r\n@-webkit-keyframes fadeInDown {\r\n  0% {\r\n    opacity: 0;\r\n    transform: translate3d(0, -100%, 0);\r\n  }\r\n  100% {\r\n    opacity: 1;\r\n    transform: none;\r\n  }\r\n}\r\n\r\n@keyframes fadeInDown {\r\n  0% {\r\n    opacity: 0;\r\n    transform: translate3d(0, -100%, 0);\r\n  }\r\n  100% {\r\n    opacity: 1;\r\n    transform: none;\r\n  }\r\n}\r\n\r\n/* Simple CSS3 Fade-in Animation */\r\n@-webkit-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }\r\n@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }\r\n\r\n.fadeIn {\r\n  opacity:0;\r\n  -webkit-animation:fadeIn ease-in 1;\r\n  animation:fadeIn ease-in 1;\r\n\r\n  -webkit-animation-fill-mode:forwards;\r\n  animation-fill-mode:forwards;\r\n\r\n  -webkit-animation-duration:1s;\r\n  animation-duration:1s;\r\n}\r\n\r\n.fadeIn.first {\r\n  -webkit-animation-delay: 0.4s;\r\n  animation-delay: 0.4s;\r\n}\r\n\r\n.fadeIn.second {\r\n  -webkit-animation-delay: 0.6s;\r\n  animation-delay: 0.6s;\r\n}\r\n\r\n.fadeIn.third {\r\n  -webkit-animation-delay: 0.8s;\r\n  animation-delay: 0.8s;\r\n}\r\n\r\n.fadeIn.fourth {\r\n  -webkit-animation-delay: 1s;\r\n  animation-delay: 1s;\r\n}\r\n\r\n/* Simple CSS3 Fade-in Animation */\r\n.underlineHover:after {\r\n  display: block;\r\n  left: 0;\r\n  bottom: -10px;\r\n  width: 0;\r\n  height: 2px;\r\n  background-color: #56baed;\r\n  content: \"\";\r\n  transition: width 0.2s;\r\n}\r\n\r\n.underlineHover:hover {\r\n  color: #0d0d0d;\r\n}\r\n\r\n.underlineHover:hover:after{\r\n  width: 100%;\r\n}\r\n\r\n\r\n\r\n/* OTHERS */\r\n\r\n*:focus {\r\n    outline: none;\r\n} \r\n\r\n#icon {\r\n  width:60%;\r\n}\r\n\r\n\r\n\r\n\r\n.App-header {\r\n  background-color: #395F8C;\r\n  min-height: 5vh;\r\n  width: 100vw;\r\n  display: flex;\r\n  flex-direction: column;\r\n  align-items: center;\r\n  justify-content: center;\r\n  font-size: calc(10px + 2vmin);\r\n  color: white;\r\n  margin-bottom: 5vh;\r\n  text-align: center;\r\n}\r\n\r\n.wrapper-class {\r\n  padding: 1rem;\r\n  border: 1px solid #ccc;\r\n}\r\n.editor-class {\r\n  background-color:rgb(227, 225, 255);\r\n  padding: 1rem;\r\n  border: 1px solid #ccc;\r\n}\r\n.toolbar-class {\r\n  border: 1px solid #ccc;\r\n}\r\n\r\n.preview {\r\n  padding: 1rem;\r\n  margin-top: 1rem;\r\n}\r\n\r\n.tagsContainer{\r\n  margin: 30px 0px;\r\n}\r\n\r\n.tag{\r\n  margin: 8px;\r\n  height: 40px;\r\n  display: inline;\r\n  display: initial;\r\n}\r\n.removeTag{\r\n  margin-left: 5px;\r\n  padding: 10px;\r\n}\r\n.tagInput{\r\n  margin: 10px;\r\n}\r\n.dz-message {\r\n  border: 1px dashed blue;\r\n  padding: 40px ;\r\n  text-align: center;\r\n  border-radius: 5px;\r\n}\r\n\r\n.blog-form .h1,\r\n.blog-form .h2,\r\n.blog-form .h3,\r\n.blog-form .h4,\r\n.blog-form .h5,\r\n.blog-form .h6 {\r\n  font-family: \"Ubuntu\", sans-serif;\r\n  color: #373737;\r\n}\r\n\r\n.header_new {\r\n  background: #acbbcd;\r\n}\r\n\r\n.blog-form p {\r\n  color: #5b5b5b;\r\n  font-family: \"Poppins\", sans-serif;\r\n}\r\n\r\n.font-poppins {\r\n  font-family: \"Poppins\", sans-serif;\r\n}\r\n\r\n.font-ubuntu {\r\n  font-family: \"Ubuntu\", sans-serif;\r\n}\r\n\r\nbody {\r\n  background: #fff !important;\r\n  font-family: \"Ubuntu\", sans-serif;\r\n}\r\n\r\n.blog-title-input,\r\n.blog-tags-input,\r\n.blog-cta-link-input {\r\n  border: 1px solid #6c6c6c;\r\n  border-radius: 2px;\r\n}\r\n\r\n.blog-title-input::-moz-placeholder, .blog-tags-input::-moz-placeholder, .blog-cta-link-input::-moz-placeholder {\r\n  color: #444444;\r\n}\r\n\r\n.blog-title-input:-ms-input-placeholder, .blog-tags-input:-ms-input-placeholder, .blog-cta-link-input:-ms-input-placeholder {\r\n  color: #444444;\r\n}\r\n\r\n.blog-title-input::placeholder,\r\n.blog-tags-input::placeholder,\r\n.blog-cta-link-input::placeholder {\r\n  color: #444444;\r\n}\r\n\r\n.blog-title-input:focus,\r\n.blog-tags-input:focus,\r\n.blog-cta-link-input:focus {\r\n  outline: none;\r\n}\r\n\r\n.blog-added-tag {\r\n  background: #395f8c;\r\n  color: #fff;\r\n  border-radius: 3px;\r\n  margin: 5px;\r\n  padding: 0px 3px;\r\n}\r\n\r\n.blog-added-tag i {\r\n  font-weight: 100;\r\n  margin-left: 7px;\r\n  cursor: pointer;\r\n}\r\n\r\n.blog-cover-image__wrapper {\r\n  height: 270px;\r\n  overflow: hidden;\r\n}\r\n\r\n.blog-cover-image__wrapper img,\r\n.blog-image__wrapper img {\r\n  width: 100%;\r\n  height: 100%;\r\n  -o-object-fit: cover;\r\n     object-fit: cover;\r\n  border-radius: 4px;\r\n}\r\n\r\n.blog-image__wrapper {\r\n  height: 400px;\r\n  overflow: hidden;\r\n}\r\n\r\n.upload-image-input__wrapper {\r\n  position: absolute;\r\n  top: 45%;\r\n  left: 50%;\r\n  transform: translate(-45%, -50%);\r\n}\r\n\r\n.upload-image-btn {\r\n  border: 1px solid #fff;\r\n  border-radius: 4px;\r\n  font-weight: 500;\r\n  font-size: 20px;\r\n  margin-right: 20px;\r\n  cursor: pointer;\r\n  transition: background 0.3s ease;\r\n}\r\n\r\n.upload-image-btn:hover {\r\n  background: rgba(37, 37, 37, 0.2);\r\n}\r\n\r\n.blog-image__upload-type {\r\n  color: #8c8a8a !important;\r\n  font-weight: 300;\r\n  text-align: right;\r\n  font-family: \"Ubuntu\", sans-serif;\r\n}\r\n\r\n.reset-button,\r\n.draft-button,\r\n.publish-button,\r\n.delete-button{\r\n  background: #e3e1e1;\r\n  color: #444444;\r\n  font-weight: 500;\r\n  padding: 8px 20px;\r\n  min-width: 120px;\r\n  border: none;\r\n  border-radius: 4px;\r\n  font-size: 18px;\r\n}\r\n\r\n.publish-button {\r\n  background: #395f8c;\r\n  color: #fff;\r\n}\r\n.delete-button {\r\n  background: #680f13;\r\n  color: #fff;\r\n}\r\n\r\n/* PREVIEW POPUP CSS */\r\n.preview-popup__wrapper {\r\n  background: rgba(78,78,78,0.50196);\r\n  position: fixed;\r\n  top: 0;\r\n  left: 0;\r\n  width: 100%;\r\n  height: 100%;\r\n  z-index: 999999;\r\n  overflow-y: scroll;\r\n  padding: 80px 20px;\r\n}\r\n\r\n.blog-form-preview__wrapper {\r\n  background: #fff;\r\n  padding: 0;\r\n  border-radius: 4px;\r\n  overflow: hidden;\r\n}\r\n\r\n.blog-form-preview {\r\n  padding: 30px;\r\n}\r\n\r\n.preview-title__wrapper {\r\n  background: #395f8c;\r\n}\r\n\r\n.preview-title {\r\n  font-weight: 400;\r\n}\r\n\r\n/* Header CSS */\r\n.header-chat-btn a {\r\n  text-decoration: none;\r\n  color: #fff;\r\n  background-color: #802217;\r\n  padding: 15px 33px;\r\n  border-radius: 50px;\r\n  font-family: \"Ubuntu\";\r\n  font-size: 16px;\r\n  line-height: 20px;\r\n  font-weight: 500;\r\n  white-space: nowrap;\r\n}\r\n\r\n.navbar-nav .nav-item .nav-link {\r\n  font-weight: 500;\r\n  font-size: 18px;\r\n}\r\n\r\n.nav-logo {\r\n  width: 200px;\r\n}\r\n\r\n/* Footer CSS */\r\n.footer {\r\n  display: flex;\r\n  flex-direction: column;\r\n  justify-content: center;\r\n  align-items: center;\r\n  position: relative;\r\n  padding: 50px 0;\r\n}\r\n.footer--border {\r\n  height: 1px;\r\n  width: 100%;\r\n  background: #9d9d9d;\r\n}\r\n.footer .cookies--text {\r\n  font-size: 14px;\r\n  font-weight: 500;\r\n  color: #231f20;\r\n  font-family: \"ubuntu\", sans-serif;\r\n}\r\n.footer .cookies--page {\r\n  color: #4ead8f;\r\n}\r\n.footer .cookies__container {\r\n  position: relative;\r\n}\r\n.footer .cookies__container .close--btn {\r\n  position: absolute;\r\n  right: 0;\r\n  top: 7%;\r\n  background: transparent;\r\n  border: none;\r\n  cursor: pointer;\r\n}\r\n\r\n.footer .cookies__container .close--btn img {\r\n  width: 18px;\r\n}\r\n\r\n.footer .cookies__container .accept--btn {\r\n  font-family: \"ubuntu\", sans-serif;\r\n  background: #395f8c;\r\n  border: none;\r\n  color: #fff;\r\n  padding: 15px 30px;\r\n  transition: background 0.3s;\r\n}\r\n.footer .cookies__container .accept--btn:hover {\r\n  background: #263f5e;\r\n}\r\n\r\n.footer--links {\r\n  margin: 10px 0 20px;\r\n}\r\n\r\n.footer--links .link {\r\n  color: #3d3d3d;\r\n  font-family: \"ubuntu\", sans-serif;\r\n  font-weight: 400;\r\n  text-decoration: none;\r\n}\r\n\r\na.bottom-to-top-btn {\r\n  width: 90px;\r\n  height: 90px;\r\n  border-radius: 100%;\r\n  background: #395f8c;\r\n  display: flex;\r\n  flex-direction: column;\r\n  text-decoration: none;\r\n  align-items: center;\r\n  justify-content: center;\r\n  margin: 0 auto;\r\n  font-size: 22px;\r\n  line-height: 30px;\r\n  color: #fff;\r\n  font-family: \"ubuntu\", sans-serif;\r\n  font-weight: normal;\r\n  position: absolute;\r\n  top: -40px;\r\n  left: 0;\r\n  right: 0;\r\n  transition: 1s;\r\n}\r\n\r\n@media screen and (max-width: 475px) {\r\n  .navbar .mobile-grid {\r\n    display: grid !important;\r\n    grid-template-columns: 60px 1.5fr 1fr;\r\n    align-items: center;\r\n    justify-items: center;\r\n    place-items: center;\r\n  }\r\n\r\n  .nav-link {\r\n    white-space: nowrap;\r\n  }\r\n\r\n  .socials-container {\r\n    grid-column: 1/-1;\r\n    align-items: center;\r\n    margin: auto;\r\n    text-align: center;\r\n    justify-content: center;\r\n  }\r\n\r\n  .nav-logo {\r\n    min-width: 100px;\r\n    width: 100%;\r\n  }\r\n\r\n  a.bottom-to-top-btn {\r\n    width: 70px;\r\n    height: 70px;\r\n    font-size: 18px;\r\n    line-height: 24px;\r\n  }\r\n\r\n  .footer-logo {\r\n      min-width: 200px;\r\n      width: 100%;\r\n  }\r\n}\r\n\r\n\r\n.removeTag{ \r\n  background: transparent;\r\n  padding: 0px;\r\n  border: 0px;\r\n  color: white;\r\n  margin: 0px 9px;\r\n}\r\n\r\n\r\n.footer-main{\r\n  margin-top: 200px;\r\n  background: #acbbcd;\r\n}\r\n\r\n.blogscontainer{\r\n  margin-top: 200px;\r\n}\r\n\r\n.coverContainer{\r\n  margin: auto;\r\n}\r\n\r\n.avatar-sm{\r\n  width: 100%;\r\n}", "",{"version":3,"sources":["webpack://./src/styling/style.css"],"names":[],"mappings":";AACA,UAAU;;AAEV;EACE,uBAAuB;AACzB;;AAEA;EACE,kCAAkC;EAClC,aAAa;AACf;;AAEA;EACE,cAAc;EACd,oBAAoB;EACpB,qBAAqB;EACrB,gBAAgB;AAClB;;AAEA;EACE,kBAAkB;EAClB,eAAe;EACf,gBAAgB;EAChB,yBAAyB;EACzB,oBAAoB;EACpB,yBAAyB;EACzB,cAAc;AAChB;;AAEA;EACE,YAAY;AACd;;AAEA;EACE,aAAa;AACf;;;AAGA,cAAc;;AAEd;EACE,aAAa;EACb,mBAAmB;EACnB,sBAAsB;EACtB,uBAAuB;EACvB,WAAW;EACX,gBAAgB;EAChB,iBAAiB;AACnB;;AAEA;EACE,kBAAkB;AACpB;;AAEA;EACE,mBAAmB;EACnB,kBAAkB;AACpB;;AAEA;EAEE,kCAAkC;EAClC,mBAAmB;EACnB,aAAa;EACb,UAAU;EACV,gBAAgB;EAChB,kBAAkB;EAClB,YAAY;EAEZ,yCAAyC;EACzC,kBAAkB;EAClB,iBAAiB;AACnB;;AAEA;EACE,yBAAyB;EACzB,6BAA6B;EAC7B,aAAa;EACb,kBAAkB;EAElB,4BAA4B;AAC9B;;;;AAIA,SAAS;;AAET;EACE,cAAc;AAChB;;AAEA;EACE,cAAc;EACd,gCAAgC;AAClC;;;;AAIA,mBAAmB;;AAEnB;EACE,yBAAyB;EACzB,YAAY;EACZ,YAAY;EACZ,kBAAkB;EAClB,kBAAkB;EAClB,qBAAqB;EACrB,qBAAqB;EACrB,yBAAyB;EACzB,eAAe;EAEf,8CAA8C;EAE9C,8BAA8B;EAC9B,0BAA0B;EAK1B,gCAAgC;AAClC;;AAEA;EACE,yBAAyB;AAC3B;;AAEA;EAKE,sBAAsB;AACxB;;AAEA;EACE,yBAAyB;EACzB,YAAY;EACZ,cAAc;EACd,kBAAkB;EAClB,kBAAkB;EAClB,qBAAqB;EACrB,qBAAqB;EACrB,eAAe;EACf,WAAW;EACX,UAAU;EACV,yBAAyB;EAKzB,gCAAgC;EAEhC,8BAA8B;AAChC;;AAEA;EACE,sBAAsB;EACtB,gCAAgC;AAClC;;AAEA;EACE,cAAc;AAChB;;;;AAIA,eAAe;;AAEf,uCAAuC;AACvC;EACE,kCAAkC;EAClC,0BAA0B;EAC1B,8BAA8B;EAC9B,sBAAsB;EACtB,iCAAiC;EACjC,yBAAyB;AAC3B;;AAEA;EACE;IACE,UAAU;IAEV,mCAAmC;EACrC;EACA;IACE,UAAU;IAEV,eAAe;EACjB;AACF;;AAEA;EACE;IACE,UAAU;IAEV,mCAAmC;EACrC;EACA;IACE,UAAU;IAEV,eAAe;EACjB;AACF;;AAEA,kCAAkC;AAClC,4BAA4B,OAAO,SAAS,EAAE,EAAE,KAAK,SAAS,EAAE,EAAE;AAElE,oBAAoB,OAAO,SAAS,EAAE,EAAE,KAAK,SAAS,EAAE,EAAE;;AAE1D;EACE,SAAS;EACT,kCAAkC;EAElC,0BAA0B;;EAE1B,oCAAoC;EAEpC,4BAA4B;;EAE5B,6BAA6B;EAE7B,qBAAqB;AACvB;;AAEA;EACE,6BAA6B;EAE7B,qBAAqB;AACvB;;AAEA;EACE,6BAA6B;EAE7B,qBAAqB;AACvB;;AAEA;EACE,6BAA6B;EAE7B,qBAAqB;AACvB;;AAEA;EACE,2BAA2B;EAE3B,mBAAmB;AACrB;;AAEA,kCAAkC;AAClC;EACE,cAAc;EACd,OAAO;EACP,aAAa;EACb,QAAQ;EACR,WAAW;EACX,yBAAyB;EACzB,WAAW;EACX,sBAAsB;AACxB;;AAEA;EACE,cAAc;AAChB;;AAEA;EACE,WAAW;AACb;;;;AAIA,WAAW;;AAEX;IACI,aAAa;AACjB;;AAEA;EACE,SAAS;AACX;;;;;AAKA;EACE,yBAAyB;EACzB,eAAe;EACf,YAAY;EACZ,aAAa;EACb,sBAAsB;EACtB,mBAAmB;EACnB,uBAAuB;EACvB,6BAA6B;EAC7B,YAAY;EACZ,kBAAkB;EAClB,kBAAkB;AACpB;;AAEA;EACE,aAAa;EACb,sBAAsB;AACxB;AACA;EACE,mCAAmC;EACnC,aAAa;EACb,sBAAsB;AACxB;AACA;EACE,sBAAsB;AACxB;;AAEA;EACE,aAAa;EACb,gBAAgB;AAClB;;AAEA;EACE,gBAAgB;AAClB;;AAEA;EACE,WAAW;EACX,YAAY;EACZ,eAAgB;EAAhB,gBAAgB;AAClB;AACA;EACE,gBAAgB;EAChB,aAAa;AACf;AACA;EACE,YAAY;AACd;AACA;EACE,uBAAuB;EACvB,cAAc;EACd,kBAAkB;EAClB,kBAAkB;AACpB;;AAqBA;;;;;;EAME,iCAAiC;EACjC,cAAc;AAChB;;AAEA;EACE,mBAAmB;AACrB;;AAEA;EACE,cAAc;EACd,kCAAkC;AACpC;;AAEA;EACE,kCAAkC;AACpC;;AAEA;EACE,iCAAiC;AACnC;;AAEA;EACE,2BAA2B;EAC3B,iCAAiC;AACnC;;AAEA;;;EAGE,yBAAyB;EACzB,kBAAkB;AACpB;;AAEA;EAGE,cAAc;AAChB;;AAJA;EAGE,cAAc;AAChB;;AAJA;;;EAGE,cAAc;AAChB;;AAEA;;;EAGE,aAAa;AACf;;AAEA;EACE,mBAAmB;EACnB,WAAW;EACX,kBAAkB;EAClB,WAAW;EACX,gBAAgB;AAClB;;AAEA;EACE,gBAAgB;EAChB,gBAAgB;EAChB,eAAe;AACjB;;AAEA;EACE,aAAa;EACb,gBAAgB;AAClB;;AAEA;;EAEE,WAAW;EACX,YAAY;EACZ,oBAAiB;KAAjB,iBAAiB;EACjB,kBAAkB;AACpB;;AAEA;EACE,aAAa;EACb,gBAAgB;AAClB;;AAEA;EACE,kBAAkB;EAClB,QAAQ;EACR,SAAS;EACT,gCAAgC;AAClC;;AAEA;EACE,sBAAsB;EACtB,kBAAkB;EAClB,gBAAgB;EAChB,eAAe;EACf,kBAAkB;EAClB,eAAe;EACf,gCAAgC;AAClC;;AAEA;EACE,iCAAiC;AACnC;;AAEA;EACE,yBAAyB;EACzB,gBAAgB;EAChB,iBAAiB;EACjB,iCAAiC;AACnC;;AAEA;;;;EAIE,mBAAmB;EACnB,cAAc;EACd,gBAAgB;EAChB,iBAAiB;EACjB,gBAAgB;EAChB,YAAY;EACZ,kBAAkB;EAClB,eAAe;AACjB;;AAEA;EACE,mBAAmB;EACnB,WAAW;AACb;AACA;EACE,mBAAmB;EACnB,WAAW;AACb;;AAEA,sBAAsB;AACtB;EACE,kCAAqB;EACrB,eAAe;EACf,MAAM;EACN,OAAO;EACP,WAAW;EACX,YAAY;EACZ,eAAe;EACf,kBAAkB;EAClB,kBAAkB;AACpB;;AAEA;EACE,gBAAgB;EAChB,UAAU;EACV,kBAAkB;EAClB,gBAAgB;AAClB;;AAEA;EACE,aAAa;AACf;;AAEA;EACE,mBAAmB;AACrB;;AAEA;EACE,gBAAgB;AAClB;;AAEA,eAAe;AACf;EACE,qBAAqB;EACrB,WAAW;EACX,yBAAyB;EACzB,kBAAkB;EAClB,mBAAmB;EACnB,qBAAqB;EACrB,eAAe;EACf,iBAAiB;EACjB,gBAAgB;EAChB,mBAAmB;AACrB;;AAEA;EACE,gBAAgB;EAChB,eAAe;AACjB;;AAEA;EACE,YAAY;AACd;;AAEA,eAAe;AACf;EACE,aAAa;EACb,sBAAsB;EACtB,uBAAuB;EACvB,mBAAmB;EACnB,kBAAkB;EAClB,eAAe;AACjB;AACA;EACE,WAAW;EACX,WAAW;EACX,mBAAmB;AACrB;AACA;EACE,eAAe;EACf,gBAAgB;EAChB,cAAc;EACd,iCAAiC;AACnC;AACA;EACE,cAAc;AAChB;AACA;EACE,kBAAkB;AACpB;AACA;EACE,kBAAkB;EAClB,QAAQ;EACR,OAAO;EACP,uBAAuB;EACvB,YAAY;EACZ,eAAe;AACjB;;AAEA;EACE,WAAW;AACb;;AAEA;EACE,iCAAiC;EACjC,mBAAmB;EACnB,YAAY;EACZ,WAAW;EACX,kBAAkB;EAClB,2BAA2B;AAC7B;AACA;EACE,mBAAmB;AACrB;;AAEA;EACE,mBAAmB;AACrB;;AAEA;EACE,cAAc;EACd,iCAAiC;EACjC,gBAAgB;EAChB,qBAAqB;AACvB;;AAEA;EACE,WAAW;EACX,YAAY;EACZ,mBAAmB;EACnB,mBAAmB;EACnB,aAAa;EACb,sBAAsB;EACtB,qBAAqB;EACrB,mBAAmB;EACnB,uBAAuB;EACvB,cAAc;EACd,eAAe;EACf,iBAAiB;EACjB,WAAW;EACX,iCAAiC;EACjC,mBAAmB;EACnB,kBAAkB;EAClB,UAAU;EACV,OAAO;EACP,QAAQ;EACR,cAAc;AAChB;;AAEA;EACE;IACE,wBAAwB;IACxB,qCAAqC;IACrC,mBAAmB;IAAnB,qBAAmB;IAAnB,mBAAmB;EACrB;;EAEA;IACE,mBAAmB;EACrB;;EAEA;IACE,iBAAiB;IACjB,mBAAmB;IACnB,YAAY;IACZ,kBAAkB;IAClB,uBAAuB;EACzB;;EAEA;IACE,gBAAgB;IAChB,WAAW;EACb;;EAEA;IACE,WAAW;IACX,YAAY;IACZ,eAAe;IACf,iBAAiB;EACnB;;EAEA;MACI,gBAAgB;MAChB,WAAW;EACf;AACF;;;AAGA;EACE,uBAAuB;EACvB,YAAY;EACZ,WAAW;EACX,YAAY;EACZ,eAAe;AACjB;;;AAGA;EACE,iBAAiB;EACjB,mBAAmB;AACrB;;AAEA;EACE,iBAAiB;AACnB;;AAEA;EACE,YAAY;AACd;;AAEA;EACE,WAAW;AACb","sourcesContent":["\r\n/* BASIC */\r\n\r\nhtml {\r\n  background-color: white;\r\n}\r\n\r\nbody {\r\n  font-family: \"Poppins\", sans-serif;\r\n  height: 100vh;\r\n}\r\n\r\na {\r\n  color: #92badd;\r\n  display:inline-block;\r\n  text-decoration: none;\r\n  font-weight: 400;\r\n}\r\n\r\nh2 {\r\n  text-align: center;\r\n  font-size: 16px;\r\n  font-weight: 600;\r\n  text-transform: uppercase;\r\n  display:inline-block;\r\n  margin: 40px 8px 10px 8px; \r\n  color: #cccccc;\r\n}\r\n\r\n.ck-content h2{\r\n  color: black;\r\n}\r\n\r\n.ck-content{\r\n  height: 250px;\r\n}\r\n\r\n\r\n/* STRUCTURE */\r\n\r\n.wrapper {\r\n  display: flex;\r\n  align-items: center;\r\n  flex-direction: column; \r\n  justify-content: center;\r\n  width: 100%;\r\n  min-height: 100%;\r\n  margin-top: 100px;\r\n}\r\n\r\n.loaderContainer{\r\n  text-align: center;\r\n}\r\n\r\n.imgContainer { \r\n  background: #395F8C;\r\n  text-align: center;\r\n}\r\n\r\n#formContent {\r\n  -webkit-border-radius: 10px 10px 10px 10px;\r\n  border-radius: 10px 10px 10px 10px;\r\n  background: #395F8C;\r\n  padding: 30px;\r\n  width: 90%;\r\n  max-width: 450px;\r\n  position: relative;\r\n  padding: 0px;\r\n  -webkit-box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);\r\n  box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);\r\n  text-align: center;\r\n  padding-top: 30px;\r\n}\r\n\r\n#formFooter {\r\n  background-color: #f6f6f6;\r\n  border-top: 1px solid #dce8f1;\r\n  padding: 25px;\r\n  text-align: center;\r\n  -webkit-border-radius: 0 0 10px 10px;\r\n  border-radius: 0 0 10px 10px;\r\n}\r\n\r\n\r\n\r\n/* TABS */\r\n\r\nh2.inactive {\r\n  color: #cccccc;\r\n}\r\n\r\nh2.active {\r\n  color: #0d0d0d;\r\n  border-bottom: 2px solid #5fbae9;\r\n}\r\n\r\n\r\n\r\n/* FORM TYPOGRAPHY*/\r\n\r\ninput[type=button], input[type=submit], input[type=reset]  {\r\n  background-color: #56baed;\r\n  border: none;\r\n  color: white;\r\n  padding: 15px 80px;\r\n  text-align: center;\r\n  text-decoration: none;\r\n  display: inline-block;\r\n  text-transform: uppercase;\r\n  font-size: 13px;\r\n  -webkit-box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);\r\n  box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);\r\n  -webkit-border-radius: 5px 5px 5px 5px;\r\n  border-radius: 5px 5px 5px 5px;\r\n  margin: 5px 20px 40px 20px;\r\n  -webkit-transition: all 0.3s ease-in-out;\r\n  -moz-transition: all 0.3s ease-in-out;\r\n  -ms-transition: all 0.3s ease-in-out;\r\n  -o-transition: all 0.3s ease-in-out;\r\n  transition: all 0.3s ease-in-out;\r\n}\r\n\r\ninput[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover  {\r\n  background-color: #39ace7;\r\n}\r\n\r\ninput[type=button]:active, input[type=submit]:active, input[type=reset]:active  {\r\n  -moz-transform: scale(0.95);\r\n  -webkit-transform: scale(0.95);\r\n  -o-transform: scale(0.95);\r\n  -ms-transform: scale(0.95);\r\n  transform: scale(0.95);\r\n}\r\n\r\ninput[type=email], input[type=password] {\r\n  background-color: #f6f6f6;\r\n  border: none;\r\n  color: #0d0d0d;\r\n  padding: 15px 32px;\r\n  text-align: center;\r\n  text-decoration: none;\r\n  display: inline-block;\r\n  font-size: 16px;\r\n  margin: 5px;\r\n  width: 85%;\r\n  border: 2px solid #f6f6f6;\r\n  -webkit-transition: all 0.5s ease-in-out;\r\n  -moz-transition: all 0.5s ease-in-out;\r\n  -ms-transition: all 0.5s ease-in-out;\r\n  -o-transition: all 0.5s ease-in-out;\r\n  transition: all 0.5s ease-in-out;\r\n  -webkit-border-radius: 5px 5px 5px 5px;\r\n  border-radius: 5px 5px 5px 5px;\r\n}\r\n\r\ninput[type=text]:focus {\r\n  background-color: #fff;\r\n  border-bottom: 2px solid #5fbae9;\r\n}\r\n\r\ninput[type=text]:placeholder {\r\n  color: #cccccc;\r\n}\r\n\r\n\r\n\r\n/* ANIMATIONS */\r\n\r\n/* Simple CSS3 Fade-in-down Animation */\r\n.fadeInDown {\r\n  -webkit-animation-name: fadeInDown;\r\n  animation-name: fadeInDown;\r\n  -webkit-animation-duration: 1s;\r\n  animation-duration: 1s;\r\n  -webkit-animation-fill-mode: both;\r\n  animation-fill-mode: both;\r\n}\r\n\r\n@-webkit-keyframes fadeInDown {\r\n  0% {\r\n    opacity: 0;\r\n    -webkit-transform: translate3d(0, -100%, 0);\r\n    transform: translate3d(0, -100%, 0);\r\n  }\r\n  100% {\r\n    opacity: 1;\r\n    -webkit-transform: none;\r\n    transform: none;\r\n  }\r\n}\r\n\r\n@keyframes fadeInDown {\r\n  0% {\r\n    opacity: 0;\r\n    -webkit-transform: translate3d(0, -100%, 0);\r\n    transform: translate3d(0, -100%, 0);\r\n  }\r\n  100% {\r\n    opacity: 1;\r\n    -webkit-transform: none;\r\n    transform: none;\r\n  }\r\n}\r\n\r\n/* Simple CSS3 Fade-in Animation */\r\n@-webkit-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }\r\n@-moz-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }\r\n@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }\r\n\r\n.fadeIn {\r\n  opacity:0;\r\n  -webkit-animation:fadeIn ease-in 1;\r\n  -moz-animation:fadeIn ease-in 1;\r\n  animation:fadeIn ease-in 1;\r\n\r\n  -webkit-animation-fill-mode:forwards;\r\n  -moz-animation-fill-mode:forwards;\r\n  animation-fill-mode:forwards;\r\n\r\n  -webkit-animation-duration:1s;\r\n  -moz-animation-duration:1s;\r\n  animation-duration:1s;\r\n}\r\n\r\n.fadeIn.first {\r\n  -webkit-animation-delay: 0.4s;\r\n  -moz-animation-delay: 0.4s;\r\n  animation-delay: 0.4s;\r\n}\r\n\r\n.fadeIn.second {\r\n  -webkit-animation-delay: 0.6s;\r\n  -moz-animation-delay: 0.6s;\r\n  animation-delay: 0.6s;\r\n}\r\n\r\n.fadeIn.third {\r\n  -webkit-animation-delay: 0.8s;\r\n  -moz-animation-delay: 0.8s;\r\n  animation-delay: 0.8s;\r\n}\r\n\r\n.fadeIn.fourth {\r\n  -webkit-animation-delay: 1s;\r\n  -moz-animation-delay: 1s;\r\n  animation-delay: 1s;\r\n}\r\n\r\n/* Simple CSS3 Fade-in Animation */\r\n.underlineHover:after {\r\n  display: block;\r\n  left: 0;\r\n  bottom: -10px;\r\n  width: 0;\r\n  height: 2px;\r\n  background-color: #56baed;\r\n  content: \"\";\r\n  transition: width 0.2s;\r\n}\r\n\r\n.underlineHover:hover {\r\n  color: #0d0d0d;\r\n}\r\n\r\n.underlineHover:hover:after{\r\n  width: 100%;\r\n}\r\n\r\n\r\n\r\n/* OTHERS */\r\n\r\n*:focus {\r\n    outline: none;\r\n} \r\n\r\n#icon {\r\n  width:60%;\r\n}\r\n\r\n\r\n\r\n\r\n.App-header {\r\n  background-color: #395F8C;\r\n  min-height: 5vh;\r\n  width: 100vw;\r\n  display: flex;\r\n  flex-direction: column;\r\n  align-items: center;\r\n  justify-content: center;\r\n  font-size: calc(10px + 2vmin);\r\n  color: white;\r\n  margin-bottom: 5vh;\r\n  text-align: center;\r\n}\r\n\r\n.wrapper-class {\r\n  padding: 1rem;\r\n  border: 1px solid #ccc;\r\n}\r\n.editor-class {\r\n  background-color:rgb(227, 225, 255);\r\n  padding: 1rem;\r\n  border: 1px solid #ccc;\r\n}\r\n.toolbar-class {\r\n  border: 1px solid #ccc;\r\n}\r\n\r\n.preview {\r\n  padding: 1rem;\r\n  margin-top: 1rem;\r\n}\r\n\r\n.tagsContainer{\r\n  margin: 30px 0px;\r\n}\r\n\r\n.tag{\r\n  margin: 8px;\r\n  height: 40px;\r\n  display: initial;\r\n}\r\n.removeTag{\r\n  margin-left: 5px;\r\n  padding: 10px;\r\n}\r\n.tagInput{\r\n  margin: 10px;\r\n}\r\n.dz-message {\r\n  border: 1px dashed blue;\r\n  padding: 40px ;\r\n  text-align: center;\r\n  border-radius: 5px;\r\n}\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n@import url(\"https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap\");\r\n@import url(\"https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Ubuntu:wght@300;400;500;700&display=swap\");\r\n@import url(\"https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap\");\r\n@import url(\"https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap\");\r\n@import url(\"https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap\");\r\n@import url(\"https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap\");\r\n@import url(\"https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap\");\r\n\r\n.blog-form .h1,\r\n.blog-form .h2,\r\n.blog-form .h3,\r\n.blog-form .h4,\r\n.blog-form .h5,\r\n.blog-form .h6 {\r\n  font-family: \"Ubuntu\", sans-serif;\r\n  color: #373737;\r\n}\r\n\r\n.header_new {\r\n  background: #acbbcd;\r\n}\r\n\r\n.blog-form p {\r\n  color: #5b5b5b;\r\n  font-family: \"Poppins\", sans-serif;\r\n}\r\n\r\n.font-poppins {\r\n  font-family: \"Poppins\", sans-serif;\r\n}\r\n\r\n.font-ubuntu {\r\n  font-family: \"Ubuntu\", sans-serif;\r\n}\r\n\r\nbody {\r\n  background: #fff !important;\r\n  font-family: \"Ubuntu\", sans-serif;\r\n}\r\n\r\n.blog-title-input,\r\n.blog-tags-input,\r\n.blog-cta-link-input {\r\n  border: 1px solid #6c6c6c;\r\n  border-radius: 2px;\r\n}\r\n\r\n.blog-title-input::placeholder,\r\n.blog-tags-input::placeholder,\r\n.blog-cta-link-input::placeholder {\r\n  color: #444444;\r\n}\r\n\r\n.blog-title-input:focus,\r\n.blog-tags-input:focus,\r\n.blog-cta-link-input:focus {\r\n  outline: none;\r\n}\r\n\r\n.blog-added-tag {\r\n  background: #395f8c;\r\n  color: #fff;\r\n  border-radius: 3px;\r\n  margin: 5px;\r\n  padding: 0px 3px;\r\n}\r\n\r\n.blog-added-tag i {\r\n  font-weight: 100;\r\n  margin-left: 7px;\r\n  cursor: pointer;\r\n}\r\n\r\n.blog-cover-image__wrapper {\r\n  height: 270px;\r\n  overflow: hidden;\r\n}\r\n\r\n.blog-cover-image__wrapper img,\r\n.blog-image__wrapper img {\r\n  width: 100%;\r\n  height: 100%;\r\n  object-fit: cover;\r\n  border-radius: 4px;\r\n}\r\n\r\n.blog-image__wrapper {\r\n  height: 400px;\r\n  overflow: hidden;\r\n}\r\n\r\n.upload-image-input__wrapper {\r\n  position: absolute;\r\n  top: 45%;\r\n  left: 50%;\r\n  transform: translate(-45%, -50%);\r\n}\r\n\r\n.upload-image-btn {\r\n  border: 1px solid #fff;\r\n  border-radius: 4px;\r\n  font-weight: 500;\r\n  font-size: 20px;\r\n  margin-right: 20px;\r\n  cursor: pointer;\r\n  transition: background 0.3s ease;\r\n}\r\n\r\n.upload-image-btn:hover {\r\n  background: rgba(37, 37, 37, 0.2);\r\n}\r\n\r\n.blog-image__upload-type {\r\n  color: #8c8a8a !important;\r\n  font-weight: 300;\r\n  text-align: right;\r\n  font-family: \"Ubuntu\", sans-serif;\r\n}\r\n\r\n.reset-button,\r\n.draft-button,\r\n.publish-button,\r\n.delete-button{\r\n  background: #e3e1e1;\r\n  color: #444444;\r\n  font-weight: 500;\r\n  padding: 8px 20px;\r\n  min-width: 120px;\r\n  border: none;\r\n  border-radius: 4px;\r\n  font-size: 18px;\r\n}\r\n\r\n.publish-button {\r\n  background: #395f8c;\r\n  color: #fff;\r\n}\r\n.delete-button {\r\n  background: #680f13;\r\n  color: #fff;\r\n}\r\n\r\n/* PREVIEW POPUP CSS */\r\n.preview-popup__wrapper {\r\n  background: #4e4e4e80;\r\n  position: fixed;\r\n  top: 0;\r\n  left: 0;\r\n  width: 100%;\r\n  height: 100%;\r\n  z-index: 999999;\r\n  overflow-y: scroll;\r\n  padding: 80px 20px;\r\n}\r\n\r\n.blog-form-preview__wrapper {\r\n  background: #fff;\r\n  padding: 0;\r\n  border-radius: 4px;\r\n  overflow: hidden;\r\n}\r\n\r\n.blog-form-preview {\r\n  padding: 30px;\r\n}\r\n\r\n.preview-title__wrapper {\r\n  background: #395f8c;\r\n}\r\n\r\n.preview-title {\r\n  font-weight: 400;\r\n}\r\n\r\n/* Header CSS */\r\n.header-chat-btn a {\r\n  text-decoration: none;\r\n  color: #fff;\r\n  background-color: #802217;\r\n  padding: 15px 33px;\r\n  border-radius: 50px;\r\n  font-family: \"Ubuntu\";\r\n  font-size: 16px;\r\n  line-height: 20px;\r\n  font-weight: 500;\r\n  white-space: nowrap;\r\n}\r\n\r\n.navbar-nav .nav-item .nav-link {\r\n  font-weight: 500;\r\n  font-size: 18px;\r\n}\r\n\r\n.nav-logo {\r\n  width: 200px;\r\n}\r\n\r\n/* Footer CSS */\r\n.footer {\r\n  display: flex;\r\n  flex-direction: column;\r\n  justify-content: center;\r\n  align-items: center;\r\n  position: relative;\r\n  padding: 50px 0;\r\n}\r\n.footer--border {\r\n  height: 1px;\r\n  width: 100%;\r\n  background: #9d9d9d;\r\n}\r\n.footer .cookies--text {\r\n  font-size: 14px;\r\n  font-weight: 500;\r\n  color: #231f20;\r\n  font-family: \"ubuntu\", sans-serif;\r\n}\r\n.footer .cookies--page {\r\n  color: #4ead8f;\r\n}\r\n.footer .cookies__container {\r\n  position: relative;\r\n}\r\n.footer .cookies__container .close--btn {\r\n  position: absolute;\r\n  right: 0;\r\n  top: 7%;\r\n  background: transparent;\r\n  border: none;\r\n  cursor: pointer;\r\n}\r\n\r\n.footer .cookies__container .close--btn img {\r\n  width: 18px;\r\n}\r\n\r\n.footer .cookies__container .accept--btn {\r\n  font-family: \"ubuntu\", sans-serif;\r\n  background: #395f8c;\r\n  border: none;\r\n  color: #fff;\r\n  padding: 15px 30px;\r\n  transition: background 0.3s;\r\n}\r\n.footer .cookies__container .accept--btn:hover {\r\n  background: #263f5e;\r\n}\r\n\r\n.footer--links {\r\n  margin: 10px 0 20px;\r\n}\r\n\r\n.footer--links .link {\r\n  color: #3d3d3d;\r\n  font-family: \"ubuntu\", sans-serif;\r\n  font-weight: 400;\r\n  text-decoration: none;\r\n}\r\n\r\na.bottom-to-top-btn {\r\n  width: 90px;\r\n  height: 90px;\r\n  border-radius: 100%;\r\n  background: #395f8c;\r\n  display: flex;\r\n  flex-direction: column;\r\n  text-decoration: none;\r\n  align-items: center;\r\n  justify-content: center;\r\n  margin: 0 auto;\r\n  font-size: 22px;\r\n  line-height: 30px;\r\n  color: #fff;\r\n  font-family: \"ubuntu\", sans-serif;\r\n  font-weight: normal;\r\n  position: absolute;\r\n  top: -40px;\r\n  left: 0;\r\n  right: 0;\r\n  transition: 1s;\r\n}\r\n\r\n@media screen and (max-width: 475px) {\r\n  .navbar .mobile-grid {\r\n    display: grid !important;\r\n    grid-template-columns: 60px 1.5fr 1fr;\r\n    place-items: center;\r\n  }\r\n\r\n  .nav-link {\r\n    white-space: nowrap;\r\n  }\r\n\r\n  .socials-container {\r\n    grid-column: 1/-1;\r\n    align-items: center;\r\n    margin: auto;\r\n    text-align: center;\r\n    justify-content: center;\r\n  }\r\n\r\n  .nav-logo {\r\n    min-width: 100px;\r\n    width: 100%;\r\n  }\r\n\r\n  a.bottom-to-top-btn {\r\n    width: 70px;\r\n    height: 70px;\r\n    font-size: 18px;\r\n    line-height: 24px;\r\n  }\r\n\r\n  .footer-logo {\r\n      min-width: 200px;\r\n      width: 100%;\r\n  }\r\n}\r\n\r\n\r\n.removeTag{ \r\n  background: transparent;\r\n  padding: 0px;\r\n  border: 0px;\r\n  color: white;\r\n  margin: 0px 9px;\r\n}\r\n\r\n\r\n.footer-main{\r\n  margin-top: 200px;\r\n  background: #acbbcd;\r\n}\r\n\r\n.blogscontainer{\r\n  margin-top: 200px;\r\n}\r\n\r\n.coverContainer{\r\n  margin: auto;\r\n}\r\n\r\n.avatar-sm{\r\n  width: 100%;\r\n}"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -4084,1629 +4110,1833 @@ module.exports = function (item) {
 
 /***/ }),
 
-/***/ "./node_modules/dnd-core/dist/cjs/actions/dragDrop/beginDrag.js":
+/***/ "./node_modules/dnd-core/dist/esm/actions/dragDrop/beginDrag.js":
 /*!**********************************************************************!*\
-  !*** ./node_modules/dnd-core/dist/cjs/actions/dragDrop/beginDrag.js ***!
+  !*** ./node_modules/dnd-core/dist/esm/actions/dragDrop/beginDrag.js ***!
   \**********************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "createBeginDrag": () => (/* binding */ createBeginDrag)
+/* harmony export */ });
+/* harmony import */ var _react_dnd_invariant__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @react-dnd/invariant */ "./node_modules/@react-dnd/invariant/dist/invariant.esm.js");
+/* harmony import */ var _local_setClientOffset__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./local/setClientOffset */ "./node_modules/dnd-core/dist/esm/actions/dragDrop/local/setClientOffset.js");
+/* harmony import */ var _utils_js_utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../utils/js_utils */ "./node_modules/dnd-core/dist/esm/utils/js_utils.js");
+/* harmony import */ var _types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./types */ "./node_modules/dnd-core/dist/esm/actions/dragDrop/types.js");
 
-Object.defineProperty(exports, "__esModule", ({
-    value: true
-}));
-exports.createBeginDrag = createBeginDrag;
-var _invariant = __webpack_require__(/*! @react-dnd/invariant */ "./node_modules/@react-dnd/invariant/dist/cjs/index.js");
-var _setClientOffsetJs = __webpack_require__(/*! ./local/setClientOffset.js */ "./node_modules/dnd-core/dist/cjs/actions/dragDrop/local/setClientOffset.js");
-var _jsUtilsJs = __webpack_require__(/*! ../../utils/js_utils.js */ "./node_modules/dnd-core/dist/cjs/utils/js_utils.js");
-var _typesJs = __webpack_require__(/*! ./types.js */ "./node_modules/dnd-core/dist/cjs/actions/dragDrop/types.js");
-const ResetCoordinatesAction = {
-    type: _typesJs.INIT_COORDS,
-    payload: {
-        clientOffset: null,
-        sourceClientOffset: null
-    }
+
+
+
+var ResetCoordinatesAction = {
+  type: _types__WEBPACK_IMPORTED_MODULE_1__.INIT_COORDS,
+  payload: {
+    clientOffset: null,
+    sourceClientOffset: null
+  }
 };
 function createBeginDrag(manager) {
-    return function beginDrag(sourceIds = [], options = {
-        publishSource: true
-    }) {
-        const { publishSource =true , clientOffset , getSourceClientOffset ,  } = options;
-        const monitor = manager.getMonitor();
-        const registry = manager.getRegistry();
-        // Initialize the coordinates using the client offset
-        manager.dispatch((0, _setClientOffsetJs).setClientOffset(clientOffset));
-        verifyInvariants(sourceIds, monitor, registry);
-        // Get the draggable source
-        const sourceId = getDraggableSource(sourceIds, monitor);
-        if (sourceId == null) {
-            manager.dispatch(ResetCoordinatesAction);
-            return;
-        }
-        // Get the source client offset
-        let sourceClientOffset = null;
-        if (clientOffset) {
-            if (!getSourceClientOffset) {
-                throw new Error('getSourceClientOffset must be defined');
-            }
-            verifyGetSourceClientOffsetIsFunction(getSourceClientOffset);
-            sourceClientOffset = getSourceClientOffset(sourceId);
-        }
-        // Initialize the full coordinates
-        manager.dispatch((0, _setClientOffsetJs).setClientOffset(clientOffset, sourceClientOffset));
-        const source = registry.getSource(sourceId);
-        const item = source.beginDrag(monitor, sourceId);
-        // If source.beginDrag returns null, this is an indicator to cancel the drag
-        if (item == null) {
-            return undefined;
-        }
-        verifyItemIsObject(item);
-        registry.pinSource(sourceId);
-        const itemType = registry.getSourceType(sourceId);
-        return {
-            type: _typesJs.BEGIN_DRAG,
-            payload: {
-                itemType,
-                item,
-                sourceId,
-                clientOffset: clientOffset || null,
-                sourceClientOffset: sourceClientOffset || null,
-                isSourcePublic: !!publishSource
-            }
-        };
+  return function beginDrag() {
+    var sourceIds = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+    var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {
+      publishSource: true
     };
+    var _options$publishSourc = options.publishSource,
+        publishSource = _options$publishSourc === void 0 ? true : _options$publishSourc,
+        clientOffset = options.clientOffset,
+        getSourceClientOffset = options.getSourceClientOffset;
+    var monitor = manager.getMonitor();
+    var registry = manager.getRegistry(); // Initialize the coordinates using the client offset
+
+    manager.dispatch((0,_local_setClientOffset__WEBPACK_IMPORTED_MODULE_2__.setClientOffset)(clientOffset));
+    verifyInvariants(sourceIds, monitor, registry); // Get the draggable source
+
+    var sourceId = getDraggableSource(sourceIds, monitor);
+
+    if (sourceId === null) {
+      manager.dispatch(ResetCoordinatesAction);
+      return;
+    } // Get the source client offset
+
+
+    var sourceClientOffset = null;
+
+    if (clientOffset) {
+      if (!getSourceClientOffset) {
+        throw new Error('getSourceClientOffset must be defined');
+      }
+
+      verifyGetSourceClientOffsetIsFunction(getSourceClientOffset);
+      sourceClientOffset = getSourceClientOffset(sourceId);
+    } // Initialize the full coordinates
+
+
+    manager.dispatch((0,_local_setClientOffset__WEBPACK_IMPORTED_MODULE_2__.setClientOffset)(clientOffset, sourceClientOffset));
+    var source = registry.getSource(sourceId);
+    var item = source.beginDrag(monitor, sourceId); // If source.beginDrag returns null, this is an indicator to cancel the drag
+
+    if (item == null) {
+      return undefined;
+    }
+
+    verifyItemIsObject(item);
+    registry.pinSource(sourceId);
+    var itemType = registry.getSourceType(sourceId);
+    return {
+      type: _types__WEBPACK_IMPORTED_MODULE_1__.BEGIN_DRAG,
+      payload: {
+        itemType: itemType,
+        item: item,
+        sourceId: sourceId,
+        clientOffset: clientOffset || null,
+        sourceClientOffset: sourceClientOffset || null,
+        isSourcePublic: !!publishSource
+      }
+    };
+  };
 }
+
 function verifyInvariants(sourceIds, monitor, registry) {
-    (0, _invariant).invariant(!monitor.isDragging(), 'Cannot call beginDrag while dragging.');
-    sourceIds.forEach(function(sourceId) {
-        (0, _invariant).invariant(registry.getSource(sourceId), 'Expected sourceIds to be registered.');
-    });
+  (0,_react_dnd_invariant__WEBPACK_IMPORTED_MODULE_0__.invariant)(!monitor.isDragging(), 'Cannot call beginDrag while dragging.');
+  sourceIds.forEach(function (sourceId) {
+    (0,_react_dnd_invariant__WEBPACK_IMPORTED_MODULE_0__.invariant)(registry.getSource(sourceId), 'Expected sourceIds to be registered.');
+  });
 }
+
 function verifyGetSourceClientOffsetIsFunction(getSourceClientOffset) {
-    (0, _invariant).invariant(typeof getSourceClientOffset === 'function', 'When clientOffset is provided, getSourceClientOffset must be a function.');
+  (0,_react_dnd_invariant__WEBPACK_IMPORTED_MODULE_0__.invariant)(typeof getSourceClientOffset === 'function', 'When clientOffset is provided, getSourceClientOffset must be a function.');
 }
+
 function verifyItemIsObject(item) {
-    (0, _invariant).invariant((0, _jsUtilsJs).isObject(item), 'Item must be an object.');
+  (0,_react_dnd_invariant__WEBPACK_IMPORTED_MODULE_0__.invariant)((0,_utils_js_utils__WEBPACK_IMPORTED_MODULE_3__.isObject)(item), 'Item must be an object.');
 }
+
 function getDraggableSource(sourceIds, monitor) {
-    let sourceId = null;
-    for(let i = sourceIds.length - 1; i >= 0; i--){
-        if (monitor.canDragSource(sourceIds[i])) {
-            sourceId = sourceIds[i];
-            break;
-        }
-    }
-    return sourceId;
-}
+  var sourceId = null;
 
-//# sourceMappingURL=beginDrag.js.map
+  for (var i = sourceIds.length - 1; i >= 0; i--) {
+    if (monitor.canDragSource(sourceIds[i])) {
+      sourceId = sourceIds[i];
+      break;
+    }
+  }
+
+  return sourceId;
+}
 
 /***/ }),
 
-/***/ "./node_modules/dnd-core/dist/cjs/actions/dragDrop/drop.js":
+/***/ "./node_modules/dnd-core/dist/esm/actions/dragDrop/drop.js":
 /*!*****************************************************************!*\
-  !*** ./node_modules/dnd-core/dist/cjs/actions/dragDrop/drop.js ***!
+  !*** ./node_modules/dnd-core/dist/esm/actions/dragDrop/drop.js ***!
   \*****************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "createDrop": () => (/* binding */ createDrop)
+/* harmony export */ });
+/* harmony import */ var _react_dnd_invariant__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @react-dnd/invariant */ "./node_modules/@react-dnd/invariant/dist/invariant.esm.js");
+/* harmony import */ var _types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./types */ "./node_modules/dnd-core/dist/esm/actions/dragDrop/types.js");
+/* harmony import */ var _utils_js_utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../utils/js_utils */ "./node_modules/dnd-core/dist/esm/utils/js_utils.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
-Object.defineProperty(exports, "__esModule", ({
-    value: true
-}));
-exports.createDrop = createDrop;
-var _invariant = __webpack_require__(/*! @react-dnd/invariant */ "./node_modules/@react-dnd/invariant/dist/cjs/index.js");
-var _typesJs = __webpack_require__(/*! ./types.js */ "./node_modules/dnd-core/dist/cjs/actions/dragDrop/types.js");
-var _jsUtilsJs = __webpack_require__(/*! ../../utils/js_utils.js */ "./node_modules/dnd-core/dist/cjs/utils/js_utils.js");
-function _defineProperty(obj, key, value) {
-    if (key in obj) {
-        Object.defineProperty(obj, key, {
-            value: value,
-            enumerable: true,
-            configurable: true,
-            writable: true
-        });
-    } else {
-        obj[key] = value;
-    }
-    return obj;
-}
-function _objectSpread(target) {
-    for(var i = 1; i < arguments.length; i++){
-        var source = arguments[i] != null ? arguments[i] : {};
-        var ownKeys = Object.keys(source);
-        if (typeof Object.getOwnPropertySymbols === "function") {
-            ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function(sym) {
-                return Object.getOwnPropertyDescriptor(source, sym).enumerable;
-            }));
-        }
-        ownKeys.forEach(function(key) {
-            _defineProperty(target, key, source[key]);
-        });
-    }
-    return target;
-}
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
 function createDrop(manager) {
-    return function drop(options = {}) {
-        const monitor = manager.getMonitor();
-        const registry = manager.getRegistry();
-        verifyInvariants(monitor);
-        const targetIds = getDroppableTargets(monitor);
-        // Multiple actions are dispatched here, which is why this doesn't return an action
-        targetIds.forEach((targetId, index)=>{
-            const dropResult = determineDropResult(targetId, index, registry, monitor);
-            const action = {
-                type: _typesJs.DROP,
-                payload: {
-                    dropResult: _objectSpread({}, options, dropResult)
-                }
-            };
-            manager.dispatch(action);
-        });
-    };
+  return function drop() {
+    var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+    var monitor = manager.getMonitor();
+    var registry = manager.getRegistry();
+    verifyInvariants(monitor);
+    var targetIds = getDroppableTargets(monitor); // Multiple actions are dispatched here, which is why this doesn't return an action
+
+    targetIds.forEach(function (targetId, index) {
+      var dropResult = determineDropResult(targetId, index, registry, monitor);
+      var action = {
+        type: _types__WEBPACK_IMPORTED_MODULE_1__.DROP,
+        payload: {
+          dropResult: _objectSpread(_objectSpread({}, options), dropResult)
+        }
+      };
+      manager.dispatch(action);
+    });
+  };
 }
+
 function verifyInvariants(monitor) {
-    (0, _invariant).invariant(monitor.isDragging(), 'Cannot call drop while not dragging.');
-    (0, _invariant).invariant(!monitor.didDrop(), 'Cannot call drop twice during one drag operation.');
+  (0,_react_dnd_invariant__WEBPACK_IMPORTED_MODULE_0__.invariant)(monitor.isDragging(), 'Cannot call drop while not dragging.');
+  (0,_react_dnd_invariant__WEBPACK_IMPORTED_MODULE_0__.invariant)(!monitor.didDrop(), 'Cannot call drop twice during one drag operation.');
 }
+
 function determineDropResult(targetId, index, registry, monitor) {
-    const target = registry.getTarget(targetId);
-    let dropResult = target ? target.drop(monitor, targetId) : undefined;
-    verifyDropResultType(dropResult);
-    if (typeof dropResult === 'undefined') {
-        dropResult = index === 0 ? {} : monitor.getDropResult();
-    }
-    return dropResult;
+  var target = registry.getTarget(targetId);
+  var dropResult = target ? target.drop(monitor, targetId) : undefined;
+  verifyDropResultType(dropResult);
+
+  if (typeof dropResult === 'undefined') {
+    dropResult = index === 0 ? {} : monitor.getDropResult();
+  }
+
+  return dropResult;
 }
+
 function verifyDropResultType(dropResult) {
-    (0, _invariant).invariant(typeof dropResult === 'undefined' || (0, _jsUtilsJs).isObject(dropResult), 'Drop result must either be an object or undefined.');
+  (0,_react_dnd_invariant__WEBPACK_IMPORTED_MODULE_0__.invariant)(typeof dropResult === 'undefined' || (0,_utils_js_utils__WEBPACK_IMPORTED_MODULE_2__.isObject)(dropResult), 'Drop result must either be an object or undefined.');
 }
+
 function getDroppableTargets(monitor) {
-    const targetIds = monitor.getTargetIds().filter(monitor.canDropOnTarget, monitor);
-    targetIds.reverse();
-    return targetIds;
+  var targetIds = monitor.getTargetIds().filter(monitor.canDropOnTarget, monitor);
+  targetIds.reverse();
+  return targetIds;
 }
-
-//# sourceMappingURL=drop.js.map
 
 /***/ }),
 
-/***/ "./node_modules/dnd-core/dist/cjs/actions/dragDrop/endDrag.js":
+/***/ "./node_modules/dnd-core/dist/esm/actions/dragDrop/endDrag.js":
 /*!********************************************************************!*\
-  !*** ./node_modules/dnd-core/dist/cjs/actions/dragDrop/endDrag.js ***!
+  !*** ./node_modules/dnd-core/dist/esm/actions/dragDrop/endDrag.js ***!
   \********************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "createEndDrag": () => (/* binding */ createEndDrag)
+/* harmony export */ });
+/* harmony import */ var _react_dnd_invariant__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @react-dnd/invariant */ "./node_modules/@react-dnd/invariant/dist/invariant.esm.js");
+/* harmony import */ var _types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./types */ "./node_modules/dnd-core/dist/esm/actions/dragDrop/types.js");
 
-Object.defineProperty(exports, "__esModule", ({
-    value: true
-}));
-exports.createEndDrag = createEndDrag;
-var _invariant = __webpack_require__(/*! @react-dnd/invariant */ "./node_modules/@react-dnd/invariant/dist/cjs/index.js");
-var _typesJs = __webpack_require__(/*! ./types.js */ "./node_modules/dnd-core/dist/cjs/actions/dragDrop/types.js");
+
 function createEndDrag(manager) {
-    return function endDrag() {
-        const monitor = manager.getMonitor();
-        const registry = manager.getRegistry();
-        verifyIsDragging(monitor);
-        const sourceId = monitor.getSourceId();
-        if (sourceId != null) {
-            const source = registry.getSource(sourceId, true);
-            source.endDrag(monitor, sourceId);
-            registry.unpinSource();
-        }
-        return {
-            type: _typesJs.END_DRAG
-        };
+  return function endDrag() {
+    var monitor = manager.getMonitor();
+    var registry = manager.getRegistry();
+    verifyIsDragging(monitor);
+    var sourceId = monitor.getSourceId();
+
+    if (sourceId != null) {
+      var source = registry.getSource(sourceId, true);
+      source.endDrag(monitor, sourceId);
+      registry.unpinSource();
+    }
+
+    return {
+      type: _types__WEBPACK_IMPORTED_MODULE_1__.END_DRAG
     };
+  };
 }
+
 function verifyIsDragging(monitor) {
-    (0, _invariant).invariant(monitor.isDragging(), 'Cannot call endDrag while not dragging.');
+  (0,_react_dnd_invariant__WEBPACK_IMPORTED_MODULE_0__.invariant)(monitor.isDragging(), 'Cannot call endDrag while not dragging.');
 }
-
-//# sourceMappingURL=endDrag.js.map
 
 /***/ }),
 
-/***/ "./node_modules/dnd-core/dist/cjs/actions/dragDrop/hover.js":
+/***/ "./node_modules/dnd-core/dist/esm/actions/dragDrop/hover.js":
 /*!******************************************************************!*\
-  !*** ./node_modules/dnd-core/dist/cjs/actions/dragDrop/hover.js ***!
+  !*** ./node_modules/dnd-core/dist/esm/actions/dragDrop/hover.js ***!
   \******************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "createHover": () => (/* binding */ createHover)
+/* harmony export */ });
+/* harmony import */ var _react_dnd_invariant__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @react-dnd/invariant */ "./node_modules/@react-dnd/invariant/dist/invariant.esm.js");
+/* harmony import */ var _utils_matchesType__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../utils/matchesType */ "./node_modules/dnd-core/dist/esm/utils/matchesType.js");
+/* harmony import */ var _types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./types */ "./node_modules/dnd-core/dist/esm/actions/dragDrop/types.js");
 
-Object.defineProperty(exports, "__esModule", ({
-    value: true
-}));
-exports.createHover = createHover;
-var _invariant = __webpack_require__(/*! @react-dnd/invariant */ "./node_modules/@react-dnd/invariant/dist/cjs/index.js");
-var _matchesTypeJs = __webpack_require__(/*! ../../utils/matchesType.js */ "./node_modules/dnd-core/dist/cjs/utils/matchesType.js");
-var _typesJs = __webpack_require__(/*! ./types.js */ "./node_modules/dnd-core/dist/cjs/actions/dragDrop/types.js");
+
+
 function createHover(manager) {
-    return function hover(targetIdsArg, { clientOffset  } = {}) {
-        verifyTargetIdsIsArray(targetIdsArg);
-        const targetIds = targetIdsArg.slice(0);
-        const monitor = manager.getMonitor();
-        const registry = manager.getRegistry();
-        checkInvariants(targetIds, monitor, registry);
-        const draggedItemType = monitor.getItemType();
-        removeNonMatchingTargetIds(targetIds, registry, draggedItemType);
-        hoverAllTargets(targetIds, monitor, registry);
-        return {
-            type: _typesJs.HOVER,
-            payload: {
-                targetIds,
-                clientOffset: clientOffset || null
-            }
-        };
+  return function hover(targetIdsArg) {
+    var _ref = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {},
+        clientOffset = _ref.clientOffset;
+
+    verifyTargetIdsIsArray(targetIdsArg);
+    var targetIds = targetIdsArg.slice(0);
+    var monitor = manager.getMonitor();
+    var registry = manager.getRegistry();
+    checkInvariants(targetIds, monitor, registry);
+    var draggedItemType = monitor.getItemType();
+    removeNonMatchingTargetIds(targetIds, registry, draggedItemType);
+    hoverAllTargets(targetIds, monitor, registry);
+    return {
+      type: _types__WEBPACK_IMPORTED_MODULE_1__.HOVER,
+      payload: {
+        targetIds: targetIds,
+        clientOffset: clientOffset || null
+      }
     };
+  };
 }
+
 function verifyTargetIdsIsArray(targetIdsArg) {
-    (0, _invariant).invariant(Array.isArray(targetIdsArg), 'Expected targetIds to be an array.');
+  (0,_react_dnd_invariant__WEBPACK_IMPORTED_MODULE_0__.invariant)(Array.isArray(targetIdsArg), 'Expected targetIds to be an array.');
 }
+
 function checkInvariants(targetIds, monitor, registry) {
-    (0, _invariant).invariant(monitor.isDragging(), 'Cannot call hover while not dragging.');
-    (0, _invariant).invariant(!monitor.didDrop(), 'Cannot call hover after drop.');
-    for(let i = 0; i < targetIds.length; i++){
-        const targetId = targetIds[i];
-        (0, _invariant).invariant(targetIds.lastIndexOf(targetId) === i, 'Expected targetIds to be unique in the passed array.');
-        const target = registry.getTarget(targetId);
-        (0, _invariant).invariant(target, 'Expected targetIds to be registered.');
-    }
+  (0,_react_dnd_invariant__WEBPACK_IMPORTED_MODULE_0__.invariant)(monitor.isDragging(), 'Cannot call hover while not dragging.');
+  (0,_react_dnd_invariant__WEBPACK_IMPORTED_MODULE_0__.invariant)(!monitor.didDrop(), 'Cannot call hover after drop.');
+
+  for (var i = 0; i < targetIds.length; i++) {
+    var targetId = targetIds[i];
+    (0,_react_dnd_invariant__WEBPACK_IMPORTED_MODULE_0__.invariant)(targetIds.lastIndexOf(targetId) === i, 'Expected targetIds to be unique in the passed array.');
+    var target = registry.getTarget(targetId);
+    (0,_react_dnd_invariant__WEBPACK_IMPORTED_MODULE_0__.invariant)(target, 'Expected targetIds to be registered.');
+  }
 }
+
 function removeNonMatchingTargetIds(targetIds, registry, draggedItemType) {
-    // Remove those targetIds that don't match the targetType.  This
-    // fixes shallow isOver which would only be non-shallow because of
-    // non-matching targets.
-    for(let i = targetIds.length - 1; i >= 0; i--){
-        const targetId = targetIds[i];
-        const targetType = registry.getTargetType(targetId);
-        if (!(0, _matchesTypeJs).matchesType(targetType, draggedItemType)) {
-            targetIds.splice(i, 1);
-        }
+  // Remove those targetIds that don't match the targetType.  This
+  // fixes shallow isOver which would only be non-shallow because of
+  // non-matching targets.
+  for (var i = targetIds.length - 1; i >= 0; i--) {
+    var targetId = targetIds[i];
+    var targetType = registry.getTargetType(targetId);
+
+    if (!(0,_utils_matchesType__WEBPACK_IMPORTED_MODULE_2__.matchesType)(targetType, draggedItemType)) {
+      targetIds.splice(i, 1);
     }
+  }
 }
+
 function hoverAllTargets(targetIds, monitor, registry) {
-    // Finally call hover on all matching targets.
-    targetIds.forEach(function(targetId) {
-        const target = registry.getTarget(targetId);
-        target.hover(monitor, targetId);
-    });
+  // Finally call hover on all matching targets.
+  targetIds.forEach(function (targetId) {
+    var target = registry.getTarget(targetId);
+    target.hover(monitor, targetId);
+  });
 }
-
-//# sourceMappingURL=hover.js.map
 
 /***/ }),
 
-/***/ "./node_modules/dnd-core/dist/cjs/actions/dragDrop/index.js":
+/***/ "./node_modules/dnd-core/dist/esm/actions/dragDrop/index.js":
 /*!******************************************************************!*\
-  !*** ./node_modules/dnd-core/dist/cjs/actions/dragDrop/index.js ***!
+  !*** ./node_modules/dnd-core/dist/esm/actions/dragDrop/index.js ***!
   \******************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "BEGIN_DRAG": () => (/* reexport safe */ _types__WEBPACK_IMPORTED_MODULE_0__.BEGIN_DRAG),
+/* harmony export */   "DROP": () => (/* reexport safe */ _types__WEBPACK_IMPORTED_MODULE_0__.DROP),
+/* harmony export */   "END_DRAG": () => (/* reexport safe */ _types__WEBPACK_IMPORTED_MODULE_0__.END_DRAG),
+/* harmony export */   "HOVER": () => (/* reexport safe */ _types__WEBPACK_IMPORTED_MODULE_0__.HOVER),
+/* harmony export */   "INIT_COORDS": () => (/* reexport safe */ _types__WEBPACK_IMPORTED_MODULE_0__.INIT_COORDS),
+/* harmony export */   "PUBLISH_DRAG_SOURCE": () => (/* reexport safe */ _types__WEBPACK_IMPORTED_MODULE_0__.PUBLISH_DRAG_SOURCE),
+/* harmony export */   "createDragDropActions": () => (/* binding */ createDragDropActions)
+/* harmony export */ });
+/* harmony import */ var _beginDrag__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./beginDrag */ "./node_modules/dnd-core/dist/esm/actions/dragDrop/beginDrag.js");
+/* harmony import */ var _publishDragSource__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./publishDragSource */ "./node_modules/dnd-core/dist/esm/actions/dragDrop/publishDragSource.js");
+/* harmony import */ var _hover__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./hover */ "./node_modules/dnd-core/dist/esm/actions/dragDrop/hover.js");
+/* harmony import */ var _drop__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./drop */ "./node_modules/dnd-core/dist/esm/actions/dragDrop/drop.js");
+/* harmony import */ var _endDrag__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./endDrag */ "./node_modules/dnd-core/dist/esm/actions/dragDrop/endDrag.js");
+/* harmony import */ var _types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./types */ "./node_modules/dnd-core/dist/esm/actions/dragDrop/types.js");
 
-Object.defineProperty(exports, "__esModule", ({
-    value: true
-}));
-exports.createDragDropActions = createDragDropActions;
-var _beginDragJs = __webpack_require__(/*! ./beginDrag.js */ "./node_modules/dnd-core/dist/cjs/actions/dragDrop/beginDrag.js");
-var _publishDragSourceJs = __webpack_require__(/*! ./publishDragSource.js */ "./node_modules/dnd-core/dist/cjs/actions/dragDrop/publishDragSource.js");
-var _hoverJs = __webpack_require__(/*! ./hover.js */ "./node_modules/dnd-core/dist/cjs/actions/dragDrop/hover.js");
-var _dropJs = __webpack_require__(/*! ./drop.js */ "./node_modules/dnd-core/dist/cjs/actions/dragDrop/drop.js");
-var _endDragJs = __webpack_require__(/*! ./endDrag.js */ "./node_modules/dnd-core/dist/cjs/actions/dragDrop/endDrag.js");
-var _typesJs = _interopRequireWildcard(__webpack_require__(/*! ./types.js */ "./node_modules/dnd-core/dist/cjs/actions/dragDrop/types.js"));
-Object.keys(_typesJs).forEach(function(key) {
-    if (key === "default" || key === "__esModule") return;
-    if (key in exports && exports[key] === _typesJs[key]) return;
-    Object.defineProperty(exports, key, {
-        enumerable: true,
-        get: function() {
-            return _typesJs[key];
-        }
-    });
-});
-function _interopRequireWildcard(obj) {
-    if (obj && obj.__esModule) {
-        return obj;
-    } else {
-        var newObj = {};
-        if (obj != null) {
-            for(var key in obj){
-                if (Object.prototype.hasOwnProperty.call(obj, key)) {
-                    var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {};
-                    if (desc.get || desc.set) {
-                        Object.defineProperty(newObj, key, desc);
-                    } else {
-                        newObj[key] = obj[key];
-                    }
-                }
-            }
-        }
-        newObj.default = obj;
-        return newObj;
-    }
-}
+
+
+
+
+
 function createDragDropActions(manager) {
-    return {
-        beginDrag: (0, _beginDragJs).createBeginDrag(manager),
-        publishDragSource: (0, _publishDragSourceJs).createPublishDragSource(manager),
-        hover: (0, _hoverJs).createHover(manager),
-        drop: (0, _dropJs).createDrop(manager),
-        endDrag: (0, _endDragJs).createEndDrag(manager)
-    };
+  return {
+    beginDrag: (0,_beginDrag__WEBPACK_IMPORTED_MODULE_1__.createBeginDrag)(manager),
+    publishDragSource: (0,_publishDragSource__WEBPACK_IMPORTED_MODULE_2__.createPublishDragSource)(manager),
+    hover: (0,_hover__WEBPACK_IMPORTED_MODULE_3__.createHover)(manager),
+    drop: (0,_drop__WEBPACK_IMPORTED_MODULE_4__.createDrop)(manager),
+    endDrag: (0,_endDrag__WEBPACK_IMPORTED_MODULE_5__.createEndDrag)(manager)
+  };
 }
-
-//# sourceMappingURL=index.js.map
 
 /***/ }),
 
-/***/ "./node_modules/dnd-core/dist/cjs/actions/dragDrop/local/setClientOffset.js":
+/***/ "./node_modules/dnd-core/dist/esm/actions/dragDrop/local/setClientOffset.js":
 /*!**********************************************************************************!*\
-  !*** ./node_modules/dnd-core/dist/cjs/actions/dragDrop/local/setClientOffset.js ***!
+  !*** ./node_modules/dnd-core/dist/esm/actions/dragDrop/local/setClientOffset.js ***!
   \**********************************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "setClientOffset": () => (/* binding */ setClientOffset)
+/* harmony export */ });
+/* harmony import */ var _types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../types */ "./node_modules/dnd-core/dist/esm/actions/dragDrop/types.js");
 
-Object.defineProperty(exports, "__esModule", ({
-    value: true
-}));
-exports.setClientOffset = setClientOffset;
-var _typesJs = __webpack_require__(/*! ../types.js */ "./node_modules/dnd-core/dist/cjs/actions/dragDrop/types.js");
 function setClientOffset(clientOffset, sourceClientOffset) {
-    return {
-        type: _typesJs.INIT_COORDS,
-        payload: {
-            sourceClientOffset: sourceClientOffset || null,
-            clientOffset: clientOffset || null
-        }
-    };
+  return {
+    type: _types__WEBPACK_IMPORTED_MODULE_0__.INIT_COORDS,
+    payload: {
+      sourceClientOffset: sourceClientOffset || null,
+      clientOffset: clientOffset || null
+    }
+  };
 }
-
-//# sourceMappingURL=setClientOffset.js.map
 
 /***/ }),
 
-/***/ "./node_modules/dnd-core/dist/cjs/actions/dragDrop/publishDragSource.js":
+/***/ "./node_modules/dnd-core/dist/esm/actions/dragDrop/publishDragSource.js":
 /*!******************************************************************************!*\
-  !*** ./node_modules/dnd-core/dist/cjs/actions/dragDrop/publishDragSource.js ***!
+  !*** ./node_modules/dnd-core/dist/esm/actions/dragDrop/publishDragSource.js ***!
   \******************************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "createPublishDragSource": () => (/* binding */ createPublishDragSource)
+/* harmony export */ });
+/* harmony import */ var _types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./types */ "./node_modules/dnd-core/dist/esm/actions/dragDrop/types.js");
 
-Object.defineProperty(exports, "__esModule", ({
-    value: true
-}));
-exports.createPublishDragSource = createPublishDragSource;
-var _typesJs = __webpack_require__(/*! ./types.js */ "./node_modules/dnd-core/dist/cjs/actions/dragDrop/types.js");
 function createPublishDragSource(manager) {
-    return function publishDragSource() {
-        const monitor = manager.getMonitor();
-        if (monitor.isDragging()) {
-            return {
-                type: _typesJs.PUBLISH_DRAG_SOURCE
-            };
-        }
-        return;
-    };
+  return function publishDragSource() {
+    var monitor = manager.getMonitor();
+
+    if (monitor.isDragging()) {
+      return {
+        type: _types__WEBPACK_IMPORTED_MODULE_0__.PUBLISH_DRAG_SOURCE
+      };
+    }
+  };
 }
 
-//# sourceMappingURL=publishDragSource.js.map
-
 /***/ }),
 
-/***/ "./node_modules/dnd-core/dist/cjs/actions/dragDrop/types.js":
+/***/ "./node_modules/dnd-core/dist/esm/actions/dragDrop/types.js":
 /*!******************************************************************!*\
-  !*** ./node_modules/dnd-core/dist/cjs/actions/dragDrop/types.js ***!
+  !*** ./node_modules/dnd-core/dist/esm/actions/dragDrop/types.js ***!
   \******************************************************************/
-/***/ ((__unused_webpack_module, exports) => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-
-Object.defineProperty(exports, "__esModule", ({
-    value: true
-}));
-exports.END_DRAG = exports.DROP = exports.HOVER = exports.PUBLISH_DRAG_SOURCE = exports.BEGIN_DRAG = exports.INIT_COORDS = void 0;
-const INIT_COORDS = 'dnd-core/INIT_COORDS';
-exports.INIT_COORDS = INIT_COORDS;
-const BEGIN_DRAG = 'dnd-core/BEGIN_DRAG';
-exports.BEGIN_DRAG = BEGIN_DRAG;
-const PUBLISH_DRAG_SOURCE = 'dnd-core/PUBLISH_DRAG_SOURCE';
-exports.PUBLISH_DRAG_SOURCE = PUBLISH_DRAG_SOURCE;
-const HOVER = 'dnd-core/HOVER';
-exports.HOVER = HOVER;
-const DROP = 'dnd-core/DROP';
-exports.DROP = DROP;
-const END_DRAG = 'dnd-core/END_DRAG';
-exports.END_DRAG = END_DRAG;
-
-//# sourceMappingURL=types.js.map
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "INIT_COORDS": () => (/* binding */ INIT_COORDS),
+/* harmony export */   "BEGIN_DRAG": () => (/* binding */ BEGIN_DRAG),
+/* harmony export */   "PUBLISH_DRAG_SOURCE": () => (/* binding */ PUBLISH_DRAG_SOURCE),
+/* harmony export */   "HOVER": () => (/* binding */ HOVER),
+/* harmony export */   "DROP": () => (/* binding */ DROP),
+/* harmony export */   "END_DRAG": () => (/* binding */ END_DRAG)
+/* harmony export */ });
+var INIT_COORDS = 'dnd-core/INIT_COORDS';
+var BEGIN_DRAG = 'dnd-core/BEGIN_DRAG';
+var PUBLISH_DRAG_SOURCE = 'dnd-core/PUBLISH_DRAG_SOURCE';
+var HOVER = 'dnd-core/HOVER';
+var DROP = 'dnd-core/DROP';
+var END_DRAG = 'dnd-core/END_DRAG';
 
 /***/ }),
 
-/***/ "./node_modules/dnd-core/dist/cjs/actions/registry.js":
+/***/ "./node_modules/dnd-core/dist/esm/actions/registry.js":
 /*!************************************************************!*\
-  !*** ./node_modules/dnd-core/dist/cjs/actions/registry.js ***!
+  !*** ./node_modules/dnd-core/dist/esm/actions/registry.js ***!
   \************************************************************/
-/***/ ((__unused_webpack_module, exports) => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-
-Object.defineProperty(exports, "__esModule", ({
-    value: true
-}));
-exports.addSource = addSource;
-exports.addTarget = addTarget;
-exports.removeSource = removeSource;
-exports.removeTarget = removeTarget;
-exports.REMOVE_TARGET = exports.REMOVE_SOURCE = exports.ADD_TARGET = exports.ADD_SOURCE = void 0;
-const ADD_SOURCE = 'dnd-core/ADD_SOURCE';
-exports.ADD_SOURCE = ADD_SOURCE;
-const ADD_TARGET = 'dnd-core/ADD_TARGET';
-exports.ADD_TARGET = ADD_TARGET;
-const REMOVE_SOURCE = 'dnd-core/REMOVE_SOURCE';
-exports.REMOVE_SOURCE = REMOVE_SOURCE;
-const REMOVE_TARGET = 'dnd-core/REMOVE_TARGET';
-exports.REMOVE_TARGET = REMOVE_TARGET;
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "ADD_SOURCE": () => (/* binding */ ADD_SOURCE),
+/* harmony export */   "ADD_TARGET": () => (/* binding */ ADD_TARGET),
+/* harmony export */   "REMOVE_SOURCE": () => (/* binding */ REMOVE_SOURCE),
+/* harmony export */   "REMOVE_TARGET": () => (/* binding */ REMOVE_TARGET),
+/* harmony export */   "addSource": () => (/* binding */ addSource),
+/* harmony export */   "addTarget": () => (/* binding */ addTarget),
+/* harmony export */   "removeSource": () => (/* binding */ removeSource),
+/* harmony export */   "removeTarget": () => (/* binding */ removeTarget)
+/* harmony export */ });
+var ADD_SOURCE = 'dnd-core/ADD_SOURCE';
+var ADD_TARGET = 'dnd-core/ADD_TARGET';
+var REMOVE_SOURCE = 'dnd-core/REMOVE_SOURCE';
+var REMOVE_TARGET = 'dnd-core/REMOVE_TARGET';
 function addSource(sourceId) {
-    return {
-        type: ADD_SOURCE,
-        payload: {
-            sourceId
-        }
-    };
+  return {
+    type: ADD_SOURCE,
+    payload: {
+      sourceId: sourceId
+    }
+  };
 }
 function addTarget(targetId) {
-    return {
-        type: ADD_TARGET,
-        payload: {
-            targetId
-        }
-    };
+  return {
+    type: ADD_TARGET,
+    payload: {
+      targetId: targetId
+    }
+  };
 }
 function removeSource(sourceId) {
-    return {
-        type: REMOVE_SOURCE,
-        payload: {
-            sourceId
-        }
-    };
+  return {
+    type: REMOVE_SOURCE,
+    payload: {
+      sourceId: sourceId
+    }
+  };
 }
 function removeTarget(targetId) {
-    return {
-        type: REMOVE_TARGET,
-        payload: {
-            targetId
-        }
-    };
+  return {
+    type: REMOVE_TARGET,
+    payload: {
+      targetId: targetId
+    }
+  };
 }
-
-//# sourceMappingURL=registry.js.map
 
 /***/ }),
 
-/***/ "./node_modules/dnd-core/dist/cjs/classes/DragDropManagerImpl.js":
+/***/ "./node_modules/dnd-core/dist/esm/classes/DragDropManagerImpl.js":
 /*!***********************************************************************!*\
-  !*** ./node_modules/dnd-core/dist/cjs/classes/DragDropManagerImpl.js ***!
+  !*** ./node_modules/dnd-core/dist/esm/classes/DragDropManagerImpl.js ***!
   \***********************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "DragDropManagerImpl": () => (/* binding */ DragDropManagerImpl)
+/* harmony export */ });
+/* harmony import */ var _actions_dragDrop__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/dragDrop */ "./node_modules/dnd-core/dist/esm/actions/dragDrop/index.js");
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-Object.defineProperty(exports, "__esModule", ({
-    value: true
-}));
-var _indexJs = __webpack_require__(/*! ../actions/dragDrop/index.js */ "./node_modules/dnd-core/dist/cjs/actions/dragDrop/index.js");
-class DragDropManagerImpl {
-    receiveBackend(backend) {
-        this.backend = backend;
-    }
-    getMonitor() {
-        return this.monitor;
-    }
-    getBackend() {
-        return this.backend;
-    }
-    getRegistry() {
-        return this.monitor.registry;
-    }
-    getActions() {
-        /* eslint-disable-next-line @typescript-eslint/no-this-alias */ const manager = this;
-        const { dispatch  } = this.store;
-        function bindActionCreator(actionCreator) {
-            return (...args)=>{
-                const action = actionCreator.apply(manager, args);
-                if (typeof action !== 'undefined') {
-                    dispatch(action);
-                }
-            };
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+var DragDropManagerImpl = /*#__PURE__*/function () {
+  function DragDropManagerImpl(store, monitor) {
+    var _this = this;
+
+    _classCallCheck(this, DragDropManagerImpl);
+
+    _defineProperty(this, "store", void 0);
+
+    _defineProperty(this, "monitor", void 0);
+
+    _defineProperty(this, "backend", void 0);
+
+    _defineProperty(this, "isSetUp", false);
+
+    _defineProperty(this, "handleRefCountChange", function () {
+      var shouldSetUp = _this.store.getState().refCount > 0;
+
+      if (_this.backend) {
+        if (shouldSetUp && !_this.isSetUp) {
+          _this.backend.setup();
+
+          _this.isSetUp = true;
+        } else if (!shouldSetUp && _this.isSetUp) {
+          _this.backend.teardown();
+
+          _this.isSetUp = false;
         }
-        const actions = (0, _indexJs).createDragDropActions(this);
-        return Object.keys(actions).reduce((boundActions, key)=>{
-            const action = actions[key];
-            boundActions[key] = bindActionCreator(action);
-            return boundActions;
-        }, {});
-    }
-    dispatch(action) {
-        this.store.dispatch(action);
-    }
-    constructor(store, monitor){
-        this.isSetUp = false;
-        this.handleRefCountChange = ()=>{
-            const shouldSetUp = this.store.getState().refCount > 0;
-            if (this.backend) {
-                if (shouldSetUp && !this.isSetUp) {
-                    this.backend.setup();
-                    this.isSetUp = true;
-                } else if (!shouldSetUp && this.isSetUp) {
-                    this.backend.teardown();
-                    this.isSetUp = false;
-                }
-            }
-        };
-        this.store = store;
-        this.monitor = monitor;
-        store.subscribe(this.handleRefCountChange);
-    }
-}
-exports.DragDropManagerImpl = DragDropManagerImpl;
+      }
+    });
 
-//# sourceMappingURL=DragDropManagerImpl.js.map
+    this.store = store;
+    this.monitor = monitor;
+    store.subscribe(this.handleRefCountChange);
+  }
+
+  _createClass(DragDropManagerImpl, [{
+    key: "receiveBackend",
+    value: function receiveBackend(backend) {
+      this.backend = backend;
+    }
+  }, {
+    key: "getMonitor",
+    value: function getMonitor() {
+      return this.monitor;
+    }
+  }, {
+    key: "getBackend",
+    value: function getBackend() {
+      return this.backend;
+    }
+  }, {
+    key: "getRegistry",
+    value: function getRegistry() {
+      return this.monitor.registry;
+    }
+  }, {
+    key: "getActions",
+    value: function getActions() {
+      /* eslint-disable-next-line @typescript-eslint/no-this-alias */
+      var manager = this;
+      var dispatch = this.store.dispatch;
+
+      function bindActionCreator(actionCreator) {
+        return function () {
+          for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+            args[_key] = arguments[_key];
+          }
+
+          var action = actionCreator.apply(manager, args);
+
+          if (typeof action !== 'undefined') {
+            dispatch(action);
+          }
+        };
+      }
+
+      var actions = (0,_actions_dragDrop__WEBPACK_IMPORTED_MODULE_0__.createDragDropActions)(this);
+      return Object.keys(actions).reduce(function (boundActions, key) {
+        var action = actions[key];
+        boundActions[key] = bindActionCreator(action);
+        return boundActions;
+      }, {});
+    }
+  }, {
+    key: "dispatch",
+    value: function dispatch(action) {
+      this.store.dispatch(action);
+    }
+  }]);
+
+  return DragDropManagerImpl;
+}();
 
 /***/ }),
 
-/***/ "./node_modules/dnd-core/dist/cjs/classes/DragDropMonitorImpl.js":
+/***/ "./node_modules/dnd-core/dist/esm/classes/DragDropMonitorImpl.js":
 /*!***********************************************************************!*\
-  !*** ./node_modules/dnd-core/dist/cjs/classes/DragDropMonitorImpl.js ***!
+  !*** ./node_modules/dnd-core/dist/esm/classes/DragDropMonitorImpl.js ***!
   \***********************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "DragDropMonitorImpl": () => (/* binding */ DragDropMonitorImpl)
+/* harmony export */ });
+/* harmony import */ var _react_dnd_invariant__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @react-dnd/invariant */ "./node_modules/@react-dnd/invariant/dist/invariant.esm.js");
+/* harmony import */ var _utils_matchesType__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../utils/matchesType */ "./node_modules/dnd-core/dist/esm/utils/matchesType.js");
+/* harmony import */ var _utils_coords__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../utils/coords */ "./node_modules/dnd-core/dist/esm/utils/coords.js");
+/* harmony import */ var _utils_dirtiness__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils/dirtiness */ "./node_modules/dnd-core/dist/esm/utils/dirtiness.js");
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-Object.defineProperty(exports, "__esModule", ({
-    value: true
-}));
-var _invariant = __webpack_require__(/*! @react-dnd/invariant */ "./node_modules/@react-dnd/invariant/dist/cjs/index.js");
-var _matchesTypeJs = __webpack_require__(/*! ../utils/matchesType.js */ "./node_modules/dnd-core/dist/cjs/utils/matchesType.js");
-var _coordsJs = __webpack_require__(/*! ../utils/coords.js */ "./node_modules/dnd-core/dist/cjs/utils/coords.js");
-var _dirtinessJs = __webpack_require__(/*! ../utils/dirtiness.js */ "./node_modules/dnd-core/dist/cjs/utils/dirtiness.js");
-class DragDropMonitorImpl {
-    subscribeToStateChange(listener, options = {}) {
-        const { handlerIds  } = options;
-        (0, _invariant).invariant(typeof listener === 'function', 'listener must be a function.');
-        (0, _invariant).invariant(typeof handlerIds === 'undefined' || Array.isArray(handlerIds), 'handlerIds, when specified, must be an array of strings.');
-        let prevStateId = this.store.getState().stateId;
-        const handleChange = ()=>{
-            const state = this.store.getState();
-            const currentStateId = state.stateId;
-            try {
-                const canSkipListener = currentStateId === prevStateId || currentStateId === prevStateId + 1 && !(0, _dirtinessJs).areDirty(state.dirtyHandlerIds, handlerIds);
-                if (!canSkipListener) {
-                    listener();
-                }
-            } finally{
-                prevStateId = currentStateId;
-            }
-        };
-        return this.store.subscribe(handleChange);
-    }
-    subscribeToOffsetChange(listener) {
-        (0, _invariant).invariant(typeof listener === 'function', 'listener must be a function.');
-        let previousState = this.store.getState().dragOffset;
-        const handleChange = ()=>{
-            const nextState = this.store.getState().dragOffset;
-            if (nextState === previousState) {
-                return;
-            }
-            previousState = nextState;
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+
+var DragDropMonitorImpl = /*#__PURE__*/function () {
+  function DragDropMonitorImpl(store, registry) {
+    _classCallCheck(this, DragDropMonitorImpl);
+
+    _defineProperty(this, "store", void 0);
+
+    _defineProperty(this, "registry", void 0);
+
+    this.store = store;
+    this.registry = registry;
+  }
+
+  _createClass(DragDropMonitorImpl, [{
+    key: "subscribeToStateChange",
+    value: function subscribeToStateChange(listener) {
+      var _this = this;
+
+      var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {
+        handlerIds: undefined
+      };
+      var handlerIds = options.handlerIds;
+      (0,_react_dnd_invariant__WEBPACK_IMPORTED_MODULE_0__.invariant)(typeof listener === 'function', 'listener must be a function.');
+      (0,_react_dnd_invariant__WEBPACK_IMPORTED_MODULE_0__.invariant)(typeof handlerIds === 'undefined' || Array.isArray(handlerIds), 'handlerIds, when specified, must be an array of strings.');
+      var prevStateId = this.store.getState().stateId;
+
+      var handleChange = function handleChange() {
+        var state = _this.store.getState();
+
+        var currentStateId = state.stateId;
+
+        try {
+          var canSkipListener = currentStateId === prevStateId || currentStateId === prevStateId + 1 && !(0,_utils_dirtiness__WEBPACK_IMPORTED_MODULE_1__.areDirty)(state.dirtyHandlerIds, handlerIds);
+
+          if (!canSkipListener) {
             listener();
-        };
-        return this.store.subscribe(handleChange);
+          }
+        } finally {
+          prevStateId = currentStateId;
+        }
+      };
+
+      return this.store.subscribe(handleChange);
     }
-    canDragSource(sourceId) {
-        if (!sourceId) {
-            return false;
+  }, {
+    key: "subscribeToOffsetChange",
+    value: function subscribeToOffsetChange(listener) {
+      var _this2 = this;
+
+      (0,_react_dnd_invariant__WEBPACK_IMPORTED_MODULE_0__.invariant)(typeof listener === 'function', 'listener must be a function.');
+      var previousState = this.store.getState().dragOffset;
+
+      var handleChange = function handleChange() {
+        var nextState = _this2.store.getState().dragOffset;
+
+        if (nextState === previousState) {
+          return;
         }
-        const source = this.registry.getSource(sourceId);
-        (0, _invariant).invariant(source, `Expected to find a valid source. sourceId=${sourceId}`);
-        if (this.isDragging()) {
-            return false;
-        }
-        return source.canDrag(this, sourceId);
+
+        previousState = nextState;
+        listener();
+      };
+
+      return this.store.subscribe(handleChange);
     }
-    canDropOnTarget(targetId) {
-        // undefined on initial render
-        if (!targetId) {
-            return false;
-        }
-        const target = this.registry.getTarget(targetId);
-        (0, _invariant).invariant(target, `Expected to find a valid target. targetId=${targetId}`);
-        if (!this.isDragging() || this.didDrop()) {
-            return false;
-        }
-        const targetType = this.registry.getTargetType(targetId);
-        const draggedItemType = this.getItemType();
-        return (0, _matchesTypeJs).matchesType(targetType, draggedItemType) && target.canDrop(this, targetId);
+  }, {
+    key: "canDragSource",
+    value: function canDragSource(sourceId) {
+      if (!sourceId) {
+        return false;
+      }
+
+      var source = this.registry.getSource(sourceId);
+      (0,_react_dnd_invariant__WEBPACK_IMPORTED_MODULE_0__.invariant)(source, "Expected to find a valid source. sourceId=".concat(sourceId));
+
+      if (this.isDragging()) {
+        return false;
+      }
+
+      return source.canDrag(this, sourceId);
     }
-    isDragging() {
-        return Boolean(this.getItemType());
+  }, {
+    key: "canDropOnTarget",
+    value: function canDropOnTarget(targetId) {
+      // undefined on initial render
+      if (!targetId) {
+        return false;
+      }
+
+      var target = this.registry.getTarget(targetId);
+      (0,_react_dnd_invariant__WEBPACK_IMPORTED_MODULE_0__.invariant)(target, "Expected to find a valid target. targetId=".concat(targetId));
+
+      if (!this.isDragging() || this.didDrop()) {
+        return false;
+      }
+
+      var targetType = this.registry.getTargetType(targetId);
+      var draggedItemType = this.getItemType();
+      return (0,_utils_matchesType__WEBPACK_IMPORTED_MODULE_2__.matchesType)(targetType, draggedItemType) && target.canDrop(this, targetId);
     }
-    isDraggingSource(sourceId) {
-        // undefined on initial render
-        if (!sourceId) {
-            return false;
-        }
-        const source = this.registry.getSource(sourceId, true);
-        (0, _invariant).invariant(source, `Expected to find a valid source. sourceId=${sourceId}`);
-        if (!this.isDragging() || !this.isSourcePublic()) {
-            return false;
-        }
-        const sourceType = this.registry.getSourceType(sourceId);
-        const draggedItemType = this.getItemType();
-        if (sourceType !== draggedItemType) {
-            return false;
-        }
-        return source.isDragging(this, sourceId);
+  }, {
+    key: "isDragging",
+    value: function isDragging() {
+      return Boolean(this.getItemType());
     }
-    isOverTarget(targetId, options = {
+  }, {
+    key: "isDraggingSource",
+    value: function isDraggingSource(sourceId) {
+      // undefined on initial render
+      if (!sourceId) {
+        return false;
+      }
+
+      var source = this.registry.getSource(sourceId, true);
+      (0,_react_dnd_invariant__WEBPACK_IMPORTED_MODULE_0__.invariant)(source, "Expected to find a valid source. sourceId=".concat(sourceId));
+
+      if (!this.isDragging() || !this.isSourcePublic()) {
+        return false;
+      }
+
+      var sourceType = this.registry.getSourceType(sourceId);
+      var draggedItemType = this.getItemType();
+
+      if (sourceType !== draggedItemType) {
+        return false;
+      }
+
+      return source.isDragging(this, sourceId);
+    }
+  }, {
+    key: "isOverTarget",
+    value: function isOverTarget(targetId) {
+      var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {
         shallow: false
-    }) {
-        // undefined on initial render
-        if (!targetId) {
-            return false;
-        }
-        const { shallow  } = options;
-        if (!this.isDragging()) {
-            return false;
-        }
-        const targetType = this.registry.getTargetType(targetId);
-        const draggedItemType = this.getItemType();
-        if (draggedItemType && !(0, _matchesTypeJs).matchesType(targetType, draggedItemType)) {
-            return false;
-        }
-        const targetIds = this.getTargetIds();
-        if (!targetIds.length) {
-            return false;
-        }
-        const index = targetIds.indexOf(targetId);
-        if (shallow) {
-            return index === targetIds.length - 1;
-        } else {
-            return index > -1;
-        }
-    }
-    getItemType() {
-        return this.store.getState().dragOperation.itemType;
-    }
-    getItem() {
-        return this.store.getState().dragOperation.item;
-    }
-    getSourceId() {
-        return this.store.getState().dragOperation.sourceId;
-    }
-    getTargetIds() {
-        return this.store.getState().dragOperation.targetIds;
-    }
-    getDropResult() {
-        return this.store.getState().dragOperation.dropResult;
-    }
-    didDrop() {
-        return this.store.getState().dragOperation.didDrop;
-    }
-    isSourcePublic() {
-        return Boolean(this.store.getState().dragOperation.isSourcePublic);
-    }
-    getInitialClientOffset() {
-        return this.store.getState().dragOffset.initialClientOffset;
-    }
-    getInitialSourceClientOffset() {
-        return this.store.getState().dragOffset.initialSourceClientOffset;
-    }
-    getClientOffset() {
-        return this.store.getState().dragOffset.clientOffset;
-    }
-    getSourceClientOffset() {
-        return (0, _coordsJs).getSourceClientOffset(this.store.getState().dragOffset);
-    }
-    getDifferenceFromInitialOffset() {
-        return (0, _coordsJs).getDifferenceFromInitialOffset(this.store.getState().dragOffset);
-    }
-    constructor(store, registry){
-        this.store = store;
-        this.registry = registry;
-    }
-}
-exports.DragDropMonitorImpl = DragDropMonitorImpl;
+      };
 
-//# sourceMappingURL=DragDropMonitorImpl.js.map
+      // undefined on initial render
+      if (!targetId) {
+        return false;
+      }
+
+      var shallow = options.shallow;
+
+      if (!this.isDragging()) {
+        return false;
+      }
+
+      var targetType = this.registry.getTargetType(targetId);
+      var draggedItemType = this.getItemType();
+
+      if (draggedItemType && !(0,_utils_matchesType__WEBPACK_IMPORTED_MODULE_2__.matchesType)(targetType, draggedItemType)) {
+        return false;
+      }
+
+      var targetIds = this.getTargetIds();
+
+      if (!targetIds.length) {
+        return false;
+      }
+
+      var index = targetIds.indexOf(targetId);
+
+      if (shallow) {
+        return index === targetIds.length - 1;
+      } else {
+        return index > -1;
+      }
+    }
+  }, {
+    key: "getItemType",
+    value: function getItemType() {
+      return this.store.getState().dragOperation.itemType;
+    }
+  }, {
+    key: "getItem",
+    value: function getItem() {
+      return this.store.getState().dragOperation.item;
+    }
+  }, {
+    key: "getSourceId",
+    value: function getSourceId() {
+      return this.store.getState().dragOperation.sourceId;
+    }
+  }, {
+    key: "getTargetIds",
+    value: function getTargetIds() {
+      return this.store.getState().dragOperation.targetIds;
+    }
+  }, {
+    key: "getDropResult",
+    value: function getDropResult() {
+      return this.store.getState().dragOperation.dropResult;
+    }
+  }, {
+    key: "didDrop",
+    value: function didDrop() {
+      return this.store.getState().dragOperation.didDrop;
+    }
+  }, {
+    key: "isSourcePublic",
+    value: function isSourcePublic() {
+      return Boolean(this.store.getState().dragOperation.isSourcePublic);
+    }
+  }, {
+    key: "getInitialClientOffset",
+    value: function getInitialClientOffset() {
+      return this.store.getState().dragOffset.initialClientOffset;
+    }
+  }, {
+    key: "getInitialSourceClientOffset",
+    value: function getInitialSourceClientOffset() {
+      return this.store.getState().dragOffset.initialSourceClientOffset;
+    }
+  }, {
+    key: "getClientOffset",
+    value: function getClientOffset() {
+      return this.store.getState().dragOffset.clientOffset;
+    }
+  }, {
+    key: "getSourceClientOffset",
+    value: function getSourceClientOffset() {
+      return (0,_utils_coords__WEBPACK_IMPORTED_MODULE_3__.getSourceClientOffset)(this.store.getState().dragOffset);
+    }
+  }, {
+    key: "getDifferenceFromInitialOffset",
+    value: function getDifferenceFromInitialOffset() {
+      return (0,_utils_coords__WEBPACK_IMPORTED_MODULE_3__.getDifferenceFromInitialOffset)(this.store.getState().dragOffset);
+    }
+  }]);
+
+  return DragDropMonitorImpl;
+}();
 
 /***/ }),
 
-/***/ "./node_modules/dnd-core/dist/cjs/classes/HandlerRegistryImpl.js":
+/***/ "./node_modules/dnd-core/dist/esm/classes/HandlerRegistryImpl.js":
 /*!***********************************************************************!*\
-  !*** ./node_modules/dnd-core/dist/cjs/classes/HandlerRegistryImpl.js ***!
+  !*** ./node_modules/dnd-core/dist/esm/classes/HandlerRegistryImpl.js ***!
   \***********************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "HandlerRegistryImpl": () => (/* binding */ HandlerRegistryImpl)
+/* harmony export */ });
+/* harmony import */ var _react_dnd_invariant__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @react-dnd/invariant */ "./node_modules/@react-dnd/invariant/dist/invariant.esm.js");
+/* harmony import */ var _actions_registry__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../actions/registry */ "./node_modules/dnd-core/dist/esm/actions/registry.js");
+/* harmony import */ var _utils_getNextUniqueId__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../utils/getNextUniqueId */ "./node_modules/dnd-core/dist/esm/utils/getNextUniqueId.js");
+/* harmony import */ var _interfaces__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../interfaces */ "./node_modules/dnd-core/dist/esm/interfaces.js");
+/* harmony import */ var _contracts__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../contracts */ "./node_modules/dnd-core/dist/esm/contracts.js");
+/* harmony import */ var _react_dnd_asap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @react-dnd/asap */ "./node_modules/@react-dnd/asap/dist/esm/browser/index.js");
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-Object.defineProperty(exports, "__esModule", ({
-    value: true
-}));
-var _invariant = __webpack_require__(/*! @react-dnd/invariant */ "./node_modules/@react-dnd/invariant/dist/cjs/index.js");
-var _registryJs = __webpack_require__(/*! ../actions/registry.js */ "./node_modules/dnd-core/dist/cjs/actions/registry.js");
-var _getNextUniqueIdJs = __webpack_require__(/*! ../utils/getNextUniqueId.js */ "./node_modules/dnd-core/dist/cjs/utils/getNextUniqueId.js");
-var _interfacesJs = __webpack_require__(/*! ../interfaces.js */ "./node_modules/dnd-core/dist/cjs/interfaces.js");
-var _contractsJs = __webpack_require__(/*! ../contracts.js */ "./node_modules/dnd-core/dist/cjs/contracts.js");
-var _asap = __webpack_require__(/*! @react-dnd/asap */ "./node_modules/@react-dnd/asap/dist/esm/browser/index.js");
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+
+
+
 function getNextHandlerId(role) {
-    const id = (0, _getNextUniqueIdJs).getNextUniqueId().toString();
-    switch(role){
-        case _interfacesJs.HandlerRole.SOURCE:
-            return `S${id}`;
-        case _interfacesJs.HandlerRole.TARGET:
-            return `T${id}`;
-        default:
-            throw new Error(`Unknown Handler Role: ${role}`);
-    }
-}
-function parseRoleFromHandlerId(handlerId) {
-    switch(handlerId[0]){
-        case 'S':
-            return _interfacesJs.HandlerRole.SOURCE;
-        case 'T':
-            return _interfacesJs.HandlerRole.TARGET;
-        default:
-            throw new Error(`Cannot parse handler ID: ${handlerId}`);
-    }
-}
-function mapContainsValue(map, searchValue) {
-    const entries = map.entries();
-    let isDone = false;
-    do {
-        const { done , value: [, value] ,  } = entries.next();
-        if (value === searchValue) {
-            return true;
-        }
-        isDone = !!done;
-    }while (!isDone)
-    return false;
-}
-class HandlerRegistryImpl {
-    addSource(type, source) {
-        (0, _contractsJs).validateType(type);
-        (0, _contractsJs).validateSourceContract(source);
-        const sourceId = this.addHandler(_interfacesJs.HandlerRole.SOURCE, type, source);
-        this.store.dispatch((0, _registryJs).addSource(sourceId));
-        return sourceId;
-    }
-    addTarget(type, target) {
-        (0, _contractsJs).validateType(type, true);
-        (0, _contractsJs).validateTargetContract(target);
-        const targetId = this.addHandler(_interfacesJs.HandlerRole.TARGET, type, target);
-        this.store.dispatch((0, _registryJs).addTarget(targetId));
-        return targetId;
-    }
-    containsHandler(handler) {
-        return mapContainsValue(this.dragSources, handler) || mapContainsValue(this.dropTargets, handler);
-    }
-    getSource(sourceId, includePinned = false) {
-        (0, _invariant).invariant(this.isSourceId(sourceId), 'Expected a valid source ID.');
-        const isPinned = includePinned && sourceId === this.pinnedSourceId;
-        const source = isPinned ? this.pinnedSource : this.dragSources.get(sourceId);
-        return source;
-    }
-    getTarget(targetId) {
-        (0, _invariant).invariant(this.isTargetId(targetId), 'Expected a valid target ID.');
-        return this.dropTargets.get(targetId);
-    }
-    getSourceType(sourceId) {
-        (0, _invariant).invariant(this.isSourceId(sourceId), 'Expected a valid source ID.');
-        return this.types.get(sourceId);
-    }
-    getTargetType(targetId) {
-        (0, _invariant).invariant(this.isTargetId(targetId), 'Expected a valid target ID.');
-        return this.types.get(targetId);
-    }
-    isSourceId(handlerId) {
-        const role = parseRoleFromHandlerId(handlerId);
-        return role === _interfacesJs.HandlerRole.SOURCE;
-    }
-    isTargetId(handlerId) {
-        const role = parseRoleFromHandlerId(handlerId);
-        return role === _interfacesJs.HandlerRole.TARGET;
-    }
-    removeSource(sourceId) {
-        (0, _invariant).invariant(this.getSource(sourceId), 'Expected an existing source.');
-        this.store.dispatch((0, _registryJs).removeSource(sourceId));
-        (0, _asap).asap(()=>{
-            this.dragSources.delete(sourceId);
-            this.types.delete(sourceId);
-        });
-    }
-    removeTarget(targetId) {
-        (0, _invariant).invariant(this.getTarget(targetId), 'Expected an existing target.');
-        this.store.dispatch((0, _registryJs).removeTarget(targetId));
-        this.dropTargets.delete(targetId);
-        this.types.delete(targetId);
-    }
-    pinSource(sourceId) {
-        const source = this.getSource(sourceId);
-        (0, _invariant).invariant(source, 'Expected an existing source.');
-        this.pinnedSourceId = sourceId;
-        this.pinnedSource = source;
-    }
-    unpinSource() {
-        (0, _invariant).invariant(this.pinnedSource, 'No source is pinned at the time.');
-        this.pinnedSourceId = null;
-        this.pinnedSource = null;
-    }
-    addHandler(role, type, handler) {
-        const id = getNextHandlerId(role);
-        this.types.set(id, type);
-        if (role === _interfacesJs.HandlerRole.SOURCE) {
-            this.dragSources.set(id, handler);
-        } else if (role === _interfacesJs.HandlerRole.TARGET) {
-            this.dropTargets.set(id, handler);
-        }
-        return id;
-    }
-    constructor(store){
-        this.types = new Map();
-        this.dragSources = new Map();
-        this.dropTargets = new Map();
-        this.pinnedSourceId = null;
-        this.pinnedSource = null;
-        this.store = store;
-    }
-}
-exports.HandlerRegistryImpl = HandlerRegistryImpl;
+  var id = (0,_utils_getNextUniqueId__WEBPACK_IMPORTED_MODULE_2__.getNextUniqueId)().toString();
 
-//# sourceMappingURL=HandlerRegistryImpl.js.map
+  switch (role) {
+    case _interfaces__WEBPACK_IMPORTED_MODULE_3__.HandlerRole.SOURCE:
+      return "S".concat(id);
+
+    case _interfaces__WEBPACK_IMPORTED_MODULE_3__.HandlerRole.TARGET:
+      return "T".concat(id);
+
+    default:
+      throw new Error("Unknown Handler Role: ".concat(role));
+  }
+}
+
+function parseRoleFromHandlerId(handlerId) {
+  switch (handlerId[0]) {
+    case 'S':
+      return _interfaces__WEBPACK_IMPORTED_MODULE_3__.HandlerRole.SOURCE;
+
+    case 'T':
+      return _interfaces__WEBPACK_IMPORTED_MODULE_3__.HandlerRole.TARGET;
+
+    default:
+      (0,_react_dnd_invariant__WEBPACK_IMPORTED_MODULE_0__.invariant)(false, "Cannot parse handler ID: ".concat(handlerId));
+  }
+}
+
+function mapContainsValue(map, searchValue) {
+  var entries = map.entries();
+  var isDone = false;
+
+  do {
+    var _entries$next = entries.next(),
+        done = _entries$next.done,
+        _entries$next$value = _slicedToArray(_entries$next.value, 2),
+        value = _entries$next$value[1];
+
+    if (value === searchValue) {
+      return true;
+    }
+
+    isDone = !!done;
+  } while (!isDone);
+
+  return false;
+}
+
+var HandlerRegistryImpl = /*#__PURE__*/function () {
+  function HandlerRegistryImpl(store) {
+    _classCallCheck(this, HandlerRegistryImpl);
+
+    _defineProperty(this, "types", new Map());
+
+    _defineProperty(this, "dragSources", new Map());
+
+    _defineProperty(this, "dropTargets", new Map());
+
+    _defineProperty(this, "pinnedSourceId", null);
+
+    _defineProperty(this, "pinnedSource", null);
+
+    _defineProperty(this, "store", void 0);
+
+    this.store = store;
+  }
+
+  _createClass(HandlerRegistryImpl, [{
+    key: "addSource",
+    value: function addSource(type, source) {
+      (0,_contracts__WEBPACK_IMPORTED_MODULE_4__.validateType)(type);
+      (0,_contracts__WEBPACK_IMPORTED_MODULE_4__.validateSourceContract)(source);
+      var sourceId = this.addHandler(_interfaces__WEBPACK_IMPORTED_MODULE_3__.HandlerRole.SOURCE, type, source);
+      this.store.dispatch((0,_actions_registry__WEBPACK_IMPORTED_MODULE_5__.addSource)(sourceId));
+      return sourceId;
+    }
+  }, {
+    key: "addTarget",
+    value: function addTarget(type, target) {
+      (0,_contracts__WEBPACK_IMPORTED_MODULE_4__.validateType)(type, true);
+      (0,_contracts__WEBPACK_IMPORTED_MODULE_4__.validateTargetContract)(target);
+      var targetId = this.addHandler(_interfaces__WEBPACK_IMPORTED_MODULE_3__.HandlerRole.TARGET, type, target);
+      this.store.dispatch((0,_actions_registry__WEBPACK_IMPORTED_MODULE_5__.addTarget)(targetId));
+      return targetId;
+    }
+  }, {
+    key: "containsHandler",
+    value: function containsHandler(handler) {
+      return mapContainsValue(this.dragSources, handler) || mapContainsValue(this.dropTargets, handler);
+    }
+  }, {
+    key: "getSource",
+    value: function getSource(sourceId) {
+      var includePinned = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+      (0,_react_dnd_invariant__WEBPACK_IMPORTED_MODULE_0__.invariant)(this.isSourceId(sourceId), 'Expected a valid source ID.');
+      var isPinned = includePinned && sourceId === this.pinnedSourceId;
+      var source = isPinned ? this.pinnedSource : this.dragSources.get(sourceId);
+      return source;
+    }
+  }, {
+    key: "getTarget",
+    value: function getTarget(targetId) {
+      (0,_react_dnd_invariant__WEBPACK_IMPORTED_MODULE_0__.invariant)(this.isTargetId(targetId), 'Expected a valid target ID.');
+      return this.dropTargets.get(targetId);
+    }
+  }, {
+    key: "getSourceType",
+    value: function getSourceType(sourceId) {
+      (0,_react_dnd_invariant__WEBPACK_IMPORTED_MODULE_0__.invariant)(this.isSourceId(sourceId), 'Expected a valid source ID.');
+      return this.types.get(sourceId);
+    }
+  }, {
+    key: "getTargetType",
+    value: function getTargetType(targetId) {
+      (0,_react_dnd_invariant__WEBPACK_IMPORTED_MODULE_0__.invariant)(this.isTargetId(targetId), 'Expected a valid target ID.');
+      return this.types.get(targetId);
+    }
+  }, {
+    key: "isSourceId",
+    value: function isSourceId(handlerId) {
+      var role = parseRoleFromHandlerId(handlerId);
+      return role === _interfaces__WEBPACK_IMPORTED_MODULE_3__.HandlerRole.SOURCE;
+    }
+  }, {
+    key: "isTargetId",
+    value: function isTargetId(handlerId) {
+      var role = parseRoleFromHandlerId(handlerId);
+      return role === _interfaces__WEBPACK_IMPORTED_MODULE_3__.HandlerRole.TARGET;
+    }
+  }, {
+    key: "removeSource",
+    value: function removeSource(sourceId) {
+      var _this = this;
+
+      (0,_react_dnd_invariant__WEBPACK_IMPORTED_MODULE_0__.invariant)(this.getSource(sourceId), 'Expected an existing source.');
+      this.store.dispatch((0,_actions_registry__WEBPACK_IMPORTED_MODULE_5__.removeSource)(sourceId));
+      (0,_react_dnd_asap__WEBPACK_IMPORTED_MODULE_1__.asap)(function () {
+        _this.dragSources.delete(sourceId);
+
+        _this.types.delete(sourceId);
+      });
+    }
+  }, {
+    key: "removeTarget",
+    value: function removeTarget(targetId) {
+      (0,_react_dnd_invariant__WEBPACK_IMPORTED_MODULE_0__.invariant)(this.getTarget(targetId), 'Expected an existing target.');
+      this.store.dispatch((0,_actions_registry__WEBPACK_IMPORTED_MODULE_5__.removeTarget)(targetId));
+      this.dropTargets.delete(targetId);
+      this.types.delete(targetId);
+    }
+  }, {
+    key: "pinSource",
+    value: function pinSource(sourceId) {
+      var source = this.getSource(sourceId);
+      (0,_react_dnd_invariant__WEBPACK_IMPORTED_MODULE_0__.invariant)(source, 'Expected an existing source.');
+      this.pinnedSourceId = sourceId;
+      this.pinnedSource = source;
+    }
+  }, {
+    key: "unpinSource",
+    value: function unpinSource() {
+      (0,_react_dnd_invariant__WEBPACK_IMPORTED_MODULE_0__.invariant)(this.pinnedSource, 'No source is pinned at the time.');
+      this.pinnedSourceId = null;
+      this.pinnedSource = null;
+    }
+  }, {
+    key: "addHandler",
+    value: function addHandler(role, type, handler) {
+      var id = getNextHandlerId(role);
+      this.types.set(id, type);
+
+      if (role === _interfaces__WEBPACK_IMPORTED_MODULE_3__.HandlerRole.SOURCE) {
+        this.dragSources.set(id, handler);
+      } else if (role === _interfaces__WEBPACK_IMPORTED_MODULE_3__.HandlerRole.TARGET) {
+        this.dropTargets.set(id, handler);
+      }
+
+      return id;
+    }
+  }]);
+
+  return HandlerRegistryImpl;
+}();
 
 /***/ }),
 
-/***/ "./node_modules/dnd-core/dist/cjs/contracts.js":
+/***/ "./node_modules/dnd-core/dist/esm/contracts.js":
 /*!*****************************************************!*\
-  !*** ./node_modules/dnd-core/dist/cjs/contracts.js ***!
+  !*** ./node_modules/dnd-core/dist/esm/contracts.js ***!
   \*****************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "validateSourceContract": () => (/* binding */ validateSourceContract),
+/* harmony export */   "validateTargetContract": () => (/* binding */ validateTargetContract),
+/* harmony export */   "validateType": () => (/* binding */ validateType)
+/* harmony export */ });
+/* harmony import */ var _react_dnd_invariant__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @react-dnd/invariant */ "./node_modules/@react-dnd/invariant/dist/invariant.esm.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
-Object.defineProperty(exports, "__esModule", ({
-    value: true
-}));
-exports.validateSourceContract = validateSourceContract;
-exports.validateTargetContract = validateTargetContract;
-exports.validateType = validateType;
-var _invariant = __webpack_require__(/*! @react-dnd/invariant */ "./node_modules/@react-dnd/invariant/dist/cjs/index.js");
+
 function validateSourceContract(source) {
-    (0, _invariant).invariant(typeof source.canDrag === 'function', 'Expected canDrag to be a function.');
-    (0, _invariant).invariant(typeof source.beginDrag === 'function', 'Expected beginDrag to be a function.');
-    (0, _invariant).invariant(typeof source.endDrag === 'function', 'Expected endDrag to be a function.');
+  (0,_react_dnd_invariant__WEBPACK_IMPORTED_MODULE_0__.invariant)(typeof source.canDrag === 'function', 'Expected canDrag to be a function.');
+  (0,_react_dnd_invariant__WEBPACK_IMPORTED_MODULE_0__.invariant)(typeof source.beginDrag === 'function', 'Expected beginDrag to be a function.');
+  (0,_react_dnd_invariant__WEBPACK_IMPORTED_MODULE_0__.invariant)(typeof source.endDrag === 'function', 'Expected endDrag to be a function.');
 }
 function validateTargetContract(target) {
-    (0, _invariant).invariant(typeof target.canDrop === 'function', 'Expected canDrop to be a function.');
-    (0, _invariant).invariant(typeof target.hover === 'function', 'Expected hover to be a function.');
-    (0, _invariant).invariant(typeof target.drop === 'function', 'Expected beginDrag to be a function.');
+  (0,_react_dnd_invariant__WEBPACK_IMPORTED_MODULE_0__.invariant)(typeof target.canDrop === 'function', 'Expected canDrop to be a function.');
+  (0,_react_dnd_invariant__WEBPACK_IMPORTED_MODULE_0__.invariant)(typeof target.hover === 'function', 'Expected hover to be a function.');
+  (0,_react_dnd_invariant__WEBPACK_IMPORTED_MODULE_0__.invariant)(typeof target.drop === 'function', 'Expected beginDrag to be a function.');
 }
 function validateType(type, allowArray) {
-    if (allowArray && Array.isArray(type)) {
-        type.forEach((t)=>validateType(t, false)
-        );
-        return;
-    }
-    (0, _invariant).invariant(typeof type === 'string' || typeof type === 'symbol', allowArray ? 'Type can only be a string, a symbol, or an array of either.' : 'Type can only be a string or a symbol.');
-}
+  if (allowArray && Array.isArray(type)) {
+    type.forEach(function (t) {
+      return validateType(t, false);
+    });
+    return;
+  }
 
-//# sourceMappingURL=contracts.js.map
+  (0,_react_dnd_invariant__WEBPACK_IMPORTED_MODULE_0__.invariant)(typeof type === 'string' || _typeof(type) === 'symbol', allowArray ? 'Type can only be a string, a symbol, or an array of either.' : 'Type can only be a string or a symbol.');
+}
 
 /***/ }),
 
-/***/ "./node_modules/dnd-core/dist/cjs/createDragDropManager.js":
+/***/ "./node_modules/dnd-core/dist/esm/createDragDropManager.js":
 /*!*****************************************************************!*\
-  !*** ./node_modules/dnd-core/dist/cjs/createDragDropManager.js ***!
+  !*** ./node_modules/dnd-core/dist/esm/createDragDropManager.js ***!
   \*****************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "createDragDropManager": () => (/* binding */ createDragDropManager)
+/* harmony export */ });
+/* harmony import */ var _classes_DragDropManagerImpl__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./classes/DragDropManagerImpl */ "./node_modules/dnd-core/dist/esm/classes/DragDropManagerImpl.js");
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var _reducers__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./reducers */ "./node_modules/dnd-core/dist/esm/reducers/index.js");
+/* harmony import */ var _classes_DragDropMonitorImpl__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./classes/DragDropMonitorImpl */ "./node_modules/dnd-core/dist/esm/classes/DragDropMonitorImpl.js");
+/* harmony import */ var _classes_HandlerRegistryImpl__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./classes/HandlerRegistryImpl */ "./node_modules/dnd-core/dist/esm/classes/HandlerRegistryImpl.js");
 
-Object.defineProperty(exports, "__esModule", ({
-    value: true
-}));
-exports.createDragDropManager = createDragDropManager;
-var _dragDropManagerImplJs = __webpack_require__(/*! ./classes/DragDropManagerImpl.js */ "./node_modules/dnd-core/dist/cjs/classes/DragDropManagerImpl.js");
-var _redux = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
-var _indexJs = __webpack_require__(/*! ./reducers/index.js */ "./node_modules/dnd-core/dist/cjs/reducers/index.js");
-var _dragDropMonitorImplJs = __webpack_require__(/*! ./classes/DragDropMonitorImpl.js */ "./node_modules/dnd-core/dist/cjs/classes/DragDropMonitorImpl.js");
-var _handlerRegistryImplJs = __webpack_require__(/*! ./classes/HandlerRegistryImpl.js */ "./node_modules/dnd-core/dist/cjs/classes/HandlerRegistryImpl.js");
-function createDragDropManager(backendFactory, globalContext = undefined, backendOptions = {}, debugMode = false) {
-    const store = makeStoreInstance(debugMode);
-    const monitor = new _dragDropMonitorImplJs.DragDropMonitorImpl(store, new _handlerRegistryImplJs.HandlerRegistryImpl(store));
-    const manager = new _dragDropManagerImplJs.DragDropManagerImpl(store, monitor);
-    const backend = backendFactory(manager, globalContext, backendOptions);
-    manager.receiveBackend(backend);
-    return manager;
+
+
+
+
+function createDragDropManager(backendFactory) {
+  var globalContext = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : undefined;
+  var backendOptions = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+  var debugMode = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : false;
+  var store = makeStoreInstance(debugMode);
+  var monitor = new _classes_DragDropMonitorImpl__WEBPACK_IMPORTED_MODULE_0__.DragDropMonitorImpl(store, new _classes_HandlerRegistryImpl__WEBPACK_IMPORTED_MODULE_1__.HandlerRegistryImpl(store));
+  var manager = new _classes_DragDropManagerImpl__WEBPACK_IMPORTED_MODULE_2__.DragDropManagerImpl(store, monitor);
+  var backend = backendFactory(manager, globalContext, backendOptions);
+  manager.receiveBackend(backend);
+  return manager;
 }
+
 function makeStoreInstance(debugMode) {
-    // TODO: if we ever make a react-native version of this,
-    // we'll need to consider how to pull off dev-tooling
-    const reduxDevTools = typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION__;
-    return (0, _redux).createStore(_indexJs.reduce, debugMode && reduxDevTools && reduxDevTools({
-        name: 'dnd-core',
-        instanceId: 'dnd-core'
-    }));
+  // TODO: if we ever make a react-native version of this,
+  // we'll need to consider how to pull off dev-tooling
+  var reduxDevTools = typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION__;
+  return (0,redux__WEBPACK_IMPORTED_MODULE_3__.createStore)(_reducers__WEBPACK_IMPORTED_MODULE_4__.reduce, debugMode && reduxDevTools && reduxDevTools({
+    name: 'dnd-core',
+    instanceId: 'dnd-core'
+  }));
 }
-
-//# sourceMappingURL=createDragDropManager.js.map
 
 /***/ }),
 
-/***/ "./node_modules/dnd-core/dist/cjs/index.js":
-/*!*************************************************!*\
-  !*** ./node_modules/dnd-core/dist/cjs/index.js ***!
-  \*************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", ({
-    value: true
-}));
-var _exportNames = {};
-var _interfacesJs = _interopRequireWildcard(__webpack_require__(/*! ./interfaces.js */ "./node_modules/dnd-core/dist/cjs/interfaces.js"));
-Object.keys(_interfacesJs).forEach(function(key) {
-    if (key === "default" || key === "__esModule") return;
-    if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
-    if (key in exports && exports[key] === _interfacesJs[key]) return;
-    Object.defineProperty(exports, key, {
-        enumerable: true,
-        get: function() {
-            return _interfacesJs[key];
-        }
-    });
-});
-var _createDragDropManagerJs = _interopRequireWildcard(__webpack_require__(/*! ./createDragDropManager.js */ "./node_modules/dnd-core/dist/cjs/createDragDropManager.js"));
-Object.keys(_createDragDropManagerJs).forEach(function(key) {
-    if (key === "default" || key === "__esModule") return;
-    if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
-    if (key in exports && exports[key] === _createDragDropManagerJs[key]) return;
-    Object.defineProperty(exports, key, {
-        enumerable: true,
-        get: function() {
-            return _createDragDropManagerJs[key];
-        }
-    });
-});
-function _interopRequireWildcard(obj) {
-    if (obj && obj.__esModule) {
-        return obj;
-    } else {
-        var newObj = {};
-        if (obj != null) {
-            for(var key in obj){
-                if (Object.prototype.hasOwnProperty.call(obj, key)) {
-                    var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {};
-                    if (desc.get || desc.set) {
-                        Object.defineProperty(newObj, key, desc);
-                    } else {
-                        newObj[key] = obj[key];
-                    }
-                }
-            }
-        }
-        newObj.default = obj;
-        return newObj;
-    }
-}
-
-//# sourceMappingURL=index.js.map
-
-/***/ }),
-
-/***/ "./node_modules/dnd-core/dist/cjs/interfaces.js":
+/***/ "./node_modules/dnd-core/dist/esm/interfaces.js":
 /*!******************************************************!*\
-  !*** ./node_modules/dnd-core/dist/cjs/interfaces.js ***!
+  !*** ./node_modules/dnd-core/dist/esm/interfaces.js ***!
   \******************************************************/
-/***/ ((__unused_webpack_module, exports) => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-
-Object.defineProperty(exports, "__esModule", ({
-    value: true
-}));
-exports.HandlerRole = void 0;
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "HandlerRole": () => (/* binding */ HandlerRole)
+/* harmony export */ });
 var HandlerRole;
-exports.HandlerRole = HandlerRole;
-(function(HandlerRole) {
-    HandlerRole["SOURCE"] = "SOURCE";
-    HandlerRole["TARGET"] = "TARGET";
-})(HandlerRole || (exports.HandlerRole = HandlerRole = {}));
 
-//# sourceMappingURL=interfaces.js.map
+(function (HandlerRole) {
+  HandlerRole["SOURCE"] = "SOURCE";
+  HandlerRole["TARGET"] = "TARGET";
+})(HandlerRole || (HandlerRole = {}));
 
 /***/ }),
 
-/***/ "./node_modules/dnd-core/dist/cjs/reducers/dirtyHandlerIds.js":
+/***/ "./node_modules/dnd-core/dist/esm/reducers/dirtyHandlerIds.js":
 /*!********************************************************************!*\
-  !*** ./node_modules/dnd-core/dist/cjs/reducers/dirtyHandlerIds.js ***!
+  !*** ./node_modules/dnd-core/dist/esm/reducers/dirtyHandlerIds.js ***!
   \********************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "reduce": () => (/* binding */ reduce)
+/* harmony export */ });
+/* harmony import */ var _actions_dragDrop__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/dragDrop */ "./node_modules/dnd-core/dist/esm/actions/dragDrop/types.js");
+/* harmony import */ var _actions_registry__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../actions/registry */ "./node_modules/dnd-core/dist/esm/actions/registry.js");
+/* harmony import */ var _utils_equality__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../utils/equality */ "./node_modules/dnd-core/dist/esm/utils/equality.js");
+/* harmony import */ var _utils_dirtiness__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/dirtiness */ "./node_modules/dnd-core/dist/esm/utils/dirtiness.js");
+/* harmony import */ var _utils_js_utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../utils/js_utils */ "./node_modules/dnd-core/dist/esm/utils/js_utils.js");
 
-Object.defineProperty(exports, "__esModule", ({
-    value: true
-}));
-exports.reduce = reduce;
-var _indexJs = __webpack_require__(/*! ../actions/dragDrop/index.js */ "./node_modules/dnd-core/dist/cjs/actions/dragDrop/index.js");
-var _registryJs = __webpack_require__(/*! ../actions/registry.js */ "./node_modules/dnd-core/dist/cjs/actions/registry.js");
-var _equalityJs = __webpack_require__(/*! ../utils/equality.js */ "./node_modules/dnd-core/dist/cjs/utils/equality.js");
-var _dirtinessJs = __webpack_require__(/*! ../utils/dirtiness.js */ "./node_modules/dnd-core/dist/cjs/utils/dirtiness.js");
-var _jsUtilsJs = __webpack_require__(/*! ../utils/js_utils.js */ "./node_modules/dnd-core/dist/cjs/utils/js_utils.js");
-function reduce(// eslint-disable-next-line @typescript-eslint/no-unused-vars
-_state = _dirtinessJs.NONE, action) {
-    switch(action.type){
-        case _indexJs.HOVER:
-            break;
-        case _registryJs.ADD_SOURCE:
-        case _registryJs.ADD_TARGET:
-        case _registryJs.REMOVE_TARGET:
-        case _registryJs.REMOVE_SOURCE:
-            return _dirtinessJs.NONE;
-        case _indexJs.BEGIN_DRAG:
-        case _indexJs.PUBLISH_DRAG_SOURCE:
-        case _indexJs.END_DRAG:
-        case _indexJs.DROP:
-        default:
-            return _dirtinessJs.ALL;
+
+
+
+
+function reduce() {
+  var _state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : _utils_dirtiness__WEBPACK_IMPORTED_MODULE_0__.NONE;
+
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+
+  switch (action.type) {
+    case _actions_dragDrop__WEBPACK_IMPORTED_MODULE_1__.HOVER:
+      break;
+
+    case _actions_registry__WEBPACK_IMPORTED_MODULE_2__.ADD_SOURCE:
+    case _actions_registry__WEBPACK_IMPORTED_MODULE_2__.ADD_TARGET:
+    case _actions_registry__WEBPACK_IMPORTED_MODULE_2__.REMOVE_TARGET:
+    case _actions_registry__WEBPACK_IMPORTED_MODULE_2__.REMOVE_SOURCE:
+      return _utils_dirtiness__WEBPACK_IMPORTED_MODULE_0__.NONE;
+
+    case _actions_dragDrop__WEBPACK_IMPORTED_MODULE_1__.BEGIN_DRAG:
+    case _actions_dragDrop__WEBPACK_IMPORTED_MODULE_1__.PUBLISH_DRAG_SOURCE:
+    case _actions_dragDrop__WEBPACK_IMPORTED_MODULE_1__.END_DRAG:
+    case _actions_dragDrop__WEBPACK_IMPORTED_MODULE_1__.DROP:
+    default:
+      return _utils_dirtiness__WEBPACK_IMPORTED_MODULE_0__.ALL;
+  }
+
+  var _action$payload = action.payload,
+      _action$payload$targe = _action$payload.targetIds,
+      targetIds = _action$payload$targe === void 0 ? [] : _action$payload$targe,
+      _action$payload$prevT = _action$payload.prevTargetIds,
+      prevTargetIds = _action$payload$prevT === void 0 ? [] : _action$payload$prevT;
+  var result = (0,_utils_js_utils__WEBPACK_IMPORTED_MODULE_3__.xor)(targetIds, prevTargetIds);
+  var didChange = result.length > 0 || !(0,_utils_equality__WEBPACK_IMPORTED_MODULE_4__.areArraysEqual)(targetIds, prevTargetIds);
+
+  if (!didChange) {
+    return _utils_dirtiness__WEBPACK_IMPORTED_MODULE_0__.NONE;
+  } // Check the target ids at the innermost position. If they are valid, add them
+  // to the result
+
+
+  var prevInnermostTargetId = prevTargetIds[prevTargetIds.length - 1];
+  var innermostTargetId = targetIds[targetIds.length - 1];
+
+  if (prevInnermostTargetId !== innermostTargetId) {
+    if (prevInnermostTargetId) {
+      result.push(prevInnermostTargetId);
     }
-    const { targetIds =[] , prevTargetIds =[]  } = action.payload;
-    const result = (0, _jsUtilsJs).xor(targetIds, prevTargetIds);
-    const didChange = result.length > 0 || !(0, _equalityJs).areArraysEqual(targetIds, prevTargetIds);
-    if (!didChange) {
-        return _dirtinessJs.NONE;
+
+    if (innermostTargetId) {
+      result.push(innermostTargetId);
     }
-    // Check the target ids at the innermost position. If they are valid, add them
-    // to the result
-    const prevInnermostTargetId = prevTargetIds[prevTargetIds.length - 1];
-    const innermostTargetId = targetIds[targetIds.length - 1];
-    if (prevInnermostTargetId !== innermostTargetId) {
-        if (prevInnermostTargetId) {
-            result.push(prevInnermostTargetId);
-        }
-        if (innermostTargetId) {
-            result.push(innermostTargetId);
-        }
-    }
-    return result;
+  }
+
+  return result;
 }
-
-//# sourceMappingURL=dirtyHandlerIds.js.map
 
 /***/ }),
 
-/***/ "./node_modules/dnd-core/dist/cjs/reducers/dragOffset.js":
+/***/ "./node_modules/dnd-core/dist/esm/reducers/dragOffset.js":
 /*!***************************************************************!*\
-  !*** ./node_modules/dnd-core/dist/cjs/reducers/dragOffset.js ***!
+  !*** ./node_modules/dnd-core/dist/esm/reducers/dragOffset.js ***!
   \***************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "reduce": () => (/* binding */ reduce)
+/* harmony export */ });
+/* harmony import */ var _actions_dragDrop__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/dragDrop */ "./node_modules/dnd-core/dist/esm/actions/dragDrop/types.js");
+/* harmony import */ var _utils_equality__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils/equality */ "./node_modules/dnd-core/dist/esm/utils/equality.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
-Object.defineProperty(exports, "__esModule", ({
-    value: true
-}));
-exports.reduce = reduce;
-var _indexJs = __webpack_require__(/*! ../actions/dragDrop/index.js */ "./node_modules/dnd-core/dist/cjs/actions/dragDrop/index.js");
-var _equalityJs = __webpack_require__(/*! ../utils/equality.js */ "./node_modules/dnd-core/dist/cjs/utils/equality.js");
-function _defineProperty(obj, key, value) {
-    if (key in obj) {
-        Object.defineProperty(obj, key, {
-            value: value,
-            enumerable: true,
-            configurable: true,
-            writable: true
-        });
-    } else {
-        obj[key] = value;
-    }
-    return obj;
-}
-function _objectSpread(target) {
-    for(var i = 1; i < arguments.length; i++){
-        var source = arguments[i] != null ? arguments[i] : {};
-        var ownKeys = Object.keys(source);
-        if (typeof Object.getOwnPropertySymbols === "function") {
-            ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function(sym) {
-                return Object.getOwnPropertyDescriptor(source, sym).enumerable;
-            }));
-        }
-        ownKeys.forEach(function(key) {
-            _defineProperty(target, key, source[key]);
-        });
-    }
-    return target;
-}
-const initialState = {
-    initialSourceClientOffset: null,
-    initialClientOffset: null,
-    clientOffset: null
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+var initialState = {
+  initialSourceClientOffset: null,
+  initialClientOffset: null,
+  clientOffset: null
 };
-function reduce(state = initialState, action) {
-    const { payload  } = action;
-    switch(action.type){
-        case _indexJs.INIT_COORDS:
-        case _indexJs.BEGIN_DRAG:
-            return {
-                initialSourceClientOffset: payload.sourceClientOffset,
-                initialClientOffset: payload.clientOffset,
-                clientOffset: payload.clientOffset
-            };
-        case _indexJs.HOVER:
-            if ((0, _equalityJs).areCoordsEqual(state.clientOffset, payload.clientOffset)) {
-                return state;
-            }
-            return _objectSpread({}, state, {
-                clientOffset: payload.clientOffset
-            });
-        case _indexJs.END_DRAG:
-        case _indexJs.DROP:
-            return initialState;
-        default:
-            return state;
-    }
-}
+function reduce() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  var payload = action.payload;
 
-//# sourceMappingURL=dragOffset.js.map
+  switch (action.type) {
+    case _actions_dragDrop__WEBPACK_IMPORTED_MODULE_0__.INIT_COORDS:
+    case _actions_dragDrop__WEBPACK_IMPORTED_MODULE_0__.BEGIN_DRAG:
+      return {
+        initialSourceClientOffset: payload.sourceClientOffset,
+        initialClientOffset: payload.clientOffset,
+        clientOffset: payload.clientOffset
+      };
+
+    case _actions_dragDrop__WEBPACK_IMPORTED_MODULE_0__.HOVER:
+      if ((0,_utils_equality__WEBPACK_IMPORTED_MODULE_1__.areCoordsEqual)(state.clientOffset, payload.clientOffset)) {
+        return state;
+      }
+
+      return _objectSpread(_objectSpread({}, state), {}, {
+        clientOffset: payload.clientOffset
+      });
+
+    case _actions_dragDrop__WEBPACK_IMPORTED_MODULE_0__.END_DRAG:
+    case _actions_dragDrop__WEBPACK_IMPORTED_MODULE_0__.DROP:
+      return initialState;
+
+    default:
+      return state;
+  }
+}
 
 /***/ }),
 
-/***/ "./node_modules/dnd-core/dist/cjs/reducers/dragOperation.js":
+/***/ "./node_modules/dnd-core/dist/esm/reducers/dragOperation.js":
 /*!******************************************************************!*\
-  !*** ./node_modules/dnd-core/dist/cjs/reducers/dragOperation.js ***!
+  !*** ./node_modules/dnd-core/dist/esm/reducers/dragOperation.js ***!
   \******************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "reduce": () => (/* binding */ reduce)
+/* harmony export */ });
+/* harmony import */ var _actions_dragDrop__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/dragDrop */ "./node_modules/dnd-core/dist/esm/actions/dragDrop/types.js");
+/* harmony import */ var _actions_registry__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/registry */ "./node_modules/dnd-core/dist/esm/actions/registry.js");
+/* harmony import */ var _utils_js_utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../utils/js_utils */ "./node_modules/dnd-core/dist/esm/utils/js_utils.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
-Object.defineProperty(exports, "__esModule", ({
-    value: true
-}));
-exports.reduce = reduce;
-var _indexJs = __webpack_require__(/*! ../actions/dragDrop/index.js */ "./node_modules/dnd-core/dist/cjs/actions/dragDrop/index.js");
-var _registryJs = __webpack_require__(/*! ../actions/registry.js */ "./node_modules/dnd-core/dist/cjs/actions/registry.js");
-var _jsUtilsJs = __webpack_require__(/*! ../utils/js_utils.js */ "./node_modules/dnd-core/dist/cjs/utils/js_utils.js");
-function _defineProperty(obj, key, value) {
-    if (key in obj) {
-        Object.defineProperty(obj, key, {
-            value: value,
-            enumerable: true,
-            configurable: true,
-            writable: true
-        });
-    } else {
-        obj[key] = value;
-    }
-    return obj;
-}
-function _objectSpread(target) {
-    for(var i = 1; i < arguments.length; i++){
-        var source = arguments[i] != null ? arguments[i] : {};
-        var ownKeys = Object.keys(source);
-        if (typeof Object.getOwnPropertySymbols === "function") {
-            ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function(sym) {
-                return Object.getOwnPropertyDescriptor(source, sym).enumerable;
-            }));
-        }
-        ownKeys.forEach(function(key) {
-            _defineProperty(target, key, source[key]);
-        });
-    }
-    return target;
-}
-const initialState = {
-    itemType: null,
-    item: null,
-    sourceId: null,
-    targetIds: [],
-    dropResult: null,
-    didDrop: false,
-    isSourcePublic: null
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+var initialState = {
+  itemType: null,
+  item: null,
+  sourceId: null,
+  targetIds: [],
+  dropResult: null,
+  didDrop: false,
+  isSourcePublic: null
 };
-function reduce(state = initialState, action) {
-    const { payload  } = action;
-    switch(action.type){
-        case _indexJs.BEGIN_DRAG:
-            return _objectSpread({}, state, {
-                itemType: payload.itemType,
-                item: payload.item,
-                sourceId: payload.sourceId,
-                isSourcePublic: payload.isSourcePublic,
-                dropResult: null,
-                didDrop: false
-            });
-        case _indexJs.PUBLISH_DRAG_SOURCE:
-            return _objectSpread({}, state, {
-                isSourcePublic: true
-            });
-        case _indexJs.HOVER:
-            return _objectSpread({}, state, {
-                targetIds: payload.targetIds
-            });
-        case _registryJs.REMOVE_TARGET:
-            if (state.targetIds.indexOf(payload.targetId) === -1) {
-                return state;
-            }
-            return _objectSpread({}, state, {
-                targetIds: (0, _jsUtilsJs).without(state.targetIds, payload.targetId)
-            });
-        case _indexJs.DROP:
-            return _objectSpread({}, state, {
-                dropResult: payload.dropResult,
-                didDrop: true,
-                targetIds: []
-            });
-        case _indexJs.END_DRAG:
-            return _objectSpread({}, state, {
-                itemType: null,
-                item: null,
-                sourceId: null,
-                dropResult: null,
-                didDrop: false,
-                isSourcePublic: null,
-                targetIds: []
-            });
-        default:
-            return state;
-    }
-}
+function reduce() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  var payload = action.payload;
 
-//# sourceMappingURL=dragOperation.js.map
+  switch (action.type) {
+    case _actions_dragDrop__WEBPACK_IMPORTED_MODULE_0__.BEGIN_DRAG:
+      return _objectSpread(_objectSpread({}, state), {}, {
+        itemType: payload.itemType,
+        item: payload.item,
+        sourceId: payload.sourceId,
+        isSourcePublic: payload.isSourcePublic,
+        dropResult: null,
+        didDrop: false
+      });
+
+    case _actions_dragDrop__WEBPACK_IMPORTED_MODULE_0__.PUBLISH_DRAG_SOURCE:
+      return _objectSpread(_objectSpread({}, state), {}, {
+        isSourcePublic: true
+      });
+
+    case _actions_dragDrop__WEBPACK_IMPORTED_MODULE_0__.HOVER:
+      return _objectSpread(_objectSpread({}, state), {}, {
+        targetIds: payload.targetIds
+      });
+
+    case _actions_registry__WEBPACK_IMPORTED_MODULE_1__.REMOVE_TARGET:
+      if (state.targetIds.indexOf(payload.targetId) === -1) {
+        return state;
+      }
+
+      return _objectSpread(_objectSpread({}, state), {}, {
+        targetIds: (0,_utils_js_utils__WEBPACK_IMPORTED_MODULE_2__.without)(state.targetIds, payload.targetId)
+      });
+
+    case _actions_dragDrop__WEBPACK_IMPORTED_MODULE_0__.DROP:
+      return _objectSpread(_objectSpread({}, state), {}, {
+        dropResult: payload.dropResult,
+        didDrop: true,
+        targetIds: []
+      });
+
+    case _actions_dragDrop__WEBPACK_IMPORTED_MODULE_0__.END_DRAG:
+      return _objectSpread(_objectSpread({}, state), {}, {
+        itemType: null,
+        item: null,
+        sourceId: null,
+        dropResult: null,
+        didDrop: false,
+        isSourcePublic: null,
+        targetIds: []
+      });
+
+    default:
+      return state;
+  }
+}
 
 /***/ }),
 
-/***/ "./node_modules/dnd-core/dist/cjs/reducers/index.js":
+/***/ "./node_modules/dnd-core/dist/esm/reducers/index.js":
 /*!**********************************************************!*\
-  !*** ./node_modules/dnd-core/dist/cjs/reducers/index.js ***!
+  !*** ./node_modules/dnd-core/dist/esm/reducers/index.js ***!
   \**********************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "reduce": () => (/* binding */ reduce)
+/* harmony export */ });
+/* harmony import */ var _dragOffset__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./dragOffset */ "./node_modules/dnd-core/dist/esm/reducers/dragOffset.js");
+/* harmony import */ var _dragOperation__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./dragOperation */ "./node_modules/dnd-core/dist/esm/reducers/dragOperation.js");
+/* harmony import */ var _refCount__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./refCount */ "./node_modules/dnd-core/dist/esm/reducers/refCount.js");
+/* harmony import */ var _dirtyHandlerIds__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./dirtyHandlerIds */ "./node_modules/dnd-core/dist/esm/reducers/dirtyHandlerIds.js");
+/* harmony import */ var _stateId__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./stateId */ "./node_modules/dnd-core/dist/esm/reducers/stateId.js");
+/* harmony import */ var _utils_js_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils/js_utils */ "./node_modules/dnd-core/dist/esm/utils/js_utils.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
-Object.defineProperty(exports, "__esModule", ({
-    value: true
-}));
-exports.reduce = reduce;
-var _dragOffsetJs = __webpack_require__(/*! ./dragOffset.js */ "./node_modules/dnd-core/dist/cjs/reducers/dragOffset.js");
-var _dragOperationJs = __webpack_require__(/*! ./dragOperation.js */ "./node_modules/dnd-core/dist/cjs/reducers/dragOperation.js");
-var _refCountJs = __webpack_require__(/*! ./refCount.js */ "./node_modules/dnd-core/dist/cjs/reducers/refCount.js");
-var _dirtyHandlerIdsJs = __webpack_require__(/*! ./dirtyHandlerIds.js */ "./node_modules/dnd-core/dist/cjs/reducers/dirtyHandlerIds.js");
-var _stateIdJs = __webpack_require__(/*! ./stateId.js */ "./node_modules/dnd-core/dist/cjs/reducers/stateId.js");
-var _jsUtilsJs = __webpack_require__(/*! ../utils/js_utils.js */ "./node_modules/dnd-core/dist/cjs/utils/js_utils.js");
-function _defineProperty(obj, key, value) {
-    if (key in obj) {
-        Object.defineProperty(obj, key, {
-            value: value,
-            enumerable: true,
-            configurable: true,
-            writable: true
-        });
-    } else {
-        obj[key] = value;
-    }
-    return obj;
-}
-function _objectSpread(target) {
-    for(var i = 1; i < arguments.length; i++){
-        var source = arguments[i] != null ? arguments[i] : {};
-        var ownKeys = Object.keys(source);
-        if (typeof Object.getOwnPropertySymbols === "function") {
-            ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function(sym) {
-                return Object.getOwnPropertyDescriptor(source, sym).enumerable;
-            }));
-        }
-        ownKeys.forEach(function(key) {
-            _defineProperty(target, key, source[key]);
-        });
-    }
-    return target;
-}
-function reduce(state = {}, action) {
-    return {
-        dirtyHandlerIds: (0, _dirtyHandlerIdsJs).reduce(state.dirtyHandlerIds, {
-            type: action.type,
-            payload: _objectSpread({}, action.payload, {
-                prevTargetIds: (0, _jsUtilsJs).get(state, 'dragOperation.targetIds', [])
-            })
-        }),
-        dragOffset: (0, _dragOffsetJs).reduce(state.dragOffset, action),
-        refCount: (0, _refCountJs).reduce(state.refCount, action),
-        dragOperation: (0, _dragOperationJs).reduce(state.dragOperation, action),
-        stateId: (0, _stateIdJs).reduce(state.stateId)
-    };
-}
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
-//# sourceMappingURL=index.js.map
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+
+
+
+function reduce() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  return {
+    dirtyHandlerIds: (0,_dirtyHandlerIds__WEBPACK_IMPORTED_MODULE_0__.reduce)(state.dirtyHandlerIds, {
+      type: action.type,
+      payload: _objectSpread(_objectSpread({}, action.payload), {}, {
+        prevTargetIds: (0,_utils_js_utils__WEBPACK_IMPORTED_MODULE_1__.get)(state, 'dragOperation.targetIds', [])
+      })
+    }),
+    dragOffset: (0,_dragOffset__WEBPACK_IMPORTED_MODULE_2__.reduce)(state.dragOffset, action),
+    refCount: (0,_refCount__WEBPACK_IMPORTED_MODULE_3__.reduce)(state.refCount, action),
+    dragOperation: (0,_dragOperation__WEBPACK_IMPORTED_MODULE_4__.reduce)(state.dragOperation, action),
+    stateId: (0,_stateId__WEBPACK_IMPORTED_MODULE_5__.reduce)(state.stateId)
+  };
+}
 
 /***/ }),
 
-/***/ "./node_modules/dnd-core/dist/cjs/reducers/refCount.js":
+/***/ "./node_modules/dnd-core/dist/esm/reducers/refCount.js":
 /*!*************************************************************!*\
-  !*** ./node_modules/dnd-core/dist/cjs/reducers/refCount.js ***!
+  !*** ./node_modules/dnd-core/dist/esm/reducers/refCount.js ***!
   \*************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "reduce": () => (/* binding */ reduce)
+/* harmony export */ });
+/* harmony import */ var _actions_registry__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/registry */ "./node_modules/dnd-core/dist/esm/actions/registry.js");
 
-Object.defineProperty(exports, "__esModule", ({
-    value: true
-}));
-exports.reduce = reduce;
-var _registryJs = __webpack_require__(/*! ../actions/registry.js */ "./node_modules/dnd-core/dist/cjs/actions/registry.js");
-function reduce(state = 0, action) {
-    switch(action.type){
-        case _registryJs.ADD_SOURCE:
-        case _registryJs.ADD_TARGET:
-            return state + 1;
-        case _registryJs.REMOVE_SOURCE:
-        case _registryJs.REMOVE_TARGET:
-            return state - 1;
-        default:
-            return state;
-    }
+function reduce() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+
+  switch (action.type) {
+    case _actions_registry__WEBPACK_IMPORTED_MODULE_0__.ADD_SOURCE:
+    case _actions_registry__WEBPACK_IMPORTED_MODULE_0__.ADD_TARGET:
+      return state + 1;
+
+    case _actions_registry__WEBPACK_IMPORTED_MODULE_0__.REMOVE_SOURCE:
+    case _actions_registry__WEBPACK_IMPORTED_MODULE_0__.REMOVE_TARGET:
+      return state - 1;
+
+    default:
+      return state;
+  }
 }
-
-//# sourceMappingURL=refCount.js.map
 
 /***/ }),
 
-/***/ "./node_modules/dnd-core/dist/cjs/reducers/stateId.js":
+/***/ "./node_modules/dnd-core/dist/esm/reducers/stateId.js":
 /*!************************************************************!*\
-  !*** ./node_modules/dnd-core/dist/cjs/reducers/stateId.js ***!
+  !*** ./node_modules/dnd-core/dist/esm/reducers/stateId.js ***!
   \************************************************************/
-/***/ ((__unused_webpack_module, exports) => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-
-Object.defineProperty(exports, "__esModule", ({
-    value: true
-}));
-exports.reduce = reduce;
-function reduce(state = 0) {
-    return state + 1;
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "reduce": () => (/* binding */ reduce)
+/* harmony export */ });
+function reduce() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+  return state + 1;
 }
-
-//# sourceMappingURL=stateId.js.map
 
 /***/ }),
 
-/***/ "./node_modules/dnd-core/dist/cjs/utils/coords.js":
+/***/ "./node_modules/dnd-core/dist/esm/utils/coords.js":
 /*!********************************************************!*\
-  !*** ./node_modules/dnd-core/dist/cjs/utils/coords.js ***!
+  !*** ./node_modules/dnd-core/dist/esm/utils/coords.js ***!
   \********************************************************/
-/***/ ((__unused_webpack_module, exports) => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-
-Object.defineProperty(exports, "__esModule", ({
-    value: true
-}));
-exports.add = add;
-exports.subtract = subtract;
-exports.getSourceClientOffset = getSourceClientOffset;
-exports.getDifferenceFromInitialOffset = getDifferenceFromInitialOffset;
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "add": () => (/* binding */ add),
+/* harmony export */   "subtract": () => (/* binding */ subtract),
+/* harmony export */   "getSourceClientOffset": () => (/* binding */ getSourceClientOffset),
+/* harmony export */   "getDifferenceFromInitialOffset": () => (/* binding */ getDifferenceFromInitialOffset)
+/* harmony export */ });
+/**
+ * Coordinate addition
+ * @param a The first coordinate
+ * @param b The second coordinate
+ */
 function add(a, b) {
-    return {
-        x: a.x + b.x,
-        y: a.y + b.y
-    };
+  return {
+    x: a.x + b.x,
+    y: a.y + b.y
+  };
 }
-function subtract(a, b) {
-    return {
-        x: a.x - b.x,
-        y: a.y - b.y
-    };
-}
-function getSourceClientOffset(state) {
-    const { clientOffset , initialClientOffset , initialSourceClientOffset  } = state;
-    if (!clientOffset || !initialClientOffset || !initialSourceClientOffset) {
-        return null;
-    }
-    return subtract(add(clientOffset, initialSourceClientOffset), initialClientOffset);
-}
-function getDifferenceFromInitialOffset(state) {
-    const { clientOffset , initialClientOffset  } = state;
-    if (!clientOffset || !initialClientOffset) {
-        return null;
-    }
-    return subtract(clientOffset, initialClientOffset);
-}
+/**
+ * Coordinate subtraction
+ * @param a The first coordinate
+ * @param b The second coordinate
+ */
 
-//# sourceMappingURL=coords.js.map
+function subtract(a, b) {
+  return {
+    x: a.x - b.x,
+    y: a.y - b.y
+  };
+}
+/**
+ * Returns the cartesian distance of the drag source component's position, based on its position
+ * at the time when the current drag operation has started, and the movement difference.
+ *
+ * Returns null if no item is being dragged.
+ *
+ * @param state The offset state to compute from
+ */
+
+function getSourceClientOffset(state) {
+  var clientOffset = state.clientOffset,
+      initialClientOffset = state.initialClientOffset,
+      initialSourceClientOffset = state.initialSourceClientOffset;
+
+  if (!clientOffset || !initialClientOffset || !initialSourceClientOffset) {
+    return null;
+  }
+
+  return subtract(add(clientOffset, initialSourceClientOffset), initialClientOffset);
+}
+/**
+ * Determines the x,y offset between the client offset and the initial client offset
+ *
+ * @param state The offset state to compute from
+ */
+
+function getDifferenceFromInitialOffset(state) {
+  var clientOffset = state.clientOffset,
+      initialClientOffset = state.initialClientOffset;
+
+  if (!clientOffset || !initialClientOffset) {
+    return null;
+  }
+
+  return subtract(clientOffset, initialClientOffset);
+}
 
 /***/ }),
 
-/***/ "./node_modules/dnd-core/dist/cjs/utils/dirtiness.js":
+/***/ "./node_modules/dnd-core/dist/esm/utils/dirtiness.js":
 /*!***********************************************************!*\
-  !*** ./node_modules/dnd-core/dist/cjs/utils/dirtiness.js ***!
+  !*** ./node_modules/dnd-core/dist/esm/utils/dirtiness.js ***!
   \***********************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "NONE": () => (/* binding */ NONE),
+/* harmony export */   "ALL": () => (/* binding */ ALL),
+/* harmony export */   "areDirty": () => (/* binding */ areDirty)
+/* harmony export */ });
+/* harmony import */ var _js_utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./js_utils */ "./node_modules/dnd-core/dist/esm/utils/js_utils.js");
 
-Object.defineProperty(exports, "__esModule", ({
-    value: true
-}));
-exports.areDirty = areDirty;
-exports.ALL = exports.NONE = void 0;
-var _jsUtilsJs = __webpack_require__(/*! ./js_utils.js */ "./node_modules/dnd-core/dist/cjs/utils/js_utils.js");
-const NONE = [];
-exports.NONE = NONE;
-const ALL = [];
-exports.ALL = ALL;
+var NONE = [];
+var ALL = [];
 NONE.__IS_NONE__ = true;
 ALL.__IS_ALL__ = true;
+/**
+ * Determines if the given handler IDs are dirty or not.
+ *
+ * @param dirtyIds The set of dirty handler ids
+ * @param handlerIds The set of handler ids to check
+ */
+
 function areDirty(dirtyIds, handlerIds) {
-    if (dirtyIds === NONE) {
-        return false;
-    }
-    if (dirtyIds === ALL || typeof handlerIds === 'undefined') {
-        return true;
-    }
-    const commonIds = (0, _jsUtilsJs).intersection(handlerIds, dirtyIds);
-    return commonIds.length > 0;
-}
+  if (dirtyIds === NONE) {
+    return false;
+  }
 
-//# sourceMappingURL=dirtiness.js.map
-
-/***/ }),
-
-/***/ "./node_modules/dnd-core/dist/cjs/utils/equality.js":
-/*!**********************************************************!*\
-  !*** ./node_modules/dnd-core/dist/cjs/utils/equality.js ***!
-  \**********************************************************/
-/***/ ((__unused_webpack_module, exports) => {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", ({
-    value: true
-}));
-exports.areCoordsEqual = areCoordsEqual;
-exports.areArraysEqual = areArraysEqual;
-exports.strictEquality = void 0;
-const strictEquality = (a, b)=>a === b
-;
-exports.strictEquality = strictEquality;
-function areCoordsEqual(offsetA, offsetB) {
-    if (!offsetA && !offsetB) {
-        return true;
-    } else if (!offsetA || !offsetB) {
-        return false;
-    } else {
-        return offsetA.x === offsetB.x && offsetA.y === offsetB.y;
-    }
-}
-function areArraysEqual(a, b, isEqual = strictEquality) {
-    if (a.length !== b.length) {
-        return false;
-    }
-    for(let i = 0; i < a.length; ++i){
-        if (!isEqual(a[i], b[i])) {
-            return false;
-        }
-    }
+  if (dirtyIds === ALL || typeof handlerIds === 'undefined') {
     return true;
-}
+  }
 
-//# sourceMappingURL=equality.js.map
+  var commonIds = (0,_js_utils__WEBPACK_IMPORTED_MODULE_0__.intersection)(handlerIds, dirtyIds);
+  return commonIds.length > 0;
+}
 
 /***/ }),
 
-/***/ "./node_modules/dnd-core/dist/cjs/utils/getNextUniqueId.js":
-/*!*****************************************************************!*\
-  !*** ./node_modules/dnd-core/dist/cjs/utils/getNextUniqueId.js ***!
-  \*****************************************************************/
-/***/ ((__unused_webpack_module, exports) => {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", ({
-    value: true
-}));
-exports.getNextUniqueId = getNextUniqueId;
-let nextUniqueId = 0;
-function getNextUniqueId() {
-    return nextUniqueId++;
-}
-
-//# sourceMappingURL=getNextUniqueId.js.map
-
-/***/ }),
-
-/***/ "./node_modules/dnd-core/dist/cjs/utils/js_utils.js":
+/***/ "./node_modules/dnd-core/dist/esm/utils/equality.js":
 /*!**********************************************************!*\
-  !*** ./node_modules/dnd-core/dist/cjs/utils/js_utils.js ***!
+  !*** ./node_modules/dnd-core/dist/esm/utils/equality.js ***!
   \**********************************************************/
-/***/ ((__unused_webpack_module, exports) => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "strictEquality": () => (/* binding */ strictEquality),
+/* harmony export */   "areCoordsEqual": () => (/* binding */ areCoordsEqual),
+/* harmony export */   "areArraysEqual": () => (/* binding */ areArraysEqual)
+/* harmony export */ });
+var strictEquality = function strictEquality(a, b) {
+  return a === b;
+};
+/**
+ * Determine if two cartesian coordinate offsets are equal
+ * @param offsetA
+ * @param offsetB
+ */
 
-Object.defineProperty(exports, "__esModule", ({
-    value: true
-}));
-exports.get = get;
-exports.without = without;
-exports.isString = isString;
-exports.isObject = isObject;
-exports.xor = xor;
-exports.intersection = intersection;
-function get(obj, path, defaultValue) {
-    return path.split('.').reduce((a, c)=>a && a[c] ? a[c] : defaultValue || null
-    , obj);
+function areCoordsEqual(offsetA, offsetB) {
+  if (!offsetA && !offsetB) {
+    return true;
+  } else if (!offsetA || !offsetB) {
+    return false;
+  } else {
+    return offsetA.x === offsetB.x && offsetA.y === offsetB.y;
+  }
 }
-function without(items, item) {
-    return items.filter((i)=>i !== item
-    );
-}
-function isString(input) {
-    return typeof input === 'string';
-}
-function isObject(input) {
-    return typeof input === 'object';
-}
-function xor(itemsA, itemsB) {
-    const map = new Map();
-    const insertItem = (item)=>{
-        map.set(item, map.has(item) ? map.get(item) + 1 : 1);
-    };
-    itemsA.forEach(insertItem);
-    itemsB.forEach(insertItem);
-    const result = [];
-    map.forEach((count, key)=>{
-        if (count === 1) {
-            result.push(key);
-        }
-    });
-    return result;
-}
-function intersection(itemsA, itemsB) {
-    return itemsA.filter((t)=>itemsB.indexOf(t) > -1
-    );
-}
+/**
+ * Determines if two arrays of items are equal
+ * @param a The first array of items
+ * @param b The second array of items
+ */
 
-//# sourceMappingURL=js_utils.js.map
+function areArraysEqual(a, b) {
+  var isEqual = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : strictEquality;
+
+  if (a.length !== b.length) {
+    return false;
+  }
+
+  for (var i = 0; i < a.length; ++i) {
+    if (!isEqual(a[i], b[i])) {
+      return false;
+    }
+  }
+
+  return true;
+}
 
 /***/ }),
 
-/***/ "./node_modules/dnd-core/dist/cjs/utils/matchesType.js":
-/*!*************************************************************!*\
-  !*** ./node_modules/dnd-core/dist/cjs/utils/matchesType.js ***!
-  \*************************************************************/
-/***/ ((__unused_webpack_module, exports) => {
+/***/ "./node_modules/dnd-core/dist/esm/utils/getNextUniqueId.js":
+/*!*****************************************************************!*\
+  !*** ./node_modules/dnd-core/dist/esm/utils/getNextUniqueId.js ***!
+  \*****************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-
-Object.defineProperty(exports, "__esModule", ({
-    value: true
-}));
-exports.matchesType = matchesType;
-function matchesType(targetType, draggedItemType) {
-    if (draggedItemType === null) {
-        return targetType === null;
-    }
-    return Array.isArray(targetType) ? targetType.some((t)=>t === draggedItemType
-    ) : targetType === draggedItemType;
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "getNextUniqueId": () => (/* binding */ getNextUniqueId)
+/* harmony export */ });
+var nextUniqueId = 0;
+function getNextUniqueId() {
+  return nextUniqueId++;
 }
 
-//# sourceMappingURL=matchesType.js.map
+/***/ }),
+
+/***/ "./node_modules/dnd-core/dist/esm/utils/js_utils.js":
+/*!**********************************************************!*\
+  !*** ./node_modules/dnd-core/dist/esm/utils/js_utils.js ***!
+  \**********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "get": () => (/* binding */ get),
+/* harmony export */   "without": () => (/* binding */ without),
+/* harmony export */   "isString": () => (/* binding */ isString),
+/* harmony export */   "isObject": () => (/* binding */ isObject),
+/* harmony export */   "xor": () => (/* binding */ xor),
+/* harmony export */   "intersection": () => (/* binding */ intersection)
+/* harmony export */ });
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+// cheap lodash replacements
+
+/**
+ * drop-in replacement for _.get
+ * @param obj
+ * @param path
+ * @param defaultValue
+ */
+function get(obj, path, defaultValue) {
+  return path.split('.').reduce(function (a, c) {
+    return a && a[c] ? a[c] : defaultValue || null;
+  }, obj);
+}
+/**
+ * drop-in replacement for _.without
+ */
+
+function without(items, item) {
+  return items.filter(function (i) {
+    return i !== item;
+  });
+}
+/**
+ * drop-in replacement for _.isString
+ * @param input
+ */
+
+function isString(input) {
+  return typeof input === 'string';
+}
+/**
+ * drop-in replacement for _.isString
+ * @param input
+ */
+
+function isObject(input) {
+  return _typeof(input) === 'object';
+}
+/**
+ * repalcement for _.xor
+ * @param itemsA
+ * @param itemsB
+ */
+
+function xor(itemsA, itemsB) {
+  var map = new Map();
+
+  var insertItem = function insertItem(item) {
+    map.set(item, map.has(item) ? map.get(item) + 1 : 1);
+  };
+
+  itemsA.forEach(insertItem);
+  itemsB.forEach(insertItem);
+  var result = [];
+  map.forEach(function (count, key) {
+    if (count === 1) {
+      result.push(key);
+    }
+  });
+  return result;
+}
+/**
+ * replacement for _.intersection
+ * @param itemsA
+ * @param itemsB
+ */
+
+function intersection(itemsA, itemsB) {
+  return itemsA.filter(function (t) {
+    return itemsB.indexOf(t) > -1;
+  });
+}
+
+/***/ }),
+
+/***/ "./node_modules/dnd-core/dist/esm/utils/matchesType.js":
+/*!*************************************************************!*\
+  !*** ./node_modules/dnd-core/dist/esm/utils/matchesType.js ***!
+  \*************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "matchesType": () => (/* binding */ matchesType)
+/* harmony export */ });
+function matchesType(targetType, draggedItemType) {
+  if (draggedItemType === null) {
+    return targetType === null;
+  }
+
+  return Array.isArray(targetType) ? targetType.some(function (t) {
+    return t === draggedItemType;
+  }) : targetType === draggedItemType;
+}
 
 /***/ }),
 
@@ -12823,3429 +13053,4809 @@ module.exports = Function.call.bind(Object.prototype.hasOwnProperty);
 
 /***/ }),
 
-/***/ "./node_modules/react-dnd-html5-backend/dist/cjs/BrowserDetector.js":
+/***/ "./node_modules/react-dnd-html5-backend/dist/esm/BrowserDetector.js":
 /*!**************************************************************************!*\
-  !*** ./node_modules/react-dnd-html5-backend/dist/cjs/BrowserDetector.js ***!
+  !*** ./node_modules/react-dnd-html5-backend/dist/esm/BrowserDetector.js ***!
   \**************************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "isFirefox": () => (/* binding */ isFirefox),
+/* harmony export */   "isSafari": () => (/* binding */ isSafari)
+/* harmony export */ });
+/* harmony import */ var _utils_js_utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils/js_utils */ "./node_modules/react-dnd-html5-backend/dist/esm/utils/js_utils.js");
 
-Object.defineProperty(exports, "__esModule", ({
-    value: true
-}));
-exports.isSafari = exports.isFirefox = void 0;
-var _jsUtilsJs = __webpack_require__(/*! ./utils/js_utils.js */ "./node_modules/react-dnd-html5-backend/dist/cjs/utils/js_utils.js");
-const isFirefox = (0, _jsUtilsJs).memoize(()=>/firefox/i.test(navigator.userAgent)
-);
-exports.isFirefox = isFirefox;
-const isSafari = (0, _jsUtilsJs).memoize(()=>Boolean(window.safari)
-);
-exports.isSafari = isSafari;
-
-//# sourceMappingURL=BrowserDetector.js.map
+var isFirefox = (0,_utils_js_utils__WEBPACK_IMPORTED_MODULE_0__.memoize)(function () {
+  return /firefox/i.test(navigator.userAgent);
+});
+var isSafari = (0,_utils_js_utils__WEBPACK_IMPORTED_MODULE_0__.memoize)(function () {
+  return Boolean(window.safari);
+});
 
 /***/ }),
 
-/***/ "./node_modules/react-dnd-html5-backend/dist/cjs/EnterLeaveCounter.js":
+/***/ "./node_modules/react-dnd-html5-backend/dist/esm/EnterLeaveCounter.js":
 /*!****************************************************************************!*\
-  !*** ./node_modules/react-dnd-html5-backend/dist/cjs/EnterLeaveCounter.js ***!
+  !*** ./node_modules/react-dnd-html5-backend/dist/esm/EnterLeaveCounter.js ***!
   \****************************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "EnterLeaveCounter": () => (/* binding */ EnterLeaveCounter)
+/* harmony export */ });
+/* harmony import */ var _utils_js_utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils/js_utils */ "./node_modules/react-dnd-html5-backend/dist/esm/utils/js_utils.js");
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-Object.defineProperty(exports, "__esModule", ({
-    value: true
-}));
-var _jsUtilsJs = __webpack_require__(/*! ./utils/js_utils.js */ "./node_modules/react-dnd-html5-backend/dist/cjs/utils/js_utils.js");
-class EnterLeaveCounter {
-    enter(enteringNode) {
-        const previousLength = this.entered.length;
-        const isNodeEntered = (node)=>this.isNodeInDocument(node) && (!node.contains || node.contains(enteringNode))
-        ;
-        this.entered = (0, _jsUtilsJs).union(this.entered.filter(isNodeEntered), [
-            enteringNode
-        ]);
-        return previousLength === 0 && this.entered.length > 0;
-    }
-    leave(leavingNode) {
-        const previousLength = this.entered.length;
-        this.entered = (0, _jsUtilsJs).without(this.entered.filter(this.isNodeInDocument), leavingNode);
-        return previousLength > 0 && this.entered.length === 0;
-    }
-    reset() {
-        this.entered = [];
-    }
-    constructor(isNodeInDocument){
-        this.entered = [];
-        this.isNodeInDocument = isNodeInDocument;
-    }
-}
-exports.EnterLeaveCounter = EnterLeaveCounter;
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
-//# sourceMappingURL=EnterLeaveCounter.js.map
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+var EnterLeaveCounter = /*#__PURE__*/function () {
+  function EnterLeaveCounter(isNodeInDocument) {
+    _classCallCheck(this, EnterLeaveCounter);
+
+    _defineProperty(this, "entered", []);
+
+    _defineProperty(this, "isNodeInDocument", void 0);
+
+    this.isNodeInDocument = isNodeInDocument;
+  }
+
+  _createClass(EnterLeaveCounter, [{
+    key: "enter",
+    value: function enter(enteringNode) {
+      var _this = this;
+
+      var previousLength = this.entered.length;
+
+      var isNodeEntered = function isNodeEntered(node) {
+        return _this.isNodeInDocument(node) && (!node.contains || node.contains(enteringNode));
+      };
+
+      this.entered = (0,_utils_js_utils__WEBPACK_IMPORTED_MODULE_0__.union)(this.entered.filter(isNodeEntered), [enteringNode]);
+      return previousLength === 0 && this.entered.length > 0;
+    }
+  }, {
+    key: "leave",
+    value: function leave(leavingNode) {
+      var previousLength = this.entered.length;
+      this.entered = (0,_utils_js_utils__WEBPACK_IMPORTED_MODULE_0__.without)(this.entered.filter(this.isNodeInDocument), leavingNode);
+      return previousLength > 0 && this.entered.length === 0;
+    }
+  }, {
+    key: "reset",
+    value: function reset() {
+      this.entered = [];
+    }
+  }]);
+
+  return EnterLeaveCounter;
+}();
 
 /***/ }),
 
-/***/ "./node_modules/react-dnd-html5-backend/dist/cjs/HTML5BackendImpl.js":
+/***/ "./node_modules/react-dnd-html5-backend/dist/esm/HTML5BackendImpl.js":
 /*!***************************************************************************!*\
-  !*** ./node_modules/react-dnd-html5-backend/dist/cjs/HTML5BackendImpl.js ***!
+  !*** ./node_modules/react-dnd-html5-backend/dist/esm/HTML5BackendImpl.js ***!
   \***************************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "HTML5BackendImpl": () => (/* binding */ HTML5BackendImpl)
+/* harmony export */ });
+/* harmony import */ var _EnterLeaveCounter__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./EnterLeaveCounter */ "./node_modules/react-dnd-html5-backend/dist/esm/EnterLeaveCounter.js");
+/* harmony import */ var _OffsetUtils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./OffsetUtils */ "./node_modules/react-dnd-html5-backend/dist/esm/OffsetUtils.js");
+/* harmony import */ var _NativeDragSources__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./NativeDragSources */ "./node_modules/react-dnd-html5-backend/dist/esm/NativeDragSources/index.js");
+/* harmony import */ var _NativeTypes__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./NativeTypes */ "./node_modules/react-dnd-html5-backend/dist/esm/NativeTypes.js");
+/* harmony import */ var _OptionsReader__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./OptionsReader */ "./node_modules/react-dnd-html5-backend/dist/esm/OptionsReader.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
-Object.defineProperty(exports, "__esModule", ({
-    value: true
-}));
-var _enterLeaveCounterJs = __webpack_require__(/*! ./EnterLeaveCounter.js */ "./node_modules/react-dnd-html5-backend/dist/cjs/EnterLeaveCounter.js");
-var _offsetUtilsJs = __webpack_require__(/*! ./OffsetUtils.js */ "./node_modules/react-dnd-html5-backend/dist/cjs/OffsetUtils.js");
-var _indexJs = __webpack_require__(/*! ./NativeDragSources/index.js */ "./node_modules/react-dnd-html5-backend/dist/cjs/NativeDragSources/index.js");
-var NativeTypes = _interopRequireWildcard(__webpack_require__(/*! ./NativeTypes.js */ "./node_modules/react-dnd-html5-backend/dist/cjs/NativeTypes.js"));
-var _optionsReaderJs = __webpack_require__(/*! ./OptionsReader.js */ "./node_modules/react-dnd-html5-backend/dist/cjs/OptionsReader.js");
-function _defineProperty(obj, key, value) {
-    if (key in obj) {
-        Object.defineProperty(obj, key, {
-            value: value,
-            enumerable: true,
-            configurable: true,
-            writable: true
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+
+
+var HTML5BackendImpl = /*#__PURE__*/function () {
+  // React-Dnd Components
+  // Internal State
+  function HTML5BackendImpl(manager, globalContext, options) {
+    var _this = this;
+
+    _classCallCheck(this, HTML5BackendImpl);
+
+    _defineProperty(this, "options", void 0);
+
+    _defineProperty(this, "actions", void 0);
+
+    _defineProperty(this, "monitor", void 0);
+
+    _defineProperty(this, "registry", void 0);
+
+    _defineProperty(this, "enterLeaveCounter", void 0);
+
+    _defineProperty(this, "sourcePreviewNodes", new Map());
+
+    _defineProperty(this, "sourcePreviewNodeOptions", new Map());
+
+    _defineProperty(this, "sourceNodes", new Map());
+
+    _defineProperty(this, "sourceNodeOptions", new Map());
+
+    _defineProperty(this, "dragStartSourceIds", null);
+
+    _defineProperty(this, "dropTargetIds", []);
+
+    _defineProperty(this, "dragEnterTargetIds", []);
+
+    _defineProperty(this, "currentNativeSource", null);
+
+    _defineProperty(this, "currentNativeHandle", null);
+
+    _defineProperty(this, "currentDragSourceNode", null);
+
+    _defineProperty(this, "altKeyPressed", false);
+
+    _defineProperty(this, "mouseMoveTimeoutTimer", null);
+
+    _defineProperty(this, "asyncEndDragFrameId", null);
+
+    _defineProperty(this, "dragOverTargetIds", null);
+
+    _defineProperty(this, "lastClientOffset", null);
+
+    _defineProperty(this, "hoverRafId", null);
+
+    _defineProperty(this, "getSourceClientOffset", function (sourceId) {
+      var source = _this.sourceNodes.get(sourceId);
+
+      return source && (0,_OffsetUtils__WEBPACK_IMPORTED_MODULE_0__.getNodeClientOffset)(source) || null;
+    });
+
+    _defineProperty(this, "endDragNativeItem", function () {
+      if (!_this.isDraggingNativeItem()) {
+        return;
+      }
+
+      _this.actions.endDrag();
+
+      if (_this.currentNativeHandle) {
+        _this.registry.removeSource(_this.currentNativeHandle);
+      }
+
+      _this.currentNativeHandle = null;
+      _this.currentNativeSource = null;
+    });
+
+    _defineProperty(this, "isNodeInDocument", function (node) {
+      // Check the node either in the main document or in the current context
+      return Boolean(node && _this.document && _this.document.body && _this.document.body.contains(node));
+    });
+
+    _defineProperty(this, "endDragIfSourceWasRemovedFromDOM", function () {
+      var node = _this.currentDragSourceNode;
+
+      if (node == null || _this.isNodeInDocument(node)) {
+        return;
+      }
+
+      if (_this.clearCurrentDragSourceNode() && _this.monitor.isDragging()) {
+        _this.actions.endDrag();
+      }
+    });
+
+    _defineProperty(this, "handleTopDragStartCapture", function () {
+      _this.clearCurrentDragSourceNode();
+
+      _this.dragStartSourceIds = [];
+    });
+
+    _defineProperty(this, "handleTopDragStart", function (e) {
+      if (e.defaultPrevented) {
+        return;
+      }
+
+      var dragStartSourceIds = _this.dragStartSourceIds;
+      _this.dragStartSourceIds = null;
+      var clientOffset = (0,_OffsetUtils__WEBPACK_IMPORTED_MODULE_0__.getEventClientOffset)(e); // Avoid crashing if we missed a drop event or our previous drag died
+
+      if (_this.monitor.isDragging()) {
+        _this.actions.endDrag();
+      } // Don't publish the source just yet (see why below)
+
+
+      _this.actions.beginDrag(dragStartSourceIds || [], {
+        publishSource: false,
+        getSourceClientOffset: _this.getSourceClientOffset,
+        clientOffset: clientOffset
+      });
+
+      var dataTransfer = e.dataTransfer;
+      var nativeType = (0,_NativeDragSources__WEBPACK_IMPORTED_MODULE_1__.matchNativeItemType)(dataTransfer);
+
+      if (_this.monitor.isDragging()) {
+        if (dataTransfer && typeof dataTransfer.setDragImage === 'function') {
+          // Use custom drag image if user specifies it.
+          // If child drag source refuses drag but parent agrees,
+          // use parent's node as drag image. Neither works in IE though.
+          var sourceId = _this.monitor.getSourceId();
+
+          var sourceNode = _this.sourceNodes.get(sourceId);
+
+          var dragPreview = _this.sourcePreviewNodes.get(sourceId) || sourceNode;
+
+          if (dragPreview) {
+            var _this$getCurrentSourc = _this.getCurrentSourcePreviewNodeOptions(),
+                anchorX = _this$getCurrentSourc.anchorX,
+                anchorY = _this$getCurrentSourc.anchorY,
+                offsetX = _this$getCurrentSourc.offsetX,
+                offsetY = _this$getCurrentSourc.offsetY;
+
+            var anchorPoint = {
+              anchorX: anchorX,
+              anchorY: anchorY
+            };
+            var offsetPoint = {
+              offsetX: offsetX,
+              offsetY: offsetY
+            };
+            var dragPreviewOffset = (0,_OffsetUtils__WEBPACK_IMPORTED_MODULE_0__.getDragPreviewOffset)(sourceNode, dragPreview, clientOffset, anchorPoint, offsetPoint);
+            dataTransfer.setDragImage(dragPreview, dragPreviewOffset.x, dragPreviewOffset.y);
+          }
+        }
+
+        try {
+          // Firefox won't drag without setting data
+          dataTransfer === null || dataTransfer === void 0 ? void 0 : dataTransfer.setData('application/json', {});
+        } catch (err) {// IE doesn't support MIME types in setData
+        } // Store drag source node so we can check whether
+        // it is removed from DOM and trigger endDrag manually.
+
+
+        _this.setCurrentDragSourceNode(e.target); // Now we are ready to publish the drag source.. or are we not?
+
+
+        var _this$getCurrentSourc2 = _this.getCurrentSourcePreviewNodeOptions(),
+            captureDraggingState = _this$getCurrentSourc2.captureDraggingState;
+
+        if (!captureDraggingState) {
+          // Usually we want to publish it in the next tick so that browser
+          // is able to screenshot the current (not yet dragging) state.
+          //
+          // It also neatly avoids a situation where render() returns null
+          // in the same tick for the source element, and browser freaks out.
+          setTimeout(function () {
+            return _this.actions.publishDragSource();
+          }, 0);
+        } else {
+          // In some cases the user may want to override this behavior, e.g.
+          // to work around IE not supporting custom drag previews.
+          //
+          // When using a custom drag layer, the only way to prevent
+          // the default drag preview from drawing in IE is to screenshot
+          // the dragging state in which the node itself has zero opacity
+          // and height. In this case, though, returning null from render()
+          // will abruptly end the dragging, which is not obvious.
+          //
+          // This is the reason such behavior is strictly opt-in.
+          _this.actions.publishDragSource();
+        }
+      } else if (nativeType) {
+        // A native item (such as URL) dragged from inside the document
+        _this.beginDragNativeItem(nativeType);
+      } else if (dataTransfer && !dataTransfer.types && (e.target && !e.target.hasAttribute || !e.target.hasAttribute('draggable'))) {
+        // Looks like a Safari bug: dataTransfer.types is null, but there was no draggable.
+        // Just let it drag. It's a native type (URL or text) and will be picked up in
+        // dragenter handler.
+        return;
+      } else {
+        // If by this time no drag source reacted, tell browser not to drag.
+        e.preventDefault();
+      }
+    });
+
+    _defineProperty(this, "handleTopDragEndCapture", function () {
+      if (_this.clearCurrentDragSourceNode() && _this.monitor.isDragging()) {
+        // Firefox can dispatch this event in an infinite loop
+        // if dragend handler does something like showing an alert.
+        // Only proceed if we have not handled it already.
+        _this.actions.endDrag();
+      }
+    });
+
+    _defineProperty(this, "handleTopDragEnterCapture", function (e) {
+      _this.dragEnterTargetIds = [];
+
+      var isFirstEnter = _this.enterLeaveCounter.enter(e.target);
+
+      if (!isFirstEnter || _this.monitor.isDragging()) {
+        return;
+      }
+
+      var dataTransfer = e.dataTransfer;
+      var nativeType = (0,_NativeDragSources__WEBPACK_IMPORTED_MODULE_1__.matchNativeItemType)(dataTransfer);
+
+      if (nativeType) {
+        // A native item (such as file or URL) dragged from outside the document
+        _this.beginDragNativeItem(nativeType, dataTransfer);
+      }
+    });
+
+    _defineProperty(this, "handleTopDragEnter", function (e) {
+      var dragEnterTargetIds = _this.dragEnterTargetIds;
+      _this.dragEnterTargetIds = [];
+
+      if (!_this.monitor.isDragging()) {
+        // This is probably a native item type we don't understand.
+        return;
+      }
+
+      _this.altKeyPressed = e.altKey; // If the target changes position as the result of `dragenter`, `dragover` might still
+      // get dispatched despite target being no longer there. The easy solution is to check
+      // whether there actually is a target before firing `hover`.
+
+      if (dragEnterTargetIds.length > 0) {
+        _this.actions.hover(dragEnterTargetIds, {
+          clientOffset: (0,_OffsetUtils__WEBPACK_IMPORTED_MODULE_0__.getEventClientOffset)(e)
         });
-    } else {
-        obj[key] = value;
-    }
-    return obj;
-}
-function _interopRequireWildcard(obj) {
-    if (obj && obj.__esModule) {
-        return obj;
-    } else {
-        var newObj = {};
-        if (obj != null) {
-            for(var key in obj){
-                if (Object.prototype.hasOwnProperty.call(obj, key)) {
-                    var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {};
-                    if (desc.get || desc.set) {
-                        Object.defineProperty(newObj, key, desc);
-                    } else {
-                        newObj[key] = obj[key];
-                    }
-                }
-            }
+      }
+
+      var canDrop = dragEnterTargetIds.some(function (targetId) {
+        return _this.monitor.canDropOnTarget(targetId);
+      });
+
+      if (canDrop) {
+        // IE requires this to fire dragover events
+        e.preventDefault();
+
+        if (e.dataTransfer) {
+          e.dataTransfer.dropEffect = _this.getCurrentDropEffect();
         }
-        newObj.default = obj;
-        return newObj;
-    }
-}
-function _objectSpread(target) {
-    for(var i = 1; i < arguments.length; i++){
-        var source = arguments[i] != null ? arguments[i] : {};
-        var ownKeys = Object.keys(source);
-        if (typeof Object.getOwnPropertySymbols === "function") {
-            ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function(sym) {
-                return Object.getOwnPropertyDescriptor(source, sym).enumerable;
-            }));
+      }
+    });
+
+    _defineProperty(this, "handleTopDragOverCapture", function () {
+      _this.dragOverTargetIds = [];
+    });
+
+    _defineProperty(this, "handleTopDragOver", function (e) {
+      var dragOverTargetIds = _this.dragOverTargetIds;
+      _this.dragOverTargetIds = [];
+
+      if (!_this.monitor.isDragging()) {
+        // This is probably a native item type we don't understand.
+        // Prevent default "drop and blow away the whole document" action.
+        e.preventDefault();
+
+        if (e.dataTransfer) {
+          e.dataTransfer.dropEffect = 'none';
         }
-        ownKeys.forEach(function(key) {
-            _defineProperty(target, key, source[key]);
+
+        return;
+      }
+
+      _this.altKeyPressed = e.altKey;
+      _this.lastClientOffset = (0,_OffsetUtils__WEBPACK_IMPORTED_MODULE_0__.getEventClientOffset)(e);
+
+      if (_this.hoverRafId === null && typeof requestAnimationFrame !== 'undefined') {
+        _this.hoverRafId = requestAnimationFrame(function () {
+          if (_this.monitor.isDragging()) {
+            _this.actions.hover(dragOverTargetIds || [], {
+              clientOffset: _this.lastClientOffset
+            });
+          }
+
+          _this.hoverRafId = null;
         });
+      }
+
+      var canDrop = (dragOverTargetIds || []).some(function (targetId) {
+        return _this.monitor.canDropOnTarget(targetId);
+      });
+
+      if (canDrop) {
+        // Show user-specified drop effect.
+        e.preventDefault();
+
+        if (e.dataTransfer) {
+          e.dataTransfer.dropEffect = _this.getCurrentDropEffect();
+        }
+      } else if (_this.isDraggingNativeItem()) {
+        // Don't show a nice cursor but still prevent default
+        // "drop and blow away the whole document" action.
+        e.preventDefault();
+      } else {
+        e.preventDefault();
+
+        if (e.dataTransfer) {
+          e.dataTransfer.dropEffect = 'none';
+        }
+      }
+    });
+
+    _defineProperty(this, "handleTopDragLeaveCapture", function (e) {
+      if (_this.isDraggingNativeItem()) {
+        e.preventDefault();
+      }
+
+      var isLastLeave = _this.enterLeaveCounter.leave(e.target);
+
+      if (!isLastLeave) {
+        return;
+      }
+
+      if (_this.isDraggingNativeItem()) {
+        setTimeout(function () {
+          return _this.endDragNativeItem();
+        }, 0);
+      }
+    });
+
+    _defineProperty(this, "handleTopDropCapture", function (e) {
+      _this.dropTargetIds = [];
+
+      if (_this.isDraggingNativeItem()) {
+        var _this$currentNativeSo;
+
+        e.preventDefault();
+        (_this$currentNativeSo = _this.currentNativeSource) === null || _this$currentNativeSo === void 0 ? void 0 : _this$currentNativeSo.loadDataTransfer(e.dataTransfer);
+      } else if ((0,_NativeDragSources__WEBPACK_IMPORTED_MODULE_1__.matchNativeItemType)(e.dataTransfer)) {
+        // Dragging some elements, like <a> and <img> may still behave like a native drag event,
+        // even if the current drag event matches a user-defined type.
+        // Stop the default behavior when we're not expecting a native item to be dropped.
+        e.preventDefault();
+      }
+
+      _this.enterLeaveCounter.reset();
+    });
+
+    _defineProperty(this, "handleTopDrop", function (e) {
+      var dropTargetIds = _this.dropTargetIds;
+      _this.dropTargetIds = [];
+
+      _this.actions.hover(dropTargetIds, {
+        clientOffset: (0,_OffsetUtils__WEBPACK_IMPORTED_MODULE_0__.getEventClientOffset)(e)
+      });
+
+      _this.actions.drop({
+        dropEffect: _this.getCurrentDropEffect()
+      });
+
+      if (_this.isDraggingNativeItem()) {
+        _this.endDragNativeItem();
+      } else if (_this.monitor.isDragging()) {
+        _this.actions.endDrag();
+      }
+    });
+
+    _defineProperty(this, "handleSelectStart", function (e) {
+      var target = e.target; // Only IE requires us to explicitly say
+      // we want drag drop operation to start
+
+      if (typeof target.dragDrop !== 'function') {
+        return;
+      } // Inputs and textareas should be selectable
+
+
+      if (target.tagName === 'INPUT' || target.tagName === 'SELECT' || target.tagName === 'TEXTAREA' || target.isContentEditable) {
+        return;
+      } // For other targets, ask IE
+      // to enable drag and drop
+
+
+      e.preventDefault();
+      target.dragDrop();
+    });
+
+    this.options = new _OptionsReader__WEBPACK_IMPORTED_MODULE_2__.OptionsReader(globalContext, options);
+    this.actions = manager.getActions();
+    this.monitor = manager.getMonitor();
+    this.registry = manager.getRegistry();
+    this.enterLeaveCounter = new _EnterLeaveCounter__WEBPACK_IMPORTED_MODULE_3__.EnterLeaveCounter(this.isNodeInDocument);
+  }
+  /**
+   * Generate profiling statistics for the HTML5Backend.
+   */
+
+
+  _createClass(HTML5BackendImpl, [{
+    key: "profile",
+    value: function profile() {
+      var _this$dragStartSource, _this$dragOverTargetI;
+
+      return {
+        sourcePreviewNodes: this.sourcePreviewNodes.size,
+        sourcePreviewNodeOptions: this.sourcePreviewNodeOptions.size,
+        sourceNodeOptions: this.sourceNodeOptions.size,
+        sourceNodes: this.sourceNodes.size,
+        dragStartSourceIds: ((_this$dragStartSource = this.dragStartSourceIds) === null || _this$dragStartSource === void 0 ? void 0 : _this$dragStartSource.length) || 0,
+        dropTargetIds: this.dropTargetIds.length,
+        dragEnterTargetIds: this.dragEnterTargetIds.length,
+        dragOverTargetIds: ((_this$dragOverTargetI = this.dragOverTargetIds) === null || _this$dragOverTargetI === void 0 ? void 0 : _this$dragOverTargetI.length) || 0
+      };
+    } // public for test
+
+  }, {
+    key: "window",
+    get: function get() {
+      return this.options.window;
     }
-    return target;
-}
-class HTML5BackendImpl {
+  }, {
+    key: "document",
+    get: function get() {
+      return this.options.document;
+    }
     /**
-	 * Generate profiling statistics for the HTML5Backend.
-	 */ profile() {
-        var ref, ref1;
-        return {
-            sourcePreviewNodes: this.sourcePreviewNodes.size,
-            sourcePreviewNodeOptions: this.sourcePreviewNodeOptions.size,
-            sourceNodeOptions: this.sourceNodeOptions.size,
-            sourceNodes: this.sourceNodes.size,
-            dragStartSourceIds: ((ref = this.dragStartSourceIds) === null || ref === void 0 ? void 0 : ref.length) || 0,
-            dropTargetIds: this.dropTargetIds.length,
-            dragEnterTargetIds: this.dragEnterTargetIds.length,
-            dragOverTargetIds: ((ref1 = this.dragOverTargetIds) === null || ref1 === void 0 ? void 0 : ref1.length) || 0
-        };
+     * Get the root element to use for event subscriptions
+     */
+
+  }, {
+    key: "rootElement",
+    get: function get() {
+      return this.options.rootElement;
     }
-    // public for test
-    get window() {
-        return this.options.window;
+  }, {
+    key: "setup",
+    value: function setup() {
+      var root = this.rootElement;
+
+      if (root === undefined) {
+        return;
+      }
+
+      if (root.__isReactDndBackendSetUp) {
+        throw new Error('Cannot have two HTML5 backends at the same time.');
+      }
+
+      root.__isReactDndBackendSetUp = true;
+      this.addEventListeners(root);
     }
-    get document() {
-        return this.options.document;
+  }, {
+    key: "teardown",
+    value: function teardown() {
+      var root = this.rootElement;
+
+      if (root === undefined) {
+        return;
+      }
+
+      root.__isReactDndBackendSetUp = false;
+      this.removeEventListeners(this.rootElement);
+      this.clearCurrentDragSourceNode();
+
+      if (this.asyncEndDragFrameId) {
+        var _this$window;
+
+        (_this$window = this.window) === null || _this$window === void 0 ? void 0 : _this$window.cancelAnimationFrame(this.asyncEndDragFrameId);
+      }
     }
-    /**
-	 * Get the root element to use for event subscriptions
-	 */ get rootElement() {
-        return this.options.rootElement;
+  }, {
+    key: "connectDragPreview",
+    value: function connectDragPreview(sourceId, node, options) {
+      var _this2 = this;
+
+      this.sourcePreviewNodeOptions.set(sourceId, options);
+      this.sourcePreviewNodes.set(sourceId, node);
+      return function () {
+        _this2.sourcePreviewNodes.delete(sourceId);
+
+        _this2.sourcePreviewNodeOptions.delete(sourceId);
+      };
     }
-    setup() {
-        const root = this.rootElement;
-        if (root === undefined) {
-            return;
-        }
-        if (root.__isReactDndBackendSetUp) {
-            throw new Error('Cannot have two HTML5 backends at the same time.');
-        }
-        root.__isReactDndBackendSetUp = true;
-        this.addEventListeners(root);
+  }, {
+    key: "connectDragSource",
+    value: function connectDragSource(sourceId, node, options) {
+      var _this3 = this;
+
+      this.sourceNodes.set(sourceId, node);
+      this.sourceNodeOptions.set(sourceId, options);
+
+      var handleDragStart = function handleDragStart(e) {
+        return _this3.handleDragStart(e, sourceId);
+      };
+
+      var handleSelectStart = function handleSelectStart(e) {
+        return _this3.handleSelectStart(e);
+      };
+
+      node.setAttribute('draggable', 'true');
+      node.addEventListener('dragstart', handleDragStart);
+      node.addEventListener('selectstart', handleSelectStart);
+      return function () {
+        _this3.sourceNodes.delete(sourceId);
+
+        _this3.sourceNodeOptions.delete(sourceId);
+
+        node.removeEventListener('dragstart', handleDragStart);
+        node.removeEventListener('selectstart', handleSelectStart);
+        node.setAttribute('draggable', 'false');
+      };
     }
-    teardown() {
-        const root = this.rootElement;
-        if (root === undefined) {
-            return;
-        }
-        root.__isReactDndBackendSetUp = false;
-        this.removeEventListeners(this.rootElement);
-        this.clearCurrentDragSourceNode();
-        if (this.asyncEndDragFrameId) {
-            var ref;
-            (ref = this.window) === null || ref === void 0 ? void 0 : ref.cancelAnimationFrame(this.asyncEndDragFrameId);
-        }
+  }, {
+    key: "connectDropTarget",
+    value: function connectDropTarget(targetId, node) {
+      var _this4 = this;
+
+      var handleDragEnter = function handleDragEnter(e) {
+        return _this4.handleDragEnter(e, targetId);
+      };
+
+      var handleDragOver = function handleDragOver(e) {
+        return _this4.handleDragOver(e, targetId);
+      };
+
+      var handleDrop = function handleDrop(e) {
+        return _this4.handleDrop(e, targetId);
+      };
+
+      node.addEventListener('dragenter', handleDragEnter);
+      node.addEventListener('dragover', handleDragOver);
+      node.addEventListener('drop', handleDrop);
+      return function () {
+        node.removeEventListener('dragenter', handleDragEnter);
+        node.removeEventListener('dragover', handleDragOver);
+        node.removeEventListener('drop', handleDrop);
+      };
     }
-    connectDragPreview(sourceId, node, options) {
-        this.sourcePreviewNodeOptions.set(sourceId, options);
-        this.sourcePreviewNodes.set(sourceId, node);
-        return ()=>{
-            this.sourcePreviewNodes.delete(sourceId);
-            this.sourcePreviewNodeOptions.delete(sourceId);
-        };
+  }, {
+    key: "addEventListeners",
+    value: function addEventListeners(target) {
+      // SSR Fix (https://github.com/react-dnd/react-dnd/pull/813
+      if (!target.addEventListener) {
+        return;
+      }
+
+      target.addEventListener('dragstart', this.handleTopDragStart);
+      target.addEventListener('dragstart', this.handleTopDragStartCapture, true);
+      target.addEventListener('dragend', this.handleTopDragEndCapture, true);
+      target.addEventListener('dragenter', this.handleTopDragEnter);
+      target.addEventListener('dragenter', this.handleTopDragEnterCapture, true);
+      target.addEventListener('dragleave', this.handleTopDragLeaveCapture, true);
+      target.addEventListener('dragover', this.handleTopDragOver);
+      target.addEventListener('dragover', this.handleTopDragOverCapture, true);
+      target.addEventListener('drop', this.handleTopDrop);
+      target.addEventListener('drop', this.handleTopDropCapture, true);
     }
-    connectDragSource(sourceId, node, options) {
-        this.sourceNodes.set(sourceId, node);
-        this.sourceNodeOptions.set(sourceId, options);
-        const handleDragStart = (e)=>this.handleDragStart(e, sourceId)
-        ;
-        const handleSelectStart = (e)=>this.handleSelectStart(e)
-        ;
-        node.setAttribute('draggable', 'true');
-        node.addEventListener('dragstart', handleDragStart);
-        node.addEventListener('selectstart', handleSelectStart);
-        return ()=>{
-            this.sourceNodes.delete(sourceId);
-            this.sourceNodeOptions.delete(sourceId);
-            node.removeEventListener('dragstart', handleDragStart);
-            node.removeEventListener('selectstart', handleSelectStart);
-            node.setAttribute('draggable', 'false');
-        };
+  }, {
+    key: "removeEventListeners",
+    value: function removeEventListeners(target) {
+      // SSR Fix (https://github.com/react-dnd/react-dnd/pull/813
+      if (!target.removeEventListener) {
+        return;
+      }
+
+      target.removeEventListener('dragstart', this.handleTopDragStart);
+      target.removeEventListener('dragstart', this.handleTopDragStartCapture, true);
+      target.removeEventListener('dragend', this.handleTopDragEndCapture, true);
+      target.removeEventListener('dragenter', this.handleTopDragEnter);
+      target.removeEventListener('dragenter', this.handleTopDragEnterCapture, true);
+      target.removeEventListener('dragleave', this.handleTopDragLeaveCapture, true);
+      target.removeEventListener('dragover', this.handleTopDragOver);
+      target.removeEventListener('dragover', this.handleTopDragOverCapture, true);
+      target.removeEventListener('drop', this.handleTopDrop);
+      target.removeEventListener('drop', this.handleTopDropCapture, true);
     }
-    connectDropTarget(targetId, node) {
-        const handleDragEnter = (e)=>this.handleDragEnter(e, targetId)
-        ;
-        const handleDragOver = (e)=>this.handleDragOver(e, targetId)
-        ;
-        const handleDrop = (e)=>this.handleDrop(e, targetId)
-        ;
-        node.addEventListener('dragenter', handleDragEnter);
-        node.addEventListener('dragover', handleDragOver);
-        node.addEventListener('drop', handleDrop);
-        return ()=>{
-            node.removeEventListener('dragenter', handleDragEnter);
-            node.removeEventListener('dragover', handleDragOver);
-            node.removeEventListener('drop', handleDrop);
-        };
+  }, {
+    key: "getCurrentSourceNodeOptions",
+    value: function getCurrentSourceNodeOptions() {
+      var sourceId = this.monitor.getSourceId();
+      var sourceNodeOptions = this.sourceNodeOptions.get(sourceId);
+      return _objectSpread({
+        dropEffect: this.altKeyPressed ? 'copy' : 'move'
+      }, sourceNodeOptions || {});
     }
-    addEventListeners(target) {
-        // SSR Fix (https://github.com/react-dnd/react-dnd/pull/813
-        if (!target.addEventListener) {
-            return;
-        }
-        target.addEventListener('dragstart', this.handleTopDragStart);
-        target.addEventListener('dragstart', this.handleTopDragStartCapture, true);
-        target.addEventListener('dragend', this.handleTopDragEndCapture, true);
-        target.addEventListener('dragenter', this.handleTopDragEnter);
-        target.addEventListener('dragenter', this.handleTopDragEnterCapture, true);
-        target.addEventListener('dragleave', this.handleTopDragLeaveCapture, true);
-        target.addEventListener('dragover', this.handleTopDragOver);
-        target.addEventListener('dragover', this.handleTopDragOverCapture, true);
-        target.addEventListener('drop', this.handleTopDrop);
-        target.addEventListener('drop', this.handleTopDropCapture, true);
+  }, {
+    key: "getCurrentDropEffect",
+    value: function getCurrentDropEffect() {
+      if (this.isDraggingNativeItem()) {
+        // It makes more sense to default to 'copy' for native resources
+        return 'copy';
+      }
+
+      return this.getCurrentSourceNodeOptions().dropEffect;
     }
-    removeEventListeners(target) {
-        // SSR Fix (https://github.com/react-dnd/react-dnd/pull/813
-        if (!target.removeEventListener) {
-            return;
-        }
-        target.removeEventListener('dragstart', this.handleTopDragStart);
-        target.removeEventListener('dragstart', this.handleTopDragStartCapture, true);
-        target.removeEventListener('dragend', this.handleTopDragEndCapture, true);
-        target.removeEventListener('dragenter', this.handleTopDragEnter);
-        target.removeEventListener('dragenter', this.handleTopDragEnterCapture, true);
-        target.removeEventListener('dragleave', this.handleTopDragLeaveCapture, true);
-        target.removeEventListener('dragover', this.handleTopDragOver);
-        target.removeEventListener('dragover', this.handleTopDragOverCapture, true);
-        target.removeEventListener('drop', this.handleTopDrop);
-        target.removeEventListener('drop', this.handleTopDropCapture, true);
+  }, {
+    key: "getCurrentSourcePreviewNodeOptions",
+    value: function getCurrentSourcePreviewNodeOptions() {
+      var sourceId = this.monitor.getSourceId();
+      var sourcePreviewNodeOptions = this.sourcePreviewNodeOptions.get(sourceId);
+      return _objectSpread({
+        anchorX: 0.5,
+        anchorY: 0.5,
+        captureDraggingState: false
+      }, sourcePreviewNodeOptions || {});
     }
-    getCurrentSourceNodeOptions() {
-        const sourceId = this.monitor.getSourceId();
-        const sourceNodeOptions = this.sourceNodeOptions.get(sourceId);
-        return _objectSpread({
-            dropEffect: this.altKeyPressed ? 'copy' : 'move'
-        }, sourceNodeOptions || {});
+  }, {
+    key: "isDraggingNativeItem",
+    value: function isDraggingNativeItem() {
+      var itemType = this.monitor.getItemType();
+      return Object.keys(_NativeTypes__WEBPACK_IMPORTED_MODULE_4__).some(function (key) {
+        return _NativeTypes__WEBPACK_IMPORTED_MODULE_4__[key] === itemType;
+      });
     }
-    getCurrentDropEffect() {
-        if (this.isDraggingNativeItem()) {
-            // It makes more sense to default to 'copy' for native resources
-            return 'copy';
-        }
-        return this.getCurrentSourceNodeOptions().dropEffect;
+  }, {
+    key: "beginDragNativeItem",
+    value: function beginDragNativeItem(type, dataTransfer) {
+      this.clearCurrentDragSourceNode();
+      this.currentNativeSource = (0,_NativeDragSources__WEBPACK_IMPORTED_MODULE_1__.createNativeDragSource)(type, dataTransfer);
+      this.currentNativeHandle = this.registry.addSource(type, this.currentNativeSource);
+      this.actions.beginDrag([this.currentNativeHandle]);
     }
-    getCurrentSourcePreviewNodeOptions() {
-        const sourceId = this.monitor.getSourceId();
-        const sourcePreviewNodeOptions = this.sourcePreviewNodeOptions.get(sourceId);
-        return _objectSpread({
-            anchorX: 0.5,
-            anchorY: 0.5,
-            captureDraggingState: false
-        }, sourcePreviewNodeOptions || {});
+  }, {
+    key: "setCurrentDragSourceNode",
+    value: function setCurrentDragSourceNode(node) {
+      var _this5 = this;
+
+      this.clearCurrentDragSourceNode();
+      this.currentDragSourceNode = node; // A timeout of > 0 is necessary to resolve Firefox issue referenced
+      // See:
+      //   * https://github.com/react-dnd/react-dnd/pull/928
+      //   * https://github.com/react-dnd/react-dnd/issues/869
+
+      var MOUSE_MOVE_TIMEOUT = 1000; // Receiving a mouse event in the middle of a dragging operation
+      // means it has ended and the drag source node disappeared from DOM,
+      // so the browser didn't dispatch the dragend event.
+      //
+      // We need to wait before we start listening for mousemove events.
+      // This is needed because the drag preview needs to be drawn or else it fires an 'mousemove' event
+      // immediately in some browsers.
+      //
+      // See:
+      //   * https://github.com/react-dnd/react-dnd/pull/928
+      //   * https://github.com/react-dnd/react-dnd/issues/869
+      //
+
+      this.mouseMoveTimeoutTimer = setTimeout(function () {
+        var _this5$rootElement;
+
+        return (_this5$rootElement = _this5.rootElement) === null || _this5$rootElement === void 0 ? void 0 : _this5$rootElement.addEventListener('mousemove', _this5.endDragIfSourceWasRemovedFromDOM, true);
+      }, MOUSE_MOVE_TIMEOUT);
     }
-    isDraggingNativeItem() {
-        const itemType = this.monitor.getItemType();
-        return Object.keys(NativeTypes).some((key)=>NativeTypes[key] === itemType
-        );
-    }
-    beginDragNativeItem(type, dataTransfer) {
-        this.clearCurrentDragSourceNode();
-        this.currentNativeSource = (0, _indexJs).createNativeDragSource(type, dataTransfer);
-        this.currentNativeHandle = this.registry.addSource(type, this.currentNativeSource);
-        this.actions.beginDrag([
-            this.currentNativeHandle
-        ]);
-    }
-    setCurrentDragSourceNode(node) {
-        this.clearCurrentDragSourceNode();
-        this.currentDragSourceNode = node;
-        // A timeout of > 0 is necessary to resolve Firefox issue referenced
-        // See:
-        //   * https://github.com/react-dnd/react-dnd/pull/928
-        //   * https://github.com/react-dnd/react-dnd/issues/869
-        const MOUSE_MOVE_TIMEOUT = 1000;
-        // Receiving a mouse event in the middle of a dragging operation
-        // means it has ended and the drag source node disappeared from DOM,
-        // so the browser didn't dispatch the dragend event.
-        //
-        // We need to wait before we start listening for mousemove events.
-        // This is needed because the drag preview needs to be drawn or else it fires an 'mousemove' event
-        // immediately in some browsers.
-        //
-        // See:
-        //   * https://github.com/react-dnd/react-dnd/pull/928
-        //   * https://github.com/react-dnd/react-dnd/issues/869
-        //
-        this.mouseMoveTimeoutTimer = setTimeout(()=>{
-            var ref;
-            return (ref = this.rootElement) === null || ref === void 0 ? void 0 : ref.addEventListener('mousemove', this.endDragIfSourceWasRemovedFromDOM, true);
-        }, MOUSE_MOVE_TIMEOUT);
-    }
-    clearCurrentDragSourceNode() {
-        if (this.currentDragSourceNode) {
-            this.currentDragSourceNode = null;
-            if (this.rootElement) {
-                var ref;
-                (ref = this.window) === null || ref === void 0 ? void 0 : ref.clearTimeout(this.mouseMoveTimeoutTimer || undefined);
-                this.rootElement.removeEventListener('mousemove', this.endDragIfSourceWasRemovedFromDOM, true);
-            }
-            this.mouseMoveTimeoutTimer = null;
-            return true;
-        }
-        return false;
-    }
-    handleDragStart(e, sourceId) {
-        if (e.defaultPrevented) {
-            return;
-        }
-        if (!this.dragStartSourceIds) {
-            this.dragStartSourceIds = [];
-        }
-        this.dragStartSourceIds.unshift(sourceId);
-    }
-    handleDragEnter(_e, targetId) {
-        this.dragEnterTargetIds.unshift(targetId);
-    }
-    handleDragOver(_e, targetId) {
-        if (this.dragOverTargetIds === null) {
-            this.dragOverTargetIds = [];
-        }
-        this.dragOverTargetIds.unshift(targetId);
-    }
-    handleDrop(_e, targetId) {
-        this.dropTargetIds.unshift(targetId);
-    }
-    constructor(manager, globalContext, options){
-        this.sourcePreviewNodes = new Map();
-        this.sourcePreviewNodeOptions = new Map();
-        this.sourceNodes = new Map();
-        this.sourceNodeOptions = new Map();
-        this.dragStartSourceIds = null;
-        this.dropTargetIds = [];
-        this.dragEnterTargetIds = [];
-        this.currentNativeSource = null;
-        this.currentNativeHandle = null;
+  }, {
+    key: "clearCurrentDragSourceNode",
+    value: function clearCurrentDragSourceNode() {
+      if (this.currentDragSourceNode) {
         this.currentDragSourceNode = null;
-        this.altKeyPressed = false;
+
+        if (this.rootElement) {
+          var _this$window2;
+
+          (_this$window2 = this.window) === null || _this$window2 === void 0 ? void 0 : _this$window2.clearTimeout(this.mouseMoveTimeoutTimer || undefined);
+          this.rootElement.removeEventListener('mousemove', this.endDragIfSourceWasRemovedFromDOM, true);
+        }
+
         this.mouseMoveTimeoutTimer = null;
-        this.asyncEndDragFrameId = null;
-        this.dragOverTargetIds = null;
-        this.lastClientOffset = null;
-        this.hoverRafId = null;
-        this.getSourceClientOffset = (sourceId)=>{
-            const source = this.sourceNodes.get(sourceId);
-            return source && (0, _offsetUtilsJs).getNodeClientOffset(source) || null;
-        };
-        this.endDragNativeItem = ()=>{
-            if (!this.isDraggingNativeItem()) {
-                return;
-            }
-            this.actions.endDrag();
-            if (this.currentNativeHandle) {
-                this.registry.removeSource(this.currentNativeHandle);
-            }
-            this.currentNativeHandle = null;
-            this.currentNativeSource = null;
-        };
-        this.isNodeInDocument = (node)=>{
-            // Check the node either in the main document or in the current context
-            return Boolean(node && this.document && this.document.body && this.document.body.contains(node));
-        };
-        this.endDragIfSourceWasRemovedFromDOM = ()=>{
-            const node = this.currentDragSourceNode;
-            if (node == null || this.isNodeInDocument(node)) {
-                return;
-            }
-            if (this.clearCurrentDragSourceNode() && this.monitor.isDragging()) {
-                this.actions.endDrag();
-            }
-        };
-        this.handleTopDragStartCapture = ()=>{
-            this.clearCurrentDragSourceNode();
-            this.dragStartSourceIds = [];
-        };
-        this.handleTopDragStart = (e)=>{
-            if (e.defaultPrevented) {
-                return;
-            }
-            const { dragStartSourceIds  } = this;
-            this.dragStartSourceIds = null;
-            const clientOffset = (0, _offsetUtilsJs).getEventClientOffset(e);
-            // Avoid crashing if we missed a drop event or our previous drag died
-            if (this.monitor.isDragging()) {
-                this.actions.endDrag();
-            }
-            // Don't publish the source just yet (see why below)
-            this.actions.beginDrag(dragStartSourceIds || [], {
-                publishSource: false,
-                getSourceClientOffset: this.getSourceClientOffset,
-                clientOffset
-            });
-            const { dataTransfer  } = e;
-            const nativeType = (0, _indexJs).matchNativeItemType(dataTransfer);
-            if (this.monitor.isDragging()) {
-                if (dataTransfer && typeof dataTransfer.setDragImage === 'function') {
-                    // Use custom drag image if user specifies it.
-                    // If child drag source refuses drag but parent agrees,
-                    // use parent's node as drag image. Neither works in IE though.
-                    const sourceId = this.monitor.getSourceId();
-                    const sourceNode = this.sourceNodes.get(sourceId);
-                    const dragPreview = this.sourcePreviewNodes.get(sourceId) || sourceNode;
-                    if (dragPreview) {
-                        const { anchorX , anchorY , offsetX , offsetY  } = this.getCurrentSourcePreviewNodeOptions();
-                        const anchorPoint = {
-                            anchorX,
-                            anchorY
-                        };
-                        const offsetPoint = {
-                            offsetX,
-                            offsetY
-                        };
-                        const dragPreviewOffset = (0, _offsetUtilsJs).getDragPreviewOffset(sourceNode, dragPreview, clientOffset, anchorPoint, offsetPoint);
-                        dataTransfer.setDragImage(dragPreview, dragPreviewOffset.x, dragPreviewOffset.y);
-                    }
-                }
-                try {
-                    // Firefox won't drag without setting data
-                    dataTransfer === null || dataTransfer === void 0 ? void 0 : dataTransfer.setData('application/json', {});
-                } catch (err) {
-                // IE doesn't support MIME types in setData
-                }
-                // Store drag source node so we can check whether
-                // it is removed from DOM and trigger endDrag manually.
-                this.setCurrentDragSourceNode(e.target);
-                // Now we are ready to publish the drag source.. or are we not?
-                const { captureDraggingState  } = this.getCurrentSourcePreviewNodeOptions();
-                if (!captureDraggingState) {
-                    // Usually we want to publish it in the next tick so that browser
-                    // is able to screenshot the current (not yet dragging) state.
-                    //
-                    // It also neatly avoids a situation where render() returns null
-                    // in the same tick for the source element, and browser freaks out.
-                    setTimeout(()=>this.actions.publishDragSource()
-                    , 0);
-                } else {
-                    // In some cases the user may want to override this behavior, e.g.
-                    // to work around IE not supporting custom drag previews.
-                    //
-                    // When using a custom drag layer, the only way to prevent
-                    // the default drag preview from drawing in IE is to screenshot
-                    // the dragging state in which the node itself has zero opacity
-                    // and height. In this case, though, returning null from render()
-                    // will abruptly end the dragging, which is not obvious.
-                    //
-                    // This is the reason such behavior is strictly opt-in.
-                    this.actions.publishDragSource();
-                }
-            } else if (nativeType) {
-                // A native item (such as URL) dragged from inside the document
-                this.beginDragNativeItem(nativeType);
-            } else if (dataTransfer && !dataTransfer.types && (e.target && !e.target.hasAttribute || !e.target.hasAttribute('draggable'))) {
-                // Looks like a Safari bug: dataTransfer.types is null, but there was no draggable.
-                // Just let it drag. It's a native type (URL or text) and will be picked up in
-                // dragenter handler.
-                return;
-            } else {
-                // If by this time no drag source reacted, tell browser not to drag.
-                e.preventDefault();
-            }
-        };
-        this.handleTopDragEndCapture = ()=>{
-            if (this.clearCurrentDragSourceNode() && this.monitor.isDragging()) {
-                // Firefox can dispatch this event in an infinite loop
-                // if dragend handler does something like showing an alert.
-                // Only proceed if we have not handled it already.
-                this.actions.endDrag();
-            }
-        };
-        this.handleTopDragEnterCapture = (e)=>{
-            this.dragEnterTargetIds = [];
-            if (this.isDraggingNativeItem()) {
-                var ref;
-                (ref = this.currentNativeSource) === null || ref === void 0 ? void 0 : ref.loadDataTransfer(e.dataTransfer);
-            }
-            const isFirstEnter = this.enterLeaveCounter.enter(e.target);
-            if (!isFirstEnter || this.monitor.isDragging()) {
-                return;
-            }
-            const { dataTransfer  } = e;
-            const nativeType = (0, _indexJs).matchNativeItemType(dataTransfer);
-            if (nativeType) {
-                // A native item (such as file or URL) dragged from outside the document
-                this.beginDragNativeItem(nativeType, dataTransfer);
-            }
-        };
-        this.handleTopDragEnter = (e)=>{
-            const { dragEnterTargetIds  } = this;
-            this.dragEnterTargetIds = [];
-            if (!this.monitor.isDragging()) {
-                // This is probably a native item type we don't understand.
-                return;
-            }
-            this.altKeyPressed = e.altKey;
-            // If the target changes position as the result of `dragenter`, `dragover` might still
-            // get dispatched despite target being no longer there. The easy solution is to check
-            // whether there actually is a target before firing `hover`.
-            if (dragEnterTargetIds.length > 0) {
-                this.actions.hover(dragEnterTargetIds, {
-                    clientOffset: (0, _offsetUtilsJs).getEventClientOffset(e)
-                });
-            }
-            const canDrop = dragEnterTargetIds.some((targetId)=>this.monitor.canDropOnTarget(targetId)
-            );
-            if (canDrop) {
-                // IE requires this to fire dragover events
-                e.preventDefault();
-                if (e.dataTransfer) {
-                    e.dataTransfer.dropEffect = this.getCurrentDropEffect();
-                }
-            }
-        };
-        this.handleTopDragOverCapture = (e)=>{
-            this.dragOverTargetIds = [];
-            if (this.isDraggingNativeItem()) {
-                var ref;
-                (ref = this.currentNativeSource) === null || ref === void 0 ? void 0 : ref.loadDataTransfer(e.dataTransfer);
-            }
-        };
-        this.handleTopDragOver = (e)=>{
-            const { dragOverTargetIds  } = this;
-            this.dragOverTargetIds = [];
-            if (!this.monitor.isDragging()) {
-                // This is probably a native item type we don't understand.
-                // Prevent default "drop and blow away the whole document" action.
-                e.preventDefault();
-                if (e.dataTransfer) {
-                    e.dataTransfer.dropEffect = 'none';
-                }
-                return;
-            }
-            this.altKeyPressed = e.altKey;
-            this.lastClientOffset = (0, _offsetUtilsJs).getEventClientOffset(e);
-            if (this.hoverRafId === null && typeof requestAnimationFrame !== 'undefined') {
-                this.hoverRafId = requestAnimationFrame(()=>{
-                    if (this.monitor.isDragging()) {
-                        this.actions.hover(dragOverTargetIds || [], {
-                            clientOffset: this.lastClientOffset
-                        });
-                    }
-                    this.hoverRafId = null;
-                });
-            }
-            const canDrop = (dragOverTargetIds || []).some((targetId)=>this.monitor.canDropOnTarget(targetId)
-            );
-            if (canDrop) {
-                // Show user-specified drop effect.
-                e.preventDefault();
-                if (e.dataTransfer) {
-                    e.dataTransfer.dropEffect = this.getCurrentDropEffect();
-                }
-            } else if (this.isDraggingNativeItem()) {
-                // Don't show a nice cursor but still prevent default
-                // "drop and blow away the whole document" action.
-                e.preventDefault();
-            } else {
-                e.preventDefault();
-                if (e.dataTransfer) {
-                    e.dataTransfer.dropEffect = 'none';
-                }
-            }
-        };
-        this.handleTopDragLeaveCapture = (e)=>{
-            if (this.isDraggingNativeItem()) {
-                e.preventDefault();
-            }
-            const isLastLeave = this.enterLeaveCounter.leave(e.target);
-            if (!isLastLeave) {
-                return;
-            }
-            if (this.isDraggingNativeItem()) {
-                setTimeout(()=>this.endDragNativeItem()
-                , 0);
-            }
-        };
-        this.handleTopDropCapture = (e)=>{
-            this.dropTargetIds = [];
-            if (this.isDraggingNativeItem()) {
-                var ref;
-                e.preventDefault();
-                (ref = this.currentNativeSource) === null || ref === void 0 ? void 0 : ref.loadDataTransfer(e.dataTransfer);
-            } else if ((0, _indexJs).matchNativeItemType(e.dataTransfer)) {
-                // Dragging some elements, like <a> and <img> may still behave like a native drag event,
-                // even if the current drag event matches a user-defined type.
-                // Stop the default behavior when we're not expecting a native item to be dropped.
-                e.preventDefault();
-            }
-            this.enterLeaveCounter.reset();
-        };
-        this.handleTopDrop = (e)=>{
-            const { dropTargetIds  } = this;
-            this.dropTargetIds = [];
-            this.actions.hover(dropTargetIds, {
-                clientOffset: (0, _offsetUtilsJs).getEventClientOffset(e)
-            });
-            this.actions.drop({
-                dropEffect: this.getCurrentDropEffect()
-            });
-            if (this.isDraggingNativeItem()) {
-                this.endDragNativeItem();
-            } else if (this.monitor.isDragging()) {
-                this.actions.endDrag();
-            }
-        };
-        this.handleSelectStart = (e)=>{
-            const target = e.target;
-            // Only IE requires us to explicitly say
-            // we want drag drop operation to start
-            if (typeof target.dragDrop !== 'function') {
-                return;
-            }
-            // Inputs and textareas should be selectable
-            if (target.tagName === 'INPUT' || target.tagName === 'SELECT' || target.tagName === 'TEXTAREA' || target.isContentEditable) {
-                return;
-            }
-            // For other targets, ask IE
-            // to enable drag and drop
-            e.preventDefault();
-            target.dragDrop();
-        };
-        this.options = new _optionsReaderJs.OptionsReader(globalContext, options);
-        this.actions = manager.getActions();
-        this.monitor = manager.getMonitor();
-        this.registry = manager.getRegistry();
-        this.enterLeaveCounter = new _enterLeaveCounterJs.EnterLeaveCounter(this.isNodeInDocument);
-    }
-}
-exports.HTML5BackendImpl = HTML5BackendImpl;
-
-//# sourceMappingURL=HTML5BackendImpl.js.map
-
-/***/ }),
-
-/***/ "./node_modules/react-dnd-html5-backend/dist/cjs/MonotonicInterpolant.js":
-/*!*******************************************************************************!*\
-  !*** ./node_modules/react-dnd-html5-backend/dist/cjs/MonotonicInterpolant.js ***!
-  \*******************************************************************************/
-/***/ ((__unused_webpack_module, exports) => {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", ({
-    value: true
-}));
-class MonotonicInterpolant {
-    interpolate(x) {
-        const { xs , ys , c1s , c2s , c3s  } = this;
-        // The rightmost point in the dataset should give an exact result
-        let i = xs.length - 1;
-        if (x === xs[i]) {
-            return ys[i];
-        }
-        // Search for the interval x is in, returning the corresponding y if x is one of the original xs
-        let low = 0;
-        let high = c3s.length - 1;
-        let mid;
-        while(low <= high){
-            mid = Math.floor(0.5 * (low + high));
-            const xHere = xs[mid];
-            if (xHere < x) {
-                low = mid + 1;
-            } else if (xHere > x) {
-                high = mid - 1;
-            } else {
-                return ys[mid];
-            }
-        }
-        i = Math.max(0, high);
-        // Interpolate
-        const diff = x - xs[i];
-        const diffSq = diff * diff;
-        return ys[i] + c1s[i] * diff + c2s[i] * diffSq + c3s[i] * diff * diffSq;
-    }
-    constructor(xs, ys){
-        const { length  } = xs;
-        // Rearrange xs and ys so that xs is sorted
-        const indexes = [];
-        for(let i = 0; i < length; i++){
-            indexes.push(i);
-        }
-        indexes.sort((a, b)=>xs[a] < xs[b] ? -1 : 1
-        );
-        // Get consecutive differences and slopes
-        const dys = [];
-        const dxs = [];
-        const ms = [];
-        let dx;
-        let dy;
-        for(let i1 = 0; i1 < length - 1; i1++){
-            dx = xs[i1 + 1] - xs[i1];
-            dy = ys[i1 + 1] - ys[i1];
-            dxs.push(dx);
-            dys.push(dy);
-            ms.push(dy / dx);
-        }
-        // Get degree-1 coefficients
-        const c1s = [
-            ms[0]
-        ];
-        for(let i2 = 0; i2 < dxs.length - 1; i2++){
-            const m2 = ms[i2];
-            const mNext = ms[i2 + 1];
-            if (m2 * mNext <= 0) {
-                c1s.push(0);
-            } else {
-                dx = dxs[i2];
-                const dxNext = dxs[i2 + 1];
-                const common = dx + dxNext;
-                c1s.push(3 * common / ((common + dxNext) / m2 + (common + dx) / mNext));
-            }
-        }
-        c1s.push(ms[ms.length - 1]);
-        // Get degree-2 and degree-3 coefficients
-        const c2s = [];
-        const c3s = [];
-        let m;
-        for(let i3 = 0; i3 < c1s.length - 1; i3++){
-            m = ms[i3];
-            const c1 = c1s[i3];
-            const invDx = 1 / dxs[i3];
-            const common = c1 + c1s[i3 + 1] - m - m;
-            c2s.push((m - c1 - common) * invDx);
-            c3s.push(common * invDx * invDx);
-        }
-        this.xs = xs;
-        this.ys = ys;
-        this.c1s = c1s;
-        this.c2s = c2s;
-        this.c3s = c3s;
-    }
-}
-exports.MonotonicInterpolant = MonotonicInterpolant;
-
-//# sourceMappingURL=MonotonicInterpolant.js.map
-
-/***/ }),
-
-/***/ "./node_modules/react-dnd-html5-backend/dist/cjs/NativeDragSources/NativeDragSource.js":
-/*!*********************************************************************************************!*\
-  !*** ./node_modules/react-dnd-html5-backend/dist/cjs/NativeDragSources/NativeDragSource.js ***!
-  \*********************************************************************************************/
-/***/ ((__unused_webpack_module, exports) => {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", ({
-    value: true
-}));
-class NativeDragSource {
-    initializeExposedProperties() {
-        Object.keys(this.config.exposeProperties).forEach((property)=>{
-            Object.defineProperty(this.item, property, {
-                configurable: true,
-                enumerable: true,
-                get () {
-                    // eslint-disable-next-line no-console
-                    console.warn(`Browser doesn't allow reading "${property}" until the drop event.`);
-                    return null;
-                }
-            });
-        });
-    }
-    loadDataTransfer(dataTransfer) {
-        if (dataTransfer) {
-            const newProperties = {};
-            Object.keys(this.config.exposeProperties).forEach((property)=>{
-                const propertyFn = this.config.exposeProperties[property];
-                if (propertyFn != null) {
-                    newProperties[property] = {
-                        value: propertyFn(dataTransfer, this.config.matchesTypes),
-                        configurable: true,
-                        enumerable: true
-                    };
-                }
-            });
-            Object.defineProperties(this.item, newProperties);
-        }
-    }
-    canDrag() {
         return true;
-    }
-    beginDrag() {
-        return this.item;
-    }
-    isDragging(monitor, handle) {
-        return handle === monitor.getSourceId();
-    }
-    endDrag() {
-    // empty
-    }
-    constructor(config){
-        this.config = config;
-        this.item = {};
-        this.initializeExposedProperties();
-    }
-}
-exports.NativeDragSource = NativeDragSource;
+      }
 
-//# sourceMappingURL=NativeDragSource.js.map
+      return false;
+    }
+  }, {
+    key: "handleDragStart",
+    value: function handleDragStart(e, sourceId) {
+      if (e.defaultPrevented) {
+        return;
+      }
+
+      if (!this.dragStartSourceIds) {
+        this.dragStartSourceIds = [];
+      }
+
+      this.dragStartSourceIds.unshift(sourceId);
+    }
+  }, {
+    key: "handleDragEnter",
+    value: function handleDragEnter(e, targetId) {
+      this.dragEnterTargetIds.unshift(targetId);
+    }
+  }, {
+    key: "handleDragOver",
+    value: function handleDragOver(e, targetId) {
+      if (this.dragOverTargetIds === null) {
+        this.dragOverTargetIds = [];
+      }
+
+      this.dragOverTargetIds.unshift(targetId);
+    }
+  }, {
+    key: "handleDrop",
+    value: function handleDrop(e, targetId) {
+      this.dropTargetIds.unshift(targetId);
+    }
+  }]);
+
+  return HTML5BackendImpl;
+}();
 
 /***/ }),
 
-/***/ "./node_modules/react-dnd-html5-backend/dist/cjs/NativeDragSources/getDataFromDataTransfer.js":
+/***/ "./node_modules/react-dnd-html5-backend/dist/esm/MonotonicInterpolant.js":
+/*!*******************************************************************************!*\
+  !*** ./node_modules/react-dnd-html5-backend/dist/esm/MonotonicInterpolant.js ***!
+  \*******************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "MonotonicInterpolant": () => (/* binding */ MonotonicInterpolant)
+/* harmony export */ });
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+var MonotonicInterpolant = /*#__PURE__*/function () {
+  function MonotonicInterpolant(xs, ys) {
+    _classCallCheck(this, MonotonicInterpolant);
+
+    _defineProperty(this, "xs", void 0);
+
+    _defineProperty(this, "ys", void 0);
+
+    _defineProperty(this, "c1s", void 0);
+
+    _defineProperty(this, "c2s", void 0);
+
+    _defineProperty(this, "c3s", void 0);
+
+    var length = xs.length; // Rearrange xs and ys so that xs is sorted
+
+    var indexes = [];
+
+    for (var i = 0; i < length; i++) {
+      indexes.push(i);
+    }
+
+    indexes.sort(function (a, b) {
+      return xs[a] < xs[b] ? -1 : 1;
+    }); // Get consecutive differences and slopes
+
+    var dys = [];
+    var dxs = [];
+    var ms = [];
+    var dx;
+    var dy;
+
+    for (var _i = 0; _i < length - 1; _i++) {
+      dx = xs[_i + 1] - xs[_i];
+      dy = ys[_i + 1] - ys[_i];
+      dxs.push(dx);
+      dys.push(dy);
+      ms.push(dy / dx);
+    } // Get degree-1 coefficients
+
+
+    var c1s = [ms[0]];
+
+    for (var _i2 = 0; _i2 < dxs.length - 1; _i2++) {
+      var m2 = ms[_i2];
+      var mNext = ms[_i2 + 1];
+
+      if (m2 * mNext <= 0) {
+        c1s.push(0);
+      } else {
+        dx = dxs[_i2];
+        var dxNext = dxs[_i2 + 1];
+        var common = dx + dxNext;
+        c1s.push(3 * common / ((common + dxNext) / m2 + (common + dx) / mNext));
+      }
+    }
+
+    c1s.push(ms[ms.length - 1]); // Get degree-2 and degree-3 coefficients
+
+    var c2s = [];
+    var c3s = [];
+    var m;
+
+    for (var _i3 = 0; _i3 < c1s.length - 1; _i3++) {
+      m = ms[_i3];
+      var c1 = c1s[_i3];
+      var invDx = 1 / dxs[_i3];
+
+      var _common = c1 + c1s[_i3 + 1] - m - m;
+
+      c2s.push((m - c1 - _common) * invDx);
+      c3s.push(_common * invDx * invDx);
+    }
+
+    this.xs = xs;
+    this.ys = ys;
+    this.c1s = c1s;
+    this.c2s = c2s;
+    this.c3s = c3s;
+  }
+
+  _createClass(MonotonicInterpolant, [{
+    key: "interpolate",
+    value: function interpolate(x) {
+      var xs = this.xs,
+          ys = this.ys,
+          c1s = this.c1s,
+          c2s = this.c2s,
+          c3s = this.c3s; // The rightmost point in the dataset should give an exact result
+
+      var i = xs.length - 1;
+
+      if (x === xs[i]) {
+        return ys[i];
+      } // Search for the interval x is in, returning the corresponding y if x is one of the original xs
+
+
+      var low = 0;
+      var high = c3s.length - 1;
+      var mid;
+
+      while (low <= high) {
+        mid = Math.floor(0.5 * (low + high));
+        var xHere = xs[mid];
+
+        if (xHere < x) {
+          low = mid + 1;
+        } else if (xHere > x) {
+          high = mid - 1;
+        } else {
+          return ys[mid];
+        }
+      }
+
+      i = Math.max(0, high); // Interpolate
+
+      var diff = x - xs[i];
+      var diffSq = diff * diff;
+      return ys[i] + c1s[i] * diff + c2s[i] * diffSq + c3s[i] * diff * diffSq;
+    }
+  }]);
+
+  return MonotonicInterpolant;
+}();
+
+/***/ }),
+
+/***/ "./node_modules/react-dnd-html5-backend/dist/esm/NativeDragSources/NativeDragSource.js":
+/*!*********************************************************************************************!*\
+  !*** ./node_modules/react-dnd-html5-backend/dist/esm/NativeDragSources/NativeDragSource.js ***!
+  \*********************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "NativeDragSource": () => (/* binding */ NativeDragSource)
+/* harmony export */ });
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+var NativeDragSource = /*#__PURE__*/function () {
+  function NativeDragSource(config) {
+    _classCallCheck(this, NativeDragSource);
+
+    _defineProperty(this, "item", void 0);
+
+    _defineProperty(this, "config", void 0);
+
+    this.config = config;
+    this.item = {};
+    this.initializeExposedProperties();
+  }
+
+  _createClass(NativeDragSource, [{
+    key: "initializeExposedProperties",
+    value: function initializeExposedProperties() {
+      var _this = this;
+
+      Object.keys(this.config.exposeProperties).forEach(function (property) {
+        Object.defineProperty(_this.item, property, {
+          configurable: true,
+          enumerable: true,
+          get: function get() {
+            // eslint-disable-next-line no-console
+            console.warn("Browser doesn't allow reading \"".concat(property, "\" until the drop event."));
+            return null;
+          }
+        });
+      });
+    }
+  }, {
+    key: "loadDataTransfer",
+    value: function loadDataTransfer(dataTransfer) {
+      var _this2 = this;
+
+      if (dataTransfer) {
+        var newProperties = {};
+        Object.keys(this.config.exposeProperties).forEach(function (property) {
+          newProperties[property] = {
+            value: _this2.config.exposeProperties[property](dataTransfer, _this2.config.matchesTypes),
+            configurable: true,
+            enumerable: true
+          };
+        });
+        Object.defineProperties(this.item, newProperties);
+      }
+    }
+  }, {
+    key: "canDrag",
+    value: function canDrag() {
+      return true;
+    }
+  }, {
+    key: "beginDrag",
+    value: function beginDrag() {
+      return this.item;
+    }
+  }, {
+    key: "isDragging",
+    value: function isDragging(monitor, handle) {
+      return handle === monitor.getSourceId();
+    }
+  }, {
+    key: "endDrag",
+    value: function endDrag() {// empty
+    }
+  }]);
+
+  return NativeDragSource;
+}();
+
+/***/ }),
+
+/***/ "./node_modules/react-dnd-html5-backend/dist/esm/NativeDragSources/getDataFromDataTransfer.js":
 /*!****************************************************************************************************!*\
-  !*** ./node_modules/react-dnd-html5-backend/dist/cjs/NativeDragSources/getDataFromDataTransfer.js ***!
+  !*** ./node_modules/react-dnd-html5-backend/dist/esm/NativeDragSources/getDataFromDataTransfer.js ***!
   \****************************************************************************************************/
-/***/ ((__unused_webpack_module, exports) => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-
-Object.defineProperty(exports, "__esModule", ({
-    value: true
-}));
-exports.getDataFromDataTransfer = getDataFromDataTransfer;
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "getDataFromDataTransfer": () => (/* binding */ getDataFromDataTransfer)
+/* harmony export */ });
 function getDataFromDataTransfer(dataTransfer, typesToTry, defaultValue) {
-    const result = typesToTry.reduce((resultSoFar, typeToTry)=>resultSoFar || dataTransfer.getData(typeToTry)
-    , '');
-    return result != null ? result : defaultValue;
+  var result = typesToTry.reduce(function (resultSoFar, typeToTry) {
+    return resultSoFar || dataTransfer.getData(typeToTry);
+  }, '');
+  return result != null ? result : defaultValue;
 }
-
-//# sourceMappingURL=getDataFromDataTransfer.js.map
 
 /***/ }),
 
-/***/ "./node_modules/react-dnd-html5-backend/dist/cjs/NativeDragSources/index.js":
+/***/ "./node_modules/react-dnd-html5-backend/dist/esm/NativeDragSources/index.js":
 /*!**********************************************************************************!*\
-  !*** ./node_modules/react-dnd-html5-backend/dist/cjs/NativeDragSources/index.js ***!
+  !*** ./node_modules/react-dnd-html5-backend/dist/esm/NativeDragSources/index.js ***!
   \**********************************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "createNativeDragSource": () => (/* binding */ createNativeDragSource),
+/* harmony export */   "matchNativeItemType": () => (/* binding */ matchNativeItemType)
+/* harmony export */ });
+/* harmony import */ var _nativeTypesConfig__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./nativeTypesConfig */ "./node_modules/react-dnd-html5-backend/dist/esm/NativeDragSources/nativeTypesConfig.js");
+/* harmony import */ var _NativeDragSource__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./NativeDragSource */ "./node_modules/react-dnd-html5-backend/dist/esm/NativeDragSources/NativeDragSource.js");
 
-Object.defineProperty(exports, "__esModule", ({
-    value: true
-}));
-exports.createNativeDragSource = createNativeDragSource;
-exports.matchNativeItemType = matchNativeItemType;
-var _nativeTypesConfigJs = __webpack_require__(/*! ./nativeTypesConfig.js */ "./node_modules/react-dnd-html5-backend/dist/cjs/NativeDragSources/nativeTypesConfig.js");
-var _nativeDragSourceJs = __webpack_require__(/*! ./NativeDragSource.js */ "./node_modules/react-dnd-html5-backend/dist/cjs/NativeDragSources/NativeDragSource.js");
+
 function createNativeDragSource(type, dataTransfer) {
-    const config = _nativeTypesConfigJs.nativeTypesConfig[type];
-    if (!config) {
-        throw new Error(`native type ${type} has no configuration`);
-    }
-    const result = new _nativeDragSourceJs.NativeDragSource(config);
-    result.loadDataTransfer(dataTransfer);
-    return result;
+  var result = new _NativeDragSource__WEBPACK_IMPORTED_MODULE_0__.NativeDragSource(_nativeTypesConfig__WEBPACK_IMPORTED_MODULE_1__.nativeTypesConfig[type]);
+  result.loadDataTransfer(dataTransfer);
+  return result;
 }
 function matchNativeItemType(dataTransfer) {
-    if (!dataTransfer) {
-        return null;
-    }
-    const dataTransferTypes = Array.prototype.slice.call(dataTransfer.types || []);
-    return Object.keys(_nativeTypesConfigJs.nativeTypesConfig).filter((nativeItemType)=>{
-        const typeConfig = _nativeTypesConfigJs.nativeTypesConfig[nativeItemType];
-        if (!(typeConfig === null || typeConfig === void 0 ? void 0 : typeConfig.matchesTypes)) {
-            return false;
-        }
-        return typeConfig.matchesTypes.some((t)=>dataTransferTypes.indexOf(t) > -1
-        );
-    })[0] || null;
-}
+  if (!dataTransfer) {
+    return null;
+  }
 
-//# sourceMappingURL=index.js.map
+  var dataTransferTypes = Array.prototype.slice.call(dataTransfer.types || []);
+  return Object.keys(_nativeTypesConfig__WEBPACK_IMPORTED_MODULE_1__.nativeTypesConfig).filter(function (nativeItemType) {
+    var matchesTypes = _nativeTypesConfig__WEBPACK_IMPORTED_MODULE_1__.nativeTypesConfig[nativeItemType].matchesTypes;
+    return matchesTypes.some(function (t) {
+      return dataTransferTypes.indexOf(t) > -1;
+    });
+  })[0] || null;
+}
 
 /***/ }),
 
-/***/ "./node_modules/react-dnd-html5-backend/dist/cjs/NativeDragSources/nativeTypesConfig.js":
+/***/ "./node_modules/react-dnd-html5-backend/dist/esm/NativeDragSources/nativeTypesConfig.js":
 /*!**********************************************************************************************!*\
-  !*** ./node_modules/react-dnd-html5-backend/dist/cjs/NativeDragSources/nativeTypesConfig.js ***!
+  !*** ./node_modules/react-dnd-html5-backend/dist/esm/NativeDragSources/nativeTypesConfig.js ***!
   \**********************************************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "nativeTypesConfig": () => (/* binding */ nativeTypesConfig)
+/* harmony export */ });
+/* harmony import */ var _NativeTypes__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../NativeTypes */ "./node_modules/react-dnd-html5-backend/dist/esm/NativeTypes.js");
+/* harmony import */ var _getDataFromDataTransfer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./getDataFromDataTransfer */ "./node_modules/react-dnd-html5-backend/dist/esm/NativeDragSources/getDataFromDataTransfer.js");
+var _nativeTypesConfig;
 
-Object.defineProperty(exports, "__esModule", ({
-    value: true
-}));
-exports.nativeTypesConfig = void 0;
-var NativeTypes = _interopRequireWildcard(__webpack_require__(/*! ../NativeTypes.js */ "./node_modules/react-dnd-html5-backend/dist/cjs/NativeTypes.js"));
-var _getDataFromDataTransferJs = __webpack_require__(/*! ./getDataFromDataTransfer.js */ "./node_modules/react-dnd-html5-backend/dist/cjs/NativeDragSources/getDataFromDataTransfer.js");
-function _interopRequireWildcard(obj) {
-    if (obj && obj.__esModule) {
-        return obj;
-    } else {
-        var newObj = {};
-        if (obj != null) {
-            for(var key in obj){
-                if (Object.prototype.hasOwnProperty.call(obj, key)) {
-                    var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {};
-                    if (desc.get || desc.set) {
-                        Object.defineProperty(newObj, key, desc);
-                    } else {
-                        newObj[key] = obj[key];
-                    }
-                }
-            }
-        }
-        newObj.default = obj;
-        return newObj;
-    }
-}
-const nativeTypesConfig = {
-    [NativeTypes.FILE]: {
-        exposeProperties: {
-            files: (dataTransfer)=>Array.prototype.slice.call(dataTransfer.files)
-            ,
-            items: (dataTransfer)=>dataTransfer.items
-            ,
-            dataTransfer: (dataTransfer)=>dataTransfer
-        },
-        matchesTypes: [
-            'Files'
-        ]
-    },
-    [NativeTypes.HTML]: {
-        exposeProperties: {
-            html: (dataTransfer, matchesTypes)=>(0, _getDataFromDataTransferJs).getDataFromDataTransfer(dataTransfer, matchesTypes, '')
-            ,
-            dataTransfer: (dataTransfer)=>dataTransfer
-        },
-        matchesTypes: [
-            'Html',
-            'text/html'
-        ]
-    },
-    [NativeTypes.URL]: {
-        exposeProperties: {
-            urls: (dataTransfer, matchesTypes)=>(0, _getDataFromDataTransferJs).getDataFromDataTransfer(dataTransfer, matchesTypes, '').split('\n')
-            ,
-            dataTransfer: (dataTransfer)=>dataTransfer
-        },
-        matchesTypes: [
-            'Url',
-            'text/uri-list'
-        ]
-    },
-    [NativeTypes.TEXT]: {
-        exposeProperties: {
-            text: (dataTransfer, matchesTypes)=>(0, _getDataFromDataTransferJs).getDataFromDataTransfer(dataTransfer, matchesTypes, '')
-            ,
-            dataTransfer: (dataTransfer)=>dataTransfer
-        },
-        matchesTypes: [
-            'Text',
-            'text/plain'
-        ]
-    }
-};
-exports.nativeTypesConfig = nativeTypesConfig;
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-//# sourceMappingURL=nativeTypesConfig.js.map
+
+
+var nativeTypesConfig = (_nativeTypesConfig = {}, _defineProperty(_nativeTypesConfig, _NativeTypes__WEBPACK_IMPORTED_MODULE_0__.FILE, {
+  exposeProperties: {
+    files: function files(dataTransfer) {
+      return Array.prototype.slice.call(dataTransfer.files);
+    },
+    items: function items(dataTransfer) {
+      return dataTransfer.items;
+    },
+    dataTransfer: function dataTransfer(_dataTransfer) {
+      return _dataTransfer;
+    }
+  },
+  matchesTypes: ['Files']
+}), _defineProperty(_nativeTypesConfig, _NativeTypes__WEBPACK_IMPORTED_MODULE_0__.HTML, {
+  exposeProperties: {
+    html: function html(dataTransfer, matchesTypes) {
+      return (0,_getDataFromDataTransfer__WEBPACK_IMPORTED_MODULE_1__.getDataFromDataTransfer)(dataTransfer, matchesTypes, '');
+    },
+    dataTransfer: function dataTransfer(_dataTransfer2) {
+      return _dataTransfer2;
+    }
+  },
+  matchesTypes: ['Html', 'text/html']
+}), _defineProperty(_nativeTypesConfig, _NativeTypes__WEBPACK_IMPORTED_MODULE_0__.URL, {
+  exposeProperties: {
+    urls: function urls(dataTransfer, matchesTypes) {
+      return (0,_getDataFromDataTransfer__WEBPACK_IMPORTED_MODULE_1__.getDataFromDataTransfer)(dataTransfer, matchesTypes, '').split('\n');
+    },
+    dataTransfer: function dataTransfer(_dataTransfer3) {
+      return _dataTransfer3;
+    }
+  },
+  matchesTypes: ['Url', 'text/uri-list']
+}), _defineProperty(_nativeTypesConfig, _NativeTypes__WEBPACK_IMPORTED_MODULE_0__.TEXT, {
+  exposeProperties: {
+    text: function text(dataTransfer, matchesTypes) {
+      return (0,_getDataFromDataTransfer__WEBPACK_IMPORTED_MODULE_1__.getDataFromDataTransfer)(dataTransfer, matchesTypes, '');
+    },
+    dataTransfer: function dataTransfer(_dataTransfer4) {
+      return _dataTransfer4;
+    }
+  },
+  matchesTypes: ['Text', 'text/plain']
+}), _nativeTypesConfig);
 
 /***/ }),
 
-/***/ "./node_modules/react-dnd-html5-backend/dist/cjs/NativeTypes.js":
+/***/ "./node_modules/react-dnd-html5-backend/dist/esm/NativeTypes.js":
 /*!**********************************************************************!*\
-  !*** ./node_modules/react-dnd-html5-backend/dist/cjs/NativeTypes.js ***!
+  !*** ./node_modules/react-dnd-html5-backend/dist/esm/NativeTypes.js ***!
   \**********************************************************************/
-/***/ ((__unused_webpack_module, exports) => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-
-Object.defineProperty(exports, "__esModule", ({
-    value: true
-}));
-exports.HTML = exports.TEXT = exports.URL = exports.FILE = void 0;
-const FILE = '__NATIVE_FILE__';
-exports.FILE = FILE;
-const URL = '__NATIVE_URL__';
-exports.URL = URL;
-const TEXT = '__NATIVE_TEXT__';
-exports.TEXT = TEXT;
-const HTML = '__NATIVE_HTML__';
-exports.HTML = HTML;
-
-//# sourceMappingURL=NativeTypes.js.map
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "FILE": () => (/* binding */ FILE),
+/* harmony export */   "URL": () => (/* binding */ URL),
+/* harmony export */   "TEXT": () => (/* binding */ TEXT),
+/* harmony export */   "HTML": () => (/* binding */ HTML)
+/* harmony export */ });
+var FILE = '__NATIVE_FILE__';
+var URL = '__NATIVE_URL__';
+var TEXT = '__NATIVE_TEXT__';
+var HTML = '__NATIVE_HTML__';
 
 /***/ }),
 
-/***/ "./node_modules/react-dnd-html5-backend/dist/cjs/OffsetUtils.js":
+/***/ "./node_modules/react-dnd-html5-backend/dist/esm/OffsetUtils.js":
 /*!**********************************************************************!*\
-  !*** ./node_modules/react-dnd-html5-backend/dist/cjs/OffsetUtils.js ***!
+  !*** ./node_modules/react-dnd-html5-backend/dist/esm/OffsetUtils.js ***!
   \**********************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "getNodeClientOffset": () => (/* binding */ getNodeClientOffset),
+/* harmony export */   "getEventClientOffset": () => (/* binding */ getEventClientOffset),
+/* harmony export */   "getDragPreviewOffset": () => (/* binding */ getDragPreviewOffset)
+/* harmony export */ });
+/* harmony import */ var _BrowserDetector__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./BrowserDetector */ "./node_modules/react-dnd-html5-backend/dist/esm/BrowserDetector.js");
+/* harmony import */ var _MonotonicInterpolant__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./MonotonicInterpolant */ "./node_modules/react-dnd-html5-backend/dist/esm/MonotonicInterpolant.js");
 
-Object.defineProperty(exports, "__esModule", ({
-    value: true
-}));
-exports.getNodeClientOffset = getNodeClientOffset;
-exports.getEventClientOffset = getEventClientOffset;
-exports.getDragPreviewOffset = getDragPreviewOffset;
-var _browserDetectorJs = __webpack_require__(/*! ./BrowserDetector.js */ "./node_modules/react-dnd-html5-backend/dist/cjs/BrowserDetector.js");
-var _monotonicInterpolantJs = __webpack_require__(/*! ./MonotonicInterpolant.js */ "./node_modules/react-dnd-html5-backend/dist/cjs/MonotonicInterpolant.js");
-const ELEMENT_NODE = 1;
+
+var ELEMENT_NODE = 1;
 function getNodeClientOffset(node) {
-    const el = node.nodeType === ELEMENT_NODE ? node : node.parentElement;
-    if (!el) {
-        return null;
-    }
-    const { top , left  } = el.getBoundingClientRect();
-    return {
-        x: left,
-        y: top
-    };
+  var el = node.nodeType === ELEMENT_NODE ? node : node.parentElement;
+
+  if (!el) {
+    return null;
+  }
+
+  var _el$getBoundingClient = el.getBoundingClientRect(),
+      top = _el$getBoundingClient.top,
+      left = _el$getBoundingClient.left;
+
+  return {
+    x: left,
+    y: top
+  };
 }
 function getEventClientOffset(e) {
-    return {
-        x: e.clientX,
-        y: e.clientY
-    };
+  return {
+    x: e.clientX,
+    y: e.clientY
+  };
 }
+
 function isImageNode(node) {
-    var ref;
-    return node.nodeName === 'IMG' && ((0, _browserDetectorJs).isFirefox() || !((ref = document.documentElement) === null || ref === void 0 ? void 0 : ref.contains(node)));
+  var _document$documentEle;
+
+  return node.nodeName === 'IMG' && ((0,_BrowserDetector__WEBPACK_IMPORTED_MODULE_0__.isFirefox)() || !((_document$documentEle = document.documentElement) !== null && _document$documentEle !== void 0 && _document$documentEle.contains(node)));
 }
+
 function getDragPreviewSize(isImage, dragPreview, sourceWidth, sourceHeight) {
-    let dragPreviewWidth = isImage ? dragPreview.width : sourceWidth;
-    let dragPreviewHeight = isImage ? dragPreview.height : sourceHeight;
-    // Work around @2x coordinate discrepancies in browsers
-    if ((0, _browserDetectorJs).isSafari() && isImage) {
-        dragPreviewHeight /= window.devicePixelRatio;
-        dragPreviewWidth /= window.devicePixelRatio;
-    }
-    return {
-        dragPreviewWidth,
-        dragPreviewHeight
-    };
+  var dragPreviewWidth = isImage ? dragPreview.width : sourceWidth;
+  var dragPreviewHeight = isImage ? dragPreview.height : sourceHeight; // Work around @2x coordinate discrepancies in browsers
+
+  if ((0,_BrowserDetector__WEBPACK_IMPORTED_MODULE_0__.isSafari)() && isImage) {
+    dragPreviewHeight /= window.devicePixelRatio;
+    dragPreviewWidth /= window.devicePixelRatio;
+  }
+
+  return {
+    dragPreviewWidth: dragPreviewWidth,
+    dragPreviewHeight: dragPreviewHeight
+  };
 }
+
 function getDragPreviewOffset(sourceNode, dragPreview, clientOffset, anchorPoint, offsetPoint) {
-    // The browsers will use the image intrinsic size under different conditions.
-    // Firefox only cares if it's an image, but WebKit also wants it to be detached.
-    const isImage = isImageNode(dragPreview);
-    const dragPreviewNode = isImage ? sourceNode : dragPreview;
-    const dragPreviewNodeOffsetFromClient = getNodeClientOffset(dragPreviewNode);
-    const offsetFromDragPreview = {
-        x: clientOffset.x - dragPreviewNodeOffsetFromClient.x,
-        y: clientOffset.y - dragPreviewNodeOffsetFromClient.y
-    };
-    const { offsetWidth: sourceWidth , offsetHeight: sourceHeight  } = sourceNode;
-    const { anchorX , anchorY  } = anchorPoint;
-    const { dragPreviewWidth , dragPreviewHeight  } = getDragPreviewSize(isImage, dragPreview, sourceWidth, sourceHeight);
-    const calculateYOffset = ()=>{
-        const interpolantY = new _monotonicInterpolantJs.MonotonicInterpolant([
-            0,
-            0.5,
-            1
-        ], [
-            // Dock to the top
-            offsetFromDragPreview.y,
-            // Align at the center
-            (offsetFromDragPreview.y / sourceHeight) * dragPreviewHeight,
-            // Dock to the bottom
-            offsetFromDragPreview.y + dragPreviewHeight - sourceHeight, 
-        ]);
-        let y = interpolantY.interpolate(anchorY);
-        // Work around Safari 8 positioning bug
-        if ((0, _browserDetectorJs).isSafari() && isImage) {
-            // We'll have to wait for @3x to see if this is entirely correct
-            y += (window.devicePixelRatio - 1) * dragPreviewHeight;
-        }
-        return y;
-    };
-    const calculateXOffset = ()=>{
-        // Interpolate coordinates depending on anchor point
-        // If you know a simpler way to do this, let me know
-        const interpolantX = new _monotonicInterpolantJs.MonotonicInterpolant([
-            0,
-            0.5,
-            1
-        ], [
-            // Dock to the left
-            offsetFromDragPreview.x,
-            // Align at the center
-            (offsetFromDragPreview.x / sourceWidth) * dragPreviewWidth,
-            // Dock to the right
-            offsetFromDragPreview.x + dragPreviewWidth - sourceWidth, 
-        ]);
-        return interpolantX.interpolate(anchorX);
-    };
-    // Force offsets if specified in the options.
-    const { offsetX , offsetY  } = offsetPoint;
-    const isManualOffsetX = offsetX === 0 || offsetX;
-    const isManualOffsetY = offsetY === 0 || offsetY;
-    return {
-        x: isManualOffsetX ? offsetX : calculateXOffset(),
-        y: isManualOffsetY ? offsetY : calculateYOffset()
-    };
-}
+  // The browsers will use the image intrinsic size under different conditions.
+  // Firefox only cares if it's an image, but WebKit also wants it to be detached.
+  var isImage = isImageNode(dragPreview);
+  var dragPreviewNode = isImage ? sourceNode : dragPreview;
+  var dragPreviewNodeOffsetFromClient = getNodeClientOffset(dragPreviewNode);
+  var offsetFromDragPreview = {
+    x: clientOffset.x - dragPreviewNodeOffsetFromClient.x,
+    y: clientOffset.y - dragPreviewNodeOffsetFromClient.y
+  };
+  var sourceWidth = sourceNode.offsetWidth,
+      sourceHeight = sourceNode.offsetHeight;
+  var anchorX = anchorPoint.anchorX,
+      anchorY = anchorPoint.anchorY;
 
-//# sourceMappingURL=OffsetUtils.js.map
+  var _getDragPreviewSize = getDragPreviewSize(isImage, dragPreview, sourceWidth, sourceHeight),
+      dragPreviewWidth = _getDragPreviewSize.dragPreviewWidth,
+      dragPreviewHeight = _getDragPreviewSize.dragPreviewHeight;
+
+  var calculateYOffset = function calculateYOffset() {
+    var interpolantY = new _MonotonicInterpolant__WEBPACK_IMPORTED_MODULE_1__.MonotonicInterpolant([0, 0.5, 1], [// Dock to the top
+    offsetFromDragPreview.y, // Align at the center
+    offsetFromDragPreview.y / sourceHeight * dragPreviewHeight, // Dock to the bottom
+    offsetFromDragPreview.y + dragPreviewHeight - sourceHeight]);
+    var y = interpolantY.interpolate(anchorY); // Work around Safari 8 positioning bug
+
+    if ((0,_BrowserDetector__WEBPACK_IMPORTED_MODULE_0__.isSafari)() && isImage) {
+      // We'll have to wait for @3x to see if this is entirely correct
+      y += (window.devicePixelRatio - 1) * dragPreviewHeight;
+    }
+
+    return y;
+  };
+
+  var calculateXOffset = function calculateXOffset() {
+    // Interpolate coordinates depending on anchor point
+    // If you know a simpler way to do this, let me know
+    var interpolantX = new _MonotonicInterpolant__WEBPACK_IMPORTED_MODULE_1__.MonotonicInterpolant([0, 0.5, 1], [// Dock to the left
+    offsetFromDragPreview.x, // Align at the center
+    offsetFromDragPreview.x / sourceWidth * dragPreviewWidth, // Dock to the right
+    offsetFromDragPreview.x + dragPreviewWidth - sourceWidth]);
+    return interpolantX.interpolate(anchorX);
+  }; // Force offsets if specified in the options.
+
+
+  var offsetX = offsetPoint.offsetX,
+      offsetY = offsetPoint.offsetY;
+  var isManualOffsetX = offsetX === 0 || offsetX;
+  var isManualOffsetY = offsetY === 0 || offsetY;
+  return {
+    x: isManualOffsetX ? offsetX : calculateXOffset(),
+    y: isManualOffsetY ? offsetY : calculateYOffset()
+  };
+}
 
 /***/ }),
 
-/***/ "./node_modules/react-dnd-html5-backend/dist/cjs/OptionsReader.js":
+/***/ "./node_modules/react-dnd-html5-backend/dist/esm/OptionsReader.js":
 /*!************************************************************************!*\
-  !*** ./node_modules/react-dnd-html5-backend/dist/cjs/OptionsReader.js ***!
+  !*** ./node_modules/react-dnd-html5-backend/dist/esm/OptionsReader.js ***!
   \************************************************************************/
-/***/ ((__unused_webpack_module, exports) => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "OptionsReader": () => (/* binding */ OptionsReader)
+/* harmony export */ });
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-Object.defineProperty(exports, "__esModule", ({
-    value: true
-}));
-class OptionsReader {
-    get window() {
-        if (this.globalContext) {
-            return this.globalContext;
-        } else if (typeof window !== 'undefined') {
-            return window;
-        }
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+var OptionsReader = /*#__PURE__*/function () {
+  function OptionsReader(globalContext, options) {
+    _classCallCheck(this, OptionsReader);
+
+    _defineProperty(this, "ownerDocument", null);
+
+    _defineProperty(this, "globalContext", void 0);
+
+    _defineProperty(this, "optionsArgs", void 0);
+
+    this.globalContext = globalContext;
+    this.optionsArgs = options;
+  }
+
+  _createClass(OptionsReader, [{
+    key: "window",
+    get: function get() {
+      if (this.globalContext) {
+        return this.globalContext;
+      } else if (typeof window !== 'undefined') {
+        return window;
+      }
+
+      return undefined;
+    }
+  }, {
+    key: "document",
+    get: function get() {
+      var _this$globalContext;
+
+      if ((_this$globalContext = this.globalContext) !== null && _this$globalContext !== void 0 && _this$globalContext.document) {
+        return this.globalContext.document;
+      } else if (this.window) {
+        return this.window.document;
+      } else {
         return undefined;
+      }
     }
-    get document() {
-        var ref;
-        if ((ref = this.globalContext) === null || ref === void 0 ? void 0 : ref.document) {
-            return this.globalContext.document;
-        } else if (this.window) {
-            return this.window.document;
-        } else {
-            return undefined;
-        }
-    }
-    get rootElement() {
-        var ref;
-        return ((ref = this.optionsArgs) === null || ref === void 0 ? void 0 : ref.rootElement) || this.window;
-    }
-    constructor(globalContext, options){
-        this.ownerDocument = null;
-        this.globalContext = globalContext;
-        this.optionsArgs = options;
-    }
-}
-exports.OptionsReader = OptionsReader;
+  }, {
+    key: "rootElement",
+    get: function get() {
+      var _this$optionsArgs;
 
-//# sourceMappingURL=OptionsReader.js.map
+      return ((_this$optionsArgs = this.optionsArgs) === null || _this$optionsArgs === void 0 ? void 0 : _this$optionsArgs.rootElement) || this.window;
+    }
+  }]);
+
+  return OptionsReader;
+}();
 
 /***/ }),
 
-/***/ "./node_modules/react-dnd-html5-backend/dist/cjs/getEmptyImage.js":
+/***/ "./node_modules/react-dnd-html5-backend/dist/esm/getEmptyImage.js":
 /*!************************************************************************!*\
-  !*** ./node_modules/react-dnd-html5-backend/dist/cjs/getEmptyImage.js ***!
+  !*** ./node_modules/react-dnd-html5-backend/dist/esm/getEmptyImage.js ***!
   \************************************************************************/
-/***/ ((__unused_webpack_module, exports) => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-
-Object.defineProperty(exports, "__esModule", ({
-    value: true
-}));
-exports.getEmptyImage = getEmptyImage;
-let emptyImage;
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "getEmptyImage": () => (/* binding */ getEmptyImage)
+/* harmony export */ });
+var emptyImage;
 function getEmptyImage() {
-    if (!emptyImage) {
-        emptyImage = new Image();
-        emptyImage.src = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==';
-    }
-    return emptyImage;
-}
+  if (!emptyImage) {
+    emptyImage = new Image();
+    emptyImage.src = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==';
+  }
 
-//# sourceMappingURL=getEmptyImage.js.map
+  return emptyImage;
+}
 
 /***/ }),
 
-/***/ "./node_modules/react-dnd-html5-backend/dist/cjs/index.js":
+/***/ "./node_modules/react-dnd-html5-backend/dist/esm/index.js":
 /*!****************************************************************!*\
-  !*** ./node_modules/react-dnd-html5-backend/dist/cjs/index.js ***!
+  !*** ./node_modules/react-dnd-html5-backend/dist/esm/index.js ***!
   \****************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "getEmptyImage": () => (/* reexport safe */ _getEmptyImage__WEBPACK_IMPORTED_MODULE_0__.getEmptyImage),
+/* harmony export */   "NativeTypes": () => (/* reexport module object */ _NativeTypes__WEBPACK_IMPORTED_MODULE_1__),
+/* harmony export */   "HTML5Backend": () => (/* binding */ HTML5Backend)
+/* harmony export */ });
+/* harmony import */ var _HTML5BackendImpl__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./HTML5BackendImpl */ "./node_modules/react-dnd-html5-backend/dist/esm/HTML5BackendImpl.js");
+/* harmony import */ var _NativeTypes__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./NativeTypes */ "./node_modules/react-dnd-html5-backend/dist/esm/NativeTypes.js");
+/* harmony import */ var _getEmptyImage__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./getEmptyImage */ "./node_modules/react-dnd-html5-backend/dist/esm/getEmptyImage.js");
 
-Object.defineProperty(exports, "__esModule", ({
-    value: true
-}));
-Object.defineProperty(exports, "getEmptyImage", ({
-    enumerable: true,
-    get: function() {
-        return _getEmptyImageJs.getEmptyImage;
-    }
-}));
-exports.HTML5Backend = exports.NativeTypes = void 0;
-var _html5BackendImplJs = __webpack_require__(/*! ./HTML5BackendImpl.js */ "./node_modules/react-dnd-html5-backend/dist/cjs/HTML5BackendImpl.js");
-var _NativeTypes = _interopRequireWildcard(__webpack_require__(/*! ./NativeTypes.js */ "./node_modules/react-dnd-html5-backend/dist/cjs/NativeTypes.js"));
-var _getEmptyImageJs = __webpack_require__(/*! ./getEmptyImage.js */ "./node_modules/react-dnd-html5-backend/dist/cjs/getEmptyImage.js");
-function _interopRequireWildcard(obj) {
-    if (obj && obj.__esModule) {
-        return obj;
-    } else {
-        var newObj = {};
-        if (obj != null) {
-            for(var key in obj){
-                if (Object.prototype.hasOwnProperty.call(obj, key)) {
-                    var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {};
-                    if (desc.get || desc.set) {
-                        Object.defineProperty(newObj, key, desc);
-                    } else {
-                        newObj[key] = obj[key];
-                    }
-                }
-            }
-        }
-        newObj.default = obj;
-        return newObj;
-    }
-}
-exports.NativeTypes = _NativeTypes;
-const HTML5Backend = function createBackend(manager, context, options) {
-    return new _html5BackendImplJs.HTML5BackendImpl(manager, context, options);
+
+
+
+var HTML5Backend = function createBackend(manager, context, options) {
+  return new _HTML5BackendImpl__WEBPACK_IMPORTED_MODULE_2__.HTML5BackendImpl(manager, context, options);
 };
-exports.HTML5Backend = HTML5Backend;
-
-//# sourceMappingURL=index.js.map
 
 /***/ }),
 
-/***/ "./node_modules/react-dnd-html5-backend/dist/cjs/utils/js_utils.js":
+/***/ "./node_modules/react-dnd-html5-backend/dist/esm/utils/js_utils.js":
 /*!*************************************************************************!*\
-  !*** ./node_modules/react-dnd-html5-backend/dist/cjs/utils/js_utils.js ***!
+  !*** ./node_modules/react-dnd-html5-backend/dist/esm/utils/js_utils.js ***!
   \*************************************************************************/
-/***/ ((__unused_webpack_module, exports) => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-
-Object.defineProperty(exports, "__esModule", ({
-    value: true
-}));
-exports.memoize = memoize;
-exports.without = without;
-exports.union = union;
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "memoize": () => (/* binding */ memoize),
+/* harmony export */   "without": () => (/* binding */ without),
+/* harmony export */   "union": () => (/* binding */ union)
+/* harmony export */ });
+// cheap lodash replacements
 function memoize(fn) {
-    let result = null;
-    const memoized = ()=>{
-        if (result == null) {
-            result = fn();
-        }
-        return result;
-    };
-    return memoized;
+  var result = null;
+
+  var memoized = function memoized() {
+    if (result == null) {
+      result = fn();
+    }
+
+    return result;
+  };
+
+  return memoized;
 }
+/**
+ * drop-in replacement for _.without
+ */
+
 function without(items, item) {
-    return items.filter((i)=>i !== item
-    );
+  return items.filter(function (i) {
+    return i !== item;
+  });
 }
 function union(itemsA, itemsB) {
-    const set = new Set();
-    const insertItem = (item)=>set.add(item)
-    ;
-    itemsA.forEach(insertItem);
-    itemsB.forEach(insertItem);
-    const result = [];
-    set.forEach((key)=>result.push(key)
-    );
-    return result;
-}
+  var set = new Set();
 
-//# sourceMappingURL=js_utils.js.map
+  var insertItem = function insertItem(item) {
+    return set.add(item);
+  };
+
+  itemsA.forEach(insertItem);
+  itemsB.forEach(insertItem);
+  var result = [];
+  set.forEach(function (key) {
+    return result.push(key);
+  });
+  return result;
+}
 
 /***/ }),
 
-/***/ "./node_modules/react-dnd/dist/cjs/core/DndContext.js":
+/***/ "./node_modules/react-dnd/dist/esm/core/DndContext.js":
 /*!************************************************************!*\
-  !*** ./node_modules/react-dnd/dist/cjs/core/DndContext.js ***!
+  !*** ./node_modules/react-dnd/dist/esm/core/DndContext.js ***!
   \************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "DndContext": () => (/* binding */ DndContext)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
-Object.defineProperty(exports, "__esModule", ({
-    value: true
-}));
-exports.DndContext = void 0;
-var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-const DndContext = (0, _react).createContext({
-    dragDropManager: undefined
+/**
+ * Create the React Context
+ */
+
+var DndContext = (0,react__WEBPACK_IMPORTED_MODULE_0__.createContext)({
+  dragDropManager: undefined
 });
-exports.DndContext = DndContext;
-
-//# sourceMappingURL=DndContext.js.map
 
 /***/ }),
 
-/***/ "./node_modules/react-dnd/dist/cjs/core/DndProvider.js":
+/***/ "./node_modules/react-dnd/dist/esm/core/DndProvider.js":
 /*!*************************************************************!*\
-  !*** ./node_modules/react-dnd/dist/cjs/core/DndProvider.js ***!
+  !*** ./node_modules/react-dnd/dist/esm/core/DndProvider.js ***!
   \*************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "DndProvider": () => (/* binding */ DndProvider)
+/* harmony export */ });
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var dnd_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! dnd-core */ "./node_modules/dnd-core/dist/esm/createDragDropManager.js");
+/* harmony import */ var _DndContext__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./DndContext */ "./node_modules/react-dnd/dist/esm/core/DndContext.js");
+var _excluded = ["children"];
 
-Object.defineProperty(exports, "__esModule", ({
-    value: true
-}));
-exports.DndProvider = void 0;
-var _jsxRuntime = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-var _dndCore = __webpack_require__(/*! dnd-core */ "./node_modules/dnd-core/dist/cjs/index.js");
-var _dndContextJs = __webpack_require__(/*! ./DndContext.js */ "./node_modules/react-dnd/dist/cjs/core/DndContext.js");
-function _objectWithoutProperties(source, excluded) {
-    if (source == null) return {};
-    var target = _objectWithoutPropertiesLoose(source, excluded);
-    var key, i;
-    if (Object.getOwnPropertySymbols) {
-        var sourceSymbolKeys = Object.getOwnPropertySymbols(source);
-        for(i = 0; i < sourceSymbolKeys.length; i++){
-            key = sourceSymbolKeys[i];
-            if (excluded.indexOf(key) >= 0) continue;
-            if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue;
-            target[key] = source[key];
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
+
+function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
+
+
+
+
+
+var refCount = 0;
+var INSTANCE_SYM = Symbol.for('__REACT_DND_CONTEXT_INSTANCE__');
+/**
+ * A React component that provides the React-DnD context
+ */
+
+var DndProvider = (0,react__WEBPACK_IMPORTED_MODULE_1__.memo)(function DndProvider(_ref) {
+  var children = _ref.children,
+      props = _objectWithoutProperties(_ref, _excluded);
+
+  var _getDndContextValue = getDndContextValue(props),
+      _getDndContextValue2 = _slicedToArray(_getDndContextValue, 2),
+      manager = _getDndContextValue2[0],
+      isGlobalInstance = _getDndContextValue2[1]; // memoized from props
+
+  /**
+   * If the global context was used to store the DND context
+   * then where theres no more references to it we should
+   * clean it up to avoid memory leaks
+   */
+
+
+  (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
+    if (isGlobalInstance) {
+      var context = getGlobalContext();
+      ++refCount;
+      return function () {
+        if (--refCount === 0) {
+          context[INSTANCE_SYM] = null;
         }
+      };
     }
-    return target;
-}
-function _objectWithoutPropertiesLoose(source, excluded) {
-    if (source == null) return {};
-    var target = {};
-    var sourceKeys = Object.keys(source);
-    var key, i;
-    for(i = 0; i < sourceKeys.length; i++){
-        key = sourceKeys[i];
-        if (excluded.indexOf(key) >= 0) continue;
-        target[key] = source[key];
-    }
-    return target;
-}
-let refCount = 0;
-const INSTANCE_SYM = Symbol.for('__REACT_DND_CONTEXT_INSTANCE__');
-var DndProvider = /*#__PURE__*/ (0, _react).memo(function DndProvider(_param) {
-    var { children  } = _param, props = _objectWithoutProperties(_param, [
-        "children"
-    ]);
-    const [manager, isGlobalInstance] = getDndContextValue(props) // memoized from props
-    ;
-    /**
-		 * If the global context was used to store the DND context
-		 * then where theres no more references to it we should
-		 * clean it up to avoid memory leaks
-		 */ (0, _react).useEffect(()=>{
-        if (isGlobalInstance) {
-            const context = getGlobalContext();
-            ++refCount;
-            return ()=>{
-                if (--refCount === 0) {
-                    context[INSTANCE_SYM] = null;
-                }
-            };
-        }
-        return;
-    }, []);
-    return(/*#__PURE__*/ (0, _jsxRuntime).jsx(_dndContextJs.DndContext.Provider, {
-        value: manager,
-        children: children
-    }));
+  }, []);
+  return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_DndContext__WEBPACK_IMPORTED_MODULE_2__.DndContext.Provider, Object.assign({
+    value: manager
+  }, {
+    children: children
+  }), void 0);
 });
-exports.DndProvider = DndProvider;
+
 function getDndContextValue(props) {
-    if ('manager' in props) {
-        const manager = {
-            dragDropManager: props.manager
-        };
-        return [
-            manager,
-            false
-        ];
-    }
-    const manager = createSingletonDndContext(props.backend, props.context, props.options, props.debugMode);
-    const isGlobalInstance = !props.context;
-    return [
-        manager,
-        isGlobalInstance
-    ];
-}
-function createSingletonDndContext(backend, context = getGlobalContext(), options, debugMode) {
-    const ctx = context;
-    if (!ctx[INSTANCE_SYM]) {
-        ctx[INSTANCE_SYM] = {
-            dragDropManager: (0, _dndCore).createDragDropManager(backend, context, options, debugMode)
-        };
-    }
-    return ctx[INSTANCE_SYM];
-}
-function getGlobalContext() {
-    return typeof __webpack_require__.g !== 'undefined' ? __webpack_require__.g : window;
-}
-
-//# sourceMappingURL=DndProvider.js.map
-
-/***/ }),
-
-/***/ "./node_modules/react-dnd/dist/cjs/core/DragPreviewImage.js":
-/*!******************************************************************!*\
-  !*** ./node_modules/react-dnd/dist/cjs/core/DragPreviewImage.js ***!
-  \******************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", ({
-    value: true
-}));
-exports.DragPreviewImage = void 0;
-var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-const DragPreviewImage = (0, _react).memo(function DragPreviewImage({ connect , src  }) {
-    (0, _react).useEffect(()=>{
-        if (typeof Image === 'undefined') return;
-        let connected = false;
-        const img = new Image();
-        img.src = src;
-        img.onload = ()=>{
-            connect(img);
-            connected = true;
-        };
-        return ()=>{
-            if (connected) {
-                connect(null);
-            }
-        };
-    });
-    return null;
-});
-exports.DragPreviewImage = DragPreviewImage;
-
-//# sourceMappingURL=DragPreviewImage.js.map
-
-/***/ }),
-
-/***/ "./node_modules/react-dnd/dist/cjs/core/index.js":
-/*!*******************************************************!*\
-  !*** ./node_modules/react-dnd/dist/cjs/core/index.js ***!
-  \*******************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", ({
-    value: true
-}));
-var _exportNames = {};
-var _dndContextJs = _interopRequireWildcard(__webpack_require__(/*! ./DndContext.js */ "./node_modules/react-dnd/dist/cjs/core/DndContext.js"));
-Object.keys(_dndContextJs).forEach(function(key) {
-    if (key === "default" || key === "__esModule") return;
-    if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
-    if (key in exports && exports[key] === _dndContextJs[key]) return;
-    Object.defineProperty(exports, key, {
-        enumerable: true,
-        get: function() {
-            return _dndContextJs[key];
-        }
-    });
-});
-var _dndProviderJs = _interopRequireWildcard(__webpack_require__(/*! ./DndProvider.js */ "./node_modules/react-dnd/dist/cjs/core/DndProvider.js"));
-Object.keys(_dndProviderJs).forEach(function(key) {
-    if (key === "default" || key === "__esModule") return;
-    if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
-    if (key in exports && exports[key] === _dndProviderJs[key]) return;
-    Object.defineProperty(exports, key, {
-        enumerable: true,
-        get: function() {
-            return _dndProviderJs[key];
-        }
-    });
-});
-var _dragPreviewImageJs = _interopRequireWildcard(__webpack_require__(/*! ./DragPreviewImage.js */ "./node_modules/react-dnd/dist/cjs/core/DragPreviewImage.js"));
-Object.keys(_dragPreviewImageJs).forEach(function(key) {
-    if (key === "default" || key === "__esModule") return;
-    if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
-    if (key in exports && exports[key] === _dragPreviewImageJs[key]) return;
-    Object.defineProperty(exports, key, {
-        enumerable: true,
-        get: function() {
-            return _dragPreviewImageJs[key];
-        }
-    });
-});
-function _interopRequireWildcard(obj) {
-    if (obj && obj.__esModule) {
-        return obj;
-    } else {
-        var newObj = {};
-        if (obj != null) {
-            for(var key in obj){
-                if (Object.prototype.hasOwnProperty.call(obj, key)) {
-                    var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {};
-                    if (desc.get || desc.set) {
-                        Object.defineProperty(newObj, key, desc);
-                    } else {
-                        newObj[key] = obj[key];
-                    }
-                }
-            }
-        }
-        newObj.default = obj;
-        return newObj;
-    }
-}
-
-//# sourceMappingURL=index.js.map
-
-/***/ }),
-
-/***/ "./node_modules/react-dnd/dist/cjs/hooks/index.js":
-/*!********************************************************!*\
-  !*** ./node_modules/react-dnd/dist/cjs/hooks/index.js ***!
-  \********************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", ({
-    value: true
-}));
-var _exportNames = {};
-var _indexJs = _interopRequireWildcard(__webpack_require__(/*! ./useDrag/index.js */ "./node_modules/react-dnd/dist/cjs/hooks/useDrag/index.js"));
-Object.keys(_indexJs).forEach(function(key) {
-    if (key === "default" || key === "__esModule") return;
-    if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
-    if (key in exports && exports[key] === _indexJs[key]) return;
-    Object.defineProperty(exports, key, {
-        enumerable: true,
-        get: function() {
-            return _indexJs[key];
-        }
-    });
-});
-var _indexJs1 = _interopRequireWildcard(__webpack_require__(/*! ./useDrop/index.js */ "./node_modules/react-dnd/dist/cjs/hooks/useDrop/index.js"));
-Object.keys(_indexJs1).forEach(function(key) {
-    if (key === "default" || key === "__esModule") return;
-    if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
-    if (key in exports && exports[key] === _indexJs1[key]) return;
-    Object.defineProperty(exports, key, {
-        enumerable: true,
-        get: function() {
-            return _indexJs1[key];
-        }
-    });
-});
-var _useDragLayerJs = _interopRequireWildcard(__webpack_require__(/*! ./useDragLayer.js */ "./node_modules/react-dnd/dist/cjs/hooks/useDragLayer.js"));
-Object.keys(_useDragLayerJs).forEach(function(key) {
-    if (key === "default" || key === "__esModule") return;
-    if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
-    if (key in exports && exports[key] === _useDragLayerJs[key]) return;
-    Object.defineProperty(exports, key, {
-        enumerable: true,
-        get: function() {
-            return _useDragLayerJs[key];
-        }
-    });
-});
-var _useDragDropManagerJs = _interopRequireWildcard(__webpack_require__(/*! ./useDragDropManager.js */ "./node_modules/react-dnd/dist/cjs/hooks/useDragDropManager.js"));
-Object.keys(_useDragDropManagerJs).forEach(function(key) {
-    if (key === "default" || key === "__esModule") return;
-    if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
-    if (key in exports && exports[key] === _useDragDropManagerJs[key]) return;
-    Object.defineProperty(exports, key, {
-        enumerable: true,
-        get: function() {
-            return _useDragDropManagerJs[key];
-        }
-    });
-});
-var _typesJs = _interopRequireWildcard(__webpack_require__(/*! ./types.js */ "./node_modules/react-dnd/dist/cjs/hooks/types.js"));
-Object.keys(_typesJs).forEach(function(key) {
-    if (key === "default" || key === "__esModule") return;
-    if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
-    if (key in exports && exports[key] === _typesJs[key]) return;
-    Object.defineProperty(exports, key, {
-        enumerable: true,
-        get: function() {
-            return _typesJs[key];
-        }
-    });
-});
-function _interopRequireWildcard(obj) {
-    if (obj && obj.__esModule) {
-        return obj;
-    } else {
-        var newObj = {};
-        if (obj != null) {
-            for(var key in obj){
-                if (Object.prototype.hasOwnProperty.call(obj, key)) {
-                    var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {};
-                    if (desc.get || desc.set) {
-                        Object.defineProperty(newObj, key, desc);
-                    } else {
-                        newObj[key] = obj[key];
-                    }
-                }
-            }
-        }
-        newObj.default = obj;
-        return newObj;
-    }
-}
-
-//# sourceMappingURL=index.js.map
-
-/***/ }),
-
-/***/ "./node_modules/react-dnd/dist/cjs/hooks/types.js":
-/*!********************************************************!*\
-  !*** ./node_modules/react-dnd/dist/cjs/hooks/types.js ***!
-  \********************************************************/
-/***/ ((__unused_webpack_module, exports) => {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", ({
-    value: true
-}));
-
-//# sourceMappingURL=types.js.map
-
-/***/ }),
-
-/***/ "./node_modules/react-dnd/dist/cjs/hooks/useCollectedProps.js":
-/*!********************************************************************!*\
-  !*** ./node_modules/react-dnd/dist/cjs/hooks/useCollectedProps.js ***!
-  \********************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", ({
-    value: true
-}));
-exports.useCollectedProps = useCollectedProps;
-var _useMonitorOutputJs = __webpack_require__(/*! ./useMonitorOutput.js */ "./node_modules/react-dnd/dist/cjs/hooks/useMonitorOutput.js");
-function useCollectedProps(collector, monitor, connector) {
-    return (0, _useMonitorOutputJs).useMonitorOutput(monitor, collector || (()=>({})
-    ), ()=>connector.reconnect()
-    );
-}
-
-//# sourceMappingURL=useCollectedProps.js.map
-
-/***/ }),
-
-/***/ "./node_modules/react-dnd/dist/cjs/hooks/useCollector.js":
-/*!***************************************************************!*\
-  !*** ./node_modules/react-dnd/dist/cjs/hooks/useCollector.js ***!
-  \***************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", ({
-    value: true
-}));
-exports.useCollector = useCollector;
-var _fastDeepEqual = _interopRequireDefault(__webpack_require__(/*! fast-deep-equal */ "./node_modules/fast-deep-equal/index.js"));
-var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-var _useIsomorphicLayoutEffectJs = __webpack_require__(/*! ./useIsomorphicLayoutEffect.js */ "./node_modules/react-dnd/dist/cjs/hooks/useIsomorphicLayoutEffect.js");
-function _interopRequireDefault(obj) {
-    return obj && obj.__esModule ? obj : {
-        default: obj
+  if ('manager' in props) {
+    var _manager = {
+      dragDropManager: props.manager
     };
+    return [_manager, false];
+  }
+
+  var manager = createSingletonDndContext(props.backend, props.context, props.options, props.debugMode);
+  var isGlobalInstance = !props.context;
+  return [manager, isGlobalInstance];
 }
-function useCollector(monitor, collect, onUpdate) {
-    const [collected, setCollected] = (0, _react).useState(()=>collect(monitor)
-    );
-    const updateCollected = (0, _react).useCallback(()=>{
-        const nextValue = collect(monitor);
-        // This needs to be a deep-equality check because some monitor-collected values
-        // include XYCoord objects that may be equivalent, but do not have instance equality.
-        if (!(0, _fastDeepEqual).default(collected, nextValue)) {
-            setCollected(nextValue);
-            if (onUpdate) {
-                onUpdate();
+
+function createSingletonDndContext(backend) {
+  var context = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : getGlobalContext();
+  var options = arguments.length > 2 ? arguments[2] : undefined;
+  var debugMode = arguments.length > 3 ? arguments[3] : undefined;
+  var ctx = context;
+
+  if (!ctx[INSTANCE_SYM]) {
+    ctx[INSTANCE_SYM] = {
+      dragDropManager: (0,dnd_core__WEBPACK_IMPORTED_MODULE_3__.createDragDropManager)(backend, context, options, debugMode)
+    };
+  }
+
+  return ctx[INSTANCE_SYM];
+}
+
+function getGlobalContext() {
+  return typeof __webpack_require__.g !== 'undefined' ? __webpack_require__.g : window;
+}
+
+/***/ }),
+
+/***/ "./node_modules/react-dnd/dist/esm/core/DragPreviewImage.js":
+/*!******************************************************************!*\
+  !*** ./node_modules/react-dnd/dist/esm/core/DragPreviewImage.js ***!
+  \******************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "DragPreviewImage": () => (/* binding */ DragPreviewImage)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+/**
+ * A utility for rendering a drag preview image
+ */
+
+var DragPreviewImage = (0,react__WEBPACK_IMPORTED_MODULE_0__.memo)(function DragPreviewImage(_ref) {
+  var connect = _ref.connect,
+      src = _ref.src;
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    if (typeof Image === 'undefined') return;
+    var connected = false;
+    var img = new Image();
+    img.src = src;
+
+    img.onload = function () {
+      connect(img);
+      connected = true;
+    };
+
+    return function () {
+      if (connected) {
+        connect(null);
+      }
+    };
+  });
+  return null;
+});
+
+/***/ }),
+
+/***/ "./node_modules/react-dnd/dist/esm/core/index.js":
+/*!*******************************************************!*\
+  !*** ./node_modules/react-dnd/dist/esm/core/index.js ***!
+  \*******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "DndContext": () => (/* reexport safe */ _DndContext__WEBPACK_IMPORTED_MODULE_0__.DndContext),
+/* harmony export */   "DndProvider": () => (/* reexport safe */ _DndProvider__WEBPACK_IMPORTED_MODULE_1__.DndProvider),
+/* harmony export */   "DragPreviewImage": () => (/* reexport safe */ _DragPreviewImage__WEBPACK_IMPORTED_MODULE_2__.DragPreviewImage)
+/* harmony export */ });
+/* harmony import */ var _DndContext__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./DndContext */ "./node_modules/react-dnd/dist/esm/core/DndContext.js");
+/* harmony import */ var _DndProvider__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./DndProvider */ "./node_modules/react-dnd/dist/esm/core/DndProvider.js");
+/* harmony import */ var _DragPreviewImage__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./DragPreviewImage */ "./node_modules/react-dnd/dist/esm/core/DragPreviewImage.js");
+
+
+
+
+/***/ }),
+
+/***/ "./node_modules/react-dnd/dist/esm/decorators/DragLayer.js":
+/*!*****************************************************************!*\
+  !*** ./node_modules/react-dnd/dist/esm/decorators/DragLayer.js ***!
+  \*****************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "DragLayer": () => (/* binding */ DragLayer)
+/* harmony export */ });
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _react_dnd_shallowequal__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @react-dnd/shallowequal */ "./node_modules/@react-dnd/shallowequal/dist/shallowequal.esm.js");
+/* harmony import */ var _react_dnd_invariant__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @react-dnd/invariant */ "./node_modules/@react-dnd/invariant/dist/invariant.esm.js");
+/* harmony import */ var hoist_non_react_statics__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! hoist-non-react-statics */ "./node_modules/hoist-non-react-statics/dist/hoist-non-react-statics.cjs.js");
+/* harmony import */ var hoist_non_react_statics__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(hoist_non_react_statics__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../core */ "./node_modules/react-dnd/dist/esm/core/DndContext.js");
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./utils */ "./node_modules/react-dnd/dist/esm/decorators/utils.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } else if (call !== void 0) { throw new TypeError("Derived constructors may only return object or undefined"); } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+
+
+
+
+/**
+ * @param collect The props collector function
+ * @param options The DnD options
+ */
+
+function DragLayer(collect) {
+  var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+  (0,_utils__WEBPACK_IMPORTED_MODULE_5__.checkDecoratorArguments)('DragLayer', 'collect[, options]', collect, options);
+  (0,_react_dnd_invariant__WEBPACK_IMPORTED_MODULE_3__.invariant)(typeof collect === 'function', 'Expected "collect" provided as the first argument to DragLayer to be a function that collects props to inject into the component. ', 'Instead, received %s. Read more: http://react-dnd.github.io/react-dnd/docs/api/drag-layer', collect);
+  (0,_react_dnd_invariant__WEBPACK_IMPORTED_MODULE_3__.invariant)((0,_utils__WEBPACK_IMPORTED_MODULE_5__.isPlainObject)(options), 'Expected "options" provided as the second argument to DragLayer to be a plain object when specified. ' + 'Instead, received %s. Read more: http://react-dnd.github.io/react-dnd/docs/api/drag-layer', options);
+  return function decorateLayer(DecoratedComponent) {
+    var Decorated = DecoratedComponent;
+    var _options$arePropsEqua = options.arePropsEqual,
+        arePropsEqual = _options$arePropsEqua === void 0 ? _react_dnd_shallowequal__WEBPACK_IMPORTED_MODULE_2__.shallowEqual : _options$arePropsEqua;
+    var displayName = Decorated.displayName || Decorated.name || 'Component';
+
+    var DragLayerContainer = /*#__PURE__*/function (_Component) {
+      _inherits(DragLayerContainer, _Component);
+
+      var _super = _createSuper(DragLayerContainer);
+
+      function DragLayerContainer() {
+        var _this;
+
+        _classCallCheck(this, DragLayerContainer);
+
+        for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+          args[_key] = arguments[_key];
+        }
+
+        _this = _super.call.apply(_super, [this].concat(args));
+
+        _defineProperty(_assertThisInitialized(_this), "manager", void 0);
+
+        _defineProperty(_assertThisInitialized(_this), "isCurrentlyMounted", false);
+
+        _defineProperty(_assertThisInitialized(_this), "unsubscribeFromOffsetChange", void 0);
+
+        _defineProperty(_assertThisInitialized(_this), "unsubscribeFromStateChange", void 0);
+
+        _defineProperty(_assertThisInitialized(_this), "ref", (0,react__WEBPACK_IMPORTED_MODULE_1__.createRef)());
+
+        _defineProperty(_assertThisInitialized(_this), "handleChange", function () {
+          if (!_this.isCurrentlyMounted) {
+            return;
+          }
+
+          var nextState = _this.getCurrentState();
+
+          if (!(0,_react_dnd_shallowequal__WEBPACK_IMPORTED_MODULE_2__.shallowEqual)(nextState, _this.state)) {
+            _this.setState(nextState);
+          }
+        });
+
+        return _this;
+      }
+
+      _createClass(DragLayerContainer, [{
+        key: "getDecoratedComponentInstance",
+        value: function getDecoratedComponentInstance() {
+          (0,_react_dnd_invariant__WEBPACK_IMPORTED_MODULE_3__.invariant)(this.ref.current, 'In order to access an instance of the decorated component, it must either be a class component or use React.forwardRef()');
+          return this.ref.current;
+        }
+      }, {
+        key: "shouldComponentUpdate",
+        value: function shouldComponentUpdate(nextProps, nextState) {
+          return !arePropsEqual(nextProps, this.props) || !(0,_react_dnd_shallowequal__WEBPACK_IMPORTED_MODULE_2__.shallowEqual)(nextState, this.state);
+        }
+      }, {
+        key: "componentDidMount",
+        value: function componentDidMount() {
+          this.isCurrentlyMounted = true;
+          this.handleChange();
+        }
+      }, {
+        key: "componentWillUnmount",
+        value: function componentWillUnmount() {
+          this.isCurrentlyMounted = false;
+
+          if (this.unsubscribeFromOffsetChange) {
+            this.unsubscribeFromOffsetChange();
+            this.unsubscribeFromOffsetChange = undefined;
+          }
+
+          if (this.unsubscribeFromStateChange) {
+            this.unsubscribeFromStateChange();
+            this.unsubscribeFromStateChange = undefined;
+          }
+        }
+      }, {
+        key: "render",
+        value: function render() {
+          var _this2 = this;
+
+          return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_core__WEBPACK_IMPORTED_MODULE_6__.DndContext.Consumer, {
+            children: function children(_ref) {
+              var dragDropManager = _ref.dragDropManager;
+
+              if (dragDropManager === undefined) {
+                return null;
+              }
+
+              _this2.receiveDragDropManager(dragDropManager); // Let componentDidMount fire to initialize the collected state
+
+
+              if (!_this2.isCurrentlyMounted) {
+                return null;
+              }
+
+              return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Decorated, Object.assign({}, _this2.props, _this2.state, {
+                ref: (0,_utils__WEBPACK_IMPORTED_MODULE_5__.isRefable)(Decorated) ? _this2.ref : null
+              }), void 0);
             }
+          }, void 0);
         }
-    }, [
-        collected,
-        monitor,
-        onUpdate
-    ]);
-    // update the collected properties after react renders.
-    // Note that the "Dustbin Stress Test" fails if this is not
-    // done when the component updates
-    (0, _useIsomorphicLayoutEffectJs).useIsomorphicLayoutEffect(updateCollected);
-    return [
-        collected,
-        updateCollected
-    ];
-}
+      }, {
+        key: "receiveDragDropManager",
+        value: function receiveDragDropManager(dragDropManager) {
+          if (this.manager !== undefined) {
+            return;
+          }
 
-//# sourceMappingURL=useCollector.js.map
+          this.manager = dragDropManager;
+          (0,_react_dnd_invariant__WEBPACK_IMPORTED_MODULE_3__.invariant)(_typeof(dragDropManager) === 'object', 'Could not find the drag and drop manager in the context of %s. ' + 'Make sure to render a DndProvider component in your top-level component. ' + 'Read more: http://react-dnd.github.io/react-dnd/docs/troubleshooting#could-not-find-the-drag-and-drop-manager-in-the-context', displayName, displayName);
+          var monitor = this.manager.getMonitor();
+          this.unsubscribeFromOffsetChange = monitor.subscribeToOffsetChange(this.handleChange);
+          this.unsubscribeFromStateChange = monitor.subscribeToStateChange(this.handleChange);
+        }
+      }, {
+        key: "getCurrentState",
+        value: function getCurrentState() {
+          if (!this.manager) {
+            return {};
+          }
+
+          var monitor = this.manager.getMonitor();
+          return collect(monitor, this.props);
+        }
+      }]);
+
+      return DragLayerContainer;
+    }(react__WEBPACK_IMPORTED_MODULE_1__.Component);
+
+    _defineProperty(DragLayerContainer, "displayName", "DragLayer(".concat(displayName, ")"));
+
+    _defineProperty(DragLayerContainer, "DecoratedComponent", DecoratedComponent);
+
+    return hoist_non_react_statics__WEBPACK_IMPORTED_MODULE_4___default()(DragLayerContainer, DecoratedComponent);
+  };
+}
 
 /***/ }),
 
-/***/ "./node_modules/react-dnd/dist/cjs/hooks/useDrag/DragSourceImpl.js":
-/*!*************************************************************************!*\
-  !*** ./node_modules/react-dnd/dist/cjs/hooks/useDrag/DragSourceImpl.js ***!
-  \*************************************************************************/
-/***/ ((__unused_webpack_module, exports) => {
+/***/ "./node_modules/react-dnd/dist/esm/decorators/DragSource.js":
+/*!******************************************************************!*\
+  !*** ./node_modules/react-dnd/dist/esm/decorators/DragSource.js ***!
+  \******************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "DragSource": () => (/* binding */ DragSource)
+/* harmony export */ });
+/* harmony import */ var _react_dnd_invariant__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @react-dnd/invariant */ "./node_modules/@react-dnd/invariant/dist/invariant.esm.js");
+/* harmony import */ var _internals__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../internals */ "./node_modules/react-dnd/dist/esm/internals/registration.js");
+/* harmony import */ var _internals__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../internals */ "./node_modules/react-dnd/dist/esm/internals/SourceConnector.js");
+/* harmony import */ var _internals__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../internals */ "./node_modules/react-dnd/dist/esm/internals/DragSourceMonitorImpl.js");
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utils */ "./node_modules/react-dnd/dist/esm/decorators/utils.js");
+/* harmony import */ var _decorateHandler__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./decorateHandler */ "./node_modules/react-dnd/dist/esm/decorators/decorateHandler.js");
+/* harmony import */ var _createSourceFactory__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./createSourceFactory */ "./node_modules/react-dnd/dist/esm/decorators/createSourceFactory.js");
 
-Object.defineProperty(exports, "__esModule", ({
-    value: true
-}));
-class DragSourceImpl {
-    beginDrag() {
-        const spec = this.spec;
-        const monitor = this.monitor;
-        let result = null;
-        if (typeof spec.item === 'object') {
-            result = spec.item;
-        } else if (typeof spec.item === 'function') {
-            result = spec.item(monitor);
-        } else {
-            result = {};
-        }
-        return result !== null && result !== void 0 ? result : null;
-    }
-    canDrag() {
-        const spec = this.spec;
-        const monitor = this.monitor;
-        if (typeof spec.canDrag === 'boolean') {
-            return spec.canDrag;
-        } else if (typeof spec.canDrag === 'function') {
-            return spec.canDrag(monitor);
-        } else {
-            return true;
-        }
-    }
-    isDragging(globalMonitor, target) {
-        const spec = this.spec;
-        const monitor = this.monitor;
-        const { isDragging  } = spec;
-        return isDragging ? isDragging(monitor) : target === globalMonitor.getSourceId();
-    }
-    endDrag() {
-        const spec = this.spec;
-        const monitor = this.monitor;
-        const connector = this.connector;
-        const { end  } = spec;
-        if (end) {
-            end(monitor.getItem(), monitor);
-        }
-        connector.reconnect();
-    }
-    constructor(spec, monitor, connector){
-        this.spec = spec;
-        this.monitor = monitor;
-        this.connector = connector;
-    }
+
+
+
+
+/**
+ * Decorates a component as a dragsource
+ * @param type The dragsource type
+ * @param spec The drag source specification
+ * @param collect The props collector function
+ * @param options DnD options
+ */
+
+function DragSource(type, spec, collect) {
+  var options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
+  (0,_utils__WEBPACK_IMPORTED_MODULE_1__.checkDecoratorArguments)('DragSource', 'type, spec, collect[, options]', type, spec, collect, options);
+  var getType = type;
+
+  if (typeof type !== 'function') {
+    (0,_react_dnd_invariant__WEBPACK_IMPORTED_MODULE_0__.invariant)((0,_utils__WEBPACK_IMPORTED_MODULE_1__.isValidType)(type), 'Expected "type" provided as the first argument to DragSource to be ' + 'a string, or a function that returns a string given the current props. ' + 'Instead, received %s. ' + 'Read more: http://react-dnd.github.io/react-dnd/docs/api/drag-source', type);
+
+    getType = function getType() {
+      return type;
+    };
+  }
+
+  (0,_react_dnd_invariant__WEBPACK_IMPORTED_MODULE_0__.invariant)((0,_utils__WEBPACK_IMPORTED_MODULE_1__.isPlainObject)(spec), 'Expected "spec" provided as the second argument to DragSource to be ' + 'a plain object. Instead, received %s. ' + 'Read more: http://react-dnd.github.io/react-dnd/docs/api/drag-source', spec);
+  var createSource = (0,_createSourceFactory__WEBPACK_IMPORTED_MODULE_2__.createSourceFactory)(spec);
+  (0,_react_dnd_invariant__WEBPACK_IMPORTED_MODULE_0__.invariant)(typeof collect === 'function', 'Expected "collect" provided as the third argument to DragSource to be ' + 'a function that returns a plain object of props to inject. ' + 'Instead, received %s. ' + 'Read more: http://react-dnd.github.io/react-dnd/docs/api/drag-source', collect);
+  (0,_react_dnd_invariant__WEBPACK_IMPORTED_MODULE_0__.invariant)((0,_utils__WEBPACK_IMPORTED_MODULE_1__.isPlainObject)(options), 'Expected "options" provided as the fourth argument to DragSource to be ' + 'a plain object when specified. ' + 'Instead, received %s. ' + 'Read more: http://react-dnd.github.io/react-dnd/docs/api/drag-source', collect);
+  return function decorateSource(DecoratedComponent) {
+    return (0,_decorateHandler__WEBPACK_IMPORTED_MODULE_3__.decorateHandler)({
+      containerDisplayName: 'DragSource',
+      createHandler: createSource,
+      registerHandler: _internals__WEBPACK_IMPORTED_MODULE_4__.registerSource,
+      createConnector: function createConnector(backend) {
+        return new _internals__WEBPACK_IMPORTED_MODULE_5__.SourceConnector(backend);
+      },
+      createMonitor: function createMonitor(manager) {
+        return new _internals__WEBPACK_IMPORTED_MODULE_6__.DragSourceMonitorImpl(manager);
+      },
+      DecoratedComponent: DecoratedComponent,
+      getType: getType,
+      collect: collect,
+      options: options
+    });
+  };
 }
-exports.DragSourceImpl = DragSourceImpl;
-
-//# sourceMappingURL=DragSourceImpl.js.map
 
 /***/ }),
 
-/***/ "./node_modules/react-dnd/dist/cjs/hooks/useDrag/connectors.js":
+/***/ "./node_modules/react-dnd/dist/esm/decorators/DropTarget.js":
+/*!******************************************************************!*\
+  !*** ./node_modules/react-dnd/dist/esm/decorators/DropTarget.js ***!
+  \******************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "DropTarget": () => (/* binding */ DropTarget)
+/* harmony export */ });
+/* harmony import */ var _react_dnd_invariant__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @react-dnd/invariant */ "./node_modules/@react-dnd/invariant/dist/invariant.esm.js");
+/* harmony import */ var _internals__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../internals */ "./node_modules/react-dnd/dist/esm/internals/registration.js");
+/* harmony import */ var _internals__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../internals */ "./node_modules/react-dnd/dist/esm/internals/DropTargetMonitorImpl.js");
+/* harmony import */ var _internals__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../internals */ "./node_modules/react-dnd/dist/esm/internals/TargetConnector.js");
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utils */ "./node_modules/react-dnd/dist/esm/decorators/utils.js");
+/* harmony import */ var _decorateHandler__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./decorateHandler */ "./node_modules/react-dnd/dist/esm/decorators/decorateHandler.js");
+/* harmony import */ var _createTargetFactory__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./createTargetFactory */ "./node_modules/react-dnd/dist/esm/decorators/createTargetFactory.js");
+
+
+
+
+
+
+/**
+ * @param type The accepted target type
+ * @param spec The DropTarget specification
+ * @param collect The props collector function
+ * @param options Options
+ */
+
+function DropTarget(type, spec, collect) {
+  var options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
+  (0,_utils__WEBPACK_IMPORTED_MODULE_1__.checkDecoratorArguments)('DropTarget', 'type, spec, collect[, options]', type, spec, collect, options);
+  var getType = type;
+
+  if (typeof type !== 'function') {
+    (0,_react_dnd_invariant__WEBPACK_IMPORTED_MODULE_0__.invariant)((0,_utils__WEBPACK_IMPORTED_MODULE_1__.isValidType)(type, true), 'Expected "type" provided as the first argument to DropTarget to be ' + 'a string, an array of strings, or a function that returns either given ' + 'the current props. Instead, received %s. ' + 'Read more: http://react-dnd.github.io/react-dnd/docs/api/drop-target', type);
+
+    getType = function getType() {
+      return type;
+    };
+  }
+
+  (0,_react_dnd_invariant__WEBPACK_IMPORTED_MODULE_0__.invariant)((0,_utils__WEBPACK_IMPORTED_MODULE_1__.isPlainObject)(spec), 'Expected "spec" provided as the second argument to DropTarget to be ' + 'a plain object. Instead, received %s. ' + 'Read more: http://react-dnd.github.io/react-dnd/docs/api/drop-target', spec);
+  var createTarget = (0,_createTargetFactory__WEBPACK_IMPORTED_MODULE_2__.createTargetFactory)(spec);
+  (0,_react_dnd_invariant__WEBPACK_IMPORTED_MODULE_0__.invariant)(typeof collect === 'function', 'Expected "collect" provided as the third argument to DropTarget to be ' + 'a function that returns a plain object of props to inject. ' + 'Instead, received %s. ' + 'Read more: http://react-dnd.github.io/react-dnd/docs/api/drop-target', collect);
+  (0,_react_dnd_invariant__WEBPACK_IMPORTED_MODULE_0__.invariant)((0,_utils__WEBPACK_IMPORTED_MODULE_1__.isPlainObject)(options), 'Expected "options" provided as the fourth argument to DropTarget to be ' + 'a plain object when specified. ' + 'Instead, received %s. ' + 'Read more: http://react-dnd.github.io/react-dnd/docs/api/drop-target', collect);
+  return function decorateTarget(DecoratedComponent) {
+    return (0,_decorateHandler__WEBPACK_IMPORTED_MODULE_3__.decorateHandler)({
+      containerDisplayName: 'DropTarget',
+      createHandler: createTarget,
+      registerHandler: _internals__WEBPACK_IMPORTED_MODULE_4__.registerTarget,
+      createMonitor: function createMonitor(manager) {
+        return new _internals__WEBPACK_IMPORTED_MODULE_5__.DropTargetMonitorImpl(manager);
+      },
+      createConnector: function createConnector(backend) {
+        return new _internals__WEBPACK_IMPORTED_MODULE_6__.TargetConnector(backend);
+      },
+      DecoratedComponent: DecoratedComponent,
+      getType: getType,
+      collect: collect,
+      options: options
+    });
+  };
+}
+
+/***/ }),
+
+/***/ "./node_modules/react-dnd/dist/esm/decorators/createSourceFactory.js":
+/*!***************************************************************************!*\
+  !*** ./node_modules/react-dnd/dist/esm/decorators/createSourceFactory.js ***!
+  \***************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "createSourceFactory": () => (/* binding */ createSourceFactory)
+/* harmony export */ });
+/* harmony import */ var _react_dnd_invariant__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @react-dnd/invariant */ "./node_modules/@react-dnd/invariant/dist/invariant.esm.js");
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utils */ "./node_modules/react-dnd/dist/esm/decorators/utils.js");
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+var ALLOWED_SPEC_METHODS = ['canDrag', 'beginDrag', 'isDragging', 'endDrag'];
+var REQUIRED_SPEC_METHODS = ['beginDrag'];
+
+var SourceImpl = /*#__PURE__*/function () {
+  function SourceImpl(spec, monitor, ref) {
+    var _this = this;
+
+    _classCallCheck(this, SourceImpl);
+
+    _defineProperty(this, "props", null);
+
+    _defineProperty(this, "spec", void 0);
+
+    _defineProperty(this, "monitor", void 0);
+
+    _defineProperty(this, "ref", void 0);
+
+    _defineProperty(this, "beginDrag", function () {
+      if (!_this.props) {
+        return;
+      }
+
+      var item = _this.spec.beginDrag(_this.props, _this.monitor, _this.ref.current);
+
+      if (true) {
+        (0,_react_dnd_invariant__WEBPACK_IMPORTED_MODULE_0__.invariant)((0,_utils__WEBPACK_IMPORTED_MODULE_1__.isPlainObject)(item), 'beginDrag() must return a plain object that represents the dragged item. ' + 'Instead received %s. ' + 'Read more: http://react-dnd.github.io/react-dnd/docs/api/drag-source', item);
+      }
+
+      return item;
+    });
+
+    this.spec = spec;
+    this.monitor = monitor;
+    this.ref = ref;
+  }
+
+  _createClass(SourceImpl, [{
+    key: "receiveProps",
+    value: function receiveProps(props) {
+      this.props = props;
+    }
+  }, {
+    key: "canDrag",
+    value: function canDrag() {
+      if (!this.props) {
+        return false;
+      }
+
+      if (!this.spec.canDrag) {
+        return true;
+      }
+
+      return this.spec.canDrag(this.props, this.monitor);
+    }
+  }, {
+    key: "isDragging",
+    value: function isDragging(globalMonitor, sourceId) {
+      if (!this.props) {
+        return false;
+      }
+
+      if (!this.spec.isDragging) {
+        return sourceId === globalMonitor.getSourceId();
+      }
+
+      return this.spec.isDragging(this.props, this.monitor);
+    }
+  }, {
+    key: "endDrag",
+    value: function endDrag() {
+      if (!this.props) {
+        return;
+      }
+
+      if (!this.spec.endDrag) {
+        return;
+      }
+
+      this.spec.endDrag(this.props, this.monitor, (0,_utils__WEBPACK_IMPORTED_MODULE_1__.getDecoratedComponent)(this.ref));
+    }
+  }]);
+
+  return SourceImpl;
+}();
+
+function createSourceFactory(spec) {
+  Object.keys(spec).forEach(function (key) {
+    (0,_react_dnd_invariant__WEBPACK_IMPORTED_MODULE_0__.invariant)(ALLOWED_SPEC_METHODS.indexOf(key) > -1, 'Expected the drag source specification to only have ' + 'some of the following keys: %s. ' + 'Instead received a specification with an unexpected "%s" key. ' + 'Read more: http://react-dnd.github.io/react-dnd/docs/api/drag-source', ALLOWED_SPEC_METHODS.join(', '), key);
+    (0,_react_dnd_invariant__WEBPACK_IMPORTED_MODULE_0__.invariant)(typeof spec[key] === 'function', 'Expected %s in the drag source specification to be a function. ' + 'Instead received a specification with %s: %s. ' + 'Read more: http://react-dnd.github.io/react-dnd/docs/api/drag-source', key, key, spec[key]);
+  });
+  REQUIRED_SPEC_METHODS.forEach(function (key) {
+    (0,_react_dnd_invariant__WEBPACK_IMPORTED_MODULE_0__.invariant)(typeof spec[key] === 'function', 'Expected %s in the drag source specification to be a function. ' + 'Instead received a specification with %s: %s. ' + 'Read more: http://react-dnd.github.io/react-dnd/docs/api/drag-source', key, key, spec[key]);
+  });
+  return function createSource(monitor, ref) {
+    return new SourceImpl(spec, monitor, ref);
+  };
+}
+
+/***/ }),
+
+/***/ "./node_modules/react-dnd/dist/esm/decorators/createTargetFactory.js":
+/*!***************************************************************************!*\
+  !*** ./node_modules/react-dnd/dist/esm/decorators/createTargetFactory.js ***!
+  \***************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "createTargetFactory": () => (/* binding */ createTargetFactory)
+/* harmony export */ });
+/* harmony import */ var _react_dnd_invariant__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @react-dnd/invariant */ "./node_modules/@react-dnd/invariant/dist/invariant.esm.js");
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utils */ "./node_modules/react-dnd/dist/esm/decorators/utils.js");
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+var ALLOWED_SPEC_METHODS = ['canDrop', 'hover', 'drop'];
+
+var TargetImpl = /*#__PURE__*/function () {
+  function TargetImpl(spec, monitor, ref) {
+    _classCallCheck(this, TargetImpl);
+
+    _defineProperty(this, "props", null);
+
+    _defineProperty(this, "spec", void 0);
+
+    _defineProperty(this, "monitor", void 0);
+
+    _defineProperty(this, "ref", void 0);
+
+    this.spec = spec;
+    this.monitor = monitor;
+    this.ref = ref;
+  }
+
+  _createClass(TargetImpl, [{
+    key: "receiveProps",
+    value: function receiveProps(props) {
+      this.props = props;
+    }
+  }, {
+    key: "receiveMonitor",
+    value: function receiveMonitor(monitor) {
+      this.monitor = monitor;
+    }
+  }, {
+    key: "canDrop",
+    value: function canDrop() {
+      if (!this.spec.canDrop) {
+        return true;
+      }
+
+      return this.spec.canDrop(this.props, this.monitor);
+    }
+  }, {
+    key: "hover",
+    value: function hover() {
+      if (!this.spec.hover || !this.props) {
+        return;
+      }
+
+      this.spec.hover(this.props, this.monitor, (0,_utils__WEBPACK_IMPORTED_MODULE_1__.getDecoratedComponent)(this.ref));
+    }
+  }, {
+    key: "drop",
+    value: function drop() {
+      if (!this.spec.drop) {
+        return undefined;
+      }
+
+      var dropResult = this.spec.drop(this.props, this.monitor, this.ref.current);
+
+      if (true) {
+        (0,_react_dnd_invariant__WEBPACK_IMPORTED_MODULE_0__.invariant)(typeof dropResult === 'undefined' || (0,_utils__WEBPACK_IMPORTED_MODULE_1__.isPlainObject)(dropResult), 'drop() must either return undefined, or an object that represents the drop result. ' + 'Instead received %s. ' + 'Read more: http://react-dnd.github.io/react-dnd/docs/api/drop-target', dropResult);
+      }
+
+      return dropResult;
+    }
+  }]);
+
+  return TargetImpl;
+}();
+
+function createTargetFactory(spec) {
+  Object.keys(spec).forEach(function (key) {
+    (0,_react_dnd_invariant__WEBPACK_IMPORTED_MODULE_0__.invariant)(ALLOWED_SPEC_METHODS.indexOf(key) > -1, 'Expected the drop target specification to only have ' + 'some of the following keys: %s. ' + 'Instead received a specification with an unexpected "%s" key. ' + 'Read more: http://react-dnd.github.io/react-dnd/docs/api/drop-target', ALLOWED_SPEC_METHODS.join(', '), key);
+    (0,_react_dnd_invariant__WEBPACK_IMPORTED_MODULE_0__.invariant)(typeof spec[key] === 'function', 'Expected %s in the drop target specification to be a function. ' + 'Instead received a specification with %s: %s. ' + 'Read more: http://react-dnd.github.io/react-dnd/docs/api/drop-target', key, key, spec[key]);
+  });
+  return function createTarget(monitor, ref) {
+    return new TargetImpl(spec, monitor, ref);
+  };
+}
+
+/***/ }),
+
+/***/ "./node_modules/react-dnd/dist/esm/decorators/decorateHandler.js":
+/*!***********************************************************************!*\
+  !*** ./node_modules/react-dnd/dist/esm/decorators/decorateHandler.js ***!
+  \***********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "decorateHandler": () => (/* binding */ decorateHandler)
+/* harmony export */ });
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _react_dnd_shallowequal__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @react-dnd/shallowequal */ "./node_modules/@react-dnd/shallowequal/dist/shallowequal.esm.js");
+/* harmony import */ var _react_dnd_invariant__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @react-dnd/invariant */ "./node_modules/@react-dnd/invariant/dist/invariant.esm.js");
+/* harmony import */ var _core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../core */ "./node_modules/react-dnd/dist/esm/core/DndContext.js");
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./utils */ "./node_modules/react-dnd/dist/esm/decorators/utils.js");
+/* harmony import */ var _disposables__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./disposables */ "./node_modules/react-dnd/dist/esm/decorators/disposables.js");
+/* harmony import */ var hoist_non_react_statics__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! hoist-non-react-statics */ "./node_modules/hoist-non-react-statics/dist/hoist-non-react-statics.cjs.js");
+/* harmony import */ var hoist_non_react_statics__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(hoist_non_react_statics__WEBPACK_IMPORTED_MODULE_4__);
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } else if (call !== void 0) { throw new TypeError("Derived constructors may only return object or undefined"); } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+
+
+
+
+
+
+function decorateHandler(_ref) {
+  var DecoratedComponent = _ref.DecoratedComponent,
+      createHandler = _ref.createHandler,
+      createMonitor = _ref.createMonitor,
+      createConnector = _ref.createConnector,
+      registerHandler = _ref.registerHandler,
+      containerDisplayName = _ref.containerDisplayName,
+      getType = _ref.getType,
+      collect = _ref.collect,
+      options = _ref.options;
+  var _options$arePropsEqua = options.arePropsEqual,
+      arePropsEqual = _options$arePropsEqua === void 0 ? _react_dnd_shallowequal__WEBPACK_IMPORTED_MODULE_2__.shallowEqual : _options$arePropsEqua;
+  var Decorated = DecoratedComponent;
+  var displayName = DecoratedComponent.displayName || DecoratedComponent.name || 'Component';
+
+  var DragDropContainer = /*#__PURE__*/function (_Component) {
+    _inherits(DragDropContainer, _Component);
+
+    var _super = _createSuper(DragDropContainer);
+
+    function DragDropContainer(props) {
+      var _this;
+
+      _classCallCheck(this, DragDropContainer);
+
+      _this = _super.call(this, props);
+
+      _defineProperty(_assertThisInitialized(_this), "decoratedRef", (0,react__WEBPACK_IMPORTED_MODULE_1__.createRef)());
+
+      _defineProperty(_assertThisInitialized(_this), "handlerId", void 0);
+
+      _defineProperty(_assertThisInitialized(_this), "manager", void 0);
+
+      _defineProperty(_assertThisInitialized(_this), "handlerMonitor", void 0);
+
+      _defineProperty(_assertThisInitialized(_this), "handlerConnector", void 0);
+
+      _defineProperty(_assertThisInitialized(_this), "handler", void 0);
+
+      _defineProperty(_assertThisInitialized(_this), "disposable", void 0);
+
+      _defineProperty(_assertThisInitialized(_this), "currentType", void 0);
+
+      _defineProperty(_assertThisInitialized(_this), "handleChange", function () {
+        var nextState = _this.getCurrentState();
+
+        if (!(0,_react_dnd_shallowequal__WEBPACK_IMPORTED_MODULE_2__.shallowEqual)(nextState, _this.state)) {
+          _this.setState(nextState);
+        }
+      });
+
+      _this.disposable = new _disposables__WEBPACK_IMPORTED_MODULE_5__.SerialDisposable();
+
+      _this.receiveProps(props);
+
+      _this.dispose();
+
+      return _this;
+    }
+
+    _createClass(DragDropContainer, [{
+      key: "getHandlerId",
+      value: function getHandlerId() {
+        return this.handlerId;
+      }
+    }, {
+      key: "getDecoratedComponentInstance",
+      value: function getDecoratedComponentInstance() {
+        (0,_react_dnd_invariant__WEBPACK_IMPORTED_MODULE_3__.invariant)(this.decoratedRef.current, 'In order to access an instance of the decorated component, it must either be a class component or use React.forwardRef()');
+        return this.decoratedRef.current;
+      }
+    }, {
+      key: "shouldComponentUpdate",
+      value: function shouldComponentUpdate(nextProps, nextState) {
+        return !arePropsEqual(nextProps, this.props) || !(0,_react_dnd_shallowequal__WEBPACK_IMPORTED_MODULE_2__.shallowEqual)(nextState, this.state);
+      }
+    }, {
+      key: "componentDidMount",
+      value: function componentDidMount() {
+        this.disposable = new _disposables__WEBPACK_IMPORTED_MODULE_5__.SerialDisposable();
+        this.currentType = undefined;
+        this.receiveProps(this.props);
+        this.handleChange();
+      }
+    }, {
+      key: "componentDidUpdate",
+      value: function componentDidUpdate(prevProps) {
+        if (!arePropsEqual(this.props, prevProps)) {
+          this.receiveProps(this.props);
+          this.handleChange();
+        }
+      }
+    }, {
+      key: "componentWillUnmount",
+      value: function componentWillUnmount() {
+        this.dispose();
+      }
+    }, {
+      key: "receiveProps",
+      value: function receiveProps(props) {
+        if (!this.handler) {
+          return;
+        }
+
+        this.handler.receiveProps(props);
+        this.receiveType(getType(props));
+      }
+    }, {
+      key: "receiveType",
+      value: function receiveType(type) {
+        if (!this.handlerMonitor || !this.manager || !this.handlerConnector) {
+          return;
+        }
+
+        if (type === this.currentType) {
+          return;
+        }
+
+        this.currentType = type;
+
+        var _registerHandler = registerHandler(type, this.handler, this.manager),
+            _registerHandler2 = _slicedToArray(_registerHandler, 2),
+            handlerId = _registerHandler2[0],
+            unregister = _registerHandler2[1];
+
+        this.handlerId = handlerId;
+        this.handlerMonitor.receiveHandlerId(handlerId);
+        this.handlerConnector.receiveHandlerId(handlerId);
+        var globalMonitor = this.manager.getMonitor();
+        var unsubscribe = globalMonitor.subscribeToStateChange(this.handleChange, {
+          handlerIds: [handlerId]
+        });
+        this.disposable.setDisposable(new _disposables__WEBPACK_IMPORTED_MODULE_5__.CompositeDisposable(new _disposables__WEBPACK_IMPORTED_MODULE_5__.Disposable(unsubscribe), new _disposables__WEBPACK_IMPORTED_MODULE_5__.Disposable(unregister)));
+      }
+    }, {
+      key: "dispose",
+      value: function dispose() {
+        this.disposable.dispose();
+
+        if (this.handlerConnector) {
+          this.handlerConnector.receiveHandlerId(null);
+        }
+      }
+    }, {
+      key: "getCurrentState",
+      value: function getCurrentState() {
+        if (!this.handlerConnector) {
+          return {};
+        }
+
+        var nextState = collect(this.handlerConnector.hooks, this.handlerMonitor, this.props);
+
+        if (true) {
+          (0,_react_dnd_invariant__WEBPACK_IMPORTED_MODULE_3__.invariant)((0,_utils__WEBPACK_IMPORTED_MODULE_6__.isPlainObject)(nextState), 'Expected `collect` specified as the second argument to ' + '%s for %s to return a plain object of props to inject. ' + 'Instead, received %s.', containerDisplayName, displayName, nextState);
+        }
+
+        return nextState;
+      }
+    }, {
+      key: "render",
+      value: function render() {
+        var _this2 = this;
+
+        return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_core__WEBPACK_IMPORTED_MODULE_7__.DndContext.Consumer, {
+          children: function children(_ref2) {
+            var dragDropManager = _ref2.dragDropManager;
+
+            _this2.receiveDragDropManager(dragDropManager);
+
+            if (typeof requestAnimationFrame !== 'undefined') {
+              requestAnimationFrame(function () {
+                var _this2$handlerConnect;
+
+                return (_this2$handlerConnect = _this2.handlerConnector) === null || _this2$handlerConnect === void 0 ? void 0 : _this2$handlerConnect.reconnect();
+              });
+            }
+
+            return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Decorated, Object.assign({}, _this2.props, _this2.getCurrentState(), {
+              // NOTE: if Decorated is a Function Component, decoratedRef will not be populated unless it's a refforwarding component.
+              ref: (0,_utils__WEBPACK_IMPORTED_MODULE_6__.isRefable)(Decorated) ? _this2.decoratedRef : null
+            }), void 0);
+          }
+        }, void 0);
+      }
+    }, {
+      key: "receiveDragDropManager",
+      value: function receiveDragDropManager(dragDropManager) {
+        if (this.manager !== undefined) {
+          return;
+        }
+
+        (0,_react_dnd_invariant__WEBPACK_IMPORTED_MODULE_3__.invariant)(dragDropManager !== undefined, 'Could not find the drag and drop manager in the context of %s. ' + 'Make sure to render a DndProvider component in your top-level component. ' + 'Read more: http://react-dnd.github.io/react-dnd/docs/troubleshooting#could-not-find-the-drag-and-drop-manager-in-the-context', displayName, displayName);
+
+        if (dragDropManager === undefined) {
+          return;
+        }
+
+        this.manager = dragDropManager;
+        this.handlerMonitor = createMonitor(dragDropManager);
+        this.handlerConnector = createConnector(dragDropManager.getBackend());
+        this.handler = createHandler(this.handlerMonitor, this.decoratedRef);
+      }
+    }]);
+
+    return DragDropContainer;
+  }(react__WEBPACK_IMPORTED_MODULE_1__.Component);
+
+  _defineProperty(DragDropContainer, "DecoratedComponent", DecoratedComponent);
+
+  _defineProperty(DragDropContainer, "displayName", "".concat(containerDisplayName, "(").concat(displayName, ")"));
+
+  return hoist_non_react_statics__WEBPACK_IMPORTED_MODULE_4___default()(DragDropContainer, DecoratedComponent);
+}
+
+/***/ }),
+
+/***/ "./node_modules/react-dnd/dist/esm/decorators/disposables.js":
+/*!*******************************************************************!*\
+  !*** ./node_modules/react-dnd/dist/esm/decorators/disposables.js ***!
+  \*******************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Disposable": () => (/* binding */ Disposable),
+/* harmony export */   "CompositeDisposable": () => (/* binding */ CompositeDisposable),
+/* harmony export */   "SerialDisposable": () => (/* binding */ SerialDisposable)
+/* harmony export */ });
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils */ "./node_modules/react-dnd/dist/esm/decorators/utils.js");
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+/**
+ * Provides a set of static methods for creating Disposables.
+ * @param {Function} action Action to run during the first call to dispose.
+ * The action is guaranteed to be run at most once.
+ */
+
+var Disposable = /*#__PURE__*/function () {
+  function Disposable(action) {
+    _classCallCheck(this, Disposable);
+
+    _defineProperty(this, "isDisposed", false);
+
+    _defineProperty(this, "action", void 0);
+
+    this.action = (0,_utils__WEBPACK_IMPORTED_MODULE_0__.isFunction)(action) ? action : _utils__WEBPACK_IMPORTED_MODULE_0__.noop;
+  }
+  /** Performs the task of cleaning up resources. */
+
+
+  _createClass(Disposable, [{
+    key: "dispose",
+    value: function dispose() {
+      if (!this.isDisposed) {
+        this.action();
+        this.isDisposed = true;
+      }
+    }
+  }], [{
+    key: "isDisposable",
+    value:
+    /**
+     * Gets the disposable that does nothing when disposed.
+     */
+
+    /**
+     * Validates whether the given object is a disposable
+     * @param {Object} Object to test whether it has a dispose method
+     * @returns {Boolean} true if a disposable object, else false.
+     */
+    function isDisposable(d) {
+      return Boolean(d && (0,_utils__WEBPACK_IMPORTED_MODULE_0__.isFunction)(d.dispose));
+    }
+  }, {
+    key: "_fixup",
+    value: function _fixup(result) {
+      return Disposable.isDisposable(result) ? result : Disposable.empty;
+    }
+    /**
+     * Creates a disposable object that invokes the specified action when disposed.
+     * @param {Function} dispose Action to run during the first call to dispose.
+     * The action is guaranteed to be run at most once.
+     * @return {Disposable} The disposable object that runs the given action upon disposal.
+     */
+
+  }, {
+    key: "create",
+    value: function create(action) {
+      return new Disposable(action);
+    }
+  }]);
+
+  return Disposable;
+}();
+/**
+ * Represents a group of disposable resources that are disposed together.
+ * @constructor
+ */
+
+_defineProperty(Disposable, "empty", {
+  dispose: _utils__WEBPACK_IMPORTED_MODULE_0__.noop
+});
+
+var CompositeDisposable = /*#__PURE__*/function () {
+  function CompositeDisposable() {
+    _classCallCheck(this, CompositeDisposable);
+
+    _defineProperty(this, "isDisposed", false);
+
+    _defineProperty(this, "disposables", void 0);
+
+    for (var _len = arguments.length, disposables = new Array(_len), _key = 0; _key < _len; _key++) {
+      disposables[_key] = arguments[_key];
+    }
+
+    this.disposables = disposables;
+  }
+  /**
+   * Adds a disposable to the CompositeDisposable or disposes the disposable if the CompositeDisposable is disposed.
+   * @param {Any} item Disposable to add.
+   */
+
+
+  _createClass(CompositeDisposable, [{
+    key: "add",
+    value: function add(item) {
+      if (this.isDisposed) {
+        item.dispose();
+      } else {
+        this.disposables.push(item);
+      }
+    }
+    /**
+     * Removes and disposes the first occurrence of a disposable from the CompositeDisposable.
+     * @param {Any} item Disposable to remove.
+     * @returns {Boolean} true if found; false otherwise.
+     */
+
+  }, {
+    key: "remove",
+    value: function remove(item) {
+      var shouldDispose = false;
+
+      if (!this.isDisposed) {
+        var idx = this.disposables.indexOf(item);
+
+        if (idx !== -1) {
+          shouldDispose = true;
+          this.disposables.splice(idx, 1);
+          item.dispose();
+        }
+      }
+
+      return shouldDispose;
+    }
+    /**
+     *  Disposes all disposables in the group and removes them from the group but
+     *  does not dispose the CompositeDisposable.
+     */
+
+  }, {
+    key: "clear",
+    value: function clear() {
+      if (!this.isDisposed) {
+        var len = this.disposables.length;
+        var currentDisposables = new Array(len);
+
+        for (var i = 0; i < len; i++) {
+          currentDisposables[i] = this.disposables[i];
+        }
+
+        this.disposables = [];
+
+        for (var _i = 0; _i < len; _i++) {
+          currentDisposables[_i].dispose();
+        }
+      }
+    }
+    /**
+     *  Disposes all disposables in the group and removes them from the group.
+     */
+
+  }, {
+    key: "dispose",
+    value: function dispose() {
+      if (!this.isDisposed) {
+        this.isDisposed = true;
+        var len = this.disposables.length;
+        var currentDisposables = new Array(len);
+
+        for (var i = 0; i < len; i++) {
+          currentDisposables[i] = this.disposables[i];
+        }
+
+        this.disposables = [];
+
+        for (var _i2 = 0; _i2 < len; _i2++) {
+          currentDisposables[_i2].dispose();
+        }
+      }
+    }
+  }]);
+
+  return CompositeDisposable;
+}();
+/**
+ * Represents a disposable resource whose underlying disposable resource can
+ * be replaced by another disposable resource, causing automatic disposal of
+ * the previous underlying disposable resource.
+ */
+
+var SerialDisposable = /*#__PURE__*/function () {
+  function SerialDisposable() {
+    _classCallCheck(this, SerialDisposable);
+
+    _defineProperty(this, "isDisposed", false);
+
+    _defineProperty(this, "current", void 0);
+  }
+
+  _createClass(SerialDisposable, [{
+    key: "getDisposable",
+    value:
+    /**
+     * Gets the underlying disposable.
+     * @returns {Any} the underlying disposable.
+     */
+    function getDisposable() {
+      return this.current;
+    }
+  }, {
+    key: "setDisposable",
+    value: function setDisposable(value) {
+      var shouldDispose = this.isDisposed;
+
+      if (!shouldDispose) {
+        var old = this.current;
+        this.current = value;
+
+        if (old) {
+          old.dispose();
+        }
+      }
+
+      if (shouldDispose && value) {
+        value.dispose();
+      }
+    }
+    /** Performs the task of cleaning up resources. */
+
+  }, {
+    key: "dispose",
+    value: function dispose() {
+      if (!this.isDisposed) {
+        this.isDisposed = true;
+        var old = this.current;
+        this.current = undefined;
+
+        if (old) {
+          old.dispose();
+        }
+      }
+    }
+  }]);
+
+  return SerialDisposable;
+}();
+
+/***/ }),
+
+/***/ "./node_modules/react-dnd/dist/esm/decorators/index.js":
+/*!*************************************************************!*\
+  !*** ./node_modules/react-dnd/dist/esm/decorators/index.js ***!
+  \*************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "DragSource": () => (/* reexport safe */ _DragSource__WEBPACK_IMPORTED_MODULE_0__.DragSource),
+/* harmony export */   "DropTarget": () => (/* reexport safe */ _DropTarget__WEBPACK_IMPORTED_MODULE_1__.DropTarget),
+/* harmony export */   "DragLayer": () => (/* reexport safe */ _DragLayer__WEBPACK_IMPORTED_MODULE_2__.DragLayer)
+/* harmony export */ });
+/* harmony import */ var _DragSource__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./DragSource */ "./node_modules/react-dnd/dist/esm/decorators/DragSource.js");
+/* harmony import */ var _DropTarget__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./DropTarget */ "./node_modules/react-dnd/dist/esm/decorators/DropTarget.js");
+/* harmony import */ var _DragLayer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./DragLayer */ "./node_modules/react-dnd/dist/esm/decorators/DragLayer.js");
+
+
+
+
+
+/***/ }),
+
+/***/ "./node_modules/react-dnd/dist/esm/decorators/utils.js":
+/*!*************************************************************!*\
+  !*** ./node_modules/react-dnd/dist/esm/decorators/utils.js ***!
+  \*************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "getDecoratedComponent": () => (/* binding */ getDecoratedComponent),
+/* harmony export */   "isClassComponent": () => (/* binding */ isClassComponent),
+/* harmony export */   "isRefForwardingComponent": () => (/* binding */ isRefForwardingComponent),
+/* harmony export */   "isRefable": () => (/* binding */ isRefable),
+/* harmony export */   "checkDecoratorArguments": () => (/* binding */ checkDecoratorArguments),
+/* harmony export */   "isFunction": () => (/* binding */ isFunction),
+/* harmony export */   "noop": () => (/* binding */ noop),
+/* harmony export */   "isPlainObject": () => (/* binding */ isPlainObject),
+/* harmony export */   "isValidType": () => (/* binding */ isValidType)
+/* harmony export */ });
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function getDecoratedComponent(instanceRef) {
+  var currentRef = instanceRef.current;
+
+  if (currentRef == null) {
+    return null;
+  } else if (currentRef.decoratedRef) {
+    // go through the private field in decorateHandler to avoid the invariant hit
+    return currentRef.decoratedRef.current;
+  } else {
+    return currentRef;
+  }
+}
+function isClassComponent(Component) {
+  return Component && Component.prototype && typeof Component.prototype.render === 'function';
+}
+function isRefForwardingComponent(C) {
+  var _item$$$typeof;
+
+  var item = C;
+  return (item === null || item === void 0 ? void 0 : (_item$$$typeof = item.$$typeof) === null || _item$$$typeof === void 0 ? void 0 : _item$$$typeof.toString()) === 'Symbol(react.forward_ref)';
+}
+function isRefable(C) {
+  return isClassComponent(C) || isRefForwardingComponent(C);
+}
+function checkDecoratorArguments(functionName, signature) {
+  if (true) {
+    for (var i = 0; i < (arguments.length <= 2 ? 0 : arguments.length - 2); i++) {
+      var arg = i + 2 < 2 || arguments.length <= i + 2 ? undefined : arguments[i + 2];
+
+      if (arg && arg.prototype && arg.prototype.render) {
+        // eslint-disable-next-line no-console
+        console.error('You seem to be applying the arguments in the wrong order. ' + "It should be ".concat(functionName, "(").concat(signature, ")(Component), not the other way around. ") + 'Read more: http://react-dnd.github.io/react-dnd/docs/troubleshooting#you-seem-to-be-applying-the-arguments-in-the-wrong-order');
+        return;
+      }
+    }
+  }
+}
+function isFunction(input) {
+  return typeof input === 'function';
+}
+function noop() {// noop
+}
+
+function isObjectLike(input) {
+  return _typeof(input) === 'object' && input !== null;
+}
+
+function isPlainObject(input) {
+  if (!isObjectLike(input)) {
+    return false;
+  }
+
+  if (Object.getPrototypeOf(input) === null) {
+    return true;
+  }
+
+  var proto = input;
+
+  while (Object.getPrototypeOf(proto) !== null) {
+    proto = Object.getPrototypeOf(proto);
+  }
+
+  return Object.getPrototypeOf(input) === proto;
+}
+function isValidType(type, allowArray) {
+  return typeof type === 'string' || _typeof(type) === 'symbol' || !!allowArray && Array.isArray(type) && type.every(function (t) {
+    return isValidType(t, false);
+  });
+}
+
+/***/ }),
+
+/***/ "./node_modules/react-dnd/dist/esm/hooks/index.js":
+/*!********************************************************!*\
+  !*** ./node_modules/react-dnd/dist/esm/hooks/index.js ***!
+  \********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "useDrag": () => (/* reexport safe */ _useDrag__WEBPACK_IMPORTED_MODULE_0__.useDrag),
+/* harmony export */   "useDrop": () => (/* reexport safe */ _useDrop__WEBPACK_IMPORTED_MODULE_1__.useDrop),
+/* harmony export */   "useDragLayer": () => (/* reexport safe */ _useDragLayer__WEBPACK_IMPORTED_MODULE_2__.useDragLayer),
+/* harmony export */   "useDragDropManager": () => (/* reexport safe */ _useDragDropManager__WEBPACK_IMPORTED_MODULE_3__.useDragDropManager)
+/* harmony export */ });
+/* harmony import */ var _useDrag__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./useDrag */ "./node_modules/react-dnd/dist/esm/hooks/useDrag/index.js");
+/* harmony import */ var _useDrop__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./useDrop */ "./node_modules/react-dnd/dist/esm/hooks/useDrop/index.js");
+/* harmony import */ var _useDragLayer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./useDragLayer */ "./node_modules/react-dnd/dist/esm/hooks/useDragLayer.js");
+/* harmony import */ var _useDragDropManager__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./useDragDropManager */ "./node_modules/react-dnd/dist/esm/hooks/useDragDropManager.js");
+
+
+
+
+
+
+/***/ }),
+
+/***/ "./node_modules/react-dnd/dist/esm/hooks/useCollectedProps.js":
+/*!********************************************************************!*\
+  !*** ./node_modules/react-dnd/dist/esm/hooks/useCollectedProps.js ***!
+  \********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "useCollectedProps": () => (/* binding */ useCollectedProps)
+/* harmony export */ });
+/* harmony import */ var _useMonitorOutput__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./useMonitorOutput */ "./node_modules/react-dnd/dist/esm/hooks/useMonitorOutput.js");
+
+function useCollectedProps(collector, monitor, connector) {
+  return (0,_useMonitorOutput__WEBPACK_IMPORTED_MODULE_0__.useMonitorOutput)(monitor, collector || function () {
+    return {};
+  }, function () {
+    return connector.reconnect();
+  });
+}
+
+/***/ }),
+
+/***/ "./node_modules/react-dnd/dist/esm/hooks/useCollector.js":
+/*!***************************************************************!*\
+  !*** ./node_modules/react-dnd/dist/esm/hooks/useCollector.js ***!
+  \***************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "useCollector": () => (/* binding */ useCollector)
+/* harmony export */ });
+/* harmony import */ var fast_deep_equal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! fast-deep-equal */ "./node_modules/fast-deep-equal/index.js");
+/* harmony import */ var fast_deep_equal__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(fast_deep_equal__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _useIsomorphicLayoutEffect__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./useIsomorphicLayoutEffect */ "./node_modules/react-dnd/dist/esm/hooks/useIsomorphicLayoutEffect.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+/**
+ *
+ * @param monitor The monitor to collect state from
+ * @param collect The collecting function
+ * @param onUpdate A method to invoke when updates occur
+ */
+
+function useCollector(monitor, collect, onUpdate) {
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(function () {
+    return collect(monitor);
+  }),
+      _useState2 = _slicedToArray(_useState, 2),
+      collected = _useState2[0],
+      setCollected = _useState2[1];
+
+  var updateCollected = (0,react__WEBPACK_IMPORTED_MODULE_1__.useCallback)(function () {
+    var nextValue = collect(monitor); // This needs to be a deep-equality check because some monitor-collected values
+    // include XYCoord objects that may be equivalent, but do not have instance equality.
+
+    if (!fast_deep_equal__WEBPACK_IMPORTED_MODULE_0___default()(collected, nextValue)) {
+      setCollected(nextValue);
+
+      if (onUpdate) {
+        onUpdate();
+      }
+    }
+  }, [collected, monitor, onUpdate]); // update the collected properties after react renders.
+  // Note that the "Dustbin Stress Test" fails if this is not
+  // done when the component updates
+
+  (0,_useIsomorphicLayoutEffect__WEBPACK_IMPORTED_MODULE_2__.useIsomorphicLayoutEffect)(updateCollected);
+  return [collected, updateCollected];
+}
+
+/***/ }),
+
+/***/ "./node_modules/react-dnd/dist/esm/hooks/useDragDropManager.js":
 /*!*********************************************************************!*\
-  !*** ./node_modules/react-dnd/dist/cjs/hooks/useDrag/connectors.js ***!
+  !*** ./node_modules/react-dnd/dist/esm/hooks/useDragDropManager.js ***!
   \*********************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "useDragDropManager": () => (/* binding */ useDragDropManager)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _react_dnd_invariant__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @react-dnd/invariant */ "./node_modules/@react-dnd/invariant/dist/invariant.esm.js");
+/* harmony import */ var _core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../core */ "./node_modules/react-dnd/dist/esm/core/DndContext.js");
 
-Object.defineProperty(exports, "__esModule", ({
-    value: true
-}));
-exports.useConnectDragSource = useConnectDragSource;
-exports.useConnectDragPreview = useConnectDragPreview;
-var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+
+/**
+ * A hook to retrieve the DragDropManager from Context
+ */
+
+function useDragDropManager() {
+  var _useContext = (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(_core__WEBPACK_IMPORTED_MODULE_2__.DndContext),
+      dragDropManager = _useContext.dragDropManager;
+
+  (0,_react_dnd_invariant__WEBPACK_IMPORTED_MODULE_1__.invariant)(dragDropManager != null, 'Expected drag drop context');
+  return dragDropManager;
+}
+
+/***/ }),
+
+/***/ "./node_modules/react-dnd/dist/esm/hooks/useDragLayer.js":
+/*!***************************************************************!*\
+  !*** ./node_modules/react-dnd/dist/esm/hooks/useDragLayer.js ***!
+  \***************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "useDragLayer": () => (/* binding */ useDragLayer)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _useDragDropManager__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./useDragDropManager */ "./node_modules/react-dnd/dist/esm/hooks/useDragDropManager.js");
+/* harmony import */ var _useCollector__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./useCollector */ "./node_modules/react-dnd/dist/esm/hooks/useCollector.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+/**
+ * useDragLayer Hook
+ * @param collector The property collector
+ */
+
+function useDragLayer(collect) {
+  var dragDropManager = (0,_useDragDropManager__WEBPACK_IMPORTED_MODULE_1__.useDragDropManager)();
+  var monitor = dragDropManager.getMonitor();
+
+  var _useCollector = (0,_useCollector__WEBPACK_IMPORTED_MODULE_2__.useCollector)(monitor, collect),
+      _useCollector2 = _slicedToArray(_useCollector, 2),
+      collected = _useCollector2[0],
+      updateCollected = _useCollector2[1];
+
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    return monitor.subscribeToOffsetChange(updateCollected);
+  });
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    return monitor.subscribeToStateChange(updateCollected);
+  });
+  return collected;
+}
+
+/***/ }),
+
+/***/ "./node_modules/react-dnd/dist/esm/hooks/useDrag/DragSourceImpl.js":
+/*!*************************************************************************!*\
+  !*** ./node_modules/react-dnd/dist/esm/hooks/useDrag/DragSourceImpl.js ***!
+  \*************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "DragSourceImpl": () => (/* binding */ DragSourceImpl)
+/* harmony export */ });
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+var DragSourceImpl = /*#__PURE__*/function () {
+  function DragSourceImpl(spec, monitor, connector) {
+    _classCallCheck(this, DragSourceImpl);
+
+    _defineProperty(this, "spec", void 0);
+
+    _defineProperty(this, "monitor", void 0);
+
+    _defineProperty(this, "connector", void 0);
+
+    this.spec = spec;
+    this.monitor = monitor;
+    this.connector = connector;
+  }
+
+  _createClass(DragSourceImpl, [{
+    key: "beginDrag",
+    value: function beginDrag() {
+      var _result;
+
+      var spec = this.spec;
+      var monitor = this.monitor;
+      var result = null;
+
+      if (_typeof(spec.item) === 'object') {
+        result = spec.item;
+      } else if (typeof spec.item === 'function') {
+        result = spec.item(monitor);
+      } else {
+        result = {};
+      }
+
+      return (_result = result) !== null && _result !== void 0 ? _result : null;
+    }
+  }, {
+    key: "canDrag",
+    value: function canDrag() {
+      var spec = this.spec;
+      var monitor = this.monitor;
+
+      if (typeof spec.canDrag === 'boolean') {
+        return spec.canDrag;
+      } else if (typeof spec.canDrag === 'function') {
+        return spec.canDrag(monitor);
+      } else {
+        return true;
+      }
+    }
+  }, {
+    key: "isDragging",
+    value: function isDragging(globalMonitor, target) {
+      var spec = this.spec;
+      var monitor = this.monitor;
+      var isDragging = spec.isDragging;
+      return isDragging ? isDragging(monitor) : target === globalMonitor.getSourceId();
+    }
+  }, {
+    key: "endDrag",
+    value: function endDrag() {
+      var spec = this.spec;
+      var monitor = this.monitor;
+      var connector = this.connector;
+      var end = spec.end;
+
+      if (end) {
+        end(monitor.getItem(), monitor);
+      }
+
+      connector.reconnect();
+    }
+  }]);
+
+  return DragSourceImpl;
+}();
+
+/***/ }),
+
+/***/ "./node_modules/react-dnd/dist/esm/hooks/useDrag/connectors.js":
+/*!*********************************************************************!*\
+  !*** ./node_modules/react-dnd/dist/esm/hooks/useDrag/connectors.js ***!
+  \*********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "useConnectDragSource": () => (/* binding */ useConnectDragSource),
+/* harmony export */   "useConnectDragPreview": () => (/* binding */ useConnectDragPreview)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
 function useConnectDragSource(connector) {
-    return (0, _react).useMemo(()=>connector.hooks.dragSource()
-    , [
-        connector
-    ]);
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.useMemo)(function () {
+    return connector.hooks.dragSource();
+  }, [connector]);
 }
 function useConnectDragPreview(connector) {
-    return (0, _react).useMemo(()=>connector.hooks.dragPreview()
-    , [
-        connector
-    ]);
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.useMemo)(function () {
+    return connector.hooks.dragPreview();
+  }, [connector]);
 }
-
-//# sourceMappingURL=connectors.js.map
 
 /***/ }),
 
-/***/ "./node_modules/react-dnd/dist/cjs/hooks/useDrag/index.js":
+/***/ "./node_modules/react-dnd/dist/esm/hooks/useDrag/index.js":
 /*!****************************************************************!*\
-  !*** ./node_modules/react-dnd/dist/cjs/hooks/useDrag/index.js ***!
+  !*** ./node_modules/react-dnd/dist/esm/hooks/useDrag/index.js ***!
   \****************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "useDrag": () => (/* reexport safe */ _useDrag__WEBPACK_IMPORTED_MODULE_0__.useDrag)
+/* harmony export */ });
+/* harmony import */ var _useDrag__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./useDrag */ "./node_modules/react-dnd/dist/esm/hooks/useDrag/useDrag.js");
 
-Object.defineProperty(exports, "__esModule", ({
-    value: true
-}));
-var _useDragJs = _interopRequireWildcard(__webpack_require__(/*! ./useDrag.js */ "./node_modules/react-dnd/dist/cjs/hooks/useDrag/useDrag.js"));
-Object.keys(_useDragJs).forEach(function(key) {
-    if (key === "default" || key === "__esModule") return;
-    if (key in exports && exports[key] === _useDragJs[key]) return;
-    Object.defineProperty(exports, key, {
-        enumerable: true,
-        get: function() {
-            return _useDragJs[key];
-        }
-    });
-});
-function _interopRequireWildcard(obj) {
-    if (obj && obj.__esModule) {
-        return obj;
-    } else {
-        var newObj = {};
-        if (obj != null) {
-            for(var key in obj){
-                if (Object.prototype.hasOwnProperty.call(obj, key)) {
-                    var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {};
-                    if (desc.get || desc.set) {
-                        Object.defineProperty(newObj, key, desc);
-                    } else {
-                        newObj[key] = obj[key];
-                    }
-                }
-            }
-        }
-        newObj.default = obj;
-        return newObj;
-    }
-}
-
-//# sourceMappingURL=index.js.map
 
 /***/ }),
 
-/***/ "./node_modules/react-dnd/dist/cjs/hooks/useDrag/useDrag.js":
+/***/ "./node_modules/react-dnd/dist/esm/hooks/useDrag/useDrag.js":
 /*!******************************************************************!*\
-  !*** ./node_modules/react-dnd/dist/cjs/hooks/useDrag/useDrag.js ***!
+  !*** ./node_modules/react-dnd/dist/esm/hooks/useDrag/useDrag.js ***!
   \******************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "useDrag": () => (/* binding */ useDrag)
+/* harmony export */ });
+/* harmony import */ var _useRegisteredDragSource__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./useRegisteredDragSource */ "./node_modules/react-dnd/dist/esm/hooks/useDrag/useRegisteredDragSource.js");
+/* harmony import */ var _useOptionalFactory__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../useOptionalFactory */ "./node_modules/react-dnd/dist/esm/hooks/useOptionalFactory.js");
+/* harmony import */ var _useDragSourceMonitor__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./useDragSourceMonitor */ "./node_modules/react-dnd/dist/esm/hooks/useDrag/useDragSourceMonitor.js");
+/* harmony import */ var _useDragSourceConnector__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./useDragSourceConnector */ "./node_modules/react-dnd/dist/esm/hooks/useDrag/useDragSourceConnector.js");
+/* harmony import */ var _useCollectedProps__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../useCollectedProps */ "./node_modules/react-dnd/dist/esm/hooks/useCollectedProps.js");
+/* harmony import */ var _connectors__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./connectors */ "./node_modules/react-dnd/dist/esm/hooks/useDrag/connectors.js");
+/* harmony import */ var _react_dnd_invariant__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @react-dnd/invariant */ "./node_modules/@react-dnd/invariant/dist/invariant.esm.js");
 
-Object.defineProperty(exports, "__esModule", ({
-    value: true
-}));
-exports.useDrag = useDrag;
-var _useRegisteredDragSourceJs = __webpack_require__(/*! ./useRegisteredDragSource.js */ "./node_modules/react-dnd/dist/cjs/hooks/useDrag/useRegisteredDragSource.js");
-var _useOptionalFactoryJs = __webpack_require__(/*! ../useOptionalFactory.js */ "./node_modules/react-dnd/dist/cjs/hooks/useOptionalFactory.js");
-var _useDragSourceMonitorJs = __webpack_require__(/*! ./useDragSourceMonitor.js */ "./node_modules/react-dnd/dist/cjs/hooks/useDrag/useDragSourceMonitor.js");
-var _useDragSourceConnectorJs = __webpack_require__(/*! ./useDragSourceConnector.js */ "./node_modules/react-dnd/dist/cjs/hooks/useDrag/useDragSourceConnector.js");
-var _useCollectedPropsJs = __webpack_require__(/*! ../useCollectedProps.js */ "./node_modules/react-dnd/dist/cjs/hooks/useCollectedProps.js");
-var _connectorsJs = __webpack_require__(/*! ./connectors.js */ "./node_modules/react-dnd/dist/cjs/hooks/useDrag/connectors.js");
-var _invariant = __webpack_require__(/*! @react-dnd/invariant */ "./node_modules/@react-dnd/invariant/dist/cjs/index.js");
+
+
+
+
+
+
+/**
+ * useDragSource hook
+ * @param sourceSpec The drag source specification (object or function, function preferred)
+ * @param deps The memoization deps array to use when evaluating spec changes
+ */
+
 function useDrag(specArg, deps) {
-    const spec = (0, _useOptionalFactoryJs).useOptionalFactory(specArg, deps);
-    (0, _invariant).invariant(!spec.begin, `useDrag::spec.begin was deprecated in v14. Replace spec.begin() with spec.item(). (see more here - https://react-dnd.github.io/react-dnd/docs/api/use-drag)`);
-    const monitor = (0, _useDragSourceMonitorJs).useDragSourceMonitor();
-    const connector = (0, _useDragSourceConnectorJs).useDragSourceConnector(spec.options, spec.previewOptions);
-    (0, _useRegisteredDragSourceJs).useRegisteredDragSource(spec, monitor, connector);
-    return [
-        (0, _useCollectedPropsJs).useCollectedProps(spec.collect, monitor, connector),
-        (0, _connectorsJs).useConnectDragSource(connector),
-        (0, _connectorsJs).useConnectDragPreview(connector), 
-    ];
+  var spec = (0,_useOptionalFactory__WEBPACK_IMPORTED_MODULE_1__.useOptionalFactory)(specArg, deps);
+  (0,_react_dnd_invariant__WEBPACK_IMPORTED_MODULE_0__.invariant)(!spec.begin, "useDrag::spec.begin was deprecated in v14. Replace spec.begin() with spec.item(). (see more here - https://react-dnd.github.io/react-dnd/docs/api/use-drag)");
+  var monitor = (0,_useDragSourceMonitor__WEBPACK_IMPORTED_MODULE_2__.useDragSourceMonitor)();
+  var connector = (0,_useDragSourceConnector__WEBPACK_IMPORTED_MODULE_3__.useDragSourceConnector)(spec.options, spec.previewOptions);
+  (0,_useRegisteredDragSource__WEBPACK_IMPORTED_MODULE_4__.useRegisteredDragSource)(spec, monitor, connector);
+  return [(0,_useCollectedProps__WEBPACK_IMPORTED_MODULE_5__.useCollectedProps)(spec.collect, monitor, connector), (0,_connectors__WEBPACK_IMPORTED_MODULE_6__.useConnectDragSource)(connector), (0,_connectors__WEBPACK_IMPORTED_MODULE_6__.useConnectDragPreview)(connector)];
 }
-
-//# sourceMappingURL=useDrag.js.map
 
 /***/ }),
 
-/***/ "./node_modules/react-dnd/dist/cjs/hooks/useDrag/useDragSource.js":
+/***/ "./node_modules/react-dnd/dist/esm/hooks/useDrag/useDragSource.js":
 /*!************************************************************************!*\
-  !*** ./node_modules/react-dnd/dist/cjs/hooks/useDrag/useDragSource.js ***!
+  !*** ./node_modules/react-dnd/dist/esm/hooks/useDrag/useDragSource.js ***!
   \************************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "useDragSource": () => (/* binding */ useDragSource)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _DragSourceImpl__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./DragSourceImpl */ "./node_modules/react-dnd/dist/esm/hooks/useDrag/DragSourceImpl.js");
 
-Object.defineProperty(exports, "__esModule", ({
-    value: true
-}));
-exports.useDragSource = useDragSource;
-var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-var _dragSourceImplJs = __webpack_require__(/*! ./DragSourceImpl.js */ "./node_modules/react-dnd/dist/cjs/hooks/useDrag/DragSourceImpl.js");
+
 function useDragSource(spec, monitor, connector) {
-    const handler = (0, _react).useMemo(()=>new _dragSourceImplJs.DragSourceImpl(spec, monitor, connector)
-    , [
-        monitor,
-        connector
-    ]);
-    (0, _react).useEffect(()=>{
-        handler.spec = spec;
-    }, [
-        spec
-    ]);
-    return handler;
+  var handler = (0,react__WEBPACK_IMPORTED_MODULE_0__.useMemo)(function () {
+    return new _DragSourceImpl__WEBPACK_IMPORTED_MODULE_1__.DragSourceImpl(spec, monitor, connector);
+  }, [monitor, connector]);
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    handler.spec = spec;
+  }, [spec]);
+  return handler;
 }
-
-//# sourceMappingURL=useDragSource.js.map
 
 /***/ }),
 
-/***/ "./node_modules/react-dnd/dist/cjs/hooks/useDrag/useDragSourceConnector.js":
+/***/ "./node_modules/react-dnd/dist/esm/hooks/useDrag/useDragSourceConnector.js":
 /*!*********************************************************************************!*\
-  !*** ./node_modules/react-dnd/dist/cjs/hooks/useDrag/useDragSourceConnector.js ***!
+  !*** ./node_modules/react-dnd/dist/esm/hooks/useDrag/useDragSourceConnector.js ***!
   \*********************************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "useDragSourceConnector": () => (/* binding */ useDragSourceConnector)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _internals__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../internals */ "./node_modules/react-dnd/dist/esm/internals/SourceConnector.js");
+/* harmony import */ var _useDragDropManager__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../useDragDropManager */ "./node_modules/react-dnd/dist/esm/hooks/useDragDropManager.js");
+/* harmony import */ var _useIsomorphicLayoutEffect__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../useIsomorphicLayoutEffect */ "./node_modules/react-dnd/dist/esm/hooks/useIsomorphicLayoutEffect.js");
 
-Object.defineProperty(exports, "__esModule", ({
-    value: true
-}));
-exports.useDragSourceConnector = useDragSourceConnector;
-var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-var _indexJs = __webpack_require__(/*! ../../internals/index.js */ "./node_modules/react-dnd/dist/cjs/internals/index.js");
-var _useDragDropManagerJs = __webpack_require__(/*! ../useDragDropManager.js */ "./node_modules/react-dnd/dist/cjs/hooks/useDragDropManager.js");
-var _useIsomorphicLayoutEffectJs = __webpack_require__(/*! ../useIsomorphicLayoutEffect.js */ "./node_modules/react-dnd/dist/cjs/hooks/useIsomorphicLayoutEffect.js");
+
+
+
 function useDragSourceConnector(dragSourceOptions, dragPreviewOptions) {
-    const manager = (0, _useDragDropManagerJs).useDragDropManager();
-    const connector = (0, _react).useMemo(()=>new _indexJs.SourceConnector(manager.getBackend())
-    , [
-        manager
-    ]);
-    (0, _useIsomorphicLayoutEffectJs).useIsomorphicLayoutEffect(()=>{
-        connector.dragSourceOptions = dragSourceOptions || null;
-        connector.reconnect();
-        return ()=>connector.disconnectDragSource()
-        ;
-    }, [
-        connector,
-        dragSourceOptions
-    ]);
-    (0, _useIsomorphicLayoutEffectJs).useIsomorphicLayoutEffect(()=>{
-        connector.dragPreviewOptions = dragPreviewOptions || null;
-        connector.reconnect();
-        return ()=>connector.disconnectDragPreview()
-        ;
-    }, [
-        connector,
-        dragPreviewOptions
-    ]);
-    return connector;
+  var manager = (0,_useDragDropManager__WEBPACK_IMPORTED_MODULE_1__.useDragDropManager)();
+  var connector = (0,react__WEBPACK_IMPORTED_MODULE_0__.useMemo)(function () {
+    return new _internals__WEBPACK_IMPORTED_MODULE_2__.SourceConnector(manager.getBackend());
+  }, [manager]);
+  (0,_useIsomorphicLayoutEffect__WEBPACK_IMPORTED_MODULE_3__.useIsomorphicLayoutEffect)(function () {
+    connector.dragSourceOptions = dragSourceOptions || null;
+    connector.reconnect();
+    return function () {
+      return connector.disconnectDragSource();
+    };
+  }, [connector, dragSourceOptions]);
+  (0,_useIsomorphicLayoutEffect__WEBPACK_IMPORTED_MODULE_3__.useIsomorphicLayoutEffect)(function () {
+    connector.dragPreviewOptions = dragPreviewOptions || null;
+    connector.reconnect();
+    return function () {
+      return connector.disconnectDragPreview();
+    };
+  }, [connector, dragPreviewOptions]);
+  return connector;
 }
-
-//# sourceMappingURL=useDragSourceConnector.js.map
 
 /***/ }),
 
-/***/ "./node_modules/react-dnd/dist/cjs/hooks/useDrag/useDragSourceMonitor.js":
+/***/ "./node_modules/react-dnd/dist/esm/hooks/useDrag/useDragSourceMonitor.js":
 /*!*******************************************************************************!*\
-  !*** ./node_modules/react-dnd/dist/cjs/hooks/useDrag/useDragSourceMonitor.js ***!
+  !*** ./node_modules/react-dnd/dist/esm/hooks/useDrag/useDragSourceMonitor.js ***!
   \*******************************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "useDragSourceMonitor": () => (/* binding */ useDragSourceMonitor)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _internals__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../internals */ "./node_modules/react-dnd/dist/esm/internals/DragSourceMonitorImpl.js");
+/* harmony import */ var _useDragDropManager__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../useDragDropManager */ "./node_modules/react-dnd/dist/esm/hooks/useDragDropManager.js");
 
-Object.defineProperty(exports, "__esModule", ({
-    value: true
-}));
-exports.useDragSourceMonitor = useDragSourceMonitor;
-var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-var _indexJs = __webpack_require__(/*! ../../internals/index.js */ "./node_modules/react-dnd/dist/cjs/internals/index.js");
-var _useDragDropManagerJs = __webpack_require__(/*! ../useDragDropManager.js */ "./node_modules/react-dnd/dist/cjs/hooks/useDragDropManager.js");
+
+
 function useDragSourceMonitor() {
-    const manager = (0, _useDragDropManagerJs).useDragDropManager();
-    return (0, _react).useMemo(()=>new _indexJs.DragSourceMonitorImpl(manager)
-    , [
-        manager
-    ]);
+  var manager = (0,_useDragDropManager__WEBPACK_IMPORTED_MODULE_1__.useDragDropManager)();
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.useMemo)(function () {
+    return new _internals__WEBPACK_IMPORTED_MODULE_2__.DragSourceMonitorImpl(manager);
+  }, [manager]);
 }
-
-//# sourceMappingURL=useDragSourceMonitor.js.map
 
 /***/ }),
 
-/***/ "./node_modules/react-dnd/dist/cjs/hooks/useDrag/useDragType.js":
+/***/ "./node_modules/react-dnd/dist/esm/hooks/useDrag/useDragType.js":
 /*!**********************************************************************!*\
-  !*** ./node_modules/react-dnd/dist/cjs/hooks/useDrag/useDragType.js ***!
+  !*** ./node_modules/react-dnd/dist/esm/hooks/useDrag/useDragType.js ***!
   \**********************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "useDragType": () => (/* binding */ useDragType)
+/* harmony export */ });
+/* harmony import */ var _react_dnd_invariant__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @react-dnd/invariant */ "./node_modules/@react-dnd/invariant/dist/invariant.esm.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
-Object.defineProperty(exports, "__esModule", ({
-    value: true
-}));
-exports.useDragType = useDragType;
-var _invariant = __webpack_require__(/*! @react-dnd/invariant */ "./node_modules/@react-dnd/invariant/dist/cjs/index.js");
-var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
 function useDragType(spec) {
-    return (0, _react).useMemo(()=>{
-        const result = spec.type;
-        (0, _invariant).invariant(result != null, 'spec.type must be defined');
-        return result;
-    }, [
-        spec
-    ]);
+  return (0,react__WEBPACK_IMPORTED_MODULE_1__.useMemo)(function () {
+    var result = spec.type;
+    (0,_react_dnd_invariant__WEBPACK_IMPORTED_MODULE_0__.invariant)(result != null, 'spec.type must be defined');
+    return result;
+  }, [spec]);
 }
-
-//# sourceMappingURL=useDragType.js.map
 
 /***/ }),
 
-/***/ "./node_modules/react-dnd/dist/cjs/hooks/useDrag/useRegisteredDragSource.js":
+/***/ "./node_modules/react-dnd/dist/esm/hooks/useDrag/useRegisteredDragSource.js":
 /*!**********************************************************************************!*\
-  !*** ./node_modules/react-dnd/dist/cjs/hooks/useDrag/useRegisteredDragSource.js ***!
+  !*** ./node_modules/react-dnd/dist/esm/hooks/useDrag/useRegisteredDragSource.js ***!
   \**********************************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "useRegisteredDragSource": () => (/* binding */ useRegisteredDragSource)
+/* harmony export */ });
+/* harmony import */ var _internals__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../internals */ "./node_modules/react-dnd/dist/esm/internals/registration.js");
+/* harmony import */ var _useIsomorphicLayoutEffect__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../useIsomorphicLayoutEffect */ "./node_modules/react-dnd/dist/esm/hooks/useIsomorphicLayoutEffect.js");
+/* harmony import */ var _useDragSource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./useDragSource */ "./node_modules/react-dnd/dist/esm/hooks/useDrag/useDragSource.js");
+/* harmony import */ var _useDragDropManager__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../useDragDropManager */ "./node_modules/react-dnd/dist/esm/hooks/useDragDropManager.js");
+/* harmony import */ var _useDragType__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./useDragType */ "./node_modules/react-dnd/dist/esm/hooks/useDrag/useDragType.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
-Object.defineProperty(exports, "__esModule", ({
-    value: true
-}));
-exports.useRegisteredDragSource = useRegisteredDragSource;
-var _indexJs = __webpack_require__(/*! ../../internals/index.js */ "./node_modules/react-dnd/dist/cjs/internals/index.js");
-var _useIsomorphicLayoutEffectJs = __webpack_require__(/*! ../useIsomorphicLayoutEffect.js */ "./node_modules/react-dnd/dist/cjs/hooks/useIsomorphicLayoutEffect.js");
-var _useDragSourceJs = __webpack_require__(/*! ./useDragSource.js */ "./node_modules/react-dnd/dist/cjs/hooks/useDrag/useDragSource.js");
-var _useDragDropManagerJs = __webpack_require__(/*! ../useDragDropManager.js */ "./node_modules/react-dnd/dist/cjs/hooks/useDragDropManager.js");
-var _useDragTypeJs = __webpack_require__(/*! ./useDragType.js */ "./node_modules/react-dnd/dist/cjs/hooks/useDrag/useDragType.js");
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+
 function useRegisteredDragSource(spec, monitor, connector) {
-    const manager = (0, _useDragDropManagerJs).useDragDropManager();
-    const handler = (0, _useDragSourceJs).useDragSource(spec, monitor, connector);
-    const itemType = (0, _useDragTypeJs).useDragType(spec);
-    (0, _useIsomorphicLayoutEffectJs).useIsomorphicLayoutEffect(function registerDragSource() {
-        if (itemType != null) {
-            const [handlerId, unregister] = (0, _indexJs).registerSource(itemType, handler, manager);
-            monitor.receiveHandlerId(handlerId);
-            connector.receiveHandlerId(handlerId);
-            return unregister;
-        }
-        return;
-    }, [
-        manager,
-        monitor,
-        connector,
-        handler,
-        itemType
-    ]);
-}
+  var manager = (0,_useDragDropManager__WEBPACK_IMPORTED_MODULE_0__.useDragDropManager)();
+  var handler = (0,_useDragSource__WEBPACK_IMPORTED_MODULE_1__.useDragSource)(spec, monitor, connector);
+  var itemType = (0,_useDragType__WEBPACK_IMPORTED_MODULE_2__.useDragType)(spec);
+  (0,_useIsomorphicLayoutEffect__WEBPACK_IMPORTED_MODULE_3__.useIsomorphicLayoutEffect)(function registerDragSource() {
+    if (itemType != null) {
+      var _registerSource = (0,_internals__WEBPACK_IMPORTED_MODULE_4__.registerSource)(itemType, handler, manager),
+          _registerSource2 = _slicedToArray(_registerSource, 2),
+          handlerId = _registerSource2[0],
+          unregister = _registerSource2[1];
 
-//# sourceMappingURL=useRegisteredDragSource.js.map
+      monitor.receiveHandlerId(handlerId);
+      connector.receiveHandlerId(handlerId);
+      return unregister;
+    }
+  }, [manager, monitor, connector, handler, itemType]);
+}
 
 /***/ }),
 
-/***/ "./node_modules/react-dnd/dist/cjs/hooks/useDragDropManager.js":
-/*!*********************************************************************!*\
-  !*** ./node_modules/react-dnd/dist/cjs/hooks/useDragDropManager.js ***!
-  \*********************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", ({
-    value: true
-}));
-exports.useDragDropManager = useDragDropManager;
-var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-var _invariant = __webpack_require__(/*! @react-dnd/invariant */ "./node_modules/@react-dnd/invariant/dist/cjs/index.js");
-var _indexJs = __webpack_require__(/*! ../core/index.js */ "./node_modules/react-dnd/dist/cjs/core/index.js");
-function useDragDropManager() {
-    const { dragDropManager  } = (0, _react).useContext(_indexJs.DndContext);
-    (0, _invariant).invariant(dragDropManager != null, 'Expected drag drop context');
-    return dragDropManager;
-}
-
-//# sourceMappingURL=useDragDropManager.js.map
-
-/***/ }),
-
-/***/ "./node_modules/react-dnd/dist/cjs/hooks/useDragLayer.js":
-/*!***************************************************************!*\
-  !*** ./node_modules/react-dnd/dist/cjs/hooks/useDragLayer.js ***!
-  \***************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", ({
-    value: true
-}));
-exports.useDragLayer = useDragLayer;
-var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-var _useDragDropManagerJs = __webpack_require__(/*! ./useDragDropManager.js */ "./node_modules/react-dnd/dist/cjs/hooks/useDragDropManager.js");
-var _useCollectorJs = __webpack_require__(/*! ./useCollector.js */ "./node_modules/react-dnd/dist/cjs/hooks/useCollector.js");
-function useDragLayer(collect) {
-    const dragDropManager = (0, _useDragDropManagerJs).useDragDropManager();
-    const monitor = dragDropManager.getMonitor();
-    const [collected, updateCollected] = (0, _useCollectorJs).useCollector(monitor, collect);
-    (0, _react).useEffect(()=>monitor.subscribeToOffsetChange(updateCollected)
-    );
-    (0, _react).useEffect(()=>monitor.subscribeToStateChange(updateCollected)
-    );
-    return collected;
-}
-
-//# sourceMappingURL=useDragLayer.js.map
-
-/***/ }),
-
-/***/ "./node_modules/react-dnd/dist/cjs/hooks/useDrop/DropTargetImpl.js":
+/***/ "./node_modules/react-dnd/dist/esm/hooks/useDrop/DropTargetImpl.js":
 /*!*************************************************************************!*\
-  !*** ./node_modules/react-dnd/dist/cjs/hooks/useDrop/DropTargetImpl.js ***!
+  !*** ./node_modules/react-dnd/dist/esm/hooks/useDrop/DropTargetImpl.js ***!
   \*************************************************************************/
-/***/ ((__unused_webpack_module, exports) => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "DropTargetImpl": () => (/* binding */ DropTargetImpl)
+/* harmony export */ });
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-Object.defineProperty(exports, "__esModule", ({
-    value: true
-}));
-class DropTargetImpl {
-    canDrop() {
-        const spec = this.spec;
-        const monitor = this.monitor;
-        return spec.canDrop ? spec.canDrop(monitor.getItem(), monitor) : true;
-    }
-    hover() {
-        const spec = this.spec;
-        const monitor = this.monitor;
-        if (spec.hover) {
-            spec.hover(monitor.getItem(), monitor);
-        }
-    }
-    drop() {
-        const spec = this.spec;
-        const monitor = this.monitor;
-        if (spec.drop) {
-            return spec.drop(monitor.getItem(), monitor);
-        }
-        return;
-    }
-    constructor(spec, monitor){
-        this.spec = spec;
-        this.monitor = monitor;
-    }
-}
-exports.DropTargetImpl = DropTargetImpl;
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
-//# sourceMappingURL=DropTargetImpl.js.map
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+var DropTargetImpl = /*#__PURE__*/function () {
+  function DropTargetImpl(spec, monitor) {
+    _classCallCheck(this, DropTargetImpl);
+
+    _defineProperty(this, "spec", void 0);
+
+    _defineProperty(this, "monitor", void 0);
+
+    this.spec = spec;
+    this.monitor = monitor;
+  }
+
+  _createClass(DropTargetImpl, [{
+    key: "canDrop",
+    value: function canDrop() {
+      var spec = this.spec;
+      var monitor = this.monitor;
+      return spec.canDrop ? spec.canDrop(monitor.getItem(), monitor) : true;
+    }
+  }, {
+    key: "hover",
+    value: function hover() {
+      var spec = this.spec;
+      var monitor = this.monitor;
+
+      if (spec.hover) {
+        spec.hover(monitor.getItem(), monitor);
+      }
+    }
+  }, {
+    key: "drop",
+    value: function drop() {
+      var spec = this.spec;
+      var monitor = this.monitor;
+
+      if (spec.drop) {
+        return spec.drop(monitor.getItem(), monitor);
+      }
+    }
+  }]);
+
+  return DropTargetImpl;
+}();
 
 /***/ }),
 
-/***/ "./node_modules/react-dnd/dist/cjs/hooks/useDrop/connectors.js":
+/***/ "./node_modules/react-dnd/dist/esm/hooks/useDrop/connectors.js":
 /*!*********************************************************************!*\
-  !*** ./node_modules/react-dnd/dist/cjs/hooks/useDrop/connectors.js ***!
+  !*** ./node_modules/react-dnd/dist/esm/hooks/useDrop/connectors.js ***!
   \*********************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "useConnectDropTarget": () => (/* binding */ useConnectDropTarget)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
-Object.defineProperty(exports, "__esModule", ({
-    value: true
-}));
-exports.useConnectDropTarget = useConnectDropTarget;
-var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 function useConnectDropTarget(connector) {
-    return (0, _react).useMemo(()=>connector.hooks.dropTarget()
-    , [
-        connector
-    ]);
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.useMemo)(function () {
+    return connector.hooks.dropTarget();
+  }, [connector]);
 }
-
-//# sourceMappingURL=connectors.js.map
 
 /***/ }),
 
-/***/ "./node_modules/react-dnd/dist/cjs/hooks/useDrop/index.js":
+/***/ "./node_modules/react-dnd/dist/esm/hooks/useDrop/index.js":
 /*!****************************************************************!*\
-  !*** ./node_modules/react-dnd/dist/cjs/hooks/useDrop/index.js ***!
+  !*** ./node_modules/react-dnd/dist/esm/hooks/useDrop/index.js ***!
   \****************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "useDrop": () => (/* reexport safe */ _useDrop__WEBPACK_IMPORTED_MODULE_0__.useDrop)
+/* harmony export */ });
+/* harmony import */ var _useDrop__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./useDrop */ "./node_modules/react-dnd/dist/esm/hooks/useDrop/useDrop.js");
 
-Object.defineProperty(exports, "__esModule", ({
-    value: true
-}));
-var _useDropJs = _interopRequireWildcard(__webpack_require__(/*! ./useDrop.js */ "./node_modules/react-dnd/dist/cjs/hooks/useDrop/useDrop.js"));
-Object.keys(_useDropJs).forEach(function(key) {
-    if (key === "default" || key === "__esModule") return;
-    if (key in exports && exports[key] === _useDropJs[key]) return;
-    Object.defineProperty(exports, key, {
-        enumerable: true,
-        get: function() {
-            return _useDropJs[key];
-        }
-    });
-});
-function _interopRequireWildcard(obj) {
-    if (obj && obj.__esModule) {
-        return obj;
-    } else {
-        var newObj = {};
-        if (obj != null) {
-            for(var key in obj){
-                if (Object.prototype.hasOwnProperty.call(obj, key)) {
-                    var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {};
-                    if (desc.get || desc.set) {
-                        Object.defineProperty(newObj, key, desc);
-                    } else {
-                        newObj[key] = obj[key];
-                    }
-                }
-            }
-        }
-        newObj.default = obj;
-        return newObj;
-    }
-}
-
-//# sourceMappingURL=index.js.map
 
 /***/ }),
 
-/***/ "./node_modules/react-dnd/dist/cjs/hooks/useDrop/useAccept.js":
+/***/ "./node_modules/react-dnd/dist/esm/hooks/useDrop/useAccept.js":
 /*!********************************************************************!*\
-  !*** ./node_modules/react-dnd/dist/cjs/hooks/useDrop/useAccept.js ***!
+  !*** ./node_modules/react-dnd/dist/esm/hooks/useDrop/useAccept.js ***!
   \********************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "useAccept": () => (/* binding */ useAccept)
+/* harmony export */ });
+/* harmony import */ var _react_dnd_invariant__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @react-dnd/invariant */ "./node_modules/@react-dnd/invariant/dist/invariant.esm.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
-Object.defineProperty(exports, "__esModule", ({
-    value: true
-}));
-exports.useAccept = useAccept;
-var _invariant = __webpack_require__(/*! @react-dnd/invariant */ "./node_modules/@react-dnd/invariant/dist/cjs/index.js");
-var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+/**
+ * Internal utility hook to get an array-version of spec.accept.
+ * The main utility here is that we aren't creating a new array on every render if a non-array spec.accept is passed in.
+ * @param spec
+ */
+
 function useAccept(spec) {
-    const { accept  } = spec;
-    return (0, _react).useMemo(()=>{
-        (0, _invariant).invariant(spec.accept != null, 'accept must be defined');
-        return Array.isArray(accept) ? accept : [
-            accept
-        ];
-    }, [
-        accept
-    ]);
+  var accept = spec.accept;
+  return (0,react__WEBPACK_IMPORTED_MODULE_1__.useMemo)(function () {
+    (0,_react_dnd_invariant__WEBPACK_IMPORTED_MODULE_0__.invariant)(spec.accept != null, 'accept must be defined');
+    return Array.isArray(accept) ? accept : [accept];
+  }, [accept]);
 }
-
-//# sourceMappingURL=useAccept.js.map
 
 /***/ }),
 
-/***/ "./node_modules/react-dnd/dist/cjs/hooks/useDrop/useDrop.js":
+/***/ "./node_modules/react-dnd/dist/esm/hooks/useDrop/useDrop.js":
 /*!******************************************************************!*\
-  !*** ./node_modules/react-dnd/dist/cjs/hooks/useDrop/useDrop.js ***!
+  !*** ./node_modules/react-dnd/dist/esm/hooks/useDrop/useDrop.js ***!
   \******************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "useDrop": () => (/* binding */ useDrop)
+/* harmony export */ });
+/* harmony import */ var _useRegisteredDropTarget__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./useRegisteredDropTarget */ "./node_modules/react-dnd/dist/esm/hooks/useDrop/useRegisteredDropTarget.js");
+/* harmony import */ var _useOptionalFactory__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../useOptionalFactory */ "./node_modules/react-dnd/dist/esm/hooks/useOptionalFactory.js");
+/* harmony import */ var _useDropTargetMonitor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./useDropTargetMonitor */ "./node_modules/react-dnd/dist/esm/hooks/useDrop/useDropTargetMonitor.js");
+/* harmony import */ var _useDropTargetConnector__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./useDropTargetConnector */ "./node_modules/react-dnd/dist/esm/hooks/useDrop/useDropTargetConnector.js");
+/* harmony import */ var _useCollectedProps__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../useCollectedProps */ "./node_modules/react-dnd/dist/esm/hooks/useCollectedProps.js");
+/* harmony import */ var _connectors__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./connectors */ "./node_modules/react-dnd/dist/esm/hooks/useDrop/connectors.js");
 
-Object.defineProperty(exports, "__esModule", ({
-    value: true
-}));
-exports.useDrop = useDrop;
-var _useRegisteredDropTargetJs = __webpack_require__(/*! ./useRegisteredDropTarget.js */ "./node_modules/react-dnd/dist/cjs/hooks/useDrop/useRegisteredDropTarget.js");
-var _useOptionalFactoryJs = __webpack_require__(/*! ../useOptionalFactory.js */ "./node_modules/react-dnd/dist/cjs/hooks/useOptionalFactory.js");
-var _useDropTargetMonitorJs = __webpack_require__(/*! ./useDropTargetMonitor.js */ "./node_modules/react-dnd/dist/cjs/hooks/useDrop/useDropTargetMonitor.js");
-var _useDropTargetConnectorJs = __webpack_require__(/*! ./useDropTargetConnector.js */ "./node_modules/react-dnd/dist/cjs/hooks/useDrop/useDropTargetConnector.js");
-var _useCollectedPropsJs = __webpack_require__(/*! ../useCollectedProps.js */ "./node_modules/react-dnd/dist/cjs/hooks/useCollectedProps.js");
-var _connectorsJs = __webpack_require__(/*! ./connectors.js */ "./node_modules/react-dnd/dist/cjs/hooks/useDrop/connectors.js");
+
+
+
+
+
+/**
+ * useDropTarget Hook
+ * @param spec The drop target specification (object or function, function preferred)
+ * @param deps The memoization deps array to use when evaluating spec changes
+ */
+
 function useDrop(specArg, deps) {
-    const spec = (0, _useOptionalFactoryJs).useOptionalFactory(specArg, deps);
-    const monitor = (0, _useDropTargetMonitorJs).useDropTargetMonitor();
-    const connector = (0, _useDropTargetConnectorJs).useDropTargetConnector(spec.options);
-    (0, _useRegisteredDropTargetJs).useRegisteredDropTarget(spec, monitor, connector);
-    return [
-        (0, _useCollectedPropsJs).useCollectedProps(spec.collect, monitor, connector),
-        (0, _connectorsJs).useConnectDropTarget(connector), 
-    ];
+  var spec = (0,_useOptionalFactory__WEBPACK_IMPORTED_MODULE_0__.useOptionalFactory)(specArg, deps);
+  var monitor = (0,_useDropTargetMonitor__WEBPACK_IMPORTED_MODULE_1__.useDropTargetMonitor)();
+  var connector = (0,_useDropTargetConnector__WEBPACK_IMPORTED_MODULE_2__.useDropTargetConnector)(spec.options);
+  (0,_useRegisteredDropTarget__WEBPACK_IMPORTED_MODULE_3__.useRegisteredDropTarget)(spec, monitor, connector);
+  return [(0,_useCollectedProps__WEBPACK_IMPORTED_MODULE_4__.useCollectedProps)(spec.collect, monitor, connector), (0,_connectors__WEBPACK_IMPORTED_MODULE_5__.useConnectDropTarget)(connector)];
 }
-
-//# sourceMappingURL=useDrop.js.map
 
 /***/ }),
 
-/***/ "./node_modules/react-dnd/dist/cjs/hooks/useDrop/useDropTarget.js":
+/***/ "./node_modules/react-dnd/dist/esm/hooks/useDrop/useDropTarget.js":
 /*!************************************************************************!*\
-  !*** ./node_modules/react-dnd/dist/cjs/hooks/useDrop/useDropTarget.js ***!
+  !*** ./node_modules/react-dnd/dist/esm/hooks/useDrop/useDropTarget.js ***!
   \************************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "useDropTarget": () => (/* binding */ useDropTarget)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _DropTargetImpl__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./DropTargetImpl */ "./node_modules/react-dnd/dist/esm/hooks/useDrop/DropTargetImpl.js");
 
-Object.defineProperty(exports, "__esModule", ({
-    value: true
-}));
-exports.useDropTarget = useDropTarget;
-var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-var _dropTargetImplJs = __webpack_require__(/*! ./DropTargetImpl.js */ "./node_modules/react-dnd/dist/cjs/hooks/useDrop/DropTargetImpl.js");
+
 function useDropTarget(spec, monitor) {
-    const dropTarget = (0, _react).useMemo(()=>new _dropTargetImplJs.DropTargetImpl(spec, monitor)
-    , [
-        monitor
-    ]);
-    (0, _react).useEffect(()=>{
-        dropTarget.spec = spec;
-    }, [
-        spec
-    ]);
-    return dropTarget;
+  var dropTarget = (0,react__WEBPACK_IMPORTED_MODULE_0__.useMemo)(function () {
+    return new _DropTargetImpl__WEBPACK_IMPORTED_MODULE_1__.DropTargetImpl(spec, monitor);
+  }, [monitor]);
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    dropTarget.spec = spec;
+  }, [spec]);
+  return dropTarget;
 }
-
-//# sourceMappingURL=useDropTarget.js.map
 
 /***/ }),
 
-/***/ "./node_modules/react-dnd/dist/cjs/hooks/useDrop/useDropTargetConnector.js":
+/***/ "./node_modules/react-dnd/dist/esm/hooks/useDrop/useDropTargetConnector.js":
 /*!*********************************************************************************!*\
-  !*** ./node_modules/react-dnd/dist/cjs/hooks/useDrop/useDropTargetConnector.js ***!
+  !*** ./node_modules/react-dnd/dist/esm/hooks/useDrop/useDropTargetConnector.js ***!
   \*********************************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "useDropTargetConnector": () => (/* binding */ useDropTargetConnector)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _internals__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../internals */ "./node_modules/react-dnd/dist/esm/internals/TargetConnector.js");
+/* harmony import */ var _useDragDropManager__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../useDragDropManager */ "./node_modules/react-dnd/dist/esm/hooks/useDragDropManager.js");
+/* harmony import */ var _useIsomorphicLayoutEffect__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../useIsomorphicLayoutEffect */ "./node_modules/react-dnd/dist/esm/hooks/useIsomorphicLayoutEffect.js");
 
-Object.defineProperty(exports, "__esModule", ({
-    value: true
-}));
-exports.useDropTargetConnector = useDropTargetConnector;
-var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-var _indexJs = __webpack_require__(/*! ../../internals/index.js */ "./node_modules/react-dnd/dist/cjs/internals/index.js");
-var _useDragDropManagerJs = __webpack_require__(/*! ../useDragDropManager.js */ "./node_modules/react-dnd/dist/cjs/hooks/useDragDropManager.js");
-var _useIsomorphicLayoutEffectJs = __webpack_require__(/*! ../useIsomorphicLayoutEffect.js */ "./node_modules/react-dnd/dist/cjs/hooks/useIsomorphicLayoutEffect.js");
+
+
+
 function useDropTargetConnector(options) {
-    const manager = (0, _useDragDropManagerJs).useDragDropManager();
-    const connector = (0, _react).useMemo(()=>new _indexJs.TargetConnector(manager.getBackend())
-    , [
-        manager
-    ]);
-    (0, _useIsomorphicLayoutEffectJs).useIsomorphicLayoutEffect(()=>{
-        connector.dropTargetOptions = options || null;
-        connector.reconnect();
-        return ()=>connector.disconnectDropTarget()
-        ;
-    }, [
-        options
-    ]);
-    return connector;
+  var manager = (0,_useDragDropManager__WEBPACK_IMPORTED_MODULE_1__.useDragDropManager)();
+  var connector = (0,react__WEBPACK_IMPORTED_MODULE_0__.useMemo)(function () {
+    return new _internals__WEBPACK_IMPORTED_MODULE_2__.TargetConnector(manager.getBackend());
+  }, [manager]);
+  (0,_useIsomorphicLayoutEffect__WEBPACK_IMPORTED_MODULE_3__.useIsomorphicLayoutEffect)(function () {
+    connector.dropTargetOptions = options || null;
+    connector.reconnect();
+    return function () {
+      return connector.disconnectDropTarget();
+    };
+  }, [options]);
+  return connector;
 }
-
-//# sourceMappingURL=useDropTargetConnector.js.map
 
 /***/ }),
 
-/***/ "./node_modules/react-dnd/dist/cjs/hooks/useDrop/useDropTargetMonitor.js":
+/***/ "./node_modules/react-dnd/dist/esm/hooks/useDrop/useDropTargetMonitor.js":
 /*!*******************************************************************************!*\
-  !*** ./node_modules/react-dnd/dist/cjs/hooks/useDrop/useDropTargetMonitor.js ***!
+  !*** ./node_modules/react-dnd/dist/esm/hooks/useDrop/useDropTargetMonitor.js ***!
   \*******************************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "useDropTargetMonitor": () => (/* binding */ useDropTargetMonitor)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _internals__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../internals */ "./node_modules/react-dnd/dist/esm/internals/DropTargetMonitorImpl.js");
+/* harmony import */ var _useDragDropManager__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../useDragDropManager */ "./node_modules/react-dnd/dist/esm/hooks/useDragDropManager.js");
 
-Object.defineProperty(exports, "__esModule", ({
-    value: true
-}));
-exports.useDropTargetMonitor = useDropTargetMonitor;
-var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-var _indexJs = __webpack_require__(/*! ../../internals/index.js */ "./node_modules/react-dnd/dist/cjs/internals/index.js");
-var _useDragDropManagerJs = __webpack_require__(/*! ../useDragDropManager.js */ "./node_modules/react-dnd/dist/cjs/hooks/useDragDropManager.js");
+
+
 function useDropTargetMonitor() {
-    const manager = (0, _useDragDropManagerJs).useDragDropManager();
-    return (0, _react).useMemo(()=>new _indexJs.DropTargetMonitorImpl(manager)
-    , [
-        manager
-    ]);
+  var manager = (0,_useDragDropManager__WEBPACK_IMPORTED_MODULE_1__.useDragDropManager)();
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.useMemo)(function () {
+    return new _internals__WEBPACK_IMPORTED_MODULE_2__.DropTargetMonitorImpl(manager);
+  }, [manager]);
 }
-
-//# sourceMappingURL=useDropTargetMonitor.js.map
 
 /***/ }),
 
-/***/ "./node_modules/react-dnd/dist/cjs/hooks/useDrop/useRegisteredDropTarget.js":
+/***/ "./node_modules/react-dnd/dist/esm/hooks/useDrop/useRegisteredDropTarget.js":
 /*!**********************************************************************************!*\
-  !*** ./node_modules/react-dnd/dist/cjs/hooks/useDrop/useRegisteredDropTarget.js ***!
+  !*** ./node_modules/react-dnd/dist/esm/hooks/useDrop/useRegisteredDropTarget.js ***!
   \**********************************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "useRegisteredDropTarget": () => (/* binding */ useRegisteredDropTarget)
+/* harmony export */ });
+/* harmony import */ var _internals__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../internals */ "./node_modules/react-dnd/dist/esm/internals/registration.js");
+/* harmony import */ var _useDragDropManager__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../useDragDropManager */ "./node_modules/react-dnd/dist/esm/hooks/useDragDropManager.js");
+/* harmony import */ var _useIsomorphicLayoutEffect__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../useIsomorphicLayoutEffect */ "./node_modules/react-dnd/dist/esm/hooks/useIsomorphicLayoutEffect.js");
+/* harmony import */ var _useAccept__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./useAccept */ "./node_modules/react-dnd/dist/esm/hooks/useDrop/useAccept.js");
+/* harmony import */ var _useDropTarget__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./useDropTarget */ "./node_modules/react-dnd/dist/esm/hooks/useDrop/useDropTarget.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
-Object.defineProperty(exports, "__esModule", ({
-    value: true
-}));
-exports.useRegisteredDropTarget = useRegisteredDropTarget;
-var _indexJs = __webpack_require__(/*! ../../internals/index.js */ "./node_modules/react-dnd/dist/cjs/internals/index.js");
-var _useDragDropManagerJs = __webpack_require__(/*! ../useDragDropManager.js */ "./node_modules/react-dnd/dist/cjs/hooks/useDragDropManager.js");
-var _useIsomorphicLayoutEffectJs = __webpack_require__(/*! ../useIsomorphicLayoutEffect.js */ "./node_modules/react-dnd/dist/cjs/hooks/useIsomorphicLayoutEffect.js");
-var _useAcceptJs = __webpack_require__(/*! ./useAccept.js */ "./node_modules/react-dnd/dist/cjs/hooks/useDrop/useAccept.js");
-var _useDropTargetJs = __webpack_require__(/*! ./useDropTarget.js */ "./node_modules/react-dnd/dist/cjs/hooks/useDrop/useDropTarget.js");
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+
 function useRegisteredDropTarget(spec, monitor, connector) {
-    const manager = (0, _useDragDropManagerJs).useDragDropManager();
-    const dropTarget = (0, _useDropTargetJs).useDropTarget(spec, monitor);
-    const accept = (0, _useAcceptJs).useAccept(spec);
-    (0, _useIsomorphicLayoutEffectJs).useIsomorphicLayoutEffect(function registerDropTarget() {
-        const [handlerId, unregister] = (0, _indexJs).registerTarget(accept, dropTarget, manager);
-        monitor.receiveHandlerId(handlerId);
-        connector.receiveHandlerId(handlerId);
-        return unregister;
-    }, [
-        manager,
-        monitor,
-        dropTarget,
-        connector,
-        accept.map((a)=>a.toString()
-        ).join('|'), 
-    ]);
+  var manager = (0,_useDragDropManager__WEBPACK_IMPORTED_MODULE_0__.useDragDropManager)();
+  var dropTarget = (0,_useDropTarget__WEBPACK_IMPORTED_MODULE_1__.useDropTarget)(spec, monitor);
+  var accept = (0,_useAccept__WEBPACK_IMPORTED_MODULE_2__.useAccept)(spec);
+  (0,_useIsomorphicLayoutEffect__WEBPACK_IMPORTED_MODULE_3__.useIsomorphicLayoutEffect)(function registerDropTarget() {
+    var _registerTarget = (0,_internals__WEBPACK_IMPORTED_MODULE_4__.registerTarget)(accept, dropTarget, manager),
+        _registerTarget2 = _slicedToArray(_registerTarget, 2),
+        handlerId = _registerTarget2[0],
+        unregister = _registerTarget2[1];
+
+    monitor.receiveHandlerId(handlerId);
+    connector.receiveHandlerId(handlerId);
+    return unregister;
+  }, [manager, monitor, dropTarget, connector, accept.map(function (a) {
+    return a.toString();
+  }).join('|')]);
 }
 
-//# sourceMappingURL=useRegisteredDropTarget.js.map
-
 /***/ }),
 
-/***/ "./node_modules/react-dnd/dist/cjs/hooks/useIsomorphicLayoutEffect.js":
+/***/ "./node_modules/react-dnd/dist/esm/hooks/useIsomorphicLayoutEffect.js":
 /*!****************************************************************************!*\
-  !*** ./node_modules/react-dnd/dist/cjs/hooks/useIsomorphicLayoutEffect.js ***!
+  !*** ./node_modules/react-dnd/dist/esm/hooks/useIsomorphicLayoutEffect.js ***!
   \****************************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "useIsomorphicLayoutEffect": () => (/* binding */ useIsomorphicLayoutEffect)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+ // suppress the useLayoutEffect warning on server side.
 
-Object.defineProperty(exports, "__esModule", ({
-    value: true
-}));
-exports.useIsomorphicLayoutEffect = void 0;
-var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-const useIsomorphicLayoutEffect = typeof window !== 'undefined' ? _react.useLayoutEffect : _react.useEffect;
-exports.useIsomorphicLayoutEffect = useIsomorphicLayoutEffect;
-
-//# sourceMappingURL=useIsomorphicLayoutEffect.js.map
+var useIsomorphicLayoutEffect = typeof window !== 'undefined' ? react__WEBPACK_IMPORTED_MODULE_0__.useLayoutEffect : react__WEBPACK_IMPORTED_MODULE_0__.useEffect;
 
 /***/ }),
 
-/***/ "./node_modules/react-dnd/dist/cjs/hooks/useMonitorOutput.js":
+/***/ "./node_modules/react-dnd/dist/esm/hooks/useMonitorOutput.js":
 /*!*******************************************************************!*\
-  !*** ./node_modules/react-dnd/dist/cjs/hooks/useMonitorOutput.js ***!
+  !*** ./node_modules/react-dnd/dist/esm/hooks/useMonitorOutput.js ***!
   \*******************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "useMonitorOutput": () => (/* binding */ useMonitorOutput)
+/* harmony export */ });
+/* harmony import */ var _useIsomorphicLayoutEffect__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./useIsomorphicLayoutEffect */ "./node_modules/react-dnd/dist/esm/hooks/useIsomorphicLayoutEffect.js");
+/* harmony import */ var _useCollector__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./useCollector */ "./node_modules/react-dnd/dist/esm/hooks/useCollector.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
-Object.defineProperty(exports, "__esModule", ({
-    value: true
-}));
-exports.useMonitorOutput = useMonitorOutput;
-var _useIsomorphicLayoutEffectJs = __webpack_require__(/*! ./useIsomorphicLayoutEffect.js */ "./node_modules/react-dnd/dist/cjs/hooks/useIsomorphicLayoutEffect.js");
-var _useCollectorJs = __webpack_require__(/*! ./useCollector.js */ "./node_modules/react-dnd/dist/cjs/hooks/useCollector.js");
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
 function useMonitorOutput(monitor, collect, onCollect) {
-    const [collected, updateCollected] = (0, _useCollectorJs).useCollector(monitor, collect, onCollect);
-    (0, _useIsomorphicLayoutEffectJs).useIsomorphicLayoutEffect(function subscribeToMonitorStateChange() {
-        const handlerId = monitor.getHandlerId();
-        if (handlerId == null) {
-            return;
-        }
-        return monitor.subscribeToStateChange(updateCollected, {
-            handlerIds: [
-                handlerId
-            ]
-        });
-    }, [
-        monitor,
-        updateCollected
-    ]);
-    return collected;
-}
+  var _useCollector = (0,_useCollector__WEBPACK_IMPORTED_MODULE_0__.useCollector)(monitor, collect, onCollect),
+      _useCollector2 = _slicedToArray(_useCollector, 2),
+      collected = _useCollector2[0],
+      updateCollected = _useCollector2[1];
 
-//# sourceMappingURL=useMonitorOutput.js.map
+  (0,_useIsomorphicLayoutEffect__WEBPACK_IMPORTED_MODULE_1__.useIsomorphicLayoutEffect)(function subscribeToMonitorStateChange() {
+    var handlerId = monitor.getHandlerId();
+
+    if (handlerId == null) {
+      return;
+    }
+
+    return monitor.subscribeToStateChange(updateCollected, {
+      handlerIds: [handlerId]
+    });
+  }, [monitor, updateCollected]);
+  return collected;
+}
 
 /***/ }),
 
-/***/ "./node_modules/react-dnd/dist/cjs/hooks/useOptionalFactory.js":
+/***/ "./node_modules/react-dnd/dist/esm/hooks/useOptionalFactory.js":
 /*!*********************************************************************!*\
-  !*** ./node_modules/react-dnd/dist/cjs/hooks/useOptionalFactory.js ***!
+  !*** ./node_modules/react-dnd/dist/esm/hooks/useOptionalFactory.js ***!
   \*********************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "useOptionalFactory": () => (/* binding */ useOptionalFactory)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
-Object.defineProperty(exports, "__esModule", ({
-    value: true
-}));
-exports.useOptionalFactory = useOptionalFactory;
-var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+
 function useOptionalFactory(arg, deps) {
-    const memoDeps = [
-        ...deps || []
-    ];
-    if (deps == null && typeof arg !== 'function') {
-        memoDeps.push(arg);
-    }
-    return (0, _react).useMemo(()=>{
-        return typeof arg === 'function' ? arg() : arg;
-    }, memoDeps);
-}
+  var memoDeps = _toConsumableArray(deps || []);
 
-//# sourceMappingURL=useOptionalFactory.js.map
+  if (deps == null && typeof arg !== 'function') {
+    memoDeps.push(arg);
+  }
+
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.useMemo)(function () {
+    return typeof arg === 'function' ? arg() : arg;
+  }, memoDeps);
+}
 
 /***/ }),
 
-/***/ "./node_modules/react-dnd/dist/cjs/index.js":
+/***/ "./node_modules/react-dnd/dist/esm/index.js":
 /*!**************************************************!*\
-  !*** ./node_modules/react-dnd/dist/cjs/index.js ***!
+  !*** ./node_modules/react-dnd/dist/esm/index.js ***!
   \**************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "DndContext": () => (/* reexport safe */ _core__WEBPACK_IMPORTED_MODULE_0__.DndContext),
+/* harmony export */   "DndProvider": () => (/* reexport safe */ _core__WEBPACK_IMPORTED_MODULE_0__.DndProvider),
+/* harmony export */   "DragPreviewImage": () => (/* reexport safe */ _core__WEBPACK_IMPORTED_MODULE_0__.DragPreviewImage),
+/* harmony export */   "DragLayer": () => (/* reexport safe */ _decorators__WEBPACK_IMPORTED_MODULE_1__.DragLayer),
+/* harmony export */   "DragSource": () => (/* reexport safe */ _decorators__WEBPACK_IMPORTED_MODULE_1__.DragSource),
+/* harmony export */   "DropTarget": () => (/* reexport safe */ _decorators__WEBPACK_IMPORTED_MODULE_1__.DropTarget),
+/* harmony export */   "useDrag": () => (/* reexport safe */ _hooks__WEBPACK_IMPORTED_MODULE_2__.useDrag),
+/* harmony export */   "useDragDropManager": () => (/* reexport safe */ _hooks__WEBPACK_IMPORTED_MODULE_2__.useDragDropManager),
+/* harmony export */   "useDragLayer": () => (/* reexport safe */ _hooks__WEBPACK_IMPORTED_MODULE_2__.useDragLayer),
+/* harmony export */   "useDrop": () => (/* reexport safe */ _hooks__WEBPACK_IMPORTED_MODULE_2__.useDrop)
+/* harmony export */ });
+/* harmony import */ var _core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./core */ "./node_modules/react-dnd/dist/esm/core/index.js");
+/* harmony import */ var _decorators__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./decorators */ "./node_modules/react-dnd/dist/esm/decorators/index.js");
+/* harmony import */ var _hooks__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./hooks */ "./node_modules/react-dnd/dist/esm/hooks/index.js");
 
-Object.defineProperty(exports, "__esModule", ({
-    value: true
-}));
-var _exportNames = {};
-var _indexJs = _interopRequireWildcard(__webpack_require__(/*! ./types/index.js */ "./node_modules/react-dnd/dist/cjs/types/index.js"));
-Object.keys(_indexJs).forEach(function(key) {
-    if (key === "default" || key === "__esModule") return;
-    if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
-    if (key in exports && exports[key] === _indexJs[key]) return;
-    Object.defineProperty(exports, key, {
-        enumerable: true,
-        get: function() {
-            return _indexJs[key];
-        }
-    });
-});
-var _indexJs1 = _interopRequireWildcard(__webpack_require__(/*! ./core/index.js */ "./node_modules/react-dnd/dist/cjs/core/index.js"));
-Object.keys(_indexJs1).forEach(function(key) {
-    if (key === "default" || key === "__esModule") return;
-    if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
-    if (key in exports && exports[key] === _indexJs1[key]) return;
-    Object.defineProperty(exports, key, {
-        enumerable: true,
-        get: function() {
-            return _indexJs1[key];
-        }
-    });
-});
-var _indexJs2 = _interopRequireWildcard(__webpack_require__(/*! ./hooks/index.js */ "./node_modules/react-dnd/dist/cjs/hooks/index.js"));
-Object.keys(_indexJs2).forEach(function(key) {
-    if (key === "default" || key === "__esModule") return;
-    if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
-    if (key in exports && exports[key] === _indexJs2[key]) return;
-    Object.defineProperty(exports, key, {
-        enumerable: true,
-        get: function() {
-            return _indexJs2[key];
-        }
-    });
-});
-function _interopRequireWildcard(obj) {
-    if (obj && obj.__esModule) {
-        return obj;
-    } else {
-        var newObj = {};
-        if (obj != null) {
-            for(var key in obj){
-                if (Object.prototype.hasOwnProperty.call(obj, key)) {
-                    var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {};
-                    if (desc.get || desc.set) {
-                        Object.defineProperty(newObj, key, desc);
-                    } else {
-                        newObj[key] = obj[key];
-                    }
-                }
-            }
-        }
-        newObj.default = obj;
-        return newObj;
-    }
-}
 
-//# sourceMappingURL=index.js.map
+
+
 
 /***/ }),
 
-/***/ "./node_modules/react-dnd/dist/cjs/internals/DragSourceMonitorImpl.js":
+/***/ "./node_modules/react-dnd/dist/esm/internals/DragSourceMonitorImpl.js":
 /*!****************************************************************************!*\
-  !*** ./node_modules/react-dnd/dist/cjs/internals/DragSourceMonitorImpl.js ***!
+  !*** ./node_modules/react-dnd/dist/esm/internals/DragSourceMonitorImpl.js ***!
   \****************************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "DragSourceMonitorImpl": () => (/* binding */ DragSourceMonitorImpl)
+/* harmony export */ });
+/* harmony import */ var _react_dnd_invariant__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @react-dnd/invariant */ "./node_modules/@react-dnd/invariant/dist/invariant.esm.js");
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-Object.defineProperty(exports, "__esModule", ({
-    value: true
-}));
-var _invariant = __webpack_require__(/*! @react-dnd/invariant */ "./node_modules/@react-dnd/invariant/dist/cjs/index.js");
-let isCallingCanDrag = false;
-let isCallingIsDragging = false;
-class DragSourceMonitorImpl {
-    receiveHandlerId(sourceId) {
-        this.sourceId = sourceId;
-    }
-    getHandlerId() {
-        return this.sourceId;
-    }
-    canDrag() {
-        (0, _invariant).invariant(!isCallingCanDrag, 'You may not call monitor.canDrag() inside your canDrag() implementation. ' + 'Read more: http://react-dnd.github.io/react-dnd/docs/api/drag-source-monitor');
-        try {
-            isCallingCanDrag = true;
-            return this.internalMonitor.canDragSource(this.sourceId);
-        } finally{
-            isCallingCanDrag = false;
-        }
-    }
-    isDragging() {
-        if (!this.sourceId) {
-            return false;
-        }
-        (0, _invariant).invariant(!isCallingIsDragging, 'You may not call monitor.isDragging() inside your isDragging() implementation. ' + 'Read more: http://react-dnd.github.io/react-dnd/docs/api/drag-source-monitor');
-        try {
-            isCallingIsDragging = true;
-            return this.internalMonitor.isDraggingSource(this.sourceId);
-        } finally{
-            isCallingIsDragging = false;
-        }
-    }
-    subscribeToStateChange(listener, options) {
-        return this.internalMonitor.subscribeToStateChange(listener, options);
-    }
-    isDraggingSource(sourceId) {
-        return this.internalMonitor.isDraggingSource(sourceId);
-    }
-    isOverTarget(targetId, options) {
-        return this.internalMonitor.isOverTarget(targetId, options);
-    }
-    getTargetIds() {
-        return this.internalMonitor.getTargetIds();
-    }
-    isSourcePublic() {
-        return this.internalMonitor.isSourcePublic();
-    }
-    getSourceId() {
-        return this.internalMonitor.getSourceId();
-    }
-    subscribeToOffsetChange(listener) {
-        return this.internalMonitor.subscribeToOffsetChange(listener);
-    }
-    canDragSource(sourceId) {
-        return this.internalMonitor.canDragSource(sourceId);
-    }
-    canDropOnTarget(targetId) {
-        return this.internalMonitor.canDropOnTarget(targetId);
-    }
-    getItemType() {
-        return this.internalMonitor.getItemType();
-    }
-    getItem() {
-        return this.internalMonitor.getItem();
-    }
-    getDropResult() {
-        return this.internalMonitor.getDropResult();
-    }
-    didDrop() {
-        return this.internalMonitor.didDrop();
-    }
-    getInitialClientOffset() {
-        return this.internalMonitor.getInitialClientOffset();
-    }
-    getInitialSourceClientOffset() {
-        return this.internalMonitor.getInitialSourceClientOffset();
-    }
-    getSourceClientOffset() {
-        return this.internalMonitor.getSourceClientOffset();
-    }
-    getClientOffset() {
-        return this.internalMonitor.getClientOffset();
-    }
-    getDifferenceFromInitialOffset() {
-        return this.internalMonitor.getDifferenceFromInitialOffset();
-    }
-    constructor(manager){
-        this.sourceId = null;
-        this.internalMonitor = manager.getMonitor();
-    }
-}
-exports.DragSourceMonitorImpl = DragSourceMonitorImpl;
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
-//# sourceMappingURL=DragSourceMonitorImpl.js.map
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+var isCallingCanDrag = false;
+var isCallingIsDragging = false;
+var DragSourceMonitorImpl = /*#__PURE__*/function () {
+  function DragSourceMonitorImpl(manager) {
+    _classCallCheck(this, DragSourceMonitorImpl);
+
+    _defineProperty(this, "internalMonitor", void 0);
+
+    _defineProperty(this, "sourceId", null);
+
+    this.internalMonitor = manager.getMonitor();
+  }
+
+  _createClass(DragSourceMonitorImpl, [{
+    key: "receiveHandlerId",
+    value: function receiveHandlerId(sourceId) {
+      this.sourceId = sourceId;
+    }
+  }, {
+    key: "getHandlerId",
+    value: function getHandlerId() {
+      return this.sourceId;
+    }
+  }, {
+    key: "canDrag",
+    value: function canDrag() {
+      (0,_react_dnd_invariant__WEBPACK_IMPORTED_MODULE_0__.invariant)(!isCallingCanDrag, 'You may not call monitor.canDrag() inside your canDrag() implementation. ' + 'Read more: http://react-dnd.github.io/react-dnd/docs/api/drag-source-monitor');
+
+      try {
+        isCallingCanDrag = true;
+        return this.internalMonitor.canDragSource(this.sourceId);
+      } finally {
+        isCallingCanDrag = false;
+      }
+    }
+  }, {
+    key: "isDragging",
+    value: function isDragging() {
+      if (!this.sourceId) {
+        return false;
+      }
+
+      (0,_react_dnd_invariant__WEBPACK_IMPORTED_MODULE_0__.invariant)(!isCallingIsDragging, 'You may not call monitor.isDragging() inside your isDragging() implementation. ' + 'Read more: http://react-dnd.github.io/react-dnd/docs/api/drag-source-monitor');
+
+      try {
+        isCallingIsDragging = true;
+        return this.internalMonitor.isDraggingSource(this.sourceId);
+      } finally {
+        isCallingIsDragging = false;
+      }
+    }
+  }, {
+    key: "subscribeToStateChange",
+    value: function subscribeToStateChange(listener, options) {
+      return this.internalMonitor.subscribeToStateChange(listener, options);
+    }
+  }, {
+    key: "isDraggingSource",
+    value: function isDraggingSource(sourceId) {
+      return this.internalMonitor.isDraggingSource(sourceId);
+    }
+  }, {
+    key: "isOverTarget",
+    value: function isOverTarget(targetId, options) {
+      return this.internalMonitor.isOverTarget(targetId, options);
+    }
+  }, {
+    key: "getTargetIds",
+    value: function getTargetIds() {
+      return this.internalMonitor.getTargetIds();
+    }
+  }, {
+    key: "isSourcePublic",
+    value: function isSourcePublic() {
+      return this.internalMonitor.isSourcePublic();
+    }
+  }, {
+    key: "getSourceId",
+    value: function getSourceId() {
+      return this.internalMonitor.getSourceId();
+    }
+  }, {
+    key: "subscribeToOffsetChange",
+    value: function subscribeToOffsetChange(listener) {
+      return this.internalMonitor.subscribeToOffsetChange(listener);
+    }
+  }, {
+    key: "canDragSource",
+    value: function canDragSource(sourceId) {
+      return this.internalMonitor.canDragSource(sourceId);
+    }
+  }, {
+    key: "canDropOnTarget",
+    value: function canDropOnTarget(targetId) {
+      return this.internalMonitor.canDropOnTarget(targetId);
+    }
+  }, {
+    key: "getItemType",
+    value: function getItemType() {
+      return this.internalMonitor.getItemType();
+    }
+  }, {
+    key: "getItem",
+    value: function getItem() {
+      return this.internalMonitor.getItem();
+    }
+  }, {
+    key: "getDropResult",
+    value: function getDropResult() {
+      return this.internalMonitor.getDropResult();
+    }
+  }, {
+    key: "didDrop",
+    value: function didDrop() {
+      return this.internalMonitor.didDrop();
+    }
+  }, {
+    key: "getInitialClientOffset",
+    value: function getInitialClientOffset() {
+      return this.internalMonitor.getInitialClientOffset();
+    }
+  }, {
+    key: "getInitialSourceClientOffset",
+    value: function getInitialSourceClientOffset() {
+      return this.internalMonitor.getInitialSourceClientOffset();
+    }
+  }, {
+    key: "getSourceClientOffset",
+    value: function getSourceClientOffset() {
+      return this.internalMonitor.getSourceClientOffset();
+    }
+  }, {
+    key: "getClientOffset",
+    value: function getClientOffset() {
+      return this.internalMonitor.getClientOffset();
+    }
+  }, {
+    key: "getDifferenceFromInitialOffset",
+    value: function getDifferenceFromInitialOffset() {
+      return this.internalMonitor.getDifferenceFromInitialOffset();
+    }
+  }]);
+
+  return DragSourceMonitorImpl;
+}();
 
 /***/ }),
 
-/***/ "./node_modules/react-dnd/dist/cjs/internals/DropTargetMonitorImpl.js":
+/***/ "./node_modules/react-dnd/dist/esm/internals/DropTargetMonitorImpl.js":
 /*!****************************************************************************!*\
-  !*** ./node_modules/react-dnd/dist/cjs/internals/DropTargetMonitorImpl.js ***!
+  !*** ./node_modules/react-dnd/dist/esm/internals/DropTargetMonitorImpl.js ***!
   \****************************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "DropTargetMonitorImpl": () => (/* binding */ DropTargetMonitorImpl)
+/* harmony export */ });
+/* harmony import */ var _react_dnd_invariant__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @react-dnd/invariant */ "./node_modules/@react-dnd/invariant/dist/invariant.esm.js");
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-Object.defineProperty(exports, "__esModule", ({
-    value: true
-}));
-var _invariant = __webpack_require__(/*! @react-dnd/invariant */ "./node_modules/@react-dnd/invariant/dist/cjs/index.js");
-let isCallingCanDrop = false;
-class DropTargetMonitorImpl {
-    receiveHandlerId(targetId) {
-        this.targetId = targetId;
-    }
-    getHandlerId() {
-        return this.targetId;
-    }
-    subscribeToStateChange(listener, options) {
-        return this.internalMonitor.subscribeToStateChange(listener, options);
-    }
-    canDrop() {
-        // Cut out early if the target id has not been set. This should prevent errors
-        // where the user has an older version of dnd-core like in
-        // https://github.com/react-dnd/react-dnd/issues/1310
-        if (!this.targetId) {
-            return false;
-        }
-        (0, _invariant).invariant(!isCallingCanDrop, 'You may not call monitor.canDrop() inside your canDrop() implementation. ' + 'Read more: http://react-dnd.github.io/react-dnd/docs/api/drop-target-monitor');
-        try {
-            isCallingCanDrop = true;
-            return this.internalMonitor.canDropOnTarget(this.targetId);
-        } finally{
-            isCallingCanDrop = false;
-        }
-    }
-    isOver(options) {
-        if (!this.targetId) {
-            return false;
-        }
-        return this.internalMonitor.isOverTarget(this.targetId, options);
-    }
-    getItemType() {
-        return this.internalMonitor.getItemType();
-    }
-    getItem() {
-        return this.internalMonitor.getItem();
-    }
-    getDropResult() {
-        return this.internalMonitor.getDropResult();
-    }
-    didDrop() {
-        return this.internalMonitor.didDrop();
-    }
-    getInitialClientOffset() {
-        return this.internalMonitor.getInitialClientOffset();
-    }
-    getInitialSourceClientOffset() {
-        return this.internalMonitor.getInitialSourceClientOffset();
-    }
-    getSourceClientOffset() {
-        return this.internalMonitor.getSourceClientOffset();
-    }
-    getClientOffset() {
-        return this.internalMonitor.getClientOffset();
-    }
-    getDifferenceFromInitialOffset() {
-        return this.internalMonitor.getDifferenceFromInitialOffset();
-    }
-    constructor(manager){
-        this.targetId = null;
-        this.internalMonitor = manager.getMonitor();
-    }
-}
-exports.DropTargetMonitorImpl = DropTargetMonitorImpl;
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
-//# sourceMappingURL=DropTargetMonitorImpl.js.map
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+var isCallingCanDrop = false;
+var DropTargetMonitorImpl = /*#__PURE__*/function () {
+  function DropTargetMonitorImpl(manager) {
+    _classCallCheck(this, DropTargetMonitorImpl);
+
+    _defineProperty(this, "internalMonitor", void 0);
+
+    _defineProperty(this, "targetId", null);
+
+    this.internalMonitor = manager.getMonitor();
+  }
+
+  _createClass(DropTargetMonitorImpl, [{
+    key: "receiveHandlerId",
+    value: function receiveHandlerId(targetId) {
+      this.targetId = targetId;
+    }
+  }, {
+    key: "getHandlerId",
+    value: function getHandlerId() {
+      return this.targetId;
+    }
+  }, {
+    key: "subscribeToStateChange",
+    value: function subscribeToStateChange(listener, options) {
+      return this.internalMonitor.subscribeToStateChange(listener, options);
+    }
+  }, {
+    key: "canDrop",
+    value: function canDrop() {
+      // Cut out early if the target id has not been set. This should prevent errors
+      // where the user has an older version of dnd-core like in
+      // https://github.com/react-dnd/react-dnd/issues/1310
+      if (!this.targetId) {
+        return false;
+      }
+
+      (0,_react_dnd_invariant__WEBPACK_IMPORTED_MODULE_0__.invariant)(!isCallingCanDrop, 'You may not call monitor.canDrop() inside your canDrop() implementation. ' + 'Read more: http://react-dnd.github.io/react-dnd/docs/api/drop-target-monitor');
+
+      try {
+        isCallingCanDrop = true;
+        return this.internalMonitor.canDropOnTarget(this.targetId);
+      } finally {
+        isCallingCanDrop = false;
+      }
+    }
+  }, {
+    key: "isOver",
+    value: function isOver(options) {
+      if (!this.targetId) {
+        return false;
+      }
+
+      return this.internalMonitor.isOverTarget(this.targetId, options);
+    }
+  }, {
+    key: "getItemType",
+    value: function getItemType() {
+      return this.internalMonitor.getItemType();
+    }
+  }, {
+    key: "getItem",
+    value: function getItem() {
+      return this.internalMonitor.getItem();
+    }
+  }, {
+    key: "getDropResult",
+    value: function getDropResult() {
+      return this.internalMonitor.getDropResult();
+    }
+  }, {
+    key: "didDrop",
+    value: function didDrop() {
+      return this.internalMonitor.didDrop();
+    }
+  }, {
+    key: "getInitialClientOffset",
+    value: function getInitialClientOffset() {
+      return this.internalMonitor.getInitialClientOffset();
+    }
+  }, {
+    key: "getInitialSourceClientOffset",
+    value: function getInitialSourceClientOffset() {
+      return this.internalMonitor.getInitialSourceClientOffset();
+    }
+  }, {
+    key: "getSourceClientOffset",
+    value: function getSourceClientOffset() {
+      return this.internalMonitor.getSourceClientOffset();
+    }
+  }, {
+    key: "getClientOffset",
+    value: function getClientOffset() {
+      return this.internalMonitor.getClientOffset();
+    }
+  }, {
+    key: "getDifferenceFromInitialOffset",
+    value: function getDifferenceFromInitialOffset() {
+      return this.internalMonitor.getDifferenceFromInitialOffset();
+    }
+  }]);
+
+  return DropTargetMonitorImpl;
+}();
 
 /***/ }),
 
-/***/ "./node_modules/react-dnd/dist/cjs/internals/SourceConnector.js":
+/***/ "./node_modules/react-dnd/dist/esm/internals/SourceConnector.js":
 /*!**********************************************************************!*\
-  !*** ./node_modules/react-dnd/dist/cjs/internals/SourceConnector.js ***!
+  !*** ./node_modules/react-dnd/dist/esm/internals/SourceConnector.js ***!
   \**********************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "SourceConnector": () => (/* binding */ SourceConnector)
+/* harmony export */ });
+/* harmony import */ var _wrapConnectorHooks__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./wrapConnectorHooks */ "./node_modules/react-dnd/dist/esm/internals/wrapConnectorHooks.js");
+/* harmony import */ var _isRef__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./isRef */ "./node_modules/react-dnd/dist/esm/internals/isRef.js");
+/* harmony import */ var _react_dnd_shallowequal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @react-dnd/shallowequal */ "./node_modules/@react-dnd/shallowequal/dist/shallowequal.esm.js");
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-Object.defineProperty(exports, "__esModule", ({
-    value: true
-}));
-var _wrapConnectorHooksJs = __webpack_require__(/*! ./wrapConnectorHooks.js */ "./node_modules/react-dnd/dist/cjs/internals/wrapConnectorHooks.js");
-var _isRefJs = __webpack_require__(/*! ./isRef.js */ "./node_modules/react-dnd/dist/cjs/internals/isRef.js");
-var _shallowequal = __webpack_require__(/*! @react-dnd/shallowequal */ "./node_modules/@react-dnd/shallowequal/dist/cjs/index.js");
-class SourceConnector {
-    receiveHandlerId(newHandlerId) {
-        if (this.handlerId === newHandlerId) {
-            return;
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+var SourceConnector = /*#__PURE__*/function () {
+  // The drop target may either be attached via ref or connect function
+  // The drag preview may either be attached via ref or connect function
+  function SourceConnector(backend) {
+    var _this = this;
+
+    _classCallCheck(this, SourceConnector);
+
+    _defineProperty(this, "hooks", (0,_wrapConnectorHooks__WEBPACK_IMPORTED_MODULE_1__.wrapConnectorHooks)({
+      dragSource: function dragSource(node, options) {
+        _this.clearDragSource();
+
+        _this.dragSourceOptions = options || null;
+
+        if ((0,_isRef__WEBPACK_IMPORTED_MODULE_2__.isRef)(node)) {
+          _this.dragSourceRef = node;
+        } else {
+          _this.dragSourceNode = node;
         }
-        this.handlerId = newHandlerId;
-        this.reconnect();
-    }
-    get connectTarget() {
-        return this.dragSource;
-    }
-    get dragSourceOptions() {
-        return this.dragSourceOptionsInternal;
-    }
-    set dragSourceOptions(options) {
-        this.dragSourceOptionsInternal = options;
-    }
-    get dragPreviewOptions() {
-        return this.dragPreviewOptionsInternal;
-    }
-    set dragPreviewOptions(options) {
-        this.dragPreviewOptionsInternal = options;
-    }
-    reconnect() {
-        const didChange = this.reconnectDragSource();
-        this.reconnectDragPreview(didChange);
-    }
-    reconnectDragSource() {
-        const dragSource = this.dragSource;
-        // if nothing has changed then don't resubscribe
-        const didChange = this.didHandlerIdChange() || this.didConnectedDragSourceChange() || this.didDragSourceOptionsChange();
-        if (didChange) {
-            this.disconnectDragSource();
+
+        _this.reconnectDragSource();
+      },
+      dragPreview: function dragPreview(node, options) {
+        _this.clearDragPreview();
+
+        _this.dragPreviewOptions = options || null;
+
+        if ((0,_isRef__WEBPACK_IMPORTED_MODULE_2__.isRef)(node)) {
+          _this.dragPreviewRef = node;
+        } else {
+          _this.dragPreviewNode = node;
         }
-        if (!this.handlerId) {
-            return didChange;
-        }
-        if (!dragSource) {
-            this.lastConnectedDragSource = dragSource;
-            return didChange;
-        }
-        if (didChange) {
-            this.lastConnectedHandlerId = this.handlerId;
-            this.lastConnectedDragSource = dragSource;
-            this.lastConnectedDragSourceOptions = this.dragSourceOptions;
-            this.dragSourceUnsubscribe = this.backend.connectDragSource(this.handlerId, dragSource, this.dragSourceOptions);
-        }
-        return didChange;
+
+        _this.reconnectDragPreview();
+      }
+    }));
+
+    _defineProperty(this, "handlerId", null);
+
+    _defineProperty(this, "dragSourceRef", null);
+
+    _defineProperty(this, "dragSourceNode", void 0);
+
+    _defineProperty(this, "dragSourceOptionsInternal", null);
+
+    _defineProperty(this, "dragSourceUnsubscribe", void 0);
+
+    _defineProperty(this, "dragPreviewRef", null);
+
+    _defineProperty(this, "dragPreviewNode", void 0);
+
+    _defineProperty(this, "dragPreviewOptionsInternal", null);
+
+    _defineProperty(this, "dragPreviewUnsubscribe", void 0);
+
+    _defineProperty(this, "lastConnectedHandlerId", null);
+
+    _defineProperty(this, "lastConnectedDragSource", null);
+
+    _defineProperty(this, "lastConnectedDragSourceOptions", null);
+
+    _defineProperty(this, "lastConnectedDragPreview", null);
+
+    _defineProperty(this, "lastConnectedDragPreviewOptions", null);
+
+    _defineProperty(this, "backend", void 0);
+
+    this.backend = backend;
+  }
+
+  _createClass(SourceConnector, [{
+    key: "receiveHandlerId",
+    value: function receiveHandlerId(newHandlerId) {
+      if (this.handlerId === newHandlerId) {
+        return;
+      }
+
+      this.handlerId = newHandlerId;
+      this.reconnect();
     }
-    reconnectDragPreview(forceDidChange = false) {
-        const dragPreview = this.dragPreview;
-        // if nothing has changed then don't resubscribe
-        const didChange = forceDidChange || this.didHandlerIdChange() || this.didConnectedDragPreviewChange() || this.didDragPreviewOptionsChange();
-        if (didChange) {
-            this.disconnectDragPreview();
-        }
-        if (!this.handlerId) {
-            return;
-        }
-        if (!dragPreview) {
-            this.lastConnectedDragPreview = dragPreview;
-            return;
-        }
-        if (didChange) {
-            this.lastConnectedHandlerId = this.handlerId;
-            this.lastConnectedDragPreview = dragPreview;
-            this.lastConnectedDragPreviewOptions = this.dragPreviewOptions;
-            this.dragPreviewUnsubscribe = this.backend.connectDragPreview(this.handlerId, dragPreview, this.dragPreviewOptions);
-        }
+  }, {
+    key: "connectTarget",
+    get: function get() {
+      return this.dragSource;
     }
-    didHandlerIdChange() {
-        return this.lastConnectedHandlerId !== this.handlerId;
+  }, {
+    key: "dragSourceOptions",
+    get: function get() {
+      return this.dragSourceOptionsInternal;
+    },
+    set: function set(options) {
+      this.dragSourceOptionsInternal = options;
     }
-    didConnectedDragSourceChange() {
-        return this.lastConnectedDragSource !== this.dragSource;
+  }, {
+    key: "dragPreviewOptions",
+    get: function get() {
+      return this.dragPreviewOptionsInternal;
+    },
+    set: function set(options) {
+      this.dragPreviewOptionsInternal = options;
     }
-    didConnectedDragPreviewChange() {
-        return this.lastConnectedDragPreview !== this.dragPreview;
+  }, {
+    key: "reconnect",
+    value: function reconnect() {
+      this.reconnectDragSource();
+      this.reconnectDragPreview();
     }
-    didDragSourceOptionsChange() {
-        return !(0, _shallowequal).shallowEqual(this.lastConnectedDragSourceOptions, this.dragSourceOptions);
+  }, {
+    key: "reconnectDragSource",
+    value: function reconnectDragSource() {
+      var dragSource = this.dragSource; // if nothing has changed then don't resubscribe
+
+      var didChange = this.didHandlerIdChange() || this.didConnectedDragSourceChange() || this.didDragSourceOptionsChange();
+
+      if (didChange) {
+        this.disconnectDragSource();
+      }
+
+      if (!this.handlerId) {
+        return;
+      }
+
+      if (!dragSource) {
+        this.lastConnectedDragSource = dragSource;
+        return;
+      }
+
+      if (didChange) {
+        this.lastConnectedHandlerId = this.handlerId;
+        this.lastConnectedDragSource = dragSource;
+        this.lastConnectedDragSourceOptions = this.dragSourceOptions;
+        this.dragSourceUnsubscribe = this.backend.connectDragSource(this.handlerId, dragSource, this.dragSourceOptions);
+      }
     }
-    didDragPreviewOptionsChange() {
-        return !(0, _shallowequal).shallowEqual(this.lastConnectedDragPreviewOptions, this.dragPreviewOptions);
+  }, {
+    key: "reconnectDragPreview",
+    value: function reconnectDragPreview() {
+      var dragPreview = this.dragPreview; // if nothing has changed then don't resubscribe
+
+      var didChange = this.didHandlerIdChange() || this.didConnectedDragPreviewChange() || this.didDragPreviewOptionsChange();
+
+      if (didChange) {
+        this.disconnectDragPreview();
+      }
+
+      if (!this.handlerId) {
+        return;
+      }
+
+      if (!dragPreview) {
+        this.lastConnectedDragPreview = dragPreview;
+        return;
+      }
+
+      if (didChange) {
+        this.lastConnectedHandlerId = this.handlerId;
+        this.lastConnectedDragPreview = dragPreview;
+        this.lastConnectedDragPreviewOptions = this.dragPreviewOptions;
+        this.dragPreviewUnsubscribe = this.backend.connectDragPreview(this.handlerId, dragPreview, this.dragPreviewOptions);
+      }
     }
-    disconnectDragSource() {
-        if (this.dragSourceUnsubscribe) {
-            this.dragSourceUnsubscribe();
-            this.dragSourceUnsubscribe = undefined;
-        }
+  }, {
+    key: "didHandlerIdChange",
+    value: function didHandlerIdChange() {
+      return this.lastConnectedHandlerId !== this.handlerId;
     }
-    disconnectDragPreview() {
-        if (this.dragPreviewUnsubscribe) {
-            this.dragPreviewUnsubscribe();
-            this.dragPreviewUnsubscribe = undefined;
-            this.dragPreviewNode = null;
-            this.dragPreviewRef = null;
-        }
+  }, {
+    key: "didConnectedDragSourceChange",
+    value: function didConnectedDragSourceChange() {
+      return this.lastConnectedDragSource !== this.dragSource;
     }
-    get dragSource() {
-        return this.dragSourceNode || this.dragSourceRef && this.dragSourceRef.current;
+  }, {
+    key: "didConnectedDragPreviewChange",
+    value: function didConnectedDragPreviewChange() {
+      return this.lastConnectedDragPreview !== this.dragPreview;
     }
-    get dragPreview() {
-        return this.dragPreviewNode || this.dragPreviewRef && this.dragPreviewRef.current;
+  }, {
+    key: "didDragSourceOptionsChange",
+    value: function didDragSourceOptionsChange() {
+      return !(0,_react_dnd_shallowequal__WEBPACK_IMPORTED_MODULE_0__.shallowEqual)(this.lastConnectedDragSourceOptions, this.dragSourceOptions);
     }
-    clearDragSource() {
-        this.dragSourceNode = null;
-        this.dragSourceRef = null;
+  }, {
+    key: "didDragPreviewOptionsChange",
+    value: function didDragPreviewOptionsChange() {
+      return !(0,_react_dnd_shallowequal__WEBPACK_IMPORTED_MODULE_0__.shallowEqual)(this.lastConnectedDragPreviewOptions, this.dragPreviewOptions);
     }
-    clearDragPreview() {
+  }, {
+    key: "disconnectDragSource",
+    value: function disconnectDragSource() {
+      if (this.dragSourceUnsubscribe) {
+        this.dragSourceUnsubscribe();
+        this.dragSourceUnsubscribe = undefined;
+      }
+    }
+  }, {
+    key: "disconnectDragPreview",
+    value: function disconnectDragPreview() {
+      if (this.dragPreviewUnsubscribe) {
+        this.dragPreviewUnsubscribe();
+        this.dragPreviewUnsubscribe = undefined;
         this.dragPreviewNode = null;
         this.dragPreviewRef = null;
+      }
     }
-    constructor(backend){
-        this.hooks = (0, _wrapConnectorHooksJs).wrapConnectorHooks({
-            dragSource: (node, options)=>{
-                this.clearDragSource();
-                this.dragSourceOptions = options || null;
-                if ((0, _isRefJs).isRef(node)) {
-                    this.dragSourceRef = node;
-                } else {
-                    this.dragSourceNode = node;
-                }
-                this.reconnectDragSource();
-            },
-            dragPreview: (node, options)=>{
-                this.clearDragPreview();
-                this.dragPreviewOptions = options || null;
-                if ((0, _isRefJs).isRef(node)) {
-                    this.dragPreviewRef = node;
-                } else {
-                    this.dragPreviewNode = node;
-                }
-                this.reconnectDragPreview();
-            }
-        });
-        this.handlerId = null;
-        // The drop target may either be attached via ref or connect function
-        this.dragSourceRef = null;
-        this.dragSourceOptionsInternal = null;
-        // The drag preview may either be attached via ref or connect function
-        this.dragPreviewRef = null;
-        this.dragPreviewOptionsInternal = null;
-        this.lastConnectedHandlerId = null;
-        this.lastConnectedDragSource = null;
-        this.lastConnectedDragSourceOptions = null;
-        this.lastConnectedDragPreview = null;
-        this.lastConnectedDragPreviewOptions = null;
-        this.backend = backend;
+  }, {
+    key: "dragSource",
+    get: function get() {
+      return this.dragSourceNode || this.dragSourceRef && this.dragSourceRef.current;
     }
-}
-exports.SourceConnector = SourceConnector;
+  }, {
+    key: "dragPreview",
+    get: function get() {
+      return this.dragPreviewNode || this.dragPreviewRef && this.dragPreviewRef.current;
+    }
+  }, {
+    key: "clearDragSource",
+    value: function clearDragSource() {
+      this.dragSourceNode = null;
+      this.dragSourceRef = null;
+    }
+  }, {
+    key: "clearDragPreview",
+    value: function clearDragPreview() {
+      this.dragPreviewNode = null;
+      this.dragPreviewRef = null;
+    }
+  }]);
 
-//# sourceMappingURL=SourceConnector.js.map
+  return SourceConnector;
+}();
 
 /***/ }),
 
-/***/ "./node_modules/react-dnd/dist/cjs/internals/TargetConnector.js":
+/***/ "./node_modules/react-dnd/dist/esm/internals/TargetConnector.js":
 /*!**********************************************************************!*\
-  !*** ./node_modules/react-dnd/dist/cjs/internals/TargetConnector.js ***!
+  !*** ./node_modules/react-dnd/dist/esm/internals/TargetConnector.js ***!
   \**********************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "TargetConnector": () => (/* binding */ TargetConnector)
+/* harmony export */ });
+/* harmony import */ var _react_dnd_shallowequal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @react-dnd/shallowequal */ "./node_modules/@react-dnd/shallowequal/dist/shallowequal.esm.js");
+/* harmony import */ var _wrapConnectorHooks__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./wrapConnectorHooks */ "./node_modules/react-dnd/dist/esm/internals/wrapConnectorHooks.js");
+/* harmony import */ var _isRef__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./isRef */ "./node_modules/react-dnd/dist/esm/internals/isRef.js");
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-Object.defineProperty(exports, "__esModule", ({
-    value: true
-}));
-var _shallowequal = __webpack_require__(/*! @react-dnd/shallowequal */ "./node_modules/@react-dnd/shallowequal/dist/cjs/index.js");
-var _wrapConnectorHooksJs = __webpack_require__(/*! ./wrapConnectorHooks.js */ "./node_modules/react-dnd/dist/cjs/internals/wrapConnectorHooks.js");
-var _isRefJs = __webpack_require__(/*! ./isRef.js */ "./node_modules/react-dnd/dist/cjs/internals/isRef.js");
-class TargetConnector {
-    get connectTarget() {
-        return this.dropTarget;
-    }
-    reconnect() {
-        // if nothing has changed then don't resubscribe
-        const didChange = this.didHandlerIdChange() || this.didDropTargetChange() || this.didOptionsChange();
-        if (didChange) {
-            this.disconnectDropTarget();
-        }
-        const dropTarget = this.dropTarget;
-        if (!this.handlerId) {
-            return;
-        }
-        if (!dropTarget) {
-            this.lastConnectedDropTarget = dropTarget;
-            return;
-        }
-        if (didChange) {
-            this.lastConnectedHandlerId = this.handlerId;
-            this.lastConnectedDropTarget = dropTarget;
-            this.lastConnectedDropTargetOptions = this.dropTargetOptions;
-            this.unsubscribeDropTarget = this.backend.connectDropTarget(this.handlerId, dropTarget, this.dropTargetOptions);
-        }
-    }
-    receiveHandlerId(newHandlerId) {
-        if (newHandlerId === this.handlerId) {
-            return;
-        }
-        this.handlerId = newHandlerId;
-        this.reconnect();
-    }
-    get dropTargetOptions() {
-        return this.dropTargetOptionsInternal;
-    }
-    set dropTargetOptions(options) {
-        this.dropTargetOptionsInternal = options;
-    }
-    didHandlerIdChange() {
-        return this.lastConnectedHandlerId !== this.handlerId;
-    }
-    didDropTargetChange() {
-        return this.lastConnectedDropTarget !== this.dropTarget;
-    }
-    didOptionsChange() {
-        return !(0, _shallowequal).shallowEqual(this.lastConnectedDropTargetOptions, this.dropTargetOptions);
-    }
-    disconnectDropTarget() {
-        if (this.unsubscribeDropTarget) {
-            this.unsubscribeDropTarget();
-            this.unsubscribeDropTarget = undefined;
-        }
-    }
-    get dropTarget() {
-        return this.dropTargetNode || this.dropTargetRef && this.dropTargetRef.current;
-    }
-    clearDropTarget() {
-        this.dropTargetRef = null;
-        this.dropTargetNode = null;
-    }
-    constructor(backend){
-        this.hooks = (0, _wrapConnectorHooksJs).wrapConnectorHooks({
-            dropTarget: (node, options)=>{
-                this.clearDropTarget();
-                this.dropTargetOptions = options;
-                if ((0, _isRefJs).isRef(node)) {
-                    this.dropTargetRef = node;
-                } else {
-                    this.dropTargetNode = node;
-                }
-                this.reconnect();
-            }
-        });
-        this.handlerId = null;
-        // The drop target may either be attached via ref or connect function
-        this.dropTargetRef = null;
-        this.dropTargetOptionsInternal = null;
-        this.lastConnectedHandlerId = null;
-        this.lastConnectedDropTarget = null;
-        this.lastConnectedDropTargetOptions = null;
-        this.backend = backend;
-    }
-}
-exports.TargetConnector = TargetConnector;
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
-//# sourceMappingURL=TargetConnector.js.map
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+var TargetConnector = /*#__PURE__*/function () {
+  // The drop target may either be attached via ref or connect function
+  function TargetConnector(backend) {
+    var _this = this;
+
+    _classCallCheck(this, TargetConnector);
+
+    _defineProperty(this, "hooks", (0,_wrapConnectorHooks__WEBPACK_IMPORTED_MODULE_1__.wrapConnectorHooks)({
+      dropTarget: function dropTarget(node, options) {
+        _this.clearDropTarget();
+
+        _this.dropTargetOptions = options;
+
+        if ((0,_isRef__WEBPACK_IMPORTED_MODULE_2__.isRef)(node)) {
+          _this.dropTargetRef = node;
+        } else {
+          _this.dropTargetNode = node;
+        }
+
+        _this.reconnect();
+      }
+    }));
+
+    _defineProperty(this, "handlerId", null);
+
+    _defineProperty(this, "dropTargetRef", null);
+
+    _defineProperty(this, "dropTargetNode", void 0);
+
+    _defineProperty(this, "dropTargetOptionsInternal", null);
+
+    _defineProperty(this, "unsubscribeDropTarget", void 0);
+
+    _defineProperty(this, "lastConnectedHandlerId", null);
+
+    _defineProperty(this, "lastConnectedDropTarget", null);
+
+    _defineProperty(this, "lastConnectedDropTargetOptions", null);
+
+    _defineProperty(this, "backend", void 0);
+
+    this.backend = backend;
+  }
+
+  _createClass(TargetConnector, [{
+    key: "connectTarget",
+    get: function get() {
+      return this.dropTarget;
+    }
+  }, {
+    key: "reconnect",
+    value: function reconnect() {
+      // if nothing has changed then don't resubscribe
+      var didChange = this.didHandlerIdChange() || this.didDropTargetChange() || this.didOptionsChange();
+
+      if (didChange) {
+        this.disconnectDropTarget();
+      }
+
+      var dropTarget = this.dropTarget;
+
+      if (!this.handlerId) {
+        return;
+      }
+
+      if (!dropTarget) {
+        this.lastConnectedDropTarget = dropTarget;
+        return;
+      }
+
+      if (didChange) {
+        this.lastConnectedHandlerId = this.handlerId;
+        this.lastConnectedDropTarget = dropTarget;
+        this.lastConnectedDropTargetOptions = this.dropTargetOptions;
+        this.unsubscribeDropTarget = this.backend.connectDropTarget(this.handlerId, dropTarget, this.dropTargetOptions);
+      }
+    }
+  }, {
+    key: "receiveHandlerId",
+    value: function receiveHandlerId(newHandlerId) {
+      if (newHandlerId === this.handlerId) {
+        return;
+      }
+
+      this.handlerId = newHandlerId;
+      this.reconnect();
+    }
+  }, {
+    key: "dropTargetOptions",
+    get: function get() {
+      return this.dropTargetOptionsInternal;
+    },
+    set: function set(options) {
+      this.dropTargetOptionsInternal = options;
+    }
+  }, {
+    key: "didHandlerIdChange",
+    value: function didHandlerIdChange() {
+      return this.lastConnectedHandlerId !== this.handlerId;
+    }
+  }, {
+    key: "didDropTargetChange",
+    value: function didDropTargetChange() {
+      return this.lastConnectedDropTarget !== this.dropTarget;
+    }
+  }, {
+    key: "didOptionsChange",
+    value: function didOptionsChange() {
+      return !(0,_react_dnd_shallowequal__WEBPACK_IMPORTED_MODULE_0__.shallowEqual)(this.lastConnectedDropTargetOptions, this.dropTargetOptions);
+    }
+  }, {
+    key: "disconnectDropTarget",
+    value: function disconnectDropTarget() {
+      if (this.unsubscribeDropTarget) {
+        this.unsubscribeDropTarget();
+        this.unsubscribeDropTarget = undefined;
+      }
+    }
+  }, {
+    key: "dropTarget",
+    get: function get() {
+      return this.dropTargetNode || this.dropTargetRef && this.dropTargetRef.current;
+    }
+  }, {
+    key: "clearDropTarget",
+    value: function clearDropTarget() {
+      this.dropTargetRef = null;
+      this.dropTargetNode = null;
+    }
+  }]);
+
+  return TargetConnector;
+}();
 
 /***/ }),
 
-/***/ "./node_modules/react-dnd/dist/cjs/internals/index.js":
+/***/ "./node_modules/react-dnd/dist/esm/internals/isRef.js":
 /*!************************************************************!*\
-  !*** ./node_modules/react-dnd/dist/cjs/internals/index.js ***!
+  !*** ./node_modules/react-dnd/dist/esm/internals/isRef.js ***!
   \************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "isRef": () => (/* binding */ isRef)
+/* harmony export */ });
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
-Object.defineProperty(exports, "__esModule", ({
-    value: true
-}));
-var _exportNames = {};
-var _dragSourceMonitorImplJs = _interopRequireWildcard(__webpack_require__(/*! ./DragSourceMonitorImpl.js */ "./node_modules/react-dnd/dist/cjs/internals/DragSourceMonitorImpl.js"));
-Object.keys(_dragSourceMonitorImplJs).forEach(function(key) {
-    if (key === "default" || key === "__esModule") return;
-    if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
-    if (key in exports && exports[key] === _dragSourceMonitorImplJs[key]) return;
-    Object.defineProperty(exports, key, {
-        enumerable: true,
-        get: function() {
-            return _dragSourceMonitorImplJs[key];
-        }
-    });
-});
-var _dropTargetMonitorImplJs = _interopRequireWildcard(__webpack_require__(/*! ./DropTargetMonitorImpl.js */ "./node_modules/react-dnd/dist/cjs/internals/DropTargetMonitorImpl.js"));
-Object.keys(_dropTargetMonitorImplJs).forEach(function(key) {
-    if (key === "default" || key === "__esModule") return;
-    if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
-    if (key in exports && exports[key] === _dropTargetMonitorImplJs[key]) return;
-    Object.defineProperty(exports, key, {
-        enumerable: true,
-        get: function() {
-            return _dropTargetMonitorImplJs[key];
-        }
-    });
-});
-var _sourceConnectorJs = _interopRequireWildcard(__webpack_require__(/*! ./SourceConnector.js */ "./node_modules/react-dnd/dist/cjs/internals/SourceConnector.js"));
-Object.keys(_sourceConnectorJs).forEach(function(key) {
-    if (key === "default" || key === "__esModule") return;
-    if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
-    if (key in exports && exports[key] === _sourceConnectorJs[key]) return;
-    Object.defineProperty(exports, key, {
-        enumerable: true,
-        get: function() {
-            return _sourceConnectorJs[key];
-        }
-    });
-});
-var _targetConnectorJs = _interopRequireWildcard(__webpack_require__(/*! ./TargetConnector.js */ "./node_modules/react-dnd/dist/cjs/internals/TargetConnector.js"));
-Object.keys(_targetConnectorJs).forEach(function(key) {
-    if (key === "default" || key === "__esModule") return;
-    if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
-    if (key in exports && exports[key] === _targetConnectorJs[key]) return;
-    Object.defineProperty(exports, key, {
-        enumerable: true,
-        get: function() {
-            return _targetConnectorJs[key];
-        }
-    });
-});
-var _registrationJs = _interopRequireWildcard(__webpack_require__(/*! ./registration.js */ "./node_modules/react-dnd/dist/cjs/internals/registration.js"));
-Object.keys(_registrationJs).forEach(function(key) {
-    if (key === "default" || key === "__esModule") return;
-    if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
-    if (key in exports && exports[key] === _registrationJs[key]) return;
-    Object.defineProperty(exports, key, {
-        enumerable: true,
-        get: function() {
-            return _registrationJs[key];
-        }
-    });
-});
-function _interopRequireWildcard(obj) {
-    if (obj && obj.__esModule) {
-        return obj;
-    } else {
-        var newObj = {};
-        if (obj != null) {
-            for(var key in obj){
-                if (Object.prototype.hasOwnProperty.call(obj, key)) {
-                    var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {};
-                    if (desc.get || desc.set) {
-                        Object.defineProperty(newObj, key, desc);
-                    } else {
-                        newObj[key] = obj[key];
-                    }
-                }
-            }
-        }
-        newObj.default = obj;
-        return newObj;
-    }
-}
-
-//# sourceMappingURL=index.js.map
-
-/***/ }),
-
-/***/ "./node_modules/react-dnd/dist/cjs/internals/isRef.js":
-/*!************************************************************!*\
-  !*** ./node_modules/react-dnd/dist/cjs/internals/isRef.js ***!
-  \************************************************************/
-/***/ ((__unused_webpack_module, exports) => {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", ({
-    value: true
-}));
-exports.isRef = isRef;
 function isRef(obj) {
-    return(// eslint-disable-next-line no-prototype-builtins
-    obj !== null && typeof obj === 'object' && Object.prototype.hasOwnProperty.call(obj, 'current'));
+  return (// eslint-disable-next-line no-prototype-builtins
+    obj !== null && _typeof(obj) === 'object' && Object.prototype.hasOwnProperty.call(obj, 'current')
+  );
 }
-
-//# sourceMappingURL=isRef.js.map
 
 /***/ }),
 
-/***/ "./node_modules/react-dnd/dist/cjs/internals/registration.js":
+/***/ "./node_modules/react-dnd/dist/esm/internals/registration.js":
 /*!*******************************************************************!*\
-  !*** ./node_modules/react-dnd/dist/cjs/internals/registration.js ***!
+  !*** ./node_modules/react-dnd/dist/esm/internals/registration.js ***!
   \*******************************************************************/
-/***/ ((__unused_webpack_module, exports) => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-
-Object.defineProperty(exports, "__esModule", ({
-    value: true
-}));
-exports.registerTarget = registerTarget;
-exports.registerSource = registerSource;
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "registerTarget": () => (/* binding */ registerTarget),
+/* harmony export */   "registerSource": () => (/* binding */ registerSource)
+/* harmony export */ });
 function registerTarget(type, target, manager) {
-    const registry = manager.getRegistry();
-    const targetId = registry.addTarget(type, target);
-    return [
-        targetId,
-        ()=>registry.removeTarget(targetId)
-    ];
+  var registry = manager.getRegistry();
+  var targetId = registry.addTarget(type, target);
+  return [targetId, function () {
+    return registry.removeTarget(targetId);
+  }];
 }
 function registerSource(type, source, manager) {
-    const registry = manager.getRegistry();
-    const sourceId = registry.addSource(type, source);
-    return [
-        sourceId,
-        ()=>registry.removeSource(sourceId)
-    ];
+  var registry = manager.getRegistry();
+  var sourceId = registry.addSource(type, source);
+  return [sourceId, function () {
+    return registry.removeSource(sourceId);
+  }];
 }
-
-//# sourceMappingURL=registration.js.map
 
 /***/ }),
 
-/***/ "./node_modules/react-dnd/dist/cjs/internals/wrapConnectorHooks.js":
+/***/ "./node_modules/react-dnd/dist/esm/internals/wrapConnectorHooks.js":
 /*!*************************************************************************!*\
-  !*** ./node_modules/react-dnd/dist/cjs/internals/wrapConnectorHooks.js ***!
+  !*** ./node_modules/react-dnd/dist/esm/internals/wrapConnectorHooks.js ***!
   \*************************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "wrapConnectorHooks": () => (/* binding */ wrapConnectorHooks)
+/* harmony export */ });
+/* harmony import */ var _react_dnd_invariant__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @react-dnd/invariant */ "./node_modules/@react-dnd/invariant/dist/invariant.esm.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
-Object.defineProperty(exports, "__esModule", ({
-    value: true
-}));
-exports.wrapConnectorHooks = wrapConnectorHooks;
-var _invariant = __webpack_require__(/*! @react-dnd/invariant */ "./node_modules/@react-dnd/invariant/dist/cjs/index.js");
-var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+
 function throwIfCompositeComponentElement(element) {
-    // Custom components can no longer be wrapped directly in React DnD 2.0
-    // so that we don't need to depend on findDOMNode() from react-dom.
-    if (typeof element.type === 'string') {
-        return;
-    }
-    const displayName = element.type.displayName || element.type.name || 'the component';
-    throw new Error('Only native element nodes can now be passed to React DnD connectors.' + `You can either wrap ${displayName} into a <div>, or turn it into a ` + 'drag source or a drop target itself.');
+  // Custom components can no longer be wrapped directly in React DnD 2.0
+  // so that we don't need to depend on findDOMNode() from react-dom.
+  if (typeof element.type === 'string') {
+    return;
+  }
+
+  var displayName = element.type.displayName || element.type.name || 'the component';
+  throw new Error('Only native element nodes can now be passed to React DnD connectors.' + "You can either wrap ".concat(displayName, " into a <div>, or turn it into a ") + 'drag source or a drop target itself.');
 }
+
 function wrapHookToRecognizeElement(hook) {
-    return (elementOrNode = null, options = null)=>{
-        // When passed a node, call the hook straight away.
-        if (!(0, _react).isValidElement(elementOrNode)) {
-            const node = elementOrNode;
-            hook(node, options);
-            // return the node so it can be chained (e.g. when within callback refs
-            // <div ref={node => connectDragSource(connectDropTarget(node))}/>
-            return node;
-        }
-        // If passed a ReactElement, clone it and attach this function as a ref.
-        // This helps us achieve a neat API where user doesn't even know that refs
-        // are being used under the hood.
-        const element = elementOrNode;
-        throwIfCompositeComponentElement(element);
-        // When no options are passed, use the hook directly
-        const ref = options ? (node)=>hook(node, options)
-         : hook;
-        return cloneWithRef(element, ref);
-    };
+  return function () {
+    var elementOrNode = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+    var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+
+    // When passed a node, call the hook straight away.
+    if (!(0,react__WEBPACK_IMPORTED_MODULE_1__.isValidElement)(elementOrNode)) {
+      var node = elementOrNode;
+      hook(node, options); // return the node so it can be chained (e.g. when within callback refs
+      // <div ref={node => connectDragSource(connectDropTarget(node))}/>
+
+      return node;
+    } // If passed a ReactElement, clone it and attach this function as a ref.
+    // This helps us achieve a neat API where user doesn't even know that refs
+    // are being used under the hood.
+
+
+    var element = elementOrNode;
+    throwIfCompositeComponentElement(element); // When no options are passed, use the hook directly
+
+    var ref = options ? function (node) {
+      return hook(node, options);
+    } : hook;
+    return cloneWithRef(element, ref);
+  };
 }
+
 function wrapConnectorHooks(hooks) {
-    const wrappedHooks = {};
-    Object.keys(hooks).forEach((key)=>{
-        const hook = hooks[key];
-        // ref objects should be passed straight through without wrapping
-        if (key.endsWith('Ref')) {
-            wrappedHooks[key] = hooks[key];
-        } else {
-            const wrappedHook = wrapHookToRecognizeElement(hook);
-            wrappedHooks[key] = ()=>wrappedHook
-            ;
-        }
-    });
-    return wrappedHooks;
+  var wrappedHooks = {};
+  Object.keys(hooks).forEach(function (key) {
+    var hook = hooks[key]; // ref objects should be passed straight through without wrapping
+
+    if (key.endsWith('Ref')) {
+      wrappedHooks[key] = hooks[key];
+    } else {
+      var wrappedHook = wrapHookToRecognizeElement(hook);
+
+      wrappedHooks[key] = function () {
+        return wrappedHook;
+      };
+    }
+  });
+  return wrappedHooks;
 }
+
 function setRef(ref, node) {
-    if (typeof ref === 'function') {
-        ref(node);
-    } else {
-        ref.current = node;
-    }
+  if (typeof ref === 'function') {
+    ref(node);
+  } else {
+    ref.current = node;
+  }
 }
+
 function cloneWithRef(element, newRef) {
-    const previousRef = element.ref;
-    (0, _invariant).invariant(typeof previousRef !== 'string', 'Cannot connect React DnD to an element with an existing string ref. ' + 'Please convert it to use a callback ref instead, or wrap it into a <span> or <div>. ' + 'Read more: https://reactjs.org/docs/refs-and-the-dom.html#callback-refs');
-    if (!previousRef) {
-        // When there is no ref on the element, use the new ref directly
-        return (0, _react).cloneElement(element, {
-            ref: newRef
-        });
-    } else {
-        return (0, _react).cloneElement(element, {
-            ref: (node)=>{
-                setRef(previousRef, node);
-                setRef(newRef, node);
-            }
-        });
-    }
+  var previousRef = element.ref;
+  (0,_react_dnd_invariant__WEBPACK_IMPORTED_MODULE_0__.invariant)(typeof previousRef !== 'string', 'Cannot connect React DnD to an element with an existing string ref. ' + 'Please convert it to use a callback ref instead, or wrap it into a <span> or <div>. ' + 'Read more: https://reactjs.org/docs/refs-and-the-dom.html#callback-refs');
+
+  if (!previousRef) {
+    // When there is no ref on the element, use the new ref directly
+    return (0,react__WEBPACK_IMPORTED_MODULE_1__.cloneElement)(element, {
+      ref: newRef
+    });
+  } else {
+    return (0,react__WEBPACK_IMPORTED_MODULE_1__.cloneElement)(element, {
+      ref: function ref(node) {
+        setRef(previousRef, node);
+        setRef(newRef, node);
+      }
+    });
+  }
 }
-
-//# sourceMappingURL=wrapConnectorHooks.js.map
-
-/***/ }),
-
-/***/ "./node_modules/react-dnd/dist/cjs/types/connectors.js":
-/*!*************************************************************!*\
-  !*** ./node_modules/react-dnd/dist/cjs/types/connectors.js ***!
-  \*************************************************************/
-/***/ ((__unused_webpack_module, exports) => {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", ({
-    value: true
-}));
-
-//# sourceMappingURL=connectors.js.map
-
-/***/ }),
-
-/***/ "./node_modules/react-dnd/dist/cjs/types/index.js":
-/*!********************************************************!*\
-  !*** ./node_modules/react-dnd/dist/cjs/types/index.js ***!
-  \********************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", ({
-    value: true
-}));
-var _exportNames = {};
-var _monitorsJs = _interopRequireWildcard(__webpack_require__(/*! ./monitors.js */ "./node_modules/react-dnd/dist/cjs/types/monitors.js"));
-Object.keys(_monitorsJs).forEach(function(key) {
-    if (key === "default" || key === "__esModule") return;
-    if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
-    if (key in exports && exports[key] === _monitorsJs[key]) return;
-    Object.defineProperty(exports, key, {
-        enumerable: true,
-        get: function() {
-            return _monitorsJs[key];
-        }
-    });
-});
-var _optionsJs = _interopRequireWildcard(__webpack_require__(/*! ./options.js */ "./node_modules/react-dnd/dist/cjs/types/options.js"));
-Object.keys(_optionsJs).forEach(function(key) {
-    if (key === "default" || key === "__esModule") return;
-    if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
-    if (key in exports && exports[key] === _optionsJs[key]) return;
-    Object.defineProperty(exports, key, {
-        enumerable: true,
-        get: function() {
-            return _optionsJs[key];
-        }
-    });
-});
-var _connectorsJs = _interopRequireWildcard(__webpack_require__(/*! ./connectors.js */ "./node_modules/react-dnd/dist/cjs/types/connectors.js"));
-Object.keys(_connectorsJs).forEach(function(key) {
-    if (key === "default" || key === "__esModule") return;
-    if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
-    if (key in exports && exports[key] === _connectorsJs[key]) return;
-    Object.defineProperty(exports, key, {
-        enumerable: true,
-        get: function() {
-            return _connectorsJs[key];
-        }
-    });
-});
-function _interopRequireWildcard(obj) {
-    if (obj && obj.__esModule) {
-        return obj;
-    } else {
-        var newObj = {};
-        if (obj != null) {
-            for(var key in obj){
-                if (Object.prototype.hasOwnProperty.call(obj, key)) {
-                    var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {};
-                    if (desc.get || desc.set) {
-                        Object.defineProperty(newObj, key, desc);
-                    } else {
-                        newObj[key] = obj[key];
-                    }
-                }
-            }
-        }
-        newObj.default = obj;
-        return newObj;
-    }
-}
-
-//# sourceMappingURL=index.js.map
-
-/***/ }),
-
-/***/ "./node_modules/react-dnd/dist/cjs/types/monitors.js":
-/*!***********************************************************!*\
-  !*** ./node_modules/react-dnd/dist/cjs/types/monitors.js ***!
-  \***********************************************************/
-/***/ ((__unused_webpack_module, exports) => {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", ({
-    value: true
-}));
-
-//# sourceMappingURL=monitors.js.map
-
-/***/ }),
-
-/***/ "./node_modules/react-dnd/dist/cjs/types/options.js":
-/*!**********************************************************!*\
-  !*** ./node_modules/react-dnd/dist/cjs/types/options.js ***!
-  \**********************************************************/
-/***/ ((__unused_webpack_module, exports) => {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", ({
-    value: true
-}));
-
-//# sourceMappingURL=options.js.map
 
 /***/ }),
 
@@ -45198,9 +46808,9 @@ var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDnd = __webpack_require__(/*! react-dnd */ "./node_modules/react-dnd/dist/cjs/index.js");
+var _reactDnd = __webpack_require__(/*! react-dnd */ "./node_modules/react-dnd/dist/esm/index.js");
 
-var _reactDndHtml5Backend = __webpack_require__(/*! react-dnd-html5-backend */ "./node_modules/react-dnd-html5-backend/dist/cjs/index.js");
+var _reactDndHtml5Backend = __webpack_require__(/*! react-dnd-html5-backend */ "./node_modules/react-dnd-html5-backend/dist/esm/index.js");
 
 var _isEqual = __webpack_require__(/*! lodash/isEqual */ "./node_modules/lodash/isEqual.js");
 
@@ -46090,7 +47700,7 @@ var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDnd = __webpack_require__(/*! react-dnd */ "./node_modules/react-dnd/dist/cjs/index.js");
+var _reactDnd = __webpack_require__(/*! react-dnd */ "./node_modules/react-dnd/dist/esm/index.js");
 
 var _propTypes = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
 
@@ -55847,7 +57457,7 @@ function _setPrototypeOf(o, p) {
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"_args":[["axios@0.21.4","/root/blogDashboard"]],"_from":"axios@0.21.4","_id":"axios@0.21.4","_inBundle":false,"_integrity":"sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==","_location":"/axios","_phantomChildren":{},"_requested":{"type":"version","registry":true,"raw":"axios@0.21.4","name":"axios","escapedName":"axios","rawSpec":"0.21.4","saveSpec":null,"fetchSpec":"0.21.4"},"_requiredBy":["/"],"_resolved":"https://registry.npmjs.org/axios/-/axios-0.21.4.tgz","_spec":"0.21.4","_where":"/root/blogDashboard","author":{"name":"Matt Zabriskie"},"browser":{"./lib/adapters/http.js":"./lib/adapters/xhr.js"},"bugs":{"url":"https://github.com/axios/axios/issues"},"bundlesize":[{"path":"./dist/axios.min.js","threshold":"5kB"}],"dependencies":{"follow-redirects":"^1.14.0"},"description":"Promise based HTTP client for the browser and node.js","devDependencies":{"coveralls":"^3.0.0","es6-promise":"^4.2.4","grunt":"^1.3.0","grunt-banner":"^0.6.0","grunt-cli":"^1.2.0","grunt-contrib-clean":"^1.1.0","grunt-contrib-watch":"^1.0.0","grunt-eslint":"^23.0.0","grunt-karma":"^4.0.0","grunt-mocha-test":"^0.13.3","grunt-ts":"^6.0.0-beta.19","grunt-webpack":"^4.0.2","istanbul-instrumenter-loader":"^1.0.0","jasmine-core":"^2.4.1","karma":"^6.3.2","karma-chrome-launcher":"^3.1.0","karma-firefox-launcher":"^2.1.0","karma-jasmine":"^1.1.1","karma-jasmine-ajax":"^0.1.13","karma-safari-launcher":"^1.0.0","karma-sauce-launcher":"^4.3.6","karma-sinon":"^1.0.5","karma-sourcemap-loader":"^0.3.8","karma-webpack":"^4.0.2","load-grunt-tasks":"^3.5.2","minimist":"^1.2.0","mocha":"^8.2.1","sinon":"^4.5.0","terser-webpack-plugin":"^4.2.3","typescript":"^4.0.5","url-search-params":"^0.10.0","webpack":"^4.44.2","webpack-dev-server":"^3.11.0"},"homepage":"https://axios-http.com","jsdelivr":"dist/axios.min.js","keywords":["xhr","http","ajax","promise","node"],"license":"MIT","main":"index.js","name":"axios","repository":{"type":"git","url":"git+https://github.com/axios/axios.git"},"scripts":{"build":"NODE_ENV=production grunt build","coveralls":"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js","examples":"node ./examples/server.js","fix":"eslint --fix lib/**/*.js","postversion":"git push && git push --tags","preversion":"npm test","start":"node ./sandbox/server.js","test":"grunt test","version":"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json"},"typings":"./index.d.ts","unpkg":"dist/axios.min.js","version":"0.21.4"}');
+module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"Promise based HTTP client for the browser and node.js","main":"index.js","scripts":{"test":"grunt test","start":"node ./sandbox/server.js","build":"NODE_ENV=production grunt build","preversion":"npm test","version":"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json","postversion":"git push && git push --tags","examples":"node ./examples/server.js","coveralls":"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js","fix":"eslint --fix lib/**/*.js"},"repository":{"type":"git","url":"https://github.com/axios/axios.git"},"keywords":["xhr","http","ajax","promise","node"],"author":"Matt Zabriskie","license":"MIT","bugs":{"url":"https://github.com/axios/axios/issues"},"homepage":"https://axios-http.com","devDependencies":{"coveralls":"^3.0.0","es6-promise":"^4.2.4","grunt":"^1.3.0","grunt-banner":"^0.6.0","grunt-cli":"^1.2.0","grunt-contrib-clean":"^1.1.0","grunt-contrib-watch":"^1.0.0","grunt-eslint":"^23.0.0","grunt-karma":"^4.0.0","grunt-mocha-test":"^0.13.3","grunt-ts":"^6.0.0-beta.19","grunt-webpack":"^4.0.2","istanbul-instrumenter-loader":"^1.0.0","jasmine-core":"^2.4.1","karma":"^6.3.2","karma-chrome-launcher":"^3.1.0","karma-firefox-launcher":"^2.1.0","karma-jasmine":"^1.1.1","karma-jasmine-ajax":"^0.1.13","karma-safari-launcher":"^1.0.0","karma-sauce-launcher":"^4.3.6","karma-sinon":"^1.0.5","karma-sourcemap-loader":"^0.3.8","karma-webpack":"^4.0.2","load-grunt-tasks":"^3.5.2","minimist":"^1.2.0","mocha":"^8.2.1","sinon":"^4.5.0","terser-webpack-plugin":"^4.2.3","typescript":"^4.0.5","url-search-params":"^0.10.0","webpack":"^4.44.2","webpack-dev-server":"^3.11.0"},"browser":{"./lib/adapters/http.js":"./lib/adapters/xhr.js"},"jsdelivr":"dist/axios.min.js","unpkg":"dist/axios.min.js","typings":"./index.d.ts","dependencies":{"follow-redirects":"^1.14.0"},"bundlesize":[{"path":"./dist/axios.min.js","threshold":"5kB"}]}');
 
 /***/ })
 
