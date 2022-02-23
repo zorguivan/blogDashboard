@@ -44,7 +44,7 @@ const Login = (props) => {
     <div id="formContent">
 
     <div className="fadeIn first imgContainer">
-        <img src="images/kimbocorp.png" id="icon" alt="User Icon" />
+        <img src="public/images/kimbocorp.png" id="icon" alt="User Icon" />
       </div>
       <form>
         <input type="email" id="email" className="fadeIn second" name="email" placeholder="Type your Email" onChange={updateField}/>

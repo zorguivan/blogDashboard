@@ -1,4 +1,4 @@
-import React, {useState, useContext, useEffect} from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Link, useHistory, useParams } from "react-router-dom"
 import {
   Col,
@@ -26,16 +26,16 @@ import { BlogContext } from '../context/BlogState';
 
 const Home = (props) => {
   const userData = useContext(AuthContext);
-  const {addBlog, getBlog, saveBlog, removeBlog} = useContext(BlogContext);
+  const { addBlog, getBlog, saveBlog, removeBlog } = useContext(BlogContext);
   const [textData, setTextData] = useState("");
   const [loadingStatus, setloadingStatus] = useState(false);
 
   const handleTextChange = (newData) => {
-      setTextData(newData);
+    setTextData(newData);
   };
 
   const extraProps = {
-    disabled : false,
+    disabled: false,
   }
 
   useEffect(() => {
@@ -48,8 +48,10 @@ const Home = (props) => {
   })
   const [userFile, setUserFile] = useState({})
   const [blogImage, setBlogImage] = useState({})
-  const [selectedFiles , setSelectedFiles] = useState([]);
+  const [selectedFiles, setSelectedFiles] = useState([]);
   const [show, setShow] = useState(false);
+
+
 
   const history = useHistory();
 
@@ -59,37 +61,38 @@ const Home = (props) => {
 
 
   let { blogId } = useParams();
-  
+
   useEffect(() => {
-      getBlog(blogId).then((res) => {
-        if(res.msg != "Server error"){
-            setBlog({
-                ...blog,
-                title: res[0].title,
-                cta: res[0].cta,
-                ctaText: res[0].ctaText,
-                description: res[0].description,
-                visibility: res[0].visibility
-            });
+    getBlog(blogId).then((res) => {
+      if (res.msg != "Server error") {
+        setBlog({
+          ...blog,
+          title: res[0].title,
+          cta: res[0].cta,
+          ctaText: res[0].ctaText,
+          description: res[0].description,
+          visibility: res[0].visibility,
+          image: res[0].image
+        });
 
-            setTextData(res[0].text);
+        setTextData(res[0].text);
 
-            setSelectedFiles([{name: "Blog-"+res[0]._id, type: "image/jpeg", preview: res[0].image}])
-            let tagsHolder = [];
-            if(res[0].tags && res[0].tags.length > 0){
-                res[0].tags.forEach((tag) => {
-                    tagsHolder.push({id: tag, text: tag});
-                });
-                setTags(tagsHolder);
-            }
-            // editorReference.focus()
-            // document.getElementsByClassName('DraftEditor-root')[0].focus
+        //setSelectedFiles([{ name: "Blog-" + res[0]._id, type: "image/jpeg", preview: res[0].image }])
+        let tagsHolder = [];
+        if (res[0].tags && res[0].tags.length > 0) {
+          res[0].tags.forEach((tag) => {
+            tagsHolder.push({ id: tag, text: tag });
+          });
+          setTags(tagsHolder);
         }
-      });
+        // editorReference.focus()
+        // document.getElementsByClassName('DraftEditor-root')[0].focus
+      }
+    });
   }, [blogId]);
 
   useEffect(() => {
-    if(!localStorage.getItem('user')){
+    if (!localStorage.getItem('user')) {
       history.push('/login');
     }
   }, [localStorage.getItem('user')]);
@@ -104,18 +107,19 @@ const Home = (props) => {
 
 
   function handleAcceptedFiles(files) {
-    files.map(file => {
+    setBlogImage({ image: files[0] })
+    files.map(image => {
       const reader = new FileReader();
-      reader.readAsDataURL(file);
-            reader.onloadend = () => {
-                if(file.type == 'application/pdf' || file.type == 'image/png' || file.type == 'image/jpeg') {
-                  let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-                  let today  = new Date();
-                  setUserFile({name: file.name, url: reader.result, date: today.toLocaleDateString("en-US", options)})
-                }
-            };
-      Object.assign(file, {
-        preview: URL.createObjectURL(file),
+      reader.readAsDataURL(image);
+      reader.onloadend = () => {
+        if (image.type == 'application/pdf' || image.type == 'image/png' || image.type == 'image/jpeg') {
+          let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+          let today = new Date();
+          setUserFile({ name: image.name, url: reader.result, date: today.toLocaleDateString("en-US", options) })
+        }
+      };
+      Object.assign(image, {
+        preview: URL.createObjectURL(image),
       })
     })
     setSelectedFiles(files)
@@ -131,30 +135,30 @@ const Home = (props) => {
   }
 
   const handleDrag = (tag, currPos, newPos) => {
-      const tags = [...tags];
-      const newTags = tags.slice();
+    const tags = [...tags];
+    const newTags = tags.slice();
 
-      newTags.splice(currPos, 1);
-      newTags.splice(newPos, 0, tag);
+    newTags.splice(currPos, 1);
+    newTags.splice(newPos, 0, tag);
 
-      // re-render
+    // re-render
     setTags(newTags);
   }
 
   const updateField = e => {
-    if(e.target.name == 'visibility'){
+    if (e.target.name == 'visibility') {
       setBlog({
         ...blog,
         [e.target.name]: e.target.checked
       });
-    } else { 
+    } else {
       setBlog({
         ...blog,
         [e.target.name]: e.target.value
-    });
+      });
     }
-    
-};
+
+  };
 
   const uploadBlog = () => {
     setloadingStatus(true)
@@ -165,13 +169,14 @@ const Home = (props) => {
       ctaText: blog.ctaText,
       visibility: blog.visibility,
       text: textData,
-      image: userFile.url,
+      image: blogImage.image,
       creator: localStorage.getItem('name'),
       creatorId: localStorage.getItem('user'),
       tags: tags,
+      _id: blogId
     }
     addBlog(obj).then((r) => {
-      reset();
+      //reset();
     })
   }
 
@@ -182,23 +187,22 @@ const Home = (props) => {
   const updateBlog = () => {
     setloadingStatus(true)
     let obj = {
-        title: blog.title,
-        description: blog.description,
-        cta: blog.cta,
-        ctaText: blog.ctaText,
-        visibility: blog.visibility,
-        text: textData,
-        image: userFile.url,
-        creator: localStorage.getItem('name'),
-        creatorId: localStorage.getItem('user'),
-        tags: tags,
-        _id: blogId
+      title: blog.title,
+      description: blog.description,
+      cta: blog.cta,
+      ctaText: blog.ctaText,
+      visibility: blog.visibility,
+      text: textData,
+      //image: blogImage.image,
+      tags: tags,
+      _id: blogId
     }
-    if(obj.image == undefined) { 
-      obj.image = selectedFiles[0].preview
+    if(blogImage.image) {
+      obj.image = blogImage.image
     }
-    saveBlog(obj).then((r)=>{
-      reset();
+    console.log(blogImage)
+    saveBlog(obj).then((r) => {
+      //reset();
     })
   }
 
@@ -207,7 +211,7 @@ const Home = (props) => {
   }
 
 
-  
+
 
   const blogDelete = (id) => {
     setloadingStatus(true)
@@ -219,56 +223,56 @@ const Home = (props) => {
   return (
     <div className="App">
       <header className="header_new py-2 position-relative">
-      <nav
-        className="navbar navbar-light navbar-expand-md bg-faded justify-content-center"
-      >
-        <div className="container d-flex mobile-grid gap-2">
-          <a href="/" className="navbar-brand text-center"
+        <nav
+          className="navbar navbar-light navbar-expand-md bg-faded justify-content-center"
+        >
+          <div className="container d-flex mobile-grid gap-2">
+            <a href="/" className="navbar-brand text-center"
             ><img src="./images/logo.svg" className="nav-logo" alt="Logo" /></a
-          ><button
-            className="navbar-toggler order-first order-md-0"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#mynavbar"
-          >
-            <span className="navbar-toggler-icon"></span>
-          </button>
-          <div className="header-chat-btn d-md-none">
-            <a href="/about-us" title="" className="d-inline-block">Log Out</a>
+            ><button
+              className="navbar-toggler order-first order-md-0"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#mynavbar"
+            >
+              <span className="navbar-toggler-icon"></span>
+            </button>
+            <div className="header-chat-btn d-md-none">
+              <a href="/about-us" title="" className="d-inline-block">Log Out</a>
+            </div>
+            <div className="collapse navbar-collapse w-100" id="mynavbar">
+              <ul className="navbar-nav w-100 justify-content-center">
+                <li className="nav-item active">
+                  <a className="nav-link" href="/">Home</a>
+                </li>
+                <li className="nav-item">
+                  <a className="nav-link" href="./blogs">All Blogs</a>
+                </li>
+              </ul>
+            </div>
+            <div className="header-chat-btn d-none d-md-block">
+              <a href="" onClick={() => logout()} title="">Log Out</a>
+            </div>
           </div>
-          <div className="collapse navbar-collapse w-100" id="mynavbar">
-            <ul className="navbar-nav w-100 justify-content-center">
-              <li className="nav-item active">
-                <a className="nav-link" href="/">Home</a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="./blogs">All Blogs</a>
-              </li>
-            </ul>
-          </div>
-          <div className="header-chat-btn d-none d-md-block">
-            <a  href="" onClick={() => logout()} title="">Log Out</a>
-          </div>
-        </div>
-      </nav>
-    </header>
+        </nav>
+      </header>
       <div className="container">
 
         <div className="jumbotron tagsContainer">
           <h4 className="">Blog Title</h4>
-          <input type="text" id="email" className="form-control" name="title" placeholder="Blog title" value={blog.title||""} onChange={updateField}/>
+          <input type="text" id="email" className="form-control" name="title" placeholder="Blog title" value={blog.title || ""} onChange={updateField} />
         </div>
         <div className="jumbotron tagsContainer">
           <h4 className="">Description</h4>
-          <textarea  name="description"  className="form-control" value={blog.description||""} onChange={updateField} rows="4"> </textarea>
+          <textarea name="description" className="form-control" value={blog.description || ""} onChange={updateField} rows="4"> </textarea>
         </div>
         <div className="jumbotron tagsContainer">
           <h4 className="">CTA Link</h4>
-          <input type="text" id="link" className="form-control" name="cta" placeholder="Call to action link" value={blog.cta||""} onChange={updateField}/>
+          <input type="text" id="link" className="form-control" name="cta" placeholder="Call to action link" value={blog.cta || ""} onChange={updateField} />
         </div>
         <div className="jumbotron tagsContainer">
           <h4 className="">CTA Text</h4>
-          <input type="text" id="link" className="form-control" name="ctaText" placeholder="Call to action button name" value={blog.ctaText||""} onChange={updateField}/>
+          <input type="text" id="link" className="form-control" name="ctaText" placeholder="Call to action button name" value={blog.ctaText || ""} onChange={updateField} />
         </div>
 
         <div className="form-check">
@@ -281,84 +285,105 @@ const Home = (props) => {
         <div className="jumbotron tagsContainer">
           <h4 className="">Blog Cover</h4>
           <Form>
-              <Dropzone
-                onDrop={acceptedFiles => {
-                  handleAcceptedFiles(acceptedFiles)
-                }}
-                multiple={false}
-              >
-                {({ getRootProps, getInputProps }) => (
-                  <div className="dropzone dz-clickable">
-                    <div
-                      className="dz-message needsclick"
-                      {...getRootProps()}
-                    >
-                      <input {...getInputProps()} />
-                      <div className="mb-3">
-                        <i className="display-4 text-muted mdi mdi-upload-network-outline"></i>
-                      </div>
-                      <h4>Drop files here or click to upload.</h4>
+            <Dropzone
+              onDrop={acceptedFiles => {
+                handleAcceptedFiles(acceptedFiles)
+              }}
+              multiple={false}
+            >
+              {({ getRootProps, getInputProps }) => (
+                <div className="dropzone dz-clickable">
+                  <div
+                    className="dz-message needsclick"
+                    {...getRootProps()}
+                  >
+                    <input {...getInputProps()} />
+                    <div className="mb-3">
+                      <i className="display-4 text-muted mdi mdi-upload-network-outline"></i>
                     </div>
+                    <h4>Drop files here or click to upload.</h4>
                   </div>
-                )}
-              </Dropzone>
-              <div className="dropzone-previews mt-3" id="file-previews">
-                {selectedFiles.map((f, i) => {
-                  return (
-                    <Card
-                      className="mt-1 mb-0 shadow-none border dz-processing dz-image-preview dz-success dz-complete"
-                      key={i + "-file"}
-                    >
-                      <div className="p-2">
-                        <Row className="align-items-center">
-                          <Col className="col-auto coverContainer">
-                            <img
-                              data-dz-thumbnail=""
-                              height="auto"
-                              className="avatar-sm rounded bg-light"
-                              alt={f.name}
-                              src={f.preview}
-                            />
-                          </Col>
-                        </Row>
-                      </div>
-                    </Card>
-                  )
-                })}
-              </div>
-            </Form>
-          </div>
-            
-          <div className="jumbotron tagsContainer">
-            <h4 className="">Content</h4>
-            <TextEditor 
-              data={textData} 
-              onEditorReady={ () => console.log("Editor is ready")} // can write some function here if you need :)
-              onChangeData={handleTextChange}
-              {...extraProps}
-            />
+                </div>
+              )}
+            </Dropzone>
+            <div className="dropzone-previews mt-3" id="file-previews">
+              {selectedFiles.length>0 && selectedFiles.map((f, i) => {
+                return (
+                  <Card
+                    className="mt-1 mb-0 shadow-none border dz-processing dz-image-preview dz-success dz-complete"
+                    key={i + "-file"}
+                  >
+                    <div className="p-2">
+                      <Row className="align-items-center">
+                        <Col className="col-auto coverContainer">
+                          <img
+                            data-dz-thumbnail=""
+                            height="auto"
+                            className="avatar-sm rounded bg-light"
+                            alt={f.name}
+                            src={f.preview}
+                          />
+                        </Col>
+                      </Row>
+                    </div>
+                  </Card>
+                )
+              })
+              ||
+              <Card
+                    className="mt-1 mb-0 shadow-none border dz-processing dz-image-preview dz-success dz-complete"
+                   
+                  >
+                    <div className="p-2">
+                      <Row className="align-items-center">
+                        <Col className="col-auto coverContainer">
+                          <img
+                            data-dz-thumbnail=""
+                            height="auto"
+                            className="avatar-sm rounded bg-light"
+                            alt={blog.name}
+                            src={blog.image}
+                          />
+                        </Col>
+                      </Row>
+                    </div>
+                  </Card>
+              }
+              
+            </div>
+          </Form>
+        </div>
+
+        <div className="jumbotron tagsContainer">
+          <h4 className="">Content</h4>
+          <TextEditor
+            data={textData}
+            onEditorReady={() => console.log("Editor is ready")} // can write some function here if you need :)
+            onChangeData={handleTextChange}
+            {...extraProps}
+          />
         </div>
 
         {/* <div className="preview" dangerouslySetInnerHTML={createMarkup(convertedContent)}></div> */}
 
         <div className="jumbotron tagsContainer">
           <h4 className="">Tags</h4>
-            <div className="">
-              <ReactTags tags={tags}
-                        handleDelete={handleDelete}
-                        handleAddition={handleAddition}
-                        handleDrag={handleDrag}
-                        delimiters={delimiters}
-                        classNames={{
-                          tags: 'container my-4',
-                          tagInput: 'tagInputClass tagInput my-4',
-                          tagInputField: 'form-control',
-                          selected: 'selectedClass',
-                          tag: 'blog-added-tag py-2',
-                          remove: 'fas align-middle delete-btn removeTag'
-                        }}
-                        />
-              </div>
+          <div className="">
+            <ReactTags tags={tags}
+              handleDelete={handleDelete}
+              handleAddition={handleAddition}
+              handleDrag={handleDrag}
+              delimiters={delimiters}
+              classNames={{
+                tags: 'container my-4',
+                tagInput: 'tagInputClass tagInput my-4',
+                tagInputField: 'form-control',
+                selected: 'selectedClass',
+                tag: 'blog-added-tag py-2',
+                remove: 'fas align-middle delete-btn removeTag'
+              }}
+            />
+          </div>
         </div>
 
         <div
@@ -366,57 +391,57 @@ const Home = (props) => {
         >
           {blogId && <button className="delete-button" onClick={handleShow}>
             Delete
-          </button> }
-
-          {loadingStatus && <div class="spinner-border text-primary" role="status">
-            <span class="sr-only">Loading...</span>
-          </div> || !blogId && <button type="button" className="publish-button"  onClick={() => uploadBlog()}>
-                Publish
-          </button> || <button type="button" className="publish-button" onClick={() => updateBlog()} >
-                Update
           </button>}
-          
+
+          {loadingStatus && <div className="spinner-border text-primary" role="status">
+            <span className="sr-only">Loading...</span>
+          </div> || !blogId && <button type="button" className="publish-button" onClick={() => uploadBlog()}>
+            Publish
+          </button> || <button type="button" className="publish-button" onClick={() => updateBlog()} >
+              Update
+            </button>}
+
 
         </div>
 
       </div>
 
       <footer className="footer-main footer shadow-lg">
-      <a href="#" title="" className="bottom-to-top-btn"
+        <a href="#" title="" className="bottom-to-top-btn"
         ><i className="fas fa-chevron-up"></i><span>TOP</span></a
-      >
-      <div
-        className="container d-flex justify-content-between align-items-center flex-column flex-xl-row"
-      >
-        <figure><img src="./images/logo.svg" alt="logo" className="footer-logo"/></figure>
-      </div>
-    </footer>
+        >
+        <div
+          className="container d-flex justify-content-between align-items-center flex-column flex-xl-row"
+        >
+          <figure><img src="./images/logo.svg" alt="logo" className="footer-logo" /></figure>
+        </div>
+      </footer>
 
 
       <Modal show={show} onHide={handleClose}>
-          
-          <ModalBody>Are you sure you want to delete this blog ?</ModalBody>
-          <ModalFooter>
-            <Button variant="secondary" onClick={handleClose}>
-              Close
-            </Button>
-            <Button variant="danger" >
-              Confirm
-            </Button>
-          </ModalFooter>
-        </Modal>
-        
 
-        <Modal isOpen={show} toggle={handleClose}>
-          <ModalHeader toggle={handleClose}>Delete Blog ? </ModalHeader>
-          <ModalBody>
-              Are you sure you want to delete this Blog ? 
-          </ModalBody>
-          <ModalFooter>
-            <Button color="danger" onClick={() => blogDelete(blogId)}>Delete</Button>{' '}
-            <Button color="secondary" onClick={handleClose}>Cancel</Button>
-          </ModalFooter>
-        </Modal>
+        <ModalBody>Are you sure you want to delete this blog ?</ModalBody>
+        <ModalFooter>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="danger" >
+            Confirm
+          </Button>
+        </ModalFooter>
+      </Modal>
+
+
+      <Modal isOpen={show} toggle={handleClose}>
+        <ModalHeader toggle={handleClose}>Delete Blog ? </ModalHeader>
+        <ModalBody>
+          Are you sure you want to delete this Blog ?
+        </ModalBody>
+        <ModalFooter>
+          <Button color="danger" onClick={() => blogDelete(blogId)}>Delete</Button>{' '}
+          <Button color="secondary" onClick={handleClose}>Cancel</Button>
+        </ModalFooter>
+      </Modal>
 
     </div>
 

@@ -9,9 +9,9 @@ const blogSchema = mongoose.Schema({
     creatorId: { type: String, required: false },
     cta: { type: String, required: false },
     ctaText: { type: String, required: false },
-    creationDate: {type: String, required: true},
+    creationDate: { type: String, required: true },
     tags: [
-        {type: String}
+        { type: String }
     ],
 });
 

@@ -69,7 +69,7 @@ const Blogs = (props) => {
 
 
       {loadingStatus && <div className="loaderContainer"><div className="spinner-border text-primary mx-auto" role="status">
-            <span class="sr-only">Loading...</span>
+            <span className="sr-only">Loading...</span>
           </div></div>  || 
 
       <Table>
